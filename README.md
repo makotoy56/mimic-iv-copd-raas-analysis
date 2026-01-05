@@ -1,6 +1,19 @@
 # RAAS Blockers and Clinical Outcomes in COPD ICU Admissions  
 *An ICU Hospital Cohort Study of COPD Patients Using MIMIC-IV*
 
+## Technical Snapshot
+
+- **Data**: MIMIC-IV v3.1 (PhysioNet), ICU admissions
+- **Cohort**: Adult ICU patients with COPD
+- **Exposure**: Pre-ICU ACEi / ARB use
+- **Outcome**: Time-to-in-hospital mortality
+- **Methods**:
+  - BigQuery SQL for cohort construction
+  - Kaplan–Meier survival analysis
+  - Cox proportional hazards regression
+  - Sensitivity analyses with extended covariates
+- **Tools**: BigQuery, Python (pandas, lifelines), Jupyter
+
 ---
 
 ## Project Snapshot
@@ -143,6 +156,15 @@ When RAAS inhibitors were evaluated by drug class, ACE inhibitor use demonstrate
 ### Sensitivity analyses
 
 The association between RAAS inhibitor exposure and lower in-hospital mortality was attenuated but remained directionally consistent in sensitivity analyses incorporating additional covariates, including ICU type. Model diagnostics did not identify major violations of proportional hazards assumptions, supporting the robustness of the primary findings within the limitations of an observational study.
+
+---
+
+### Key Results (Summary)
+
+- Pre-ICU RAAS inhibitor use was associated with lower in-hospital mortality.
+- The association was more pronounced for ACE inhibitors than ARBs.
+- Findings were consistent across multiple adjusted Cox models, but remain observational.
+
 
 ---
 
