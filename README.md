@@ -1,14 +1,16 @@
 # RAAS Blockers and Clinical Outcomes in COPD ICU Admissions  
 *An ICU Hospital Cohort Study of COPD Patients Using MIMIC-IV*
 
+---
+
 ## Technical Snapshot
 
 - **Data**: MIMIC-IV v3.1 (PhysioNet), ICU admissions
 - **Cohort**: Adult ICU patients with COPD
-- **Exposure**: Pre-ICU ACEi / ARB use
+- **Exposure**: Pre-ICU RAAS inhibitor use (ACE inhibitors [ACEi] / ARBs)
 - **Outcome**: Time-to-in-hospital mortality
 - **Methods**:
-  - BigQuery SQL for cohort construction
+  - BigQuery SQL for reproducible cohort construction
   - Kaplan–Meier survival analysis
   - Cox proportional hazards regression
   - Sensitivity analyses with extended covariates
