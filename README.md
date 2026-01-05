@@ -167,7 +167,6 @@ The association between RAAS inhibitor exposure and lower in-hospital mortality 
 - The association was more pronounced for ACE inhibitors than ARBs.
 - Findings were consistent across multiple adjusted Cox models, but remain observational.
 
-
 ---
 
 ## Discussion
