@@ -1,4 +1,4 @@
-# 02. Cohort and Exposure Construction (SHORT)
+# 02 - Cohort and Exposure Construction (SHORT)
 
 ## Overview
 This step constructs the foundational ICU cohort of patients with COPD and defines pre-ICU exposure to renin–angiotensin–aldosterone system (RAAS) inhibitors.

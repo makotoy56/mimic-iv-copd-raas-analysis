@@ -1,4 +1,4 @@
-# 03a. Baseline Cohort Assembly (SHORT)
+# 03a - Baseline Cohort Assembly (SHORT)
 
 This notebook assembles a standardized baseline cohort of COPD patients admitted
 to the ICU, serving as the common analysis-ready input for all downstream survival

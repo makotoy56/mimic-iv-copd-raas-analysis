@@ -1,4 +1,4 @@
-# 04c. RAAS Inhibitors and In-Hospital Mortality in ICU Patients With COPD (SHORT)
+# 04c - RAAS Inhibitors and In-Hospital Mortality in ICU Patients With COPD (SHORT)
 
 ---
 

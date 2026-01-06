@@ -1,4 +1,4 @@
-# 01. ICU Cohort Construction (SHORT)
+# 01 - ICU Cohort Construction (SHORT)
 
 This step constructs a standardized adult ICU cohort from MIMIC-IV, serving as the foundational input for all downstream cohort, exposure, and survival analyses.
 

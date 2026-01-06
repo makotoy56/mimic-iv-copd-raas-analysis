@@ -1,4 +1,4 @@
-# 03b. RAAS Exposure Definition and Merging (SHORT)
+# 03b - RAAS Exposure Definition and Merging (SHORT)
 
 This notebook constructs the final analysis-ready dataset by merging the COPD ICU
 cohort with detailed pre-ICU RAAS inhibitor exposure flags.
