@@ -3,6 +3,22 @@
 
 ---
 
+## 🔍 Start Here (Analysis Entry Points)
+
+➡️ **ICU COPD cohort construction**: [01_icu_cohort.ipynb](notebooks/01_icu_cohort.ipynb)<br>
+➡️ **Cohort and exposure definition**: [02_cohort_and_exposures.ipynb](notebooks/02_cohort_and_exposures.ipynb)<br>
+➡️ **Baseline covariates**: [03a_baseline.ipynb](notebooks/03a_baseline.ipynb)<br>
+➡️ **Merge exposures**: [03b_merge_exposures.ipynb](notebooks/03b_merge_exposures.ipynb)<br>
+➡️ **Outcomes and modeling**: [04a_outcomes_and_modeling.ipynb](notebooks/04a_outcomes_and_modeling.ipynb)<br>
+➡️ **RAAS subgroup analyses**: [04b_outcomes_and_modeling_raas_subgroup.ipynb](notebooks/04b_outcomes_and_modeling_raas_subgroup.ipynb)<br>
+➡️ **Extended Cox model analyses**: [04c_extended_covariate_cox_model.ipynb](notebooks/04c_extended_covariate_cox_model.ipynb)<br>
+
+📁 **SQL pipelines (BigQuery)**: [sql/](sql/)<br>
+📁 **Stepwise short documentation**: [docs/](docs/)<br>
+📄 **Analytic framework (PACE)**: [PACE.md](docs/PACE.md)<br>
+
+---
+
 ## Technical Snapshot
 
 - **Data**: MIMIC-IV v3.1 (PhysioNet), ICU admissions
