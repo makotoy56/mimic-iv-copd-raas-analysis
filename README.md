@@ -89,6 +89,8 @@ Despite these findings, several important gaps remain. Most existing studies hav
 
 To address these gaps, this analysis investigates whether pre-ICU exposure to RAAS inhibitors is associated with in-hospital mortality among ICU-admitted patients with COPD. In addition to evaluating RAAS inhibitors as a combined exposure, this project explicitly explores potential differences between ACE inhibitor and ARB subclasses using time-to-event modeling. By integrating biologically grounded rationale with rigorous EHR-based survival analysis, this work aims to provide a transparent and reproducible assessment of RAAS inhibition in a high-risk ICU population.
 
+---
+
 ## Research Question
 
 Among adult ICU patients with COPD in MIMIC-IV, is pre-ICU exposure to ACEi or ARB associated with differences in time-to-in-hospital mortality and related clinical outcomes?
