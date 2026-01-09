@@ -15,7 +15,7 @@ Is the exposure to RAAS inhibitors before or at ICU admission associated with re
 * **Core covariates:** Age, sex, CHF, CKD, diabetes, and SOFA score
 * **Sensitivity covariates:** ICU type (one-hot encoded categories)
 
-The SOFA score at ICU admission was treated as a baseline confounder rather than a mediator, given the temporal ordering in which chronic RAAS exposure precedes acute illness severity.
+The SOFA score at ICU admission was treated as a baseline confounder rather than a mediator, given the temporal ordering in which chronic RAAS exposure precedes acute illness severity, and because SOFA was measured at ICU admission prior to outcome occurrence.
 
 ---
 
