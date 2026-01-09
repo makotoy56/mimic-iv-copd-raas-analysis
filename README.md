@@ -175,8 +175,6 @@ When RAAS inhibitors were evaluated by drug class, ACE inhibitor use demonstrate
 
 The association between RAAS inhibitor exposure and lower in-hospital mortality was attenuated but remained directionally consistent in sensitivity analyses incorporating additional covariates, including ICU type. Model diagnostics did not identify major violations of proportional hazards assumptions, supporting the robustness of the primary findings within the limitations of an observational study.
 
----
-
 ### Key Finding:
 
 Pre-ICU RAAS inhibitor exposure was associated with lower in-hospital mortality, with a more pronounced association for ACE inhibitors than for ARBs. This association was attenuated after further adjustment for ICU type and acute illness severity, suggesting that differences in ICU-level case mix and organ dysfunction may contribute to the observed signal.
