@@ -67,8 +67,6 @@ Subsequent mechanistic studies have further shown that excessive angiotensin II 
 
 Narrative reviews have further proposed that RAAS modulation may influence chronic pulmonary inflammation and airway remodeling in COPD, while emphasizing the lack of randomized evidence in this population [6].
 
----
-
 ### Definition of COPD in EHR data
 
 In this analysis, COPD was defined using International Classification of Diseases (ICD) diagnosis codes recorded during hospital admissions. Specifically, COPD was identified based on established ICD-9 codes (491.*, 492.*, and 496) and ICD-10 codes (J41–J44), which have been widely used and validated in epidemiologic and health services research to identify patients with COPD in administrative and EHR data sources[7,8].
@@ -77,8 +75,6 @@ Prior studies have demonstrated that these ICD-based definitions capture clinica
 
 Importantly, COPD represents a chronic pre-existing condition rather than an acute ICU-acquired syndrome, making ICD-based definitions particularly suitable for cohort construction in studies focused on pre-ICU exposures.
 
----
-
 ### Clinical evidence in COPD and hospitalized populations
 
 Consistent with these mechanistic insights, observational studies have suggested that RAAS inhibitors may be associated with improved outcomes in patients with COPD. In a large Veterans Affairs cohort, prior outpatient use of ACE inhibitors or ARBs was associated with lower short-term mortality following hospitalization for acute COPD exacerbations[4]. However, this study was not limited to critically ill patients and evaluated ACE inhibitors and ARBs as a combined exposure.
@@ -86,8 +82,6 @@ Consistent with these mechanistic insights, observational studies have suggested
 More recent comparative analyses have highlighted important pharmacological differences between ACE inhibitors and ARBs in COPD populations. In a nationwide cohort study, ARB use was associated with a lower risk of pneumonia and severe COPD exacerbations compared with ACE inhibitor use, suggesting that the two drug classes may have distinct respiratory effects[5].
 
 In hospitalized patients with severe systemic illness, baseline use of RAAS inhibitors has also been associated with improved survival. In a large retrospective cohort of racially diverse patients hospitalized with COVID-19, prior use of ACE inhibitors or ARBs was independently associated with a lower risk of in-hospital mortality after multivariable adjustment[3]. Although this study did not focus on COPD or ICU populations specifically, it provides additional clinical evidence that RAAS modulation may influence outcomes in severe respiratory illness.
-
----
 
 ### Knowledge gaps and study objective
 
