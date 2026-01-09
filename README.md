@@ -10,7 +10,7 @@
 ➡️ **Baseline covariates**: [03a_baseline.ipynb](notebooks/03a_baseline.ipynb)<br>
 ➡️ **Merge exposures**: [03b_merge_exposures.ipynb](notebooks/03b_merge_exposures.ipynb)<br>
 ➡️ **Outcomes and modeling**: [04a_outcomes_and_modeling.ipynb](notebooks/04a_outcomes_and_modeling.ipynb)<br>
-➡️ **RAAS subgroup analyses**: [04b_outcomes_and_modeling_raas_subgroup.ipynb](notebooks/04b_outcomes_and_modeling_raas_subgroup.ipynb)<br>
+➡️ **RAAS subgroup analyses**: [04b_outcomes_and_modeling_raas_subgroup.ipynb](notebooks/04b_outcomes_and_modeling_raas_subgroups.ipynb)<br>
 ➡️ **Extended Cox model analyses**: [04c_extended_covariate_cox_model.ipynb](notebooks/04c_extended_covariate_cox_model.ipynb)<br>
 
 📁 **SQL pipelines (BigQuery)**: [sql/](sql/)<br>
@@ -177,11 +177,9 @@ The association between RAAS inhibitor exposure and lower in-hospital mortality 
 
 ---
 
-### Key Results (Summary)
+### Key Finding:
 
-- Pre-ICU RAAS inhibitor use was associated with lower in-hospital mortality.
-- The association was more pronounced for ACE inhibitors than ARBs.
-- Findings were consistent across multiple adjusted Cox models, but remain observational.
+Pre-ICU RAAS inhibitor exposure was associated with lower in-hospital mortality, with a more pronounced association for ACE inhibitors than for ARBs; however, this association was attenuated after additional adjustment for ICU type and illness severity (SOFA score), highlighting the importance of confounding control.
 
 ---
 
