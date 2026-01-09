@@ -179,7 +179,7 @@ The association between RAAS inhibitor exposure and lower in-hospital mortality 
 
 ### Key Finding:
 
-Pre-ICU RAAS inhibitor exposure was associated with lower in-hospital mortality, with a more pronounced association for ACE inhibitors than for ARBs; however, this association was attenuated after additional adjustment for ICU type and illness severity (SOFA score), highlighting the importance of confounding control.
+Pre-ICU RAAS inhibitor exposure was associated with lower in-hospital mortality, with a more pronounced association for ACE inhibitors than for ARBs. This association was attenuated after further adjustment for ICU type and acute illness severity, suggesting that differences in ICU-level case mix and organ dysfunction may contribute to the observed signal.
 
 ---
 
