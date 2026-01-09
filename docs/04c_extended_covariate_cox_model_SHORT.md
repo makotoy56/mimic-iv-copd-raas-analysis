@@ -8,11 +8,14 @@ Is the exposure to RAAS inhibitors before or at ICU admission associated with re
 ---
 
 ## 2. Cohort & Variables
-- **Data:** MIMIC-IV v3.1, 11,964 ICU stays with COPD  
-- **Exposure:** Pre-ICU use of RAAS inhibitors (binary indicator)  
-- **Outcome:** In-hospital mortality, analyzed as time-to-event from ICU admission  
-- **Core covariates:** Age, sex, SOFA score, CHF, CKD, diabetes  
-- **Sensitivity covariates:** ICU type (one-hot encoded categories)
+
+* **Data:** MIMIC-IV v3.1, 11,964 ICU stays with COPD
+* **Exposure:** Pre-ICU use of RAAS inhibitors (binary indicator)
+* **Outcome:** In-hospital mortality, analyzed as time-to-event from ICU admission
+* **Core covariates:** Age, sex, CHF, CKD, diabetes, and SOFA score
+* **Sensitivity covariates:** ICU type (one-hot encoded categories)
+
+The SOFA score at ICU admission was treated as a baseline confounder rather than a mediator, given the temporal ordering in which chronic RAAS exposure precedes acute illness severity.
 
 ---
 
