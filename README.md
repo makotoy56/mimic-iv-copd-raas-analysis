@@ -145,13 +145,43 @@ mimic-iv-copd-raas-analysis-private/
 
 ## Methods Overview
 
-Covariate selection was guided by a pre-specified conceptual causal framework, considering baseline demographics, cardiovascular comorbidities, and illness severity as potential confounders of the association between RAAS inhibitor exposure and in-hospital mortality.
+This study was conducted using a pre-specified analytic plan grounded in a causal inference framework to evaluate the association between pre-ICU RAAS inhibitor exposure and in-hospital mortality among ICU-admitted patients with COPD.
 
-Cohort construction, exposure definition, baseline covariate assembly, and outcome derivation were implemented using a combination of SQL (BigQuery-compatible) and Python-based processing.
+### Study Design and Data Source
 
-The analytic pipeline was designed to be reproducible, with core cohort and outcome tables generated via project-specific SQL scripts and downstream modeling performed in structured notebooks.
+We performed a retrospective observational cohort study using the MIMIC-IV database (version 3.1), which contains detailed, de-identified electronic health record data from ICU admissions at Beth Israel Deaconess Medical Center. All analyses were conducted within approved data use environments.
 
-Modeling choices were defined prior to outcome modeling and applied consistently across analyses.
+### Cohort Construction
+
+Adult patients admitted to the ICU with a diagnosis of COPD were identified using validated ICD-9 and ICD-10 diagnosis codes recorded during hospitalization. Only the first eligible ICU admission per patient was included to avoid correlated observations. Cohort construction and variable derivation were implemented using reproducible BigQuery-compatible SQL pipelines.
+
+### Exposure Definition
+
+The primary exposure was pre-ICU use of RAAS inhibitors, defined as documented outpatient or inpatient administration of ACE inhibitors or ARBs prior to ICU admission. Patients were categorized as RAAS-exposed or non-exposed. Subgroup analyses further distinguished ACE inhibitor and ARB use to explore potential class-specific effects.
+
+### Outcome
+
+The primary outcome was time to in-hospital mortality, measured from ICU admission until death or hospital discharge. Patients discharged alive were censored at discharge.
+
+### Covariate Selection
+
+Covariates were selected a priori based on a conceptual causal framework to address confounding. These included:
+
+* Demographics (age, sex)
+* Cardiovascular comorbidities (e.g., congestive heart failure, chronic kidney disease, diabetes)
+* Illness severity (SOFA score at ICU admission)
+
+Additional sensitivity models incorporated ICU type and extended clinical variables.
+
+### Statistical Analysis
+
+Survival analyses were performed using Kaplan–Meier curves and Cox proportional hazards regression. Multivariable models adjusted for pre-specified covariates to estimate adjusted hazard ratios and 95% confidence intervals. Proportional hazards assumptions were evaluated using Schoenfeld residuals.
+
+Sensitivity analyses assessed model robustness by incorporating extended covariates and ICU type stratification. Penalized Cox models were explored to evaluate potential collinearity and overfitting.
+
+### Reproducibility
+
+All data extraction and transformation steps were implemented using version-controlled SQL scripts. Statistical modeling was conducted in structured Jupyter notebooks using Python (pandas, lifelines). The full analytic workflow is documented and reproducible within this repository.
 
 ---
 
