@@ -54,8 +54,9 @@ All cohort extraction and exposure derivation steps are implemented
 ## C — Construct
 
 ### Exposure Definition
-RAAS exposure is defined **strictly before or at ICU admission** to avoid
-reverse causation.
+RAAS exposure is defined **strictly before or at ICU admission** using inpatient
+prescription orders. This does not directly capture outpatient chronic use and is
+intended as a proximal pre-ICU exposure proxy.
 
 Exposure variables include:
 - `acei_pre_icu`

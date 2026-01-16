@@ -23,7 +23,7 @@
 
 - **Data**: MIMIC-IV v3.1 (PhysioNet), ICU admissions
 - **Cohort**: Adult ICU patients with COPD
-- **Exposure**: Pre-ICU RAAS inhibitor use (ACE inhibitors [ACEi] / ARBs)
+- **Exposure**: Pre-ICU RAAS inhibitor use (ACE inhibitors [ACEi] / ARBs) based on inpatient prescription orders prior to ICU admission (not outpatient medication history)
 - **Outcome**: Time-to-in-hospital mortality
 - **Methods**:
   - BigQuery SQL for reproducible cohort construction
@@ -37,7 +37,7 @@
 ## Project Snapshot
 
 - **Population**: ICU-admitted adults with COPD (MIMIC-IV v3.1)
-- **Exposure**: Pre-ICU RAAS inhibitor use (ACE inhibitors and/or ARBs)
+- **Exposure**: Pre-ICU RAAS inhibitor use (ACE inhibitors and/or ARBs) based on inpatient prescription orders prior to ICU admission (not outpatient medication history)
 - **Outcome**: Time to in-hospital mortality
 - **Design**: Retrospective observational cohort study
 - **Analysis**: Cox proportional hazards regression
@@ -53,7 +53,7 @@ Chronic obstructive pulmonary disease (COPD) is a leading cause of morbidity and
 
 Renin–angiotensin–aldosterone system (RAAS) inhibitors, including angiotensin-converting enzyme inhibitors (ACE inhibitors; ACEi) and angiotensin II receptor blockers (ARBs), are widely prescribed for cardiovascular and metabolic diseases that commonly coexist with COPD. Although these agents are primarily used for cardiovascular protection, increasing evidence suggests that RAAS signaling also plays a significant role in pulmonary pathophysiology and acute lung injury [1,2].
 
-This portfolio project evaluates the association between pre-ICU exposure to RAAS inhibitors and in-hospital mortality among ICU-admitted patients with COPD using a reproducible electronic health record (EHR)–based survival analysis framework applied to the MIMIC-IV database.
+This portfolio project evaluates the association between pre-ICU exposure to RAAS inhibitors and in-hospital mortality among ICU-admitted patients with COPD using a reproducible electronic health record (EHR)–based survival analysis framework applied to the MIMIC-IV database. Pre-ICU exposure here reflects inpatient prescription orders before ICU admission and is not a direct measure of outpatient chronic use.
 
 ---
 
@@ -153,7 +153,7 @@ Adult patients admitted to the ICU with a diagnosis of COPD were identified usin
 
 ### Exposure Definition
 
-The primary exposure was pre-ICU use of RAAS inhibitors, defined as documented outpatient or inpatient administration of ACE inhibitors or ARBs prior to ICU admission. Patients were categorized as RAAS-exposed or non-exposed. Subgroup analyses further distinguished ACE inhibitor and ARB use to explore potential class-specific effects.
+The primary exposure was pre-ICU use of RAAS inhibitors, defined using inpatient prescription orders for ACE inhibitors or ARBs recorded before or at ICU admission. This does not directly capture outpatient chronic use. Patients were categorized as RAAS-exposed or non-exposed. Subgroup analyses further distinguished ACE inhibitor and ARB use to explore potential class-specific effects.
 
 ### Outcome
 

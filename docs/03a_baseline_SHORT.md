@@ -11,7 +11,8 @@ from MIMIC-IV hospital tables.
 
 Hospital length of stay (`hosp_los`, in days) is computed, and a binary indicator
 of pre-ICU RAAS inhibitor exposure (`raas_pre_icu`) is attached at the ICU-stay
-level using medication-derived exposure flags defined prior to or at ICU admission.
+level using medication-derived exposure flags from inpatient prescription orders
+defined prior to or at ICU admission (not outpatient medication history).
 Missing exposure records are explicitly treated as non-exposure
 (`raas_pre_icu = 0`), preserving temporal ordering and avoiding reverse causation.
 

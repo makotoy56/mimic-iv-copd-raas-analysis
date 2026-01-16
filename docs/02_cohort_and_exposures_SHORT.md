@@ -1,7 +1,7 @@
 # 02 - Cohort and Exposure Construction (SHORT)
 
 ## Overview
-This step constructs the foundational ICU cohort of patients with COPD and defines pre-ICU exposure to renin–angiotensin–aldosterone system (RAAS) inhibitors.
+This step constructs the foundational ICU cohort of patients with COPD and defines pre-ICU exposure to renin–angiotensin–aldosterone system (RAAS) inhibitors based on inpatient prescription orders prior to ICU admission (not outpatient medication history).
 All cohort and exposure definitions are implemented fully in BigQuery SQL to ensure transparency, reproducibility, and correct temporal ordering.
 
 ---
