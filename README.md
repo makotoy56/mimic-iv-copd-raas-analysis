@@ -36,12 +36,20 @@
 
 ## Validation checklist
 
-Run aggregate-only data validations with:
+Step 1 enumerates candidate tables in BigQuery (`copd_raas`) via `INFORMATION_SCHEMA`.
+
+Run the script with a venv Python:
+````text
+/Users/makoto/Projects/my_notebook/venv/bin/python scripts/validation_checklist.py
+````
+
+Or after activating the venv:
 ````text
 python scripts/validation_checklist.py
 ````
 
-The repeat admissions rate is computed as `1 - (unique_subjects / admissions)` and reflects the share of admissions beyond each subject's first admission. All checks are aggregate-only by design.
+Output lists table names under `Tables:` as a bulleted list.  
+Note: ADC is required (`gcloud auth application-default login`).
 
 ---
 
