@@ -16,6 +16,8 @@
 📁 **SQL pipelines (BigQuery)**: [sql/](sql/)<br>
 📁 **Stepwise short documentation**: [docs/](docs/)<br>
 📁 **Validation checklist**: [scripts/validation_checklist.py](scripts/validation_checklist.py)<br>
+📄 **Minimal environment spec**: [requirements.txt](requirements.txt)<br>
+📄 **Pinned environment snapshot**: [requirements-lock.txt](requirements-lock.txt)<br>
 📄 **Analytic framework (PACE)**: [PACE.md](docs/PACE.md)<br>
 
 ---
@@ -172,6 +174,8 @@ mimic-iv-copd-raas-analysis-private/
 │   └── processed/
 ├── scripts/          # Lightweight validation / QA utilities
 │   └── validation_checklist.py
+├── requirements.txt  # Minimal dependencies for notebooks + scripts
+├── requirements-lock.txt  # Fully pinned local environment
 ├── .github/          # Repository configuration
 ├── .gitignore
 └── README.md
