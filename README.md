@@ -15,6 +15,7 @@
 
 📁 **SQL pipelines (BigQuery)**: [sql/](sql/)<br>
 📁 **Stepwise short documentation**: [docs/](docs/)<br>
+📁 **Validation checklist**: [scripts/validation_checklist.py](scripts/validation_checklist.py)<br>
 📄 **Analytic framework (PACE)**: [PACE.md](docs/PACE.md)<br>
 
 ---
@@ -151,7 +152,8 @@ mimic-iv-copd-raas-analysis-private/
 ├── data/             # Local analysis artifacts (excluded or minimal)
 │   ├── interim/
 │   └── processed/
-│
+├── scripts/          # Lightweight validation / QA utilities
+│   └── validation_checklist.py
 ├── .github/          # Repository configuration
 ├── .gitignore
 └── README.md
