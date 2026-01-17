@@ -36,21 +36,26 @@
 ---
 
 ## Validation checklist
-
-Step 1 enumerates candidate tables in BigQuery (`copd_raas`) via `INFORMATION_SCHEMA`.
-
-Run the script with a venv Python:
-````text
-/Users/makoto/Projects/my_notebook/venv/bin/python scripts/validation_checklist.py
-````
-
-Or after activating the venv:
-````text
-python scripts/validation_checklist.py
-````
-
-Output lists table names under `Tables:` as a bulleted list.  
-Note: ADC is required (`gcloud auth application-default login`).
+### Purpose
+- validation_checklist.py performs a lightweight sanity check
+- It enumerates candidate tables in the BigQuery dataset (nonicu_raas)
+- Uses INFORMATION_SCHEMA
+### How to run
+- python scripts/validation_checklist.py
+### What it does
+- Lists available tables
+- Output format:
+  Tables:
+   - table_name_1
+   - table_name_2
+### Authentication
+This script requires Application Default Credentials (ADC).
+### Run
+gcloud auth application-default login
+**Important note**
+- This script ONLY checks table existence
+- It does NOT perform any data quality validation
+- It does NOT validate table contents
 
 ---
 
@@ -135,8 +140,7 @@ Among adult ICU patients with COPD in MIMIC-IV, is pre-ICU exposure to ACEi or A
 ````text
 mimic-iv-copd-raas-analysis-private/
 ├── notebooks/        # Stepwise analysis notebooks (00–04c)
-│   ├── 00a_setup.ipynb
-│   ├── 01b_SQL Pipeline Verification.ipynb
+│   ├── 00_setup.ipynb
 │   ├── 01_icu_cohort.ipynb
 │   ├── 02_cohort_and_exposures.ipynb
 │   ├── 03a_baseline.ipynb
