@@ -34,6 +34,17 @@
 
 ---
 
+## Validation checklist
+
+Run aggregate-only data validations with:
+````text
+python scripts/validation_checklist.py
+````
+
+The repeat admissions rate is computed as `1 - (unique_subjects / admissions)` and reflects the share of admissions beyond each subject's first admission. All checks are aggregate-only by design.
+
+---
+
 ## Project Snapshot
 
 - **Population**: ICU-admitted adults with COPD (MIMIC-IV v3.1)
