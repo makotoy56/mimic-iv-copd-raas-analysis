@@ -135,8 +135,7 @@ Among adult ICU patients with COPD in MIMIC-IV, is pre-ICU exposure to ACEi or A
 ````text
 mimic-iv-copd-raas-analysis-private/
 ├── notebooks/        # Stepwise analysis notebooks (00–04c)
-│   ├── 00a_setup.ipynb
-│   ├── 01b_SQL Pipeline Verification.ipynb
+│   ├── 00_setup.ipynb
 │   ├── 01_icu_cohort.ipynb
 │   ├── 02_cohort_and_exposures.ipynb
 │   ├── 03a_baseline.ipynb
