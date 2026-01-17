@@ -54,6 +54,20 @@ Note: ADC is required (`gcloud auth application-default login`).
 
 ---
 
+## Environment
+
+- `requirements.txt` is the minimal, portable set needed to run `scripts/validation_checklist.py` and execute the analysis notebooks.
+- `requirements-lock.txt` is a full, pinned snapshot of my local environment for reproducibility.
+
+Install the minimal environment:
+````text
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+````
+
+---
+
 ## Project Snapshot
 
 - **Population**: ICU-admitted adults with COPD (MIMIC-IV v3.1)
