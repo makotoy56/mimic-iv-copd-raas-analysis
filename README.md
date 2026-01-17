@@ -15,6 +15,7 @@
 
 📁 **SQL pipelines (BigQuery)**: [sql/](sql/)<br>
 📁 **Stepwise short documentation**: [docs/](docs/)<br>
+📁 **Validation checklist**: [scripts/validation_checklist.py](scripts/validation_checklist.py)<br>
 📄 **Analytic framework (PACE)**: [PACE.md](docs/PACE.md)<br>
 
 ---
@@ -31,6 +32,39 @@
   - Cox proportional hazards regression
   - Sensitivity analyses with extended covariates
 - **Tools**: BigQuery, Python (pandas, lifelines), Jupyter
+
+---
+
+## Validation checklist
+
+Step 1 enumerates candidate tables in BigQuery (`copd_raas`) via `INFORMATION_SCHEMA`.
+
+Run the script with a venv Python:
+````text
+/Users/makoto/Projects/my_notebook/venv/bin/python scripts/validation_checklist.py
+````
+
+Or after activating the venv:
+````text
+python scripts/validation_checklist.py
+````
+
+Output lists table names under `Tables:` as a bulleted list.  
+Note: ADC is required (`gcloud auth application-default login`).
+
+---
+
+## Environment
+
+- `requirements.txt` is the minimal, portable set needed to run `scripts/validation_checklist.py` and execute the analysis notebooks.
+- `requirements-lock.txt` is a full, pinned snapshot of my local environment for reproducibility.
+
+Install the minimal environment:
+````text
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+````
 
 ---
 
@@ -132,7 +166,8 @@ mimic-iv-copd-raas-analysis-private/
 ├── data/             # Local analysis artifacts (excluded or minimal)
 │   ├── interim/
 │   └── processed/
-│
+├── scripts/          # Lightweight validation / QA utilities
+│   └── validation_checklist.py
 ├── .github/          # Repository configuration
 ├── .gitignore
 └── README.md
