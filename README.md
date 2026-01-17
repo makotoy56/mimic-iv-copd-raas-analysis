@@ -37,20 +37,31 @@
 
 ## Validation checklist
 
-Step 1 enumerates candidate tables in BigQuery (`copd_raas`) via `INFORMATION_SCHEMA`.
+### Purpose
+- validation_checklist.py performs a lightweight sanity check
+- It enumerates candidate tables in the BigQuery dataset (nonicu_raas)
+- Uses INFORMATION_SCHEMA
 
-Run the script with a venv Python:
-````text
-/Users/makoto/Projects/my_notebook/venv/bin/python scripts/validation_checklist.py
-````
+### How to run
+- python scripts/validation_checklist.py
 
-Or after activating the venv:
-````text
-python scripts/validation_checklist.py
-````
+### What it does
+- Lists available tables
+- Output format:
+  Tables:
+   - table_name_1
+   - table_name_2
 
-Output lists table names under `Tables:` as a bulleted list.  
-Note: ADC is required (`gcloud auth application-default login`).
+### Authentication
+This script requires Application Default Credentials (ADC).
+
+### Run
+gcloud auth application-default login
+
+**Important note**
+- This script ONLY checks table existence
+- It does NOT perform any data quality validation
+- It does NOT validate table contents
 
 ---
 
