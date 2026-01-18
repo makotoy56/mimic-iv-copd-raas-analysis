@@ -3,6 +3,13 @@
 
 ---
 
+Maintained by <br>
+Makoto Yoshida, PhD <br>
+Clinical Data Analytics Portfolio <br>
+LinkedIn: https://www.linkedin.com/in/makoto-yoshida/ <br>
+
+---
+
 ## 🔍 Start Here (Analysis Entry Points)
 
 ➡️ **ICU COPD cohort construction**: [01_icu_cohort.ipynb](notebooks/01_icu_cohort.ipynb)<br>
