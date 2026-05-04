@@ -12,7 +12,8 @@ title2 "Table 4. Cox Proportional Hazards Regression";
 title3 "Adjusted hazard ratios for RAAS exposure and clinical covariates";
 footnote1 "Source: MIMIC-IV derived dataset (BigQuery)";
 footnote2 "Cox proportional hazards regression was used to estimate adjusted hazard ratios (HRs) and 95% confidence intervals.";
-footnote3 "The model adjusted for age, sex, illness severity, comorbidity burden, CHF, CKD, and diabetes.";
+footnote3 
+	"The model adjusted for age, sex, illness severity, CHF, CKD, and diabetes.";
 
 /* Check key variables */
 proc contents data=data.copd_cohort;
@@ -23,28 +24,27 @@ proc freq data=data.copd_cohort;
 run;
 
 proc means data=data.copd_cohort n mean median min max;
-	var time_to_event_days age sofa_score charlson_comorbidity_index;
+	var time_to_event_days age sofa_score;
 run;
 
 /* Prepare analysis dataset aligned with Python dropna() */
 data work.analysis_dataset;
 	set data.copd_cohort;
 
-	if nmiss(time_to_event_days, death_event, raas_pre_icu, age, sofa_score, 
-		charlson_comorbidity_index, chf, ckd, diabetes)=0;
+	if nmiss(time_to_event_days, death_event, raas_pre_icu, age, sofa_score, chf, 
+		ckd, diabetes)=0;
 run;
 
 /* Primary Cox proportional hazards model */
 proc phreg data=work.analysis_dataset;
 	class gender(ref='F') chf(ref='0') ckd(ref='0') diabetes(ref='0') 
 		anchor_year_group / param=ref;
-	model time_to_event_days*death_event(0)=raas_pre_icu age gender sofa_score 
-		charlson_comorbidity_index chf ckd diabetes / ties=efron risklimits;
+	model time_to_event_days*death_event(0)=raas_pre_icu age gender sofa_score chf 
+		ckd diabetes / ties=efron risklimits;
 	strata anchor_year_group;
 	hazardratio raas_pre_icu;
 	hazardratio age;
 	hazardratio sofa_score;
-	hazardratio charlson_comorbidity_index;
 run;
 
 ods pdf close;
