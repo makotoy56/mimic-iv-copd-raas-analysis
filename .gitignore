@@ -44,3 +44,4 @@ sas/logs/
 *.lst
 
 sas/programs/*.sas
+sas/docs/*.md
