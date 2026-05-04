@@ -23,7 +23,6 @@ LinkedIn: https://www.linkedin.com/in/makoto-yoshida/ <br>
 📁 **SQL pipelines (BigQuery)**: [sql/](sql/)<br>
 📁 **Stepwise short documentation**: [docs/](docs/)<br>
 📁 **Validation checklist**: [scripts/validation_checklist.py](scripts/validation_checklist.py)<br>
-📄 **Minimal environment spec**: [requirements.txt](requirements.txt)<br>
 📄 **Analytic framework (PACE)**: [PACE.md](docs/PACE.md)<br>
 
 ---
@@ -46,7 +45,7 @@ LinkedIn: https://www.linkedin.com/in/makoto-yoshida/ <br>
 ## Validation checklist
 ### Purpose
 - validation_checklist.py performs a lightweight sanity check
-- It enumerates candidate tables in the BigQuery dataset (nonicu_raas)
+- It enumerates candidate tables in the BigQuery dataset used for this COPD ICU RAAS analysis.
 - Uses INFORMATION_SCHEMA
 ### How to run
 - python scripts/validation_checklist.py
@@ -69,8 +68,7 @@ gcloud auth application-default login
 
 ## Environment
 
-- `requirements.txt` is the minimal, portable set needed to run `scripts/validation_checklist.py` and execute the analysis notebooks.
-- `requirements-lock.txt` is a full, pinned snapshot of my local environment for reproducibility.
+- `requirements.txt` provides a minimal, portable environment specification for running the validation script and analysis notebooks.
 
 Install the minimal environment:
 ````text
@@ -146,7 +144,7 @@ Among adult ICU patients with COPD in MIMIC-IV, is pre-ICU exposure to ACEi or A
 
 ## Project Structure
 ````text
-mimic-iv-copd-raas-analysis-private/
+mimic-iv-copd-raas-analysis/
 ├── notebooks/        # Stepwise analysis notebooks (00–04c)
 │   ├── 00_setup.ipynb
 │   ├── 01_icu_cohort.ipynb
@@ -180,8 +178,9 @@ mimic-iv-copd-raas-analysis-private/
 │   └── processed/
 ├── scripts/          # Lightweight validation / QA utilities
 │   └── validation_checklist.py
-├── requirements.txt  # Minimal dependencies for notebooks + scripts
-├── requirements-lock.txt  # Fully pinned local environment
+├── sas/
+│   ├── README.md
+│   └── programs/      # SAS scripts for cross-platform validation
 ├── .github/          # Repository configuration
 ├── .gitignore
 └── README.md
@@ -226,7 +225,7 @@ Sensitivity analyses assessed model robustness by incorporating extended covaria
 
 ### Reproducibility
 
-All data extraction and transformation steps were implemented using version-controlled SQL scripts. Statistical modeling was conducted in structured Jupyter notebooks using Python (pandas, lifelines). The full analytic workflow is documented and reproducible within this repository.
+All data extraction and transformation steps were implemented using version-controlled SQL scripts. Statistical modeling was conducted in structured Jupyter notebooks using Python (pandas, lifelines). The full analytic workflow is documented and reproducible within this repository.　An independent SAS workflow is included to reproduce key statistical models and verify cross-platform consistency of the results.
 
 ---
 
@@ -248,7 +247,7 @@ When RAAS inhibitors were evaluated by drug class, ACE inhibitor use demonstrate
 
 ### Sensitivity analyses
 
-The association between RAAS inhibitor exposure and lower in-hospital mortality was attenuated but remained directionally consistent in sensitivity analyses incorporating additional covariates, including ICU type. Model diagnostics did not identify major violations of proportional hazards assumptions, supporting the robustness of the primary findings within the limitations of an observational study.
+The association between RAAS inhibitor exposure and lower in-hospital mortality was attenuated but remained directionally consistent in sensitivity analyses incorporating additional covariates, including ICU type. Model diagnostics did not identify violations that materially affected the interpretation of the primary findings.
 
 ### Key Finding:
 
