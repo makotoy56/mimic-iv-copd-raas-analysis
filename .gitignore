@@ -41,6 +41,7 @@ sas/inputs/
 sas/outputs/
 sas/logs/
 sas/data/
+sas/docs/results.md
 *.pdf
 *.log
 *.lst
