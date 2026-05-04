@@ -31,8 +31,10 @@ __pycache__/
 venv/
 
 # --- VS Code ---
-.vscode/*
-!.vscode/settings.json
+.vscode/
+
+# --- Jupyter notebooks ---
+00*.ipynb
 
 # --- SAS ---
 sas/outputs/
@@ -41,5 +43,4 @@ sas/logs/
 *.log
 *.lst
 
-# （必要なら）
 sas/programs/*.sas
