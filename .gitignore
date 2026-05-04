@@ -37,11 +37,11 @@ venv/
 00*.ipynb
 
 # --- SAS ---
+sas/inputs/
 sas/outputs/
 sas/logs/
+sas/data/
 *.pdf
 *.log
 *.lst
-
-sas/programs/*.sas
-sas/docs/*.md
+*.sas7bdat
