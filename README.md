@@ -24,7 +24,6 @@ LinkedIn: https://www.linkedin.com/in/makoto-yoshida/ <br>
 📁 **Stepwise short documentation**: [docs/](docs/)<br>
 📁 **Validation checklist**: [scripts/validation_checklist.py](scripts/validation_checklist.py)<br>
 📄 **Minimal environment spec**: [requirements.txt](requirements.txt)<br>
-📄 **Pinned environment snapshot**: [requirements-lock.txt](requirements-lock.txt)<br>
 📄 **Analytic framework (PACE)**: [PACE.md](docs/PACE.md)<br>
 
 ---
@@ -199,7 +198,7 @@ We performed a retrospective observational cohort study using the MIMIC-IV datab
 
 ### Cohort Construction
 
-Adult patients admitted to the ICU with a diagnosis of COPD were identified using validated ICD-9 and ICD-10 diagnosis codes recorded during hospitalization. Only the first eligible ICU admission per patient was included to avoid correlated observations. Cohort construction and variable derivation were implemented using reproducible BigQuery-compatible SQL pipelines.
+Adult patients admitted to the ICU with a diagnosis of COPD were identified using validated ICD-9 and ICD-10 diagnosis codes recorded during hospitalization. The cohort was constructed at the ICU-stay/admission level. Multiple eligible admissions per patient may be retained when they correspond to distinct hospital or ICU stays. Cohort construction and variable derivation were implemented using reproducible BigQuery-compatible SQL pipelines.
 
 ### Exposure Definition
 

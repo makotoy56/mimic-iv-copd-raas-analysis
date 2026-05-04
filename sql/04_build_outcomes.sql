@@ -34,11 +34,7 @@ events AS (
     -- Time-to-event (days)
     -- Death: ICU admission → hospital death
     -- Survival: ICU admission → hospital discharge
-    DATE_DIFF(
-      DATE(dischtime),
-      DATE(intime),
-      DAY
-    ) AS time_to_event_days
+    TIMESTAMP_DIFF(dischtime, intime, HOUR) / 24.0 AS time_to_event_days
   FROM base
 )
 

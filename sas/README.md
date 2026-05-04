@@ -14,5 +14,6 @@ This directory contains an independent SAS workflow used to reproduce selected s
 The SAS workflow is used to:
 1. import exported cohort datasets
 2. generate baseline tables
-3. run logistic regression models
-4. compare key results with Python outputs
+3. reproduce the primary Cox proportional hazards model
+4. run logistic regression as a secondary binary mortality sensitivity analysis
+5. compare key results with Python outputs
