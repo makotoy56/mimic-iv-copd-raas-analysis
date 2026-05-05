@@ -16,6 +16,10 @@ data/
 *.xlsx
 *.sas7bdat
 
+# --- Generated Python outputs ---
+python/outputs/*
+!python/outputs/.gitkeep
+
 # --- Jupyter ---
 .ipynb_checkpoints/
 

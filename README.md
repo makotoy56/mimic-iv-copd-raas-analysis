@@ -12,13 +12,16 @@ LinkedIn: https://www.linkedin.com/in/makoto-yoshida/ <br>
 
 ## 🔍 Start Here (Analysis Entry Points)
 
+➡️ **Environment setup**: [00_setup.ipynb](notebooks/00_setup.ipynb)<br>
 ➡️ **ICU COPD cohort construction**: [01_icu_cohort.ipynb](notebooks/01_icu_cohort.ipynb)<br>
 ➡️ **Cohort and exposure definition**: [02_cohort_and_exposures.ipynb](notebooks/02_cohort_and_exposures.ipynb)<br>
 ➡️ **Baseline covariates**: [03a_baseline.ipynb](notebooks/03a_baseline.ipynb)<br>
 ➡️ **Merge exposures**: [03b_merge_exposures.ipynb](notebooks/03b_merge_exposures.ipynb)<br>
 ➡️ **Outcomes and modeling**: [04a_outcomes_and_modeling.ipynb](notebooks/04a_outcomes_and_modeling.ipynb)<br>
-➡️ **RAAS subgroup analyses**: [04b_outcomes_and_modeling_raas_subgroup.ipynb](notebooks/04b_outcomes_and_modeling_raas_subgroups.ipynb)<br>
+➡️ **RAAS subgroup analyses**: [04b_outcomes_and_modeling_raas_subgroups.ipynb](notebooks/04b_outcomes_and_modeling_raas_subgroups.ipynb)<br>
 ➡️ **Extended Cox model analyses**: [04c_extended_covariate_cox_model.ipynb](notebooks/04c_extended_covariate_cox_model.ipynb)<br>
+➡️ **Python logistic validation model**: [04d_python_logistic_model.ipynb](notebooks/04d_python_logistic_model.ipynb)<br>
+➡️ **SAS-Python validation**: [05_sas_python_validation.ipynb](notebooks/05_sas_python_validation.ipynb)<br>
 
 📁 **SQL pipelines (BigQuery)**: [sql/](sql/)<br>
 📁 **Stepwise short documentation**: [docs/](docs/)<br>
@@ -145,15 +148,17 @@ Among adult ICU patients with COPD in MIMIC-IV, is pre-ICU exposure to ACEi or A
 ## Project Structure
 ````text
 mimic-iv-copd-raas-analysis/
-├── notebooks/        # Stepwise analysis notebooks (00–04c)
-│   ├── 00_setup.ipynb
-│   ├── 01_icu_cohort.ipynb
-│   ├── 02_cohort_and_exposures.ipynb
-│   ├── 03a_baseline.ipynb
-│   ├── 03b_merge_exposures.ipynb
-│   ├── 04a_outcomes_and_modeling.ipynb
-│   ├── 04b_outcomes_and_modeling_raas_subgroups.ipynb
-│   └── 04c_extended_covariate_cox_model.ipynb
+├── notebooks/        # Stepwise pipeline, modeling, and validation notebooks (00–05)
+│   ├── 00_setup.ipynb                              # Configures the analysis environment and BigQuery project settings.
+│   ├── 01_icu_cohort.ipynb                         # Builds the base ICU cohort.
+│   ├── 02_cohort_and_exposures.ipynb               # Defines the COPD cohort and pre-ICU RAAS exposure variables.
+│   ├── 03a_baseline.ipynb                          # Constructs baseline covariates for the analytic cohort.
+│   ├── 03b_merge_exposures.ipynb                   # Merges COPD cohort records with detailed RAAS exposure indicators.
+│   ├── 04a_outcomes_and_modeling.ipynb             # Builds outcomes and fits the primary survival models.
+│   ├── 04b_outcomes_and_modeling_raas_subgroups.ipynb # Evaluates ACE inhibitor and ARB subgroup survival models.
+│   ├── 04c_extended_covariate_cox_model.ipynb      # Fits extended Cox models with additional covariate adjustment.
+│   ├── 04d_python_logistic_model.ipynb             # Fits a logistic regression model in Python (statsmodels) for validation against SAS results.
+│   └── 05_sas_python_validation.ipynb              # Validates reproducibility between SAS and Python results (no model fitting performed).
 │
 ├── sql/              # Reproducible BigQuery SQL pipelines
 │   ├── 01_extract_base_icu.sql
@@ -226,6 +231,13 @@ Sensitivity analyses assessed model robustness by incorporating extended covaria
 ### Reproducibility
 
 All data extraction and transformation steps were implemented using version-controlled SQL scripts. Statistical modeling was conducted in structured Jupyter notebooks using Python (pandas, lifelines). The full analytic workflow is documented and reproducible within this repository.　An independent SAS workflow is included to reproduce key statistical models and verify cross-platform consistency of the results.
+
+For SAS/Python logistic validation, run `notebooks/04d_python_logistic_model.ipynb` to generate `python/outputs/python_logistic_parameters.csv`, then run `notebooks/05_sas_python_validation.ipynb` to compare the SAS and Python parameter outputs. Generated CSV outputs under `python/outputs/` are ignored by Git and can be reproduced from the notebooks.
+
+### Reproducibility Note
+
+This project separates model fitting (04 notebooks) from validation (05 notebook),
+ensuring reproducibility across statistical environments (SAS vs Python).
 
 ---
 
