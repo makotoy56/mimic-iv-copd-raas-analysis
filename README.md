@@ -40,7 +40,7 @@ LinkedIn: https://www.linkedin.com/in/makoto-yoshida/ <br>
   - Kaplan–Meier survival analysis
   - Cox proportional hazards regression
   - Sensitivity analyses with extended covariates
-- **Tools**: BigQuery, Python (pandas, lifelines), Jupyter
+- **Tools**: BigQuery, Python (pandas, lifelines, statsmodels, pandas-gbq), Jupyter
 
 ---
 
@@ -89,7 +89,7 @@ pip install -r requirements.txt
 - **Design**: Retrospective observational cohort study
 - **Analysis**: Cox proportional hazards regression
 - **Key Focus**: Time-to-event analysis of pre-ICU RAAS inhibitor exposure, including comparison of overall RAAS effects and ACE inhibitor vs ARB subclasses
-- **Key Finding**: Pre-ICU RAAS inhibitor exposure was associated with lower in-hospital mortality; the association was more pronounced for ACE inhibitors than for ARBs
+- **Key Finding**: Pre-ICU RAAS inhibitor exposure was associated with lower observed in-hospital mortality in this cohort; the association was more pronounced for ACE inhibitors than for ARBs
 - **Interpretation**: Observational association; hypothesis-generating
 
 ---
@@ -124,11 +124,11 @@ Importantly, COPD represents a chronic pre-existing condition rather than an acu
 
 ### Clinical evidence in COPD and hospitalized populations
 
-Consistent with these mechanistic insights, observational studies have suggested that RAAS inhibitors may be associated with improved outcomes in patients with COPD. In a large Veterans Affairs cohort, prior outpatient use of ACE inhibitors or ARBs was associated with lower short-term mortality following hospitalization for acute COPD exacerbations[4]. However, this study was not limited to critically ill patients and evaluated ACE inhibitors and ARBs as a combined exposure.
+Consistent with these mechanistic insights, observational studies have suggested that RAAS inhibitors may be associated with favorable observed outcomes in patients with COPD. In a large Veterans Affairs cohort, prior outpatient use of ACE inhibitors or ARBs was associated with lower observed short-term mortality following hospitalization for acute COPD exacerbations[4]. However, this study was not limited to critically ill patients and evaluated ACE inhibitors and ARBs as a combined exposure.
 
-More recent comparative analyses have highlighted important pharmacological differences between ACE inhibitors and ARBs in COPD populations. In a nationwide cohort study, ARB use was associated with a lower risk of pneumonia and severe COPD exacerbations compared with ACE inhibitor use, suggesting that the two drug classes may have distinct respiratory effects[5].
+More recent comparative analyses have highlighted important pharmacological differences between ACE inhibitors and ARBs in COPD populations. In a nationwide cohort study, ARB use was associated with lower observed rates of pneumonia and severe COPD exacerbations compared with ACE inhibitor use, suggesting that the two drug classes may have distinct respiratory effects[5].
 
-In hospitalized patients with severe systemic illness, baseline use of RAAS inhibitors has also been associated with improved survival. In a large retrospective cohort of racially diverse patients hospitalized with COVID-19, prior use of ACE inhibitors or ARBs was independently associated with a lower risk of in-hospital mortality after multivariable adjustment[3]. Although this study did not focus on COPD or ICU populations specifically, it provides additional clinical evidence that RAAS modulation may influence outcomes in severe respiratory illness.
+In hospitalized patients with severe systemic illness, baseline use of RAAS inhibitors has also been associated with higher observed survival. In a large retrospective cohort of racially diverse patients hospitalized with COVID-19, prior use of ACE inhibitors or ARBs was independently associated with lower observed in-hospital mortality after multivariable adjustment[3]. Although this study did not focus on COPD or ICU populations specifically, it provides additional clinical evidence that RAAS modulation may influence outcomes in severe respiratory illness.
 
 ### Knowledge gaps and study objective
 
@@ -174,6 +174,8 @@ mimic-iv-copd-raas-analysis/
 │   ├── 04a_outcomes_and_modeling_SHORT.md
 │   ├── 04b_outcomes_and_modeling_raas_subgroups_SHORT.md
 │   ├── 04c_extended_covariate_cox_model_SHORT.md
+│   ├── 04d_python_logistic_model_SHORT.md
+│   ├── 05_sas_python_validation_SHORT.md
 │   └── PACE.md
 │
 ├── data/             # Local analysis artifacts (excluded or minimal)
@@ -232,7 +234,9 @@ Sensitivity analyses assessed model robustness by incorporating extended covaria
 
 ### Reproducibility
 
-All data extraction and transformation steps were implemented using version-controlled SQL scripts. Statistical modeling was conducted in structured Jupyter notebooks using Python (pandas, lifelines). The full analytic workflow is documented and reproducible within this repository.　An independent SAS workflow is included to reproduce key statistical models and verify cross-platform consistency of the results.
+All data extraction and transformation steps were implemented using version-controlled SQL scripts. Statistical modeling was conducted in structured Jupyter notebooks using Python (pandas, lifelines, statsmodels, pandas-gbq). The full analytic workflow is documented and reproducible within this repository. An independent SAS workflow is included to reproduce key statistical models and verify cross-platform consistency of the results.
+
+SAS programs use SAS OnDemand-style paths and may require local path adjustment before execution.
 
 For SAS/Python logistic validation, run `notebooks/04d_python_logistic_model.ipynb` to generate `python/outputs/python_logistic_parameters.csv`, then run `notebooks/05_sas_python_validation.ipynb` to compare the SAS and Python parameter outputs. Generated CSV outputs under `python/outputs/` are ignored by Git and can be reproduced from the notebooks.
 
@@ -253,25 +257,25 @@ The final analytic cohort consisted of ICU-admitted patients with a diagnosis of
 
 ### Association between RAAS inhibitor use and in-hospital mortality
 
-In time-to-event analyses, pre-ICU exposure to RAAS inhibitors was associated with a lower risk of in-hospital mortality compared with no RAAS inhibitor exposure. This association was observed in Kaplan–Meier survival curves and remained directionally consistent after adjustment for demographic factors, illness severity, and major comorbidities in Cox proportional hazards models.
+In time-to-event analyses, pre-ICU exposure to RAAS inhibitors was associated with lower observed in-hospital mortality compared with no RAAS inhibitor exposure. This association was observed in Kaplan–Meier survival curves and remained directionally consistent after adjustment for demographic factors, illness severity, and major comorbidities in Cox proportional hazards models.
 
 ### ACE inhibitor and ARB subclass analyses
 
-When RAAS inhibitors were evaluated by drug class, ACE inhibitor use demonstrated a more pronounced association with reduced in-hospital mortality compared with ARB use. Although confidence intervals overlapped and causal inference cannot be established, this pattern was consistent across multiple model specifications. These findings suggest potential heterogeneity within RAAS inhibitor subclasses that warrants further investigation.
+When RAAS inhibitors were evaluated by drug class, ACE inhibitor use demonstrated a more pronounced association with lower observed in-hospital mortality compared with ARB use. Although confidence intervals overlapped and causal inference cannot be established, this pattern was consistent across multiple model specifications. These findings suggest potential heterogeneity within RAAS inhibitor subclasses that warrants further investigation.
 
 ### Sensitivity analyses
 
-The association between RAAS inhibitor exposure and lower in-hospital mortality was attenuated but remained directionally consistent in sensitivity analyses incorporating additional covariates, including ICU type. Model diagnostics did not identify violations that materially affected the interpretation of the primary findings.
+The association between RAAS inhibitor exposure and lower observed in-hospital mortality was attenuated but remained directionally consistent in sensitivity analyses incorporating additional covariates, including ICU type. Model diagnostics did not identify violations that materially affected the interpretation of the primary findings.
 
 ### Key Finding:
 
-Pre-ICU RAAS inhibitor exposure was associated with lower in-hospital mortality, with a more pronounced association for ACE inhibitors than for ARBs. This association was attenuated after further adjustment for ICU type and acute illness severity, suggesting that differences in ICU-level case mix and organ dysfunction may contribute to the observed signal.
+Pre-ICU RAAS inhibitor exposure was associated with lower observed in-hospital mortality, with a more pronounced association for ACE inhibitors than for ARBs. This association was attenuated after further adjustment for ICU type and acute illness severity, suggesting that differences in ICU-level case mix and organ dysfunction may contribute to the observed signal.
 
 ---
 
 ## Discussion
 
-The findings of this analysis should be interpreted in the context of prior observational studies, most notably the Veterans Affairs cohort reported by Mortensen et al., which demonstrated lower short-term mortality among patients hospitalized for acute COPD exacerbations who were receiving ACE inhibitors or ARBs prior to admission[4]. While that study provided important early evidence linking RAAS inhibition to improved outcomes in COPD, it differed from the present analysis in several key aspects. First, the Mortensen cohort was not restricted to critically ill patients and did not specifically focus on ICU-admitted populations, in whom illness severity, competing risks, and treatment intensity differ substantially. Second, ACE inhibitors and ARBs were evaluated as a combined exposure, precluding assessment of potential class-specific effects. In contrast, the current analysis focuses explicitly on ICU-admitted patients with COPD and explores ACE inhibitors and ARBs both as a combined exposure and as separate subclasses, motivated by established mechanistic differences in RAAS signaling[1,2] and emerging comparative evidence in COPD populations[5]. These distinctions allow the present study to address clinically relevant questions that were not directly examined in earlier work, while extending existing observational evidence into a higher-risk ICU setting.
+The findings of this analysis should be interpreted in the context of prior observational studies, most notably the Veterans Affairs cohort reported by Mortensen et al., which reported lower observed short-term mortality among patients hospitalized for acute COPD exacerbations who were receiving ACE inhibitors or ARBs prior to admission[4]. While that study provided important early evidence linking RAAS inhibition to favorable observed outcomes in COPD, it differed from the present analysis in several key aspects. First, the Mortensen cohort was not restricted to critically ill patients and did not specifically focus on ICU-admitted populations, in whom illness severity, competing risks, and treatment intensity differ substantially. Second, ACE inhibitors and ARBs were evaluated as a combined exposure, precluding assessment of potential class-specific effects. In contrast, the current analysis focuses explicitly on ICU-admitted patients with COPD and explores ACE inhibitors and ARBs both as a combined exposure and as separate subclasses, motivated by established mechanistic differences in RAAS signaling[1,2] and emerging comparative evidence in COPD populations[5]. These distinctions allow the present study to address clinically relevant questions that were not directly examined in earlier work, while extending existing observational evidence into a higher-risk ICU setting.
 
 ---
 

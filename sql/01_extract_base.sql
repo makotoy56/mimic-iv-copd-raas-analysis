@@ -1,4 +1,4 @@
--- 01_extract_base_icu.sql
+-- 01_extract_base.sql
 -- Build a base adult ICU cohort from MIMIC-IV v3.1 (first ICU stay per hospital admission)
 
 CREATE OR REPLACE TABLE `mimic-iv-portfolio.copd_raas.cohort_icu` AS
