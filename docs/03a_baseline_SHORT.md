@@ -1,25 +1,21 @@
-# 03a - Baseline Cohort Assembly (SHORT)
+# 03a - Baseline Cohort Construction (SHORT)
 
-This notebook assembles a standardized baseline cohort of COPD patients admitted
-to the ICU, serving as the common analysis-ready input for all downstream survival
-analyses (04a–04c).
+## Objective
+Construct the baseline COPD ICU cohort with demographic characteristics, pre-ICU RAAS exposure, and core cohort eligibility fields.
 
-The table `copd_raas.cohort_copd_baseline` is created from the predefined COPD ICU
-cohort constructed upstream (01–02) using the SQL script `03_build_baseline.sql`.
-This step integrates patient-level and hospitalization-level attributes derived
-from MIMIC-IV hospital tables.
+## Input Dataset
+- `mimic-iv-portfolio.copd_raas.cohort_copd`
+- `mimic-iv-portfolio.copd_raas.cohort_copd_raas`
+- MIMIC-IV patient and admission tables in BigQuery
 
-Hospital length of stay (`hosp_los`, in days) is computed, and a binary indicator
-of pre-ICU RAAS inhibitor exposure (`raas_pre_icu`) is attached at the ICU-stay
-level using medication-derived exposure flags from inpatient prescription orders
-defined prior to or at ICU admission (not outpatient medication history).
-Missing exposure records are explicitly treated as non-exposure
-(`raas_pre_icu = 0`), preserving temporal ordering and avoiding reverse causation.
+## Output Dataset
+- `mimic-iv-portfolio.copd_raas.cohort_copd_baseline`
 
-The baseline cohort table is generated in SQL as a core analysis-ready dataset,
-with downstream feature engineering and survival modeling performed in Python,
-ensuring consistent cohort construction across analyses.
+## Downstream Usage
+This baseline cohort table is the primary input for outcome construction and downstream mortality modeling in `04a_outcomes_and_modeling.ipynb`.
 
-The resulting table provides a reproducible and consistent foundation for
-downstream modeling in 04, ensuring aligned covariate and exposure definitions
-across analyses.
+## Key Methods and Checks
+- Adds age, sex, calendar-time variables, hospital length of stay, and date-of-death information.
+- Merges the binary pre-ICU RAAS exposure flag at the ICU-stay level.
+- Treats missing RAAS exposure records as non-exposure.
+- Checks cohort size and exposure distribution before downstream modeling.

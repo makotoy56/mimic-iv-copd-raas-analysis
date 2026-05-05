@@ -1,65 +1,27 @@
-# 04c - RAAS Inhibitors and In-Hospital Mortality in ICU Patients With COPD (SHORT)
+# 04c - Extended Covariate Cox Models for Pre-ICU RAAS Exposure in ICU COPD Patients (SHORT)
 
----
+## Objective
+Evaluate whether the association between pre-ICU RAAS exposure and in-hospital mortality remains after adjustment for additional severity, comorbidity, and ICU type variables.
 
-## 1. Study Question
-Is the exposure to RAAS inhibitors before or at ICU admission associated with reduced in-hospital mortality among ICU-admitted patients with COPD?
+## Input Dataset
+- `mimic-iv-portfolio.copd_raas.cohort_copd_outcomes`
 
----
+## Output Dataset
+- `mimic-iv-portfolio.copd_raas.cohort_copd_outcomes_extended`
 
-## 2. Cohort & Variables
+## Downstream Usage
+The extended outcome table supports adjusted Cox models with SOFA score, comorbidities, and ICU type. It is also exported for the SAS/Python logistic validation workflow.
 
-* **Data:** MIMIC-IV v3.1, 11,964 ICU stays with COPD
-* **Exposure:** Pre-ICU use of RAAS inhibitors (binary indicator)
-* **Outcome:** In-hospital mortality, analyzed as time-to-event from ICU admission
-* **Core covariates:** Age, sex, CHF, CKD, diabetes, and SOFA score
-* **Sensitivity covariates:** ICU type (one-hot encoded categories)
+## Key Methods
+- Adds first-day SOFA score, Charlson-derived comorbidity indicators, and ICU type.
+- Uses `raas_pre_icu` as the primary exposure.
+- Does not include ACE inhibitor or ARB subclass indicators in the 04c Cox model specification.
+- Fits core and ICU-extended Cox proportional hazards models.
+- Evaluates unpenalized and penalized model specifications.
+- Assesses proportional hazards assumptions using Schoenfeld residual-based diagnostics.
 
-The SOFA score at ICU admission was treated as a baseline confounder rather than a mediator, given the temporal ordering in which chronic RAAS exposure precedes acute illness severity, and because SOFA was measured at ICU admission prior to outcome occurrence.
-
----
-
-## 3. Methods
-- Cox proportional hazards models fitted using *lifelines*  
-- Baseline hazards stratified by calendar time (`anchor_year_group`) to account for temporal variation in ICU mortality and practice patterns  
-- **Primary analysis:** unpenalized Cox model (penalizer = 0.0)  
-- Two model specifications:
-  - **Core model:** demographic factors, baseline severity, and comorbidities  
-  - **ICU-extended model:** core model plus ICU type indicators  
-- Proportional hazards assumptions assessed using Schoenfeld residual–based tests and visual diagnostics
-
----
-
-## 4. Key Results
-- **Core model:**  
-  - Pre-ICU RAAS inhibitor use was associated with a lower risk of in-hospital mortality  
-  - HR ≈ **0.81–0.90**, with confidence intervals narrowly excluding or approaching unity depending on specification
-
-- **ICU-extended model:**  
-  - The association between RAAS exposure and mortality was attenuated and no longer statistically significant  
-  - HR ≈ **0.89–0.94**, 95% CI crossing 1.0
-
-- Across models, the estimated hazard ratios consistently favored RAAS exposure, but statistical significance was sensitive to adjustment for ICU type.
-
----
-
-## 5. Interpretation
-Adjustment for ICU type substantially reduced the apparent protective association of pre-ICU RAAS inhibitor use, suggesting that ICU-level factors and case-mix differences explain part of the observed signal in simpler models.
-
-The stability of effect direction across specifications supports robustness of the estimate, while the attenuation after ICU type adjustment cautions against strong causal interpretation.
-
-Proportional hazards diagnostics showed no major violations that would invalidate the primary model conclusions.
-
----
-
-## 6. Next Steps
-- Subclass-specific analyses comparing **ACE inhibitors vs ARBs**  
-- Propensity score–based approaches (IPTW or matching) to address confounding by indication  
-- Exploration of effect heterogeneity across severity strata or ventilatory status
-
----
-
-## 7. Files
-- **Full analysis notebook:** `04c_extended_covariate_cox_model.ipynb`  
-- **Full report:** `04c_extended_covariate_cox_model.md`  
-- **This short summary:** `04c_extended_covariate_cox_model_SHORT.md`
+## Key Results Summary
+- In the unpenalized core Cox model, pre-ICU RAAS exposure had HR 0.809 (95% CI 0.654-1.000, p = 0.050).
+- In the penalized core model, the point estimate remained below 1 but was not statistically significant.
+- After adding ICU type, the RAAS estimate was attenuated and was not statistically significant.
+- Results suggest sensitivity to severity, care setting, and ICU-level case mix, and should be interpreted as observational associations.

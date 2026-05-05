@@ -1,7 +1,20 @@
-# 01 - ICU Cohort Construction (SHORT)
+# 01 - ICU Cohort Extraction (SHORT)
 
-This step constructs a standardized adult ICU cohort from MIMIC-IV, serving as the foundational input for all downstream cohort, exposure, and survival analyses.
+## Objective
+Build the base adult ICU cohort from MIMIC-IV using BigQuery and verify the integrity of the extracted ICU-stay-level table.
 
-Using ICU stay–level data, the cohort is restricted to adult patients (age ≥ 18) and limited to the first ICU stay per hospital admission to ensure independent observations.
+## Input Dataset
+- MIMIC-IV ICU stay table in BigQuery
+- MIMIC-IV patient table in BigQuery
 
-The resulting table (`copd_raas.cohort_icu`) provides a clean and reproducible ICU backbone used in subsequent disease-specific cohort construction and RAAS inhibitor exposure analyses (02–04).
+## Output Dataset
+- `mimic-iv-portfolio.copd_raas.cohort_icu`
+
+## Downstream Usage
+This ICU-stay-level table is the base input for COPD cohort construction in `02_cohort_and_exposures.ipynb`.
+
+## Key Methods and Checks
+- Restricts to adult ICU patients.
+- Keeps the first ICU stay per hospital admission.
+- Carries ICU timing, demographics, age, and calendar-year grouping.
+- Performs basic table preview and row-level sanity checks.
