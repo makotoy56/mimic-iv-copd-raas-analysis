@@ -12,7 +12,6 @@ LinkedIn: https://www.linkedin.com/in/makoto-yoshida/ <br>
 
 ## 🔍 Start Here (Analysis Entry Points)
 
-➡️ **Environment setup**: [00_setup.ipynb](notebooks/00_setup.ipynb)<br>
 ➡️ **ICU COPD cohort construction**: [01_icu_cohort.ipynb](notebooks/01_icu_cohort.ipynb)<br>
 ➡️ **Cohort and exposure definition**: [02_cohort_and_exposures.ipynb](notebooks/02_cohort_and_exposures.ipynb)<br>
 ➡️ **Baseline covariates**: [03a_baseline.ipynb](notebooks/03a_baseline.ipynb)<br>
@@ -148,8 +147,7 @@ Among adult ICU patients with COPD in MIMIC-IV, is pre-ICU exposure to ACEi or A
 ## Project Structure
 ````text
 mimic-iv-copd-raas-analysis/
-├── notebooks/        # Stepwise pipeline, modeling, and validation notebooks (00–05)
-│   ├── 00_setup.ipynb                              # Configures the analysis environment and BigQuery project settings.
+├── notebooks/        # Stepwise pipeline, modeling, and validation notebooks (01–05)
 │   ├── 01_icu_cohort.ipynb                         # Builds the base ICU cohort.
 │   ├── 02_cohort_and_exposures.ipynb               # Defines the COPD cohort and pre-ICU RAAS exposure variables.
 │   ├── 03a_baseline.ipynb                          # Constructs baseline covariates for the analytic cohort.
@@ -161,7 +159,7 @@ mimic-iv-copd-raas-analysis/
 │   └── 05_sas_python_validation.ipynb              # Validates reproducibility between SAS and Python results (no model fitting performed).
 │
 ├── sql/              # Reproducible BigQuery SQL pipelines
-│   ├── 01_extract_base_icu.sql
+│   ├── 01_extract_base.sql
 │   ├── 02_build_cohort_copd.sql
 │   ├── 02_exposure_raas*.sql
 │   ├── 03_build_baseline.sql
@@ -191,6 +189,10 @@ mimic-iv-copd-raas-analysis/
 └── README.md
 
 ````
+
+## Setup Note
+
+Environment setup steps are intentionally not included as a tracked notebook. Local configuration, including Python environment creation, Google Cloud authentication, MIMIC-IV/PhysioNet BigQuery access, and application default credentials, must be configured separately before running the workflow.
 
 ## Methods Overview
 
