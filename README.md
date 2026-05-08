@@ -10,191 +10,107 @@ LinkedIn: https://www.linkedin.com/in/makoto-yoshida/ <br>
 
 ---
 
-## 🔍 Start Here (Analysis Entry Points)
+## Project Overview
 
-➡️ **ICU COPD cohort construction**: [01_icu_cohort.ipynb](notebooks/01_icu_cohort.ipynb)<br>
-➡️ **Cohort and exposure definition**: [02_cohort_and_exposures.ipynb](notebooks/02_cohort_and_exposures.ipynb)<br>
-➡️ **Baseline covariates**: [03a_baseline.ipynb](notebooks/03a_baseline.ipynb)<br>
-➡️ **Merge exposures**: [03b_merge_exposures.ipynb](notebooks/03b_merge_exposures.ipynb)<br>
-➡️ **Outcomes and modeling**: [04a_outcomes_and_modeling.ipynb](notebooks/04a_outcomes_and_modeling.ipynb)<br>
-➡️ **RAAS subgroup analyses**: [04b_outcomes_and_modeling_raas_subgroups.ipynb](notebooks/04b_outcomes_and_modeling_raas_subgroups.ipynb)<br>
-➡️ **Extended Cox model analyses**: [04c_extended_covariate_cox_model.ipynb](notebooks/04c_extended_covariate_cox_model.ipynb)<br>
-➡️ **Python logistic validation model**: [04d_python_logistic_model.ipynb](notebooks/04d_python_logistic_model.ipynb)<br>
-➡️ **SAS-Python validation**: [05_sas_python_validation.ipynb](notebooks/05_sas_python_validation.ipynb)<br>
+This project is a reproducible real-world clinical data analysis using MIMIC-IV, BigQuery, Python, and SAS. It evaluates the association between pre-ICU RAAS inhibitor exposure and in-hospital mortality among ICU patients with COPD.
 
-📁 **SQL pipelines (BigQuery)**: [sql/](sql/)<br>
-📁 **Stepwise short documentation**: [docs/](docs/)<br>
-📁 **Validation checklist**: [scripts/validation_checklist.py](scripts/validation_checklist.py)<br>
-📄 **Analytic framework (PACE)**: [PACE.md](docs/PACE.md)<br>
+## What this project demonstrates
+
+- EHR-based cohort construction using SQL and BigQuery
+- Clinically informed exposure and outcome definitions
+- Survival analysis using Kaplan-Meier curves and Cox proportional hazards models
+- Subgroup and sensitivity analyses
+- Cross-platform reproducibility validation using Python and SAS
+
+## Clinical Data Analysis Workflow
+
+```text
+01_icu_cohort.ipynb
+ICU Cohort Extraction
+    ↓
+
+02_cohort_and_exposures.ipynb
+COPD Cohort + RAAS Exposure Definition
+    ↓
+
+03a_baseline.ipynb
+Baseline Cohort Construction
+    ↓
+
+03b_merge_exposures.ipynb
+Detailed RAAS Exposure Merge
+    ↓
+
+04a_outcomes_and_modeling.ipynb
+Primary Survival Analysis
+    ↓
+
+├─ 04b_outcomes_and_modeling_raas_subgroups.ipynb
+│      ACEi vs ARB Subgroup Analysis
+│
+├─ 04c_extended_covariate_cox_model.ipynb
+│      Extended Covariate Cox Models
+│
+└─ 04d_python_logistic_model.ipynb
+       Python Logistic Validation Model
+           ↓
+
+05_sas_python_validation.ipynb
+SAS-Python Reproducibility Validation
+```
 
 ---
 
 ## Technical Snapshot
 
 - **Data**: MIMIC-IV v3.1 (PhysioNet), ICU admissions
-- **Cohort**: Adult ICU patients with COPD
-- **Exposure**: Pre-ICU RAAS inhibitor use (ACE inhibitors [ACEi] / ARBs) based on inpatient prescription orders prior to ICU admission (not outpatient medication history)
+- **Design**: Retrospective observational cohort study
+- **Population**: Adult ICU patients with COPD
+- **Exposure**: Pre-ICU RAAS inhibitor use (ACE inhibitors [ACEi] / ARBs) based on inpatient prescription orders before ICU admission; not outpatient medication history
 - **Outcome**: Time-to-in-hospital mortality
 - **Methods**:
   - BigQuery SQL for reproducible cohort construction
   - Kaplan–Meier survival analysis
   - Cox proportional hazards regression
   - Sensitivity analyses with extended covariates
-- **Tools**: BigQuery, Python (pandas, lifelines, statsmodels, pandas-gbq), Jupyter
+- **Tools**: BigQuery, Python (pandas, lifelines, statsmodels, pandas-gbq), Jupyter, SAS
+- **Key finding**: Pre-ICU RAAS inhibitor exposure was associated with lower observed in-hospital mortality; the association was more pronounced for ACE inhibitors than for ARBs.
+- **Interpretation**: Observational association; hypothesis-generating.
 
 ---
 
-## Validation checklist
-### Purpose
-- validation_checklist.py performs a lightweight sanity check
-- It enumerates candidate tables in the BigQuery dataset used for this COPD ICU RAAS analysis.
-- Uses INFORMATION_SCHEMA
-### How to run
-- python scripts/validation_checklist.py
-### What it does
-- Lists available tables
-- Output format:
-  Tables:
-   - table_name_1
-   - table_name_2
-### Authentication
-This script requires Application Default Credentials (ADC).
-### Run
-gcloud auth application-default login
-**Important note**
-- This script ONLY checks table existence
-- It does NOT perform any data quality validation
-- It does NOT validate table contents
+## Start Here
 
----
-
-## Environment
-
-- `requirements.txt` provides a minimal, portable environment specification for running the validation script and analysis notebooks.
-
-Install the minimal environment:
-````text
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-````
-
----
-
-## Project Snapshot
-
-- **Population**: ICU-admitted adults with COPD (MIMIC-IV v3.1)
-- **Exposure**: Pre-ICU RAAS inhibitor use (ACE inhibitors and/or ARBs) based on inpatient prescription orders prior to ICU admission (not outpatient medication history)
-- **Outcome**: Time to in-hospital mortality
-- **Design**: Retrospective observational cohort study
-- **Analysis**: Cox proportional hazards regression
-- **Key Focus**: Time-to-event analysis of pre-ICU RAAS inhibitor exposure, including comparison of overall RAAS effects and ACE inhibitor vs ARB subclasses
-- **Key Finding**: Pre-ICU RAAS inhibitor exposure was associated with lower observed in-hospital mortality in this cohort; the association was more pronounced for ACE inhibitors than for ARBs
-- **Interpretation**: Observational association; hypothesis-generating
+- **ICU COPD cohort construction**: [01_icu_cohort.ipynb](notebooks/01_icu_cohort.ipynb)
+- **Cohort and exposure definition**: [02_cohort_and_exposures.ipynb](notebooks/02_cohort_and_exposures.ipynb)
+- **Baseline covariates**: [03a_baseline.ipynb](notebooks/03a_baseline.ipynb)
+- **Merge exposures**: [03b_merge_exposures.ipynb](notebooks/03b_merge_exposures.ipynb)
+- **Outcomes and modeling**: [04a_outcomes_and_modeling.ipynb](notebooks/04a_outcomes_and_modeling.ipynb)
+- **RAAS subgroup analyses**: [04b_outcomes_and_modeling_raas_subgroups.ipynb](notebooks/04b_outcomes_and_modeling_raas_subgroups.ipynb)
+- **Extended Cox model analyses**: [04c_extended_covariate_cox_model.ipynb](notebooks/04c_extended_covariate_cox_model.ipynb)
+- **Python logistic validation model**: [04d_python_logistic_model.ipynb](notebooks/04d_python_logistic_model.ipynb)
+- **SAS-Python validation**: [05_sas_python_validation.ipynb](notebooks/05_sas_python_validation.ipynb)
+- **SQL pipelines (BigQuery)**: [sql/](sql/)
+- **Stepwise short documentation**: [docs/](docs/)
+- **Analytic framework (PACE)**: [PACE.md](docs/PACE.md)
 
 ---
 
 ## Introduction
 
-Chronic obstructive pulmonary disease (COPD) is a leading cause of morbidity and mortality worldwide and is frequently complicated by cardiovascular comorbidities. Patients with COPD who require intensive care unit (ICU) admission represent a particularly high-risk population, with substantial in-hospital mortality despite advances in supportive care. Identifying clinically meaningful and potentially modifiable factors associated with outcomes in critically ill COPD patients remains an important challenge in both clinical medicine and translational research.
-
-Renin–angiotensin–aldosterone system (RAAS) inhibitors, including angiotensin-converting enzyme inhibitors (ACE inhibitors; ACEi) and angiotensin II receptor blockers (ARBs), are widely prescribed for cardiovascular and metabolic diseases that commonly coexist with COPD. Although these agents are primarily used for cardiovascular protection, increasing evidence suggests that RAAS signaling also plays a significant role in pulmonary pathophysiology and acute lung injury [1,2].
-
-This portfolio project evaluates the association between pre-ICU exposure to RAAS inhibitors and in-hospital mortality among ICU-admitted patients with COPD using a reproducible electronic health record (EHR)–based survival analysis framework applied to the MIMIC-IV database. Pre-ICU exposure here reflects inpatient prescription orders before ICU admission and is not a direct measure of outpatient chronic use.
+Chronic obstructive pulmonary disease (COPD) is frequently complicated by cardiovascular comorbidity, and ICU-admitted COPD patients represent a high-risk population. This project uses MIMIC-IV electronic health record data to evaluate whether pre-ICU RAAS inhibitor exposure is associated with time-to-in-hospital mortality, while explicitly treating the findings as observational and hypothesis-generating.
 
 ---
 
 ## Background and Rationale
 
-### Biological rationale: RAAS and lung injury
+RAAS signaling has biologic relevance to lung injury and pulmonary inflammation. Experimental studies implicate ACE2 and angiotensin II signaling in acute lung injury pathways [1,2], and reviews have proposed that RAAS modulation may influence chronic pulmonary inflammation and airway remodeling in COPD [6].
 
-Beyond its systemic role in blood pressure regulation, the RAAS functions as a local tissue signaling network in the lung. Experimental models of acute lung injury have demonstrated that angiotensin-converting enzyme 2 (ACE2) acts as a critical protective regulator by counterbalancing angiotensin II–mediated injury pathways. Loss of ACE2 leads to increased pulmonary vascular permeability, inflammation, and severe lung failure, whereas restoration of ACE2 activity mitigates lung injury severity [1].
+Observational clinical studies have reported favorable outcomes among COPD or severe respiratory illness populations exposed to ACE inhibitors or ARBs [3,4]. Comparative COPD research also suggests that ACE inhibitors and ARBs may have distinct respiratory associations [5].
 
-Subsequent mechanistic studies have further shown that excessive angiotensin II signaling through the angiotensin II type 1 receptor (AT1R) is a key driver of acute lung injury. In a landmark in vivo study, SARS coronavirus–induced lung injury was mediated by ACE2 downregulation and augmented angiotensin II–AT1R signaling, and this injury could be attenuated by pharmacologic AT1 receptor blockade using losartan[2]. Together, these studies provide strong biological plausibility linking RAAS dysregulation to severe pulmonary injury, while highlighting potential mechanistic differences between classes of RAAS inhibitors.
+This analysis addresses a focused evidence gap: whether pre-ICU RAAS inhibitor exposure is associated with in-hospital mortality among ICU-admitted COPD patients, and whether ACE inhibitor and ARB subclasses show different observed associations.
 
-Narrative reviews have further proposed that RAAS modulation may influence chronic pulmonary inflammation and airway remodeling in COPD, while emphasizing the lack of randomized evidence in this population [6].
-
-### Definition of COPD in EHR data
-
-In this analysis, COPD was defined using International Classification of Diseases (ICD) diagnosis codes recorded during hospital admissions. Specifically, COPD was identified based on established ICD-9 codes (491.*, 492.*, and 496) and ICD-10 codes (J41–J44), which have been widely used and validated in epidemiologic and health services research to identify patients with COPD in administrative and EHR data sources[7,8].
-
-Prior studies have demonstrated that these ICD-based definitions capture clinically meaningful COPD populations with acceptable validity for observational analyses, particularly when the objective is to identify pre-existing chronic lung disease rather than acute exacerbation severity. Given the stability of COPD as a chronic diagnosis and its ascertainment prior to ICU admission, this approach allows for clear temporal ordering between baseline comorbidity status, pre-ICU medication exposure, and subsequent ICU outcomes.
-
-Importantly, COPD represents a chronic pre-existing condition rather than an acute ICU-acquired syndrome, making ICD-based definitions particularly suitable for cohort construction in studies focused on pre-ICU exposures.
-
-### Clinical evidence in COPD and hospitalized populations
-
-Consistent with these mechanistic insights, observational studies have suggested that RAAS inhibitors may be associated with favorable observed outcomes in patients with COPD. In a large Veterans Affairs cohort, prior outpatient use of ACE inhibitors or ARBs was associated with lower observed short-term mortality following hospitalization for acute COPD exacerbations[4]. However, this study was not limited to critically ill patients and evaluated ACE inhibitors and ARBs as a combined exposure.
-
-More recent comparative analyses have highlighted important pharmacological differences between ACE inhibitors and ARBs in COPD populations. In a nationwide cohort study, ARB use was associated with lower observed rates of pneumonia and severe COPD exacerbations compared with ACE inhibitor use, suggesting that the two drug classes may have distinct respiratory effects[5].
-
-In hospitalized patients with severe systemic illness, baseline use of RAAS inhibitors has also been associated with higher observed survival. In a large retrospective cohort of racially diverse patients hospitalized with COVID-19, prior use of ACE inhibitors or ARBs was independently associated with lower observed in-hospital mortality after multivariable adjustment[3]. Although this study did not focus on COPD or ICU populations specifically, it provides additional clinical evidence that RAAS modulation may influence outcomes in severe respiratory illness.
-
-### Knowledge gaps and study objective
-
-Despite these findings, several important gaps remain. Most existing studies have evaluated RAAS inhibitors as a combined exposure, despite well-recognized pharmacological differences between ACE inhibitors and ARBs. Evidence specific to critically ill patients with COPD—particularly those admitted to the ICU and at high risk of in-hospital mortality—is limited. Moreover, the extent to which associations observed in general hospitalized or non-ICU populations translate to ICU settings with higher illness severity and competing risks remains unclear.
-
-To address these gaps, this analysis investigates whether pre-ICU exposure to RAAS inhibitors is associated with in-hospital mortality among ICU-admitted patients with COPD. In addition to evaluating RAAS inhibitors as a combined exposure, this project explicitly explores potential differences between ACE inhibitor and ARB subclasses using time-to-event modeling. By integrating biologically grounded rationale with rigorous EHR-based survival analysis, this work aims to provide a transparent and reproducible assessment of RAAS inhibition in a high-risk ICU population.
-
----
-
-## Research Question
-
-Among adult ICU patients with COPD in MIMIC-IV, is pre-ICU exposure to ACEi or ARB associated with differences in time-to-in-hospital mortality and related clinical outcomes?
-
----
-
-## Project Structure
-````text
-mimic-iv-copd-raas-analysis/
-├── notebooks/        # Stepwise pipeline, modeling, and validation notebooks (01–05)
-│   ├── 01_icu_cohort.ipynb                         # Builds the base ICU cohort.
-│   ├── 02_cohort_and_exposures.ipynb               # Defines the COPD cohort and pre-ICU RAAS exposure variables.
-│   ├── 03a_baseline.ipynb                          # Constructs baseline covariates for the analytic cohort.
-│   ├── 03b_merge_exposures.ipynb                   # Merges COPD cohort records with detailed RAAS exposure indicators.
-│   ├── 04a_outcomes_and_modeling.ipynb             # Builds outcomes and fits the primary survival models.
-│   ├── 04b_outcomes_and_modeling_raas_subgroups.ipynb # Evaluates ACE inhibitor and ARB subgroup survival models.
-│   ├── 04c_extended_covariate_cox_model.ipynb      # Fits extended Cox models with additional covariate adjustment.
-│   ├── 04d_python_logistic_model.ipynb             # Fits a logistic regression model in Python (statsmodels) for validation against SAS results.
-│   └── 05_sas_python_validation.ipynb              # Validates reproducibility between SAS and Python results (no model fitting performed).
-│
-├── sql/              # Reproducible BigQuery SQL pipelines
-│   ├── 01_extract_base.sql
-│   ├── 02_build_cohort_copd.sql
-│   ├── 02_exposure_raas*.sql
-│   ├── 03_build_baseline.sql
-│   ├── 03_merge_exposures.sql
-│   └── 04_build_outcomes*.sql
-│
-├── docs/             # Lightweight documentation (SHORT summaries)
-│   ├── 01_icu_cohort_SHORT.md
-│   ├── 02_cohort_and_exposures_SHORT.md
-│   ├── 03a_baseline_SHORT.md
-│   ├── 03b_merge_exposures_SHORT.md
-│   ├── 04a_outcomes_and_modeling_SHORT.md
-│   ├── 04b_outcomes_and_modeling_raas_subgroups_SHORT.md
-│   ├── 04c_extended_covariate_cox_model_SHORT.md
-│   ├── 04d_python_logistic_model_SHORT.md
-│   ├── 05_sas_python_validation_SHORT.md
-│   └── PACE.md
-│
-├── data/             # Local analysis artifacts (excluded or minimal)
-│   ├── interim/
-│   └── processed/
-├── scripts/          # Lightweight validation / QA utilities
-│   └── validation_checklist.py
-├── sas/
-│   ├── README.md
-│   └── programs/      # SAS scripts for cross-platform validation
-├── .github/          # Repository configuration
-├── .gitignore
-└── README.md
-
-````
-
-## Setup Note
-
-Environment setup steps are intentionally not included as a tracked notebook. Local configuration, including Python environment creation, Google Cloud authentication, MIMIC-IV/PhysioNet BigQuery access, and application default credentials, must be configured separately before running the workflow.
+COPD was defined using established ICD-9 and ICD-10 diagnosis codes recorded during hospitalization, consistent with prior administrative and EHR-based COPD research [7,8]. This supports reproducible cohort construction and clear temporal ordering between chronic COPD status, pre-ICU medication exposure, and ICU outcomes.
 
 ## Methods Overview
 
@@ -236,15 +152,6 @@ Sensitivity analyses assessed model robustness by incorporating extended covaria
 
 All data extraction and transformation steps were implemented using version-controlled SQL scripts. Statistical modeling was conducted in structured Jupyter notebooks using Python (pandas, lifelines, statsmodels, pandas-gbq). The full analytic workflow is documented and reproducible within this repository. An independent SAS workflow is included to reproduce key statistical models and verify cross-platform consistency of the results.
 
-SAS programs use SAS OnDemand-style paths and may require local path adjustment before execution.
-
-For SAS/Python logistic validation, run `notebooks/04d_python_logistic_model.ipynb` to generate `python/outputs/python_logistic_parameters.csv`, then run `notebooks/05_sas_python_validation.ipynb` to compare the SAS and Python parameter outputs. Generated CSV outputs under `python/outputs/` are ignored by Git and can be reproduced from the notebooks.
-
-### Reproducibility Note
-
-This project separates model fitting (04 notebooks) from validation (05 notebook),
-ensuring reproducibility across statistical environments (SAS vs Python).
-
 ---
 
 ## Results
@@ -267,7 +174,7 @@ When RAAS inhibitors were evaluated by drug class, ACE inhibitor use demonstrate
 
 The association between RAAS inhibitor exposure and lower observed in-hospital mortality was attenuated but remained directionally consistent in sensitivity analyses incorporating additional covariates, including ICU type. Model diagnostics did not identify violations that materially affected the interpretation of the primary findings.
 
-### Key Finding:
+### Key Finding
 
 Pre-ICU RAAS inhibitor exposure was associated with lower observed in-hospital mortality, with a more pronounced association for ACE inhibitors than for ARBs. This association was attenuated after further adjustment for ICU type and acute illness severity, suggesting that differences in ICU-level case mix and organ dysfunction may contribute to the observed signal.
 
@@ -275,13 +182,110 @@ Pre-ICU RAAS inhibitor exposure was associated with lower observed in-hospital m
 
 ## Discussion
 
-The findings of this analysis should be interpreted in the context of prior observational studies, most notably the Veterans Affairs cohort reported by Mortensen et al., which reported lower observed short-term mortality among patients hospitalized for acute COPD exacerbations who were receiving ACE inhibitors or ARBs prior to admission[4]. While that study provided important early evidence linking RAAS inhibition to favorable observed outcomes in COPD, it differed from the present analysis in several key aspects. First, the Mortensen cohort was not restricted to critically ill patients and did not specifically focus on ICU-admitted populations, in whom illness severity, competing risks, and treatment intensity differ substantially. Second, ACE inhibitors and ARBs were evaluated as a combined exposure, precluding assessment of potential class-specific effects. In contrast, the current analysis focuses explicitly on ICU-admitted patients with COPD and explores ACE inhibitors and ARBs both as a combined exposure and as separate subclasses, motivated by established mechanistic differences in RAAS signaling[1,2] and emerging comparative evidence in COPD populations[5]. These distinctions allow the present study to address clinically relevant questions that were not directly examined in earlier work, while extending existing observational evidence into a higher-risk ICU setting.
+The findings should be interpreted in the context of prior observational studies, including the Veterans Affairs cohort reported by Mortensen et al., which found lower observed short-term mortality among patients hospitalized for acute COPD exacerbations who were receiving ACE inhibitors or ARBs before admission [4].
+
+This project extends that line of evidence into an ICU COPD cohort, where illness severity, competing risks, and treatment intensity differ from general hospitalized populations. It also evaluates ACE inhibitors and ARBs both as a combined exposure and as separate subclasses, motivated by mechanistic RAAS literature [1,2] and comparative COPD evidence [5].
+
+### Limitations and interpretation
+
+This analysis is observational and cannot establish causal effects of RAAS inhibitors on mortality. Despite strict temporal ordering of exposure before ICU admission and extensive covariate adjustment, residual confounding by indication and unmeasured severity factors may remain. RAAS inhibitor use likely reflects underlying cardiovascular comorbidity and outpatient care patterns that are not fully captured in EHR data. Accordingly, the findings should be interpreted as evidence of association rather than causation, and primarily as hypothesis-generating results that motivate further prospective or quasi-experimental studies.
 
 ---
 
-## Limitations and interpretation
+## Reproducibility / Validation
 
-This analysis is observational and cannot establish causal effects of RAAS inhibitors on mortality. Despite strict temporal ordering of exposure before ICU admission and extensive covariate adjustment, residual confounding by indication and unmeasured severity factors may remain. RAAS inhibitor use likely reflects underlying cardiovascular comorbidity and outpatient care patterns that are not fully captured in EHR data. Accordingly, the findings should be interpreted as evidence of association rather than causation, and primarily as hypothesis-generating results that motivate further prospective or quasi-experimental studies.
+### Environment
+
+`requirements.txt` provides a minimal, portable environment specification for running the validation script and analysis notebooks.
+
+Install the minimal environment:
+````text
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+````
+
+Environment setup steps are intentionally not included as a tracked notebook. Local configuration, including Python environment creation, Google Cloud authentication, MIMIC-IV/PhysioNet BigQuery access, and application default credentials, must be configured separately before running the workflow.
+
+### SAS-Python validation
+
+This project separates model fitting in the 04-series notebooks from validation in the 05 notebook, supporting reproducibility across statistical environments.
+
+For SAS/Python logistic validation:
+
+1. Run `notebooks/04d_python_logistic_model.ipynb` to generate `python/outputs/python_logistic_parameters.csv`.
+2. Run `notebooks/05_sas_python_validation.ipynb` to compare the SAS and Python parameter outputs.
+
+SAS programs use SAS OnDemand-style paths and may require local path adjustment before execution. Generated CSV outputs under `python/outputs/` are ignored by Git and can be reproduced from the notebooks.
+
+### Validation checklist
+
+`scripts/validation_checklist.py` performs a lightweight sanity check by enumerating candidate tables in the BigQuery dataset used for this COPD ICU RAAS analysis. It uses `INFORMATION_SCHEMA` and checks table existence only.
+
+Run the checklist:
+````text
+python scripts/validation_checklist.py
+````
+
+Authenticate first with Application Default Credentials:
+````text
+gcloud auth application-default login
+````
+
+Important scope note:
+
+- This script only checks table existence.
+- It does not perform data quality validation.
+- It does not validate table contents.
+
+---
+
+## Project Structure
+````text
+mimic-iv-copd-raas-analysis/
+├── notebooks/
+│   ├── 01_icu_cohort.ipynb
+│   ├── 02_cohort_and_exposures.ipynb
+│   ├── 03a_baseline.ipynb
+│   ├── 03b_merge_exposures.ipynb
+│   ├── 04a_outcomes_and_modeling.ipynb
+│   ├── 04b_outcomes_and_modeling_raas_subgroups.ipynb
+│   ├── 04c_extended_covariate_cox_model.ipynb
+│   ├── 04d_python_logistic_model.ipynb
+│   └── 05_sas_python_validation.ipynb
+│
+├── sql/
+│   ├── 01_extract_base.sql
+│   ├── 02_build_cohort_copd.sql
+│   ├── 02_exposure_raas*.sql
+│   ├── 03_build_baseline.sql
+│   ├── 03_merge_exposures.sql
+│   └── 04_build_outcomes*.sql
+│
+├── docs/
+│   ├── 01_icu_cohort_SHORT.md
+│   ├── 02_cohort_and_exposures_SHORT.md
+│   ├── 03a_baseline_SHORT.md
+│   ├── 03b_merge_exposures_SHORT.md
+│   ├── 04a_outcomes_and_modeling_SHORT.md
+│   ├── 04b_outcomes_and_modeling_raas_subgroups_SHORT.md
+│   ├── 04c_extended_covariate_cox_model_SHORT.md
+│   ├── 04d_python_logistic_model_SHORT.md
+│   ├── 05_sas_python_validation_SHORT.md
+│   └── PACE.md
+│
+├── data/
+│   ├── interim/
+│   └── processed/
+├── scripts/
+│   └── validation_checklist.py
+├── sas/
+│   ├── README.md
+│   └── programs/
+├── .github/
+├── .gitignore
+└── README.md
+````
 
 ---
 
