@@ -3,8 +3,8 @@
 /* Includes binary mortality sensitivity analysis using logistic regression */
 options nodate nonumber;
 ods noproctitle;
-%let output_path=/home/u64438249/portfolio/output;
-libname data "/home/u64438249/portfolio/data";
+%let output_path=/home/u64438249/portfolio-ICU/output;
+libname data "/home/u64438249/portfolio-ICU/data";
 
 /* Create PDF */
 ods pdf file="&output_path/06_sensitivity_analysis.pdf" style=journal 

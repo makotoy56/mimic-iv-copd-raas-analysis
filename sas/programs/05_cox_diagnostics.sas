@@ -4,8 +4,8 @@
 options nodate nonumber;
 ods noproctitle;
 
-%let output_path=/home/u64438249/portfolio/output;
-libname data "/home/u64438249/portfolio/data";
+%let output_path=/home/u64438249/portfolio-ICU/output;
+libname data "/home/u64438249/portfolio-ICU/data";
 
 ods pdf file="&output_path/05_cox_diagnostics.pdf" style=journal startpage=yes;
 

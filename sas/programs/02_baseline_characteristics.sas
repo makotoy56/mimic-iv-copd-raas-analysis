@@ -4,8 +4,8 @@
 options nodate nonumber;
 ods noproctitle;
 
-%let output_path=/home/u64438249/portfolio/output;
-libname data "/home/u64438249/portfolio/data";
+%let output_path=/home/u64438249/portfolio-ICU/output;
+libname data "/home/u64438249/portfolio-ICU/data";
 
 /* Create a publication-style PDF report */
 ods pdf file="&output_path/02_baseline_table.pdf" style=journal startpage=yes;

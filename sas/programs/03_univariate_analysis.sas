@@ -4,9 +4,9 @@
 options nodate nonumber;
 ods noproctitle;
 
-%let input_path=/home/u64438249/portfolio/input;
-%let output_path=/home/u64438249/portfolio/output;
-libname data "/home/u64438249/portfolio/data";
+%let input_path=/home/u64438249/portfolio-ICU/input;
+%let output_path=/home/u64438249/portfolio-ICU/output;
+libname data "/home/u64438249/portfolio-ICU/data";
 
 /* Create a publication-style PDF report */
 ods pdf file="&output_path/03_univariate_analysis.pdf" style=journal startpage=yes;

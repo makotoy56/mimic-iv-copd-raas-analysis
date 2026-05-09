@@ -41,7 +41,7 @@ The portfolio emphasis is the end-to-end clinical analytics workflow: cohort con
 04a_outcomes_and_modeling.ipynb             Primary survival analysis
 04b_outcomes_and_modeling_raas_subgroups.ipynb  ACEi vs ARB subgroup analysis
 04c_extended_covariate_cox_model.ipynb      Extended covariate Cox models
-04d_python_logistic_model.ipynb             Python logistic validation model
+04d_python_logistic_model.ipynb             Secondary Python logistic validation model
 05_sas_python_validation.ipynb              SAS-Python reproducibility validation
 ```
 
@@ -62,7 +62,7 @@ The portfolio emphasis is the end-to-end clinical analytics workflow: cohort con
 - **Cohort setup**: [01_icu_cohort.ipynb](notebooks/01_icu_cohort.ipynb), [02_cohort_and_exposures.ipynb](notebooks/02_cohort_and_exposures.ipynb)
 - **Baseline/exposure build**: [03a_baseline.ipynb](notebooks/03a_baseline.ipynb), [03b_merge_exposures.ipynb](notebooks/03b_merge_exposures.ipynb)
 - **Modeling**: [04a_outcomes_and_modeling.ipynb](notebooks/04a_outcomes_and_modeling.ipynb), [04b RAAS subgroups](notebooks/04b_outcomes_and_modeling_raas_subgroups.ipynb), [04c extended Cox](notebooks/04c_extended_covariate_cox_model.ipynb)
-- **Validation**: [04d Python logistic model](notebooks/04d_python_logistic_model.ipynb), [05 SAS-Python validation](notebooks/05_sas_python_validation.ipynb)
+- **Validation**: [04d secondary Python logistic validation model](notebooks/04d_python_logistic_model.ipynb), [05 SAS-Python validation](notebooks/05_sas_python_validation.ipynb)
 - **Context**: [Study background](docs/STUDY_BACKGROUND.md), [Discussion and limitations](docs/DISCUSSION_AND_LIMITATIONS.md), [PACE](docs/PACE.md)
 - **Pipelines and docs**: [sql/](sql/), [docs/](docs/)
 
@@ -121,12 +121,13 @@ pip install -r requirements.txt
 Local Python setup, Google Cloud authentication, MIMIC-IV/PhysioNet BigQuery access, and application default credentials must be configured separately before running the workflow.
 
 ### SAS-Python validation
-Model fitting occurs in the 04-series notebooks; the 05 notebook performs SAS-Python reproducibility validation of selected statistical outputs, not a new clinical analysis.
+Model fitting occurs in the 04-series notebooks; the 05 notebook performs SAS-Python reproducibility validation of selected statistical outputs, not a new clinical analysis. Cox proportional hazards survival modeling remains the primary analysis.
 
-For SAS/Python logistic validation:
+For secondary SAS/Python logistic validation:
 
 1. Run `notebooks/04d_python_logistic_model.ipynb` to generate `python/outputs/python_logistic_parameters.csv`.
-2. Run `notebooks/05_sas_python_validation.ipynb` to compare the SAS and Python parameter outputs.
+2. Run `sas/programs/07_export_validation_tables.sas` to generate `sas/outputs/sas_secondary_logistic_validation_parameters.csv`.
+3. Run `notebooks/05_sas_python_validation.ipynb` to compare the SAS and Python secondary logistic validation parameter outputs.
 
 SAS programs use SAS OnDemand-style paths and may require local path adjustment. Generated CSV outputs under `python/outputs/` are ignored by Git and can be reproduced.
 
