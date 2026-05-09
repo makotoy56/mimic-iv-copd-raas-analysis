@@ -1,4 +1,4 @@
-/* 02_baseline_table.sas */
+/* 02_baseline_characteristics.sas */
 /* Generate publication-style baseline summary tables for the COPD cohort */
 
 options nodate nonumber;

@@ -1,5 +1,5 @@
 /* 03_univariate_analysis.sas */
-/* Generate publication-style baseline summary tables for the COPD cohort */
+/* Generate univariate mortality association tables for the COPD cohort */
 
 options nodate nonumber;
 ods noproctitle;
