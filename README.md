@@ -27,9 +27,9 @@ The primary analysis is Kaplan-Meier survival analysis and Cox proportional haza
 
 ## Why This Project Matters
 
-This project shows how clinical analytics can move from raw EHR tables to a reproducible outcomes research workflow. It is structured around clinically interpretable definitions, survival modeling for time-to-event outcomes, transparent sensitivity analysis, and cross-platform validation using Python and SAS.
+This project shows how clinical analytics teams can move from raw ICU EHR tables to a reproducible real-world evidence workflow. It emphasizes transparent cohort, exposure, covariate, and outcome definitions; survival analysis for time-to-event outcomes; and cross-platform validation using Python and SAS.
 
-For portfolio review, the value is the end-to-end evidence workflow rather than a causal treatment claim. The results should be read as observational, hypothesis-generating, and potentially affected by residual confounding.
+For clinical analytics, RWE, HEOR, and outcomes research teams, the portfolio value is the operational workflow: defensible data definitions, documented modeling decisions, reproducible notebooks, and validation checks that make results easier to review. The findings remain observational and hypothesis-generating, cannot establish causality, and may still be affected by residual confounding.
 
 ## Key Findings
 
@@ -39,6 +39,14 @@ For portfolio review, the value is the end-to-end evidence workflow rather than 
 - Extended adjustment, including ICU type and additional severity/case-mix variables, attenuated the association.
 
 See [Results summary](docs/RESULTS_SUMMARY.md) and [Discussion and limitations](docs/DISCUSSION_AND_LIMITATIONS.md) for interpretation details.
+
+## Results Visualizations
+
+Figures shown in the README are generated from the analysis notebooks and saved under `assets/` so that rerunning the notebooks refreshes the displayed results.
+
+![Kaplan-Meier survival curve](assets/kaplan_meier_curve.png)
+
+![Cox hazard ratio forest plot](assets/cox_forest_plot.png)
 
 ## Technical Snapshot
 
@@ -59,12 +67,12 @@ Exposure is based on inpatient medication orders before ICU admission and does n
 
 - [01 ICU cohort extraction](notebooks/01_icu_cohort.ipynb) and [short notes](docs/01_icu_cohort_SHORT.md)
 - [02 COPD cohort and RAAS exposure](notebooks/02_cohort_and_exposures.ipynb) and [short notes](docs/02_cohort_and_exposures_SHORT.md)
-- [03 baseline covariates](notebooks/03a_baseline.ipynb) and [exposure merge](notebooks/03b_merge_exposures.ipynb)
+- [03 baseline covariates](notebooks/03a_baseline.ipynb) and [short notes](docs/03a_baseline_SHORT.md); [exposure merge](notebooks/03b_merge_exposures.ipynb) and [short notes](docs/03b_merge_exposures_SHORT.md)
 - [04a primary survival analysis](notebooks/04a_outcomes_and_modeling.ipynb) and [short notes](docs/04a_outcomes_and_modeling_SHORT.md)
-- [04b ACE inhibitor vs ARB subgroup analysis](notebooks/04b_outcomes_and_modeling_raas_subgroups.ipynb)
-- [04c extended covariate Cox models](notebooks/04c_extended_covariate_cox_model.ipynb)
-- [04d secondary Python logistic validation model](notebooks/04d_python_logistic_model.ipynb)
-- [05 SAS-Python reproducibility validation](notebooks/05_sas_python_validation.ipynb)
+- [04b ACE inhibitor vs ARB subgroup analysis](notebooks/04b_outcomes_and_modeling_raas_subgroups.ipynb) and [short notes](docs/04b_outcomes_and_modeling_raas_subgroups_SHORT.md)
+- [04c extended covariate Cox models](notebooks/04c_extended_covariate_cox_model.ipynb) and [short notes](docs/04c_extended_covariate_cox_model_SHORT.md)
+- [04d secondary Python logistic validation model](notebooks/04d_python_logistic_model.ipynb) and [short notes](docs/04d_python_logistic_model_SHORT.md)
+- [05 SAS-Python reproducibility validation](notebooks/05_sas_python_validation.ipynb) and [short notes](docs/05_sas_python_validation_SHORT.md)
 - [SAS programs](sas/programs/) and [SAS workflow notes](sas/README.md)
 
 ## Detailed Documentation
@@ -74,6 +82,7 @@ Exposure is based on inpatient medication orders before ICU admission and does n
 - [Results summary](docs/RESULTS_SUMMARY.md): concise findings without causal strengthening
 - [Discussion and limitations](docs/DISCUSSION_AND_LIMITATIONS.md): interpretation, residual confounding, and generalizability
 - [Validation notes](docs/VALIDATION_NOTES.md): Python/SAS validation scope and reproducibility checks
+- [Figure reproducibility](docs/FIGURE_REPRODUCIBILITY.md): README figure export locations and refresh workflow
 - [PACE](docs/PACE.md): project planning and execution context
 
 ## Reproducibility And Validation
