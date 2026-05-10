@@ -1,177 +1,119 @@
 # RAAS Blockers and Clinical Outcomes in COPD ICU Admissions
-*An ICU Hospital Cohort Study of COPD Patients Using MIMIC-IV*
 
-Maintained by <br>
-Makoto Yoshida, PhD <br>
-Clinical Data Analytics Portfolio <br>
-LinkedIn: https://www.linkedin.com/in/makoto-yoshida/ <br>
+*A reproducible MIMIC-IV clinical analytics portfolio project*
 
-## Project Overview
+Makoto Yoshida, PhD<br>
+Clinical Data Analytics Portfolio<br>
+LinkedIn: https://www.linkedin.com/in/makoto-yoshida/
 
-This project is a reproducible EHR-based observational cohort study using MIMIC-IV. It evaluates whether pre-ICU RAAS inhibitor exposure is associated with in-hospital mortality among ICU patients with COPD.
+## Overview
 
-The portfolio emphasis is the end-to-end clinical analytics workflow: cohort construction, exposure and outcome definition, survival modeling, sensitivity analysis, and reproducibility validation.
+This repository contains an EHR-based retrospective observational cohort study using MIMIC-IV v3.1. It evaluates whether pre-ICU RAAS inhibitor exposure is associated with time-to-in-hospital mortality among ICU patients with COPD.
 
-## What this project demonstrates
+The primary analysis is Kaplan-Meier survival analysis and Cox proportional hazards modeling. The clinical interpretation remains cautious: this is a hypothesis-generating observational association and cannot establish causality.
 
-- EHR-based observational cohort construction using BigQuery SQL
-- Clinically informed exposure, outcome, and covariate definitions
-- Kaplan-Meier and Cox proportional hazards survival analysis
-- ACE inhibitor vs ARB subgroup comparison
-- Sensitivity analyses with extended covariates
-- Python and SAS reproducibility validation of key model outputs
+## What This Demonstrates
 
-## Skills Demonstrated
+- Real-world evidence workflow using ICU EHR data
+- Reproducible cohort, exposure, covariate, and outcome construction in BigQuery SQL
+- Survival analysis with Kaplan-Meier curves and Cox proportional hazards regression
+- ACE inhibitor vs ARB subgroup analysis and extended covariate sensitivity modeling
+- SAS-Python reproducibility validation of selected model outputs
+- Transparent observational interpretation, including residual confounding limitations
 
-- EHR cohort construction using BigQuery SQL
-- Clinical exposure and outcome definition
-- Survival analysis with Kaplan-Meier and Cox regression
-- Subgroup and sensitivity analysis
-- Cross-platform reproducibility validation using Python and SAS
-- Observational study interpretation with cautious causal language
-- Reproducible clinical analytics workflow design
+## Workflow
 
-## Clinical Data Analysis Workflow
+![Analysis workflow](assets/workflow_diagram.svg)
 
-```text
-01_icu_cohort.ipynb                         ICU cohort extraction
-02_cohort_and_exposures.ipynb               COPD cohort + RAAS exposure definition
-03a_baseline.ipynb                          Baseline covariates
-03b_merge_exposures.ipynb                   Detailed exposure merge
-04a_outcomes_and_modeling.ipynb             Primary survival analysis
-04b_outcomes_and_modeling_raas_subgroups.ipynb  ACEi vs ARB subgroup analysis
-04c_extended_covariate_cox_model.ipynb      Extended covariate Cox models
-04d_python_logistic_model.ipynb             Secondary Python logistic validation model
-05_sas_python_validation.ipynb              SAS-Python reproducibility validation
-```
+## Why This Project Matters
 
-## Technical Snapshot
+This project shows how clinical analytics can move from raw EHR tables to a reproducible outcomes research workflow. It is structured around clinically interpretable definitions, survival modeling for time-to-event outcomes, transparent sensitivity analysis, and cross-platform validation using Python and SAS.
 
-- **Data**: MIMIC-IV v3.1 (PhysioNet), ICU admissions
-- **Design**: EHR-based retrospective observational cohort study
-- **Population**: Adult ICU patients with COPD
-- **Exposure**: Pre-ICU RAAS inhibitor use (ACE inhibitors [ACEi] / ARBs) based on inpatient prescription orders before ICU admission; not outpatient medication history
-- **Outcome**: Time-to-in-hospital mortality
-- **Methods**: Kaplan-Meier survival analysis, Cox proportional hazards regression, subgroup and sensitivity analyses
-- **Tools**: BigQuery SQL, Python, Jupyter, SAS
-- **Key finding**: RAAS inhibitor exposure was associated with lower observed mortality, with a stronger observed signal for ACE inhibitors than ARBs.
-- **Interpretation**: Hypothesis-generating observational association; cannot establish causality.
-
-## Start Here
-
-- **Cohort setup**: [01_icu_cohort.ipynb](notebooks/01_icu_cohort.ipynb), [02_cohort_and_exposures.ipynb](notebooks/02_cohort_and_exposures.ipynb)
-- **Baseline/exposure build**: [03a_baseline.ipynb](notebooks/03a_baseline.ipynb), [03b_merge_exposures.ipynb](notebooks/03b_merge_exposures.ipynb)
-- **Modeling**: [04a_outcomes_and_modeling.ipynb](notebooks/04a_outcomes_and_modeling.ipynb), [04b RAAS subgroups](notebooks/04b_outcomes_and_modeling_raas_subgroups.ipynb), [04c extended Cox](notebooks/04c_extended_covariate_cox_model.ipynb)
-- **Validation**: [04d secondary Python logistic validation model](notebooks/04d_python_logistic_model.ipynb), [05 SAS-Python validation](notebooks/05_sas_python_validation.ipynb)
-- **Context**: [Study background](docs/STUDY_BACKGROUND.md), [Discussion and limitations](docs/DISCUSSION_AND_LIMITATIONS.md), [PACE](docs/PACE.md)
-- **Pipelines and docs**: [sql/](sql/), [docs/](docs/)
-
-## Background and Rationale
-
-COPD is frequently complicated by cardiovascular comorbidity, and ICU-admitted COPD patients represent a high-risk population. This project evaluates RAAS inhibitor exposure in that setting while keeping interpretation explicitly observational.
-
-The rationale is grounded in RAAS biology, prior COPD literature, and the possibility of different ACE inhibitor and ARB associations. Details are in [docs/STUDY_BACKGROUND.md](docs/STUDY_BACKGROUND.md).
-
-## Methods Overview
-
-This study used a pre-specified analytic plan grounded in a causal inference framework.
-
-### Study Design and Data Source
-We performed a retrospective observational cohort study using MIMIC-IV v3.1, a de-identified ICU electronic health record database. All analyses were conducted within approved data use environments.
-
-### Cohort Construction
-Adult ICU patients with COPD were identified using established ICD-9 and ICD-10 diagnosis codes. The cohort was constructed at the ICU-stay/admission level using reproducible BigQuery SQL.
-
-### Exposure Definition
-The primary exposure was pre-ICU RAAS inhibitor use, defined from inpatient prescription orders for ACE inhibitors or ARBs before or at ICU admission. This does not directly capture outpatient chronic use.
-
-### Outcome
-The primary outcome was time to in-hospital mortality, measured from ICU admission until death or hospital discharge. Patients discharged alive were censored at discharge.
-
-### Covariate Selection
-Covariates were selected a priori based on a conceptual causal framework and included demographics, cardiovascular comorbidities, chronic kidney disease, diabetes, and SOFA score. Sensitivity models added ICU type and extended clinical variables.
-
-### Statistical Analysis
-Survival analyses used Kaplan-Meier curves and Cox proportional hazards regression with pre-specified covariate adjustment. Proportional hazards assumptions were evaluated using Schoenfeld residuals; sensitivity analyses assessed extended covariates, ICU type, and penalized Cox models.
-
-### Reproducibility
-Data extraction used version-controlled SQL scripts. Modeling was conducted in Jupyter notebooks, with SAS used to verify cross-platform consistency of selected model outputs.
+For portfolio review, the value is the end-to-end evidence workflow rather than a causal treatment claim. The results should be read as observational, hypothesis-generating, and potentially affected by residual confounding.
 
 ## Key Findings
 
-- Pre-ICU RAAS inhibitor exposure was associated with lower observed mortality in time-to-event analyses.
-- ACE inhibitor exposure showed a stronger observed signal than ARB exposure, with overlapping uncertainty.
-- Extended adjustment, including ICU type, attenuated the association but preserved the overall direction.
+- Pre-ICU RAAS inhibitor exposure was associated with lower observed in-hospital mortality in Kaplan-Meier and Cox survival analyses.
+- The refined proportional hazards-compliant Cox model estimated HR 0.71 (95% CI 0.58-0.88) for combined pre-ICU RAAS exposure.
+- ACE inhibitor monotherapy showed a stronger observed association than ARB monotherapy; ARB estimates were directionally lower-hazard but not statistically significant.
+- Extended adjustment, including ICU type and additional severity/case-mix variables, attenuated the association.
 
-These findings are hypothesis-generating and cannot establish causality. See [docs/DISCUSSION_AND_LIMITATIONS.md](docs/DISCUSSION_AND_LIMITATIONS.md) for interpretation and limitations.
+See [Results summary](docs/RESULTS_SUMMARY.md) and [Discussion and limitations](docs/DISCUSSION_AND_LIMITATIONS.md) for interpretation details.
 
-## Reproducibility / Validation
+## Technical Snapshot
 
-### Environment
+| Area | Details |
+| --- | --- |
+| Data | MIMIC-IV v3.1 ICU admissions |
+| Design | Retrospective observational cohort study |
+| Population | Adult ICU patients with COPD |
+| Exposure | Pre-ICU inpatient prescription orders for ACE inhibitors or ARBs before or at ICU admission |
+| Primary outcome | Time-to-in-hospital mortality from ICU admission to death or discharge |
+| Primary model | Cox proportional hazards survival analysis |
+| Secondary validation | 04d logistic model for SAS-Python reproducibility comparison only |
+| Tools | BigQuery SQL, Python, Jupyter, SAS |
 
-`requirements.txt` provides a minimal environment for the validation script and analysis notebooks.
+Exposure is based on inpatient medication orders before ICU admission and does not directly capture outpatient chronic use, adherence, dose, or duration.
 
-Install the minimal environment:
+## Explore The Project
+
+- [01 ICU cohort extraction](notebooks/01_icu_cohort.ipynb) and [short notes](docs/01_icu_cohort_SHORT.md)
+- [02 COPD cohort and RAAS exposure](notebooks/02_cohort_and_exposures.ipynb) and [short notes](docs/02_cohort_and_exposures_SHORT.md)
+- [03 baseline covariates](notebooks/03a_baseline.ipynb) and [exposure merge](notebooks/03b_merge_exposures.ipynb)
+- [04a primary survival analysis](notebooks/04a_outcomes_and_modeling.ipynb) and [short notes](docs/04a_outcomes_and_modeling_SHORT.md)
+- [04b ACE inhibitor vs ARB subgroup analysis](notebooks/04b_outcomes_and_modeling_raas_subgroups.ipynb)
+- [04c extended covariate Cox models](notebooks/04c_extended_covariate_cox_model.ipynb)
+- [04d secondary Python logistic validation model](notebooks/04d_python_logistic_model.ipynb)
+- [05 SAS-Python reproducibility validation](notebooks/05_sas_python_validation.ipynb)
+- [SAS programs](sas/programs/) and [SAS workflow notes](sas/README.md)
+
+## Detailed Documentation
+
+- [Study background](docs/STUDY_BACKGROUND.md): RAAS biology, COPD rationale, and prior literature
+- [Methods overview](docs/METHODS_OVERVIEW.md): design, cohort, exposure, outcome, covariates, and analysis plan
+- [Results summary](docs/RESULTS_SUMMARY.md): concise findings without causal strengthening
+- [Discussion and limitations](docs/DISCUSSION_AND_LIMITATIONS.md): interpretation, residual confounding, and generalizability
+- [Validation notes](docs/VALIDATION_NOTES.md): Python/SAS validation scope and reproducibility checks
+- [PACE](docs/PACE.md): project planning and execution context
+
+## Reproducibility And Validation
+
+The workflow uses version-controlled notebooks, SQL scripts, and SAS programs. No patient-level data are included in this repository.
+
+`requirements.txt` provides the minimal Python environment for notebooks and validation scripts:
+
 ```text
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Local Python setup, Google Cloud authentication, MIMIC-IV/PhysioNet BigQuery access, and application default credentials must be configured separately before running the workflow.
+MIMIC-IV/PhysioNet access, Google Cloud authentication, BigQuery access, and local SAS path configuration must be set up separately.
 
-### SAS-Python validation
-Model fitting occurs in the 04-series notebooks; the 05 notebook performs SAS-Python reproducibility validation of selected statistical outputs, not a new clinical analysis. Cox proportional hazards survival modeling remains the primary analysis.
+Validation scope:
 
-For secondary SAS/Python logistic validation:
-
-1. Run `notebooks/04d_python_logistic_model.ipynb` to generate `python/outputs/python_logistic_parameters.csv`.
-2. Run `sas/programs/07_export_validation_tables.sas` to generate `sas/outputs/sas_secondary_logistic_validation_parameters.csv`.
-3. Run `notebooks/05_sas_python_validation.ipynb` to compare the SAS and Python secondary logistic validation parameter outputs.
-
-SAS programs use SAS OnDemand-style paths and may require local path adjustment. Generated CSV outputs under `python/outputs/` are ignored by Git and can be reproduced.
-
-### Validation checklist
-`scripts/validation_checklist.py` performs a lightweight table-existence check using BigQuery `INFORMATION_SCHEMA`.
-
-Run the checklist:
-```text
-python scripts/validation_checklist.py
-```
-
-Authenticate first with Application Default Credentials:
-```text
-gcloud auth application-default login
-```
-
-Important scope note:
-
-- This script only checks table existence.
-- It does not perform data quality validation.
-- It does not validate table contents.
+- `04d_python_logistic_model.ipynb` fits a secondary Python logistic model only to generate parameters for reproducibility comparison.
+- `05_sas_python_validation.ipynb` compares precomputed SAS and Python secondary logistic validation outputs; it is not a new clinical analysis.
+- Cox proportional hazards survival modeling remains the primary clinical analysis.
+- `scripts/validation_checklist.py` performs lightweight BigQuery table-existence checks only; it does not validate table contents.
 
 ## Project Structure
 
 ```text
 mimic-iv-copd-raas-analysis/
-├── notebooks/        # 01-05 analysis notebooks
-├── sql/              # BigQuery cohort, exposure, baseline, and outcome SQL
-├── docs/
-│   ├── STUDY_BACKGROUND.md
-│   ├── DISCUSSION_AND_LIMITATIONS.md
-│   ├── *_SHORT.md
-│   └── PACE.md
-├── scripts/          # validation_checklist.py
-├── sas/              # SAS validation README and programs
-├── data/             # local ignored data directories
-└── README.md
+|-- assets/           # Portfolio visuals
+|-- docs/             # Study background, methods, results, limitations, validation notes
+|-- notebooks/        # 01-05 analysis notebooks
+|-- sas/              # SAS workflow notes and programs
+|-- scripts/          # Validation utilities
+|-- sql/              # BigQuery SQL for cohort/exposure/outcome construction
+`-- README.md
 ```
 
-## Data Source and Compliance
+## Data Source And Compliance
 
 This project uses MIMIC-IV v3.1, maintained by the MIT Laboratory for Computational Physiology and made available via PhysioNet.
 
-According to the PhysioNet data use requirements, the following citation should be used when referencing MIMIC-IV:
 Johnson A., Bulgarelli L., Pollard T., Gow B., Moody B., Horng S., Celi L.A., & Mark R. (2024). *MIMIC-IV (version 3.1)*. PhysioNet. RRID:SCR_007345. https://doi.org/10.13026/kpb9-mt58.
 
-Access was granted after required training and approval under the PhysioNet data use agreement. This repository contains no patient-level data; only code and aggregate descriptions are shared.
+Access was granted after required training and approval under the PhysioNet data use agreement. This repository contains no patient-level data.

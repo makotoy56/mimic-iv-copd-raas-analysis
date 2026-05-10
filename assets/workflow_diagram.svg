@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="420" viewBox="0 0 1280 420" role="img" aria-labelledby="title desc">
+  <title id="title">MIMIC-IV COPD RAAS analysis workflow</title>
+  <desc id="desc">Workflow from MIMIC-IV to ICU COPD cohort, RAAS exposure, covariates, survival modeling, sensitivity analysis, and SAS-Python validation.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .step { fill: #ffffff; stroke: #2563eb; stroke-width: 2.5; }
+      .check { fill: #ecfdf5; stroke: #059669; stroke-width: 2.5; }
+      .title { fill: #0f172a; font: 700 23px Arial, sans-serif; }
+      .label { fill: #1e293b; font: 600 19px Arial, sans-serif; }
+      .small { fill: #475569; font: 15px Arial, sans-serif; }
+      .arrow { stroke: #64748b; stroke-width: 3; fill: none; marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="11" markerHeight="8" refX="10" refY="4" orient="auto">
+      <path d="M0,0 L11,4 L0,8 Z" fill="#64748b" />
+    </marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="1280" height="420" />
+  <text class="title" x="48" y="54">RAAS Blockers and ICU COPD Outcomes: Reproducible EHR Workflow</text>
+
+  <rect class="step" x="48" y="96" width="150" height="110" rx="16" />
+  <text class="label" x="83" y="140">MIMIC-IV</text>
+  <text class="small" x="76" y="168">ICU EHR data</text>
+
+  <path class="arrow" d="M198 151 H238" />
+  <rect class="step" x="238" y="96" width="158" height="110" rx="16" />
+  <text class="label" x="275" y="132">ICU COPD</text>
+  <text class="label" x="284" y="158">cohort</text>
+  <text class="small" x="269" y="185">ICD-9/10 codes</text>
+
+  <path class="arrow" d="M396 151 H436" />
+  <rect class="step" x="436" y="96" width="174" height="110" rx="16" />
+  <text class="label" x="474" y="132">Pre-ICU</text>
+  <text class="label" x="457" y="158">RAAS exposure</text>
+  <text class="small" x="459" y="185">ACEi / ARB orders</text>
+
+  <path class="arrow" d="M610 151 H650" />
+  <rect class="step" x="650" y="96" width="168" height="110" rx="16" />
+  <text class="label" x="677" y="140">Baseline</text>
+  <text class="label" x="672" y="166">covariates</text>
+  <text class="small" x="675" y="190">severity + comorbidity</text>
+
+  <path class="arrow" d="M818 151 H858" />
+  <rect class="step" x="858" y="96" width="172" height="110" rx="16" />
+  <text class="label" x="893" y="132">KM + Cox</text>
+  <text class="label" x="892" y="158">modeling</text>
+  <text class="small" x="882" y="185">time-to-event outcome</text>
+
+  <path class="arrow" d="M1030 151 H1070" />
+  <rect class="check" x="1070" y="96" width="162" height="110" rx="16" />
+  <text class="label" x="1101" y="132">Subgroup</text>
+  <text class="label" x="1092" y="158">+ sensitivity</text>
+  <text class="small" x="1101" y="185">ACEi vs ARB, ICU type</text>
+
+  <path class="arrow" d="M944 206 V262 H734 V292" />
+  <rect class="check" x="610" y="292" width="248" height="78" rx="16" />
+  <text class="label" x="643" y="326">SAS-Python validation</text>
+  <text class="small" x="647" y="350">secondary reproducibility check</text>
+
+  <path class="arrow" d="M734 292 V247 H1151 V206" />
+</svg>
