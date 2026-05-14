@@ -1,5 +1,8 @@
 # 01 - ICU Cohort Extraction (SHORT)
 
+Full notebook:
+[01 - ICU Cohort Extraction](../notebooks/01_icu_cohort.ipynb)
+
 ## Objective
 Build the base adult ICU cohort from MIMIC-IV using BigQuery and verify the integrity of the extracted ICU-stay-level table.
 

@@ -1,5 +1,8 @@
 # 03a - Baseline Cohort Construction (SHORT)
 
+Full notebook:
+[03a - Baseline Cohort Construction](../notebooks/03a_baseline.ipynb)
+
 ## Objective
 Construct the baseline COPD ICU cohort with demographic characteristics, pre-ICU RAAS exposure, and core cohort eligibility fields.
 

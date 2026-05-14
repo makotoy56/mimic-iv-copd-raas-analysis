@@ -1,5 +1,8 @@
 # 04a - Pre-ICU RAAS Exposure and In-Hospital Mortality in ICU COPD Patients (SHORT)
 
+Full notebook:
+[04a - Pre-ICU RAAS Exposure and In-Hospital Mortality in ICU COPD Patients](../notebooks/04a_outcomes_and_modeling.ipynb)
+
 ## Objective
 Evaluate the association between combined pre-ICU RAAS inhibitor exposure and in-hospital mortality among ICU patients with COPD.
 

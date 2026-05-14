@@ -1,5 +1,8 @@
 # 02 - Cohort and Exposure Construction (SHORT)
 
+Full notebook:
+[02 - Cohort and Exposure Construction](../notebooks/02_cohort_and_exposures.ipynb)
+
 ## Objective
 Construct the COPD ICU cohort and derive pre-ICU RAAS inhibitor exposure indicators for downstream cohort assembly and analysis.
 

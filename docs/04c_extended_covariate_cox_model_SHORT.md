@@ -1,5 +1,8 @@
 # 04c - Extended Covariate Cox Models for Pre-ICU RAAS Exposure in ICU COPD Patients (SHORT)
 
+Full notebook:
+[04c - Extended Covariate Cox Models for Pre-ICU RAAS Exposure in ICU COPD Patients](../notebooks/04c_extended_covariate_cox_model.ipynb)
+
 ## Objective
 Evaluate whether the association between pre-ICU RAAS exposure and in-hospital mortality remains after adjustment for additional severity, comorbidity, and ICU type variables.
 

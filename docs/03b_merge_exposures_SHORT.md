@@ -1,5 +1,8 @@
 # 03b - Merge COPD Cohort with RAAS Exposures (SHORT)
 
+Full notebook:
+[03b - Merge COPD Cohort with RAAS Exposures](../notebooks/03b_merge_exposures.ipynb)
+
 ## Objective
 Merge the COPD ICU cohort with ACE inhibitor, ARB, and combined RAAS exposure indicators and validate the resulting exposure-enhanced cohort.
 

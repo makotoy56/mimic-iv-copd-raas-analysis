@@ -1,5 +1,8 @@
 # 04d - Secondary Python Logistic Validation Model (SHORT)
 
+Full notebook:
+[04d - Secondary Python Logistic Validation Model](../notebooks/04d_python_logistic_model.ipynb)
+
 ## Purpose
 Fit the secondary logistic regression model in Python using `statsmodels` only to generate parameter estimates for SAS-Python reproducibility validation.
 

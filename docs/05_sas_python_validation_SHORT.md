@@ -1,5 +1,8 @@
 # 05 - SAS-Python Validation (SHORT)
 
+Full notebook:
+[05 - SAS-Python Validation](../notebooks/05_sas_python_validation.ipynb)
+
 ## Purpose
 Validate reproducibility between SAS and Python secondary logistic validation results. The primary clinical analysis remains Cox proportional hazards survival modeling.
 
