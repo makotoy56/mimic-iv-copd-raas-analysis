@@ -19,3 +19,6 @@ This baseline cohort table is the primary input for outcome construction and dow
 - Merges the binary pre-ICU RAAS exposure flag at the ICU-stay level.
 - Treats missing RAAS exposure records as non-exposure.
 - Checks cohort size and exposure distribution before downstream modeling.
+
+## Next Step
+Next: [03b - Merge COPD Cohort with RAAS Exposures](03b_merge_exposures_SHORT.md)

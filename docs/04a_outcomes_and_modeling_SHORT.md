@@ -23,3 +23,6 @@ The outcome table is used by subclass analyses in `04b_outcomes_and_modeling_raa
 - Pre-ICU RAAS exposure was associated with lower observed in-hospital mortality in the primary and refined Cox models.
 - The refined proportional hazards-compliant model estimated HR 0.71 (95% CI 0.58-0.88).
 - Findings are interpreted as observational associations, not causal effects.
+
+## Next Step
+Next: [04b - RAAS Subgroup Modeling](04b_outcomes_and_modeling_raas_subgroups_SHORT.md)

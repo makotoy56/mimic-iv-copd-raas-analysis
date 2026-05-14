@@ -18,3 +18,6 @@ This ICU-stay-level table is the base input for COPD cohort construction in `02_
 - Keeps the first ICU stay per hospital admission.
 - Carries ICU timing, demographics, age, and calendar-year grouping.
 - Performs basic table preview and row-level sanity checks.
+
+## Next Step
+Next: [02 - Cohort and Exposure Construction](02_cohort_and_exposures_SHORT.md)

@@ -25,3 +25,6 @@ The extended outcome table supports adjusted Cox models with SOFA score, comorbi
 - In the penalized core model, the point estimate remained below 1 but was not statistically significant.
 - After adding ICU type, the RAAS estimate was attenuated and was not statistically significant.
 - Results suggest sensitivity to severity, care setting, and ICU-level case mix, and should be interpreted as observational associations.
+
+## Next Step
+Next: [04d - Python Logistic Validation Model](04d_python_logistic_model_SHORT.md)

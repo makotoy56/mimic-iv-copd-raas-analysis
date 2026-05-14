@@ -21,3 +21,6 @@ These tables define the COPD ICU cohort and pre-ICU RAAS exposure indicators use
 - Defines binary pre-ICU RAAS inhibitor exposure using medication records before ICU admission.
 - Creates detailed ACE inhibitor, ARB, dual-exposure, and mutually exclusive exposure indicators.
 - Checks exposure distributions and verifies one row per ICU stay.
+
+## Next Step
+Next: [03a - Baseline Cohort Construction](03a_baseline_SHORT.md)

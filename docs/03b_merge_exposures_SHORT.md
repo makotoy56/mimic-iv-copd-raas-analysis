@@ -17,3 +17,6 @@ This exposure-enhanced cohort table supports exposure distribution checks and do
 - Left-joins detailed RAAS exposure flags to the COPD ICU cohort using ICU-stay identifiers.
 - Includes ACE inhibitor, ARB, any RAAS, dual-exposure, and mutually exclusive exposure categories.
 - Validates row counts, missing exposure fields, exposure distributions, and cross-tabulated RAAS counts.
+
+## Next Step
+Next: [04a - Outcomes and Primary Modeling](04a_outcomes_and_modeling_SHORT.md)

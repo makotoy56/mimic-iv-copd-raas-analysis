@@ -24,3 +24,6 @@ Subclass findings provide context for the extended covariate models in `04c_exte
 - ACE inhibitor monotherapy was associated with lower observed in-hospital mortality in the subclass Cox model.
 - ARB monotherapy had a directionally lower-hazard but statistically non-significant estimate.
 - Results are interpreted as observational associations and may be affected by residual confounding.
+
+## Next Step
+Next: [04c - Extended Covariate Cox Model](04c_extended_covariate_cox_model_SHORT.md)
