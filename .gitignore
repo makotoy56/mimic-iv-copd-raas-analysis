@@ -6,14 +6,32 @@
 *.key
 *.pem
 *.p12
+*.pfx
+*.crt
+*.cer
+*credentials*.json
+*service-account*.json
 docs2/
 
 # --- Data files ---
 data/
 *.csv
+*.tsv
 *.parquet
+*.feather
+*.arrow
 *.xlsx
+*.xls
+*.xlsm
 *.sas7bdat
+*.sas7bcat
+*.xpt
+*.db
+*.sqlite
+*.sqlite3
+*.rds
+*.dta
+*.sav
 
 # --- Generated Python outputs ---
 python/outputs/*
