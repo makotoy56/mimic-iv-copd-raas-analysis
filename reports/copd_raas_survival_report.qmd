@@ -24,13 +24,13 @@ The primary analysis used Kaplan-Meier survival curves and Cox proportional haza
 
 Subclass analyses suggested that ACE inhibitor monotherapy had a stronger observed association than ARB monotherapy. ARB monotherapy was directionally associated with lower hazard but was not statistically significant. Extended covariate and sensitivity models attenuated the RAAS association after additional adjustment, including ICU type and acute severity/case-mix variables.
 
-These findings are observational and hypothesis-generating. They cannot establish causality and may be affected by residual confounding, confounding by indication, exposure misclassification, and single-center ICU case mix.
+Overall, the findings should be read as observational associations. Residual confounding, confounding by indication, exposure misclassification, and single-center ICU case mix remain important considerations.
 
 ## Study question
 
 The study question was whether pre-ICU inpatient RAAS inhibitor exposure was associated with time-to-in-hospital mortality among ICU-admitted adults with COPD in MIMIC-IV.
 
-The analysis was designed as a reproducible clinical analytics workflow rather than a causal treatment-effect study. The repository-level study background is available in [Study background](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/STUDY_BACKGROUND.md), and the detailed methods outline is available in [Methods overview](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/METHODS_OVERVIEW.md).
+The analysis was designed as a reproducible clinical analytics workflow, not as a causal treatment-effect study. The repository-level study background is available in [Study background](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/STUDY_BACKGROUND.md), and the detailed methods outline is available in [Methods overview](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/METHODS_OVERVIEW.md).
 
 ## Data source and cohort
 
@@ -84,7 +84,7 @@ Kaplan-Meier curves showed lower observed in-hospital mortality among patients w
   <figcaption>Kaplan-Meier survival curve</figcaption>
 </figure>
 
-The Kaplan-Meier findings should be interpreted as unadjusted survival patterns. They do not account for all differences in comorbidities, acute illness severity, ICU case mix, or medication-prescribing context.
+The Kaplan-Meier curves are best viewed as unadjusted survival patterns. They do not account for all differences in comorbidities, acute illness severity, ICU case mix, or medication-prescribing context.
 
 ## Cox proportional hazards results
 
@@ -95,7 +95,7 @@ The refined proportional hazards-compliant Cox model estimated HR 0.71 (95% CI 0
   <figcaption>Cox hazard ratio forest plot</figcaption>
 </figure>
 
-This result should not be interpreted as evidence that RAAS inhibitors caused lower mortality. RAAS exposure may also identify patients with different cardiovascular histories, baseline risk profiles, clinical management patterns, or medication-continuation decisions.
+This estimate is not evidence that RAAS inhibitors caused lower mortality. RAAS exposure may also identify patients with different cardiovascular histories, baseline risk profiles, clinical management patterns, or medication-continuation decisions.
 
 Because the refined primary model was followed by extended covariate and ICU-type sensitivity models, the primary HR should be read alongside the attenuation pattern shown in the sensitivity comparison below rather than as an isolated estimate.
 
@@ -112,9 +112,7 @@ ACE inhibitor monotherapy was associated with lower observed in-hospital mortali
   <figcaption>ACE inhibitor versus ARB subgroup hazard ratio estimates</figcaption>
 </figure>
 
-These subclass comparisons are hypothesis-generating. They may be affected by confounding by indication, medication tolerance, contraindications, prescribing history, cardiovascular comorbidity, and differences in patient severity. The results should not be interpreted as evidence that ACE inhibitors are clinically superior to ARBs in ICU-admitted COPD patients.
-
-The plot is descriptive and does not represent a formal interaction test between medication subclass and mortality. Medication-selection bias and unmeasured reasons for ACE inhibitor or ARB prescribing may contribute to the observed subclass pattern.
+These subclass comparisons are descriptive and hypothesis-generating. They do not represent a formal interaction test, and they should not be read as evidence that ACE inhibitors are clinically superior to ARBs in ICU-admitted COPD patients. Confounding by indication, medication-selection bias, tolerance or contraindications, prescribing history, cardiovascular comorbidity, and differences in patient severity may all contribute to the observed subclass pattern.
 
 The executable subgroup workflow is available in [04b RAAS subgroup modeling](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/04b_outcomes_and_modeling_raas_subgroups.ipynb), with a concise note in [04b short documentation](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/04b_outcomes_and_modeling_raas_subgroups_SHORT.md).
 
@@ -129,13 +127,13 @@ In the unpenalized core Cox model with extended covariates, pre-ICU RAAS exposur
   <figcaption>Sensitivity comparison of RAAS hazard ratio estimates across Cox model specifications</figcaption>
 </figure>
 
-This attenuation suggests that ICU-level case mix, organ dysfunction, and acute clinical severity may contribute to the observed association. The pattern supports a cautious interpretation: pre-ICU RAAS exposure was associated with lower observed mortality in the primary model, but the association was sensitive to additional adjustment.
+This attenuation suggests that ICU-level case mix, organ dysfunction, and acute clinical severity may contribute to the observed association. In practical terms, pre-ICU RAAS exposure was associated with lower observed mortality in the primary model, but the estimate was sensitive to additional adjustment.
 
 The extended covariate workflow is available in [04c extended covariate Cox model](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/04c_extended_covariate_cox_model.ipynb), with a concise note in [04c short documentation](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/04c_extended_covariate_cox_model_SHORT.md).
 
 ## SAS-Python reproducibility validation note
 
-The repository includes SAS-Python reproducibility validation for selected secondary model outputs. This validation was intended to check cross-platform agreement for exported parameter results, not to introduce a new clinical analysis.
+The repository includes SAS-Python reproducibility validation for selected secondary model outputs. This step checks cross-platform agreement for exported parameter results and does not introduce a new clinical analysis.
 
 The secondary Python logistic model in [04d Python logistic validation model](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/04d_python_logistic_model.ipynb) generated parameters for comparison with SAS outputs. The [05 SAS-Python validation notebook](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/05_sas_python_validation.ipynb) compared precomputed SAS and Python secondary logistic validation outputs. Cox proportional hazards survival modeling remained the primary clinical analysis.
 
@@ -143,7 +141,7 @@ Additional details are available in [Validation notes](https://github.com/makoto
 
 ## Limitations
 
-This analysis is observational and cannot establish causality. The observed association may be affected by residual confounding, confounding by indication, differences in medication continuation or withholding, and unmeasured outpatient care patterns.
+The observational design limits causal interpretation. The observed association may reflect residual confounding, confounding by indication, differences in medication continuation or withholding, and unmeasured outpatient care patterns.
 
 The RAAS exposure definition used inpatient prescription orders before or at ICU admission. It does not directly capture outpatient chronic exposure, adherence, dose, duration, patient-level indication, or medication discontinuation before hospitalization.
 
@@ -151,7 +149,7 @@ COPD status was identified using diagnosis codes recorded during hospitalization
 
 MIMIC-IV reflects ICU admissions from a specific health system. Results may not generalize to other hospitals, non-ICU COPD populations, outpatient cohorts, or current prescribing contexts.
 
-The ACE inhibitor versus ARB comparison is especially hypothesis-generating because medication subclasses may reflect different indications, contraindications, tolerability, and comorbidity profiles.
+The ACE inhibitor versus ARB comparison is particularly exploratory because medication subclasses may reflect different indications, contraindications, tolerability, and comorbidity profiles.
 
 For the full interpretation and limitation discussion, see [Discussion and limitations](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/DISCUSSION_AND_LIMITATIONS.md).
 
