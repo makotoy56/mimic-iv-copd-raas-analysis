@@ -8,7 +8,6 @@ format:
     number-sections: true
     code-fold: true
     theme: cosmo
-    embed-resources: true
     fig-width: 8
     fig-height: 5
 execute:
@@ -46,7 +45,10 @@ The cohort workflow is documented across the executable notebooks:
 - [03a baseline covariates](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/03a_baseline.ipynb)
 - [03b exposure merge](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/03b_merge_exposures.ipynb)
 
-![Analysis workflow](../assets/workflow_diagram.svg){fig-alt="Workflow diagram showing cohort construction, exposure definition, outcome modeling, validation, and reporting."}
+<figure>
+  <img src="assets/workflow_diagram.svg" class="img-fluid" alt="Workflow diagram showing cohort construction, exposure definition, outcome modeling, validation, and reporting.">
+  <figcaption>Analysis workflow</figcaption>
+</figure>
 
 ## Exposure, outcome, and covariates
 
@@ -64,7 +66,10 @@ The primary clinical analysis used Kaplan-Meier survival curves and Cox proporti
 
 Sensitivity analyses evaluated extended covariate adjustment, ICU type, and penalized Cox specifications. A secondary logistic model was fit only for SAS-Python reproducibility comparison; it was not used as the primary clinical analysis.
 
-![Schoenfeld residual proportional hazards diagnostic for the RAAS exposure term](../assets/schoenfeld_raas_diagnostic.svg){fig-alt="Horizontal bar chart showing Schoenfeld residual test p-values for the RAAS exposure term across the primary Cox, extended core, and ICU-extended Cox models."}
+<figure>
+  <img src="assets/schoenfeld_raas_diagnostic.svg" class="img-fluid" alt="Horizontal bar chart showing Schoenfeld residual test p-values for the RAAS exposure term across the primary Cox, extended core, and ICU-extended Cox models.">
+  <figcaption>Schoenfeld residual proportional hazards diagnostic for the RAAS exposure term</figcaption>
+</figure>
 
 The Schoenfeld residual diagnostic summaries did not indicate evidence of proportional hazards violation for the primary RAAS exposure term in the primary, extended core, or ICU-extended Cox specifications. Calendar-era non-proportionality identified in the primary modeling workflow was addressed by stratifying baseline hazards by `anchor_year_group`.
 
@@ -74,7 +79,10 @@ The primary survival notebook is [04a outcomes and modeling](https://github.com/
 
 Kaplan-Meier curves showed lower observed in-hospital mortality among patients with pre-ICU RAAS inhibitor exposure compared with those without RAAS exposure. The visual separation supported further Cox proportional hazards modeling, while remaining descriptive and observational.
 
-![Kaplan-Meier survival curve](../assets/kaplan_meier_curve.png){fig-alt="Kaplan-Meier survival curve comparing ICU COPD patients with and without pre-ICU RAAS inhibitor exposure."}
+<figure>
+  <img src="assets/kaplan_meier_curve.png" class="img-fluid" alt="Kaplan-Meier survival curve comparing ICU COPD patients with and without pre-ICU RAAS inhibitor exposure.">
+  <figcaption>Kaplan-Meier survival curve</figcaption>
+</figure>
 
 The Kaplan-Meier findings should be interpreted as unadjusted survival patterns. They do not account for all differences in comorbidities, acute illness severity, ICU case mix, or medication-prescribing context.
 
@@ -82,7 +90,10 @@ The Kaplan-Meier findings should be interpreted as unadjusted survival patterns.
 
 The refined proportional hazards-compliant Cox model estimated HR 0.71 (95% CI 0.58-0.88) for combined pre-ICU RAAS exposure. This indicates that RAAS exposure was associated with lower observed in-hospital mortality hazard after adjustment within the modeled framework.
 
-![Cox hazard ratio forest plot](../assets/cox_forest_plot.png){fig-alt="Forest plot showing Cox proportional hazards model estimates for RAAS exposure and covariates."}
+<figure>
+  <img src="assets/cox_forest_plot.png" class="img-fluid" alt="Forest plot showing Cox proportional hazards model estimates for RAAS exposure and covariates.">
+  <figcaption>Cox hazard ratio forest plot</figcaption>
+</figure>
 
 This result should not be interpreted as evidence that RAAS inhibitors caused lower mortality. RAAS exposure may also identify patients with different cardiovascular histories, baseline risk profiles, clinical management patterns, or medication-continuation decisions.
 
@@ -106,7 +117,10 @@ Extended covariate models evaluated whether the observed RAAS association persis
 
 In the unpenalized core Cox model with extended covariates, pre-ICU RAAS exposure had HR 0.809 (95% CI 0.654-1.000, p = 0.050). In the penalized core model, the point estimate remained below 1 but was not statistically significant. After adding ICU type, the RAAS estimate was attenuated and was not statistically significant.
 
-![Sensitivity comparison of RAAS hazard ratio estimates across Cox model specifications](../assets/cox_model_sensitivity_comparison.svg){fig-alt="Forest-style comparison of hazard ratio estimates for pre-ICU RAAS exposure across primary refined, extended core, penalized core, ICU-type adjusted, and ICU-type adjusted penalized Cox models."}
+<figure>
+  <img src="assets/cox_model_sensitivity_comparison.svg" class="img-fluid" alt="Forest-style comparison of hazard ratio estimates for pre-ICU RAAS exposure across primary refined, extended core, penalized core, ICU-type adjusted, and ICU-type adjusted penalized Cox models.">
+  <figcaption>Sensitivity comparison of RAAS hazard ratio estimates across Cox model specifications</figcaption>
+</figure>
 
 This attenuation suggests that ICU-level case mix, organ dysfunction, and acute clinical severity may contribute to the observed association. The pattern supports a cautious interpretation: pre-ICU RAAS exposure was associated with lower observed mortality in the primary model, but the association was sensitive to additional adjustment.
 
