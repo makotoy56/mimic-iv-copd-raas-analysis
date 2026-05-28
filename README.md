@@ -16,9 +16,10 @@ The primary analysis is Kaplan-Meier survival analysis and Cox proportional haza
 
 A polished Quarto report is available for readers who want a single, narrative version of the analysis:
 
-- [Quarto clinical analysis report](reports/copd_raas_survival_report.html)
+- [Quarto clinical analysis report](https://makotoy56.github.io/mimic-iv-copd-raas-analysis/copd_raas_survival_report.html)
+- [Quarto source file](reports/copd_raas_survival_report.qmd)
 
-The README provides a portfolio-oriented project overview and navigation across the repository. The Quarto report presents the study question, methods, results, figures, interpretation, limitations, and reproducibility notes as a unified analysis narrative. The `docs/` directory provides modular reference documentation, while `notebooks/` contains the executable analysis workflow.
+The README provides a portfolio-oriented project overview and navigation across the repository. The Quarto report presents the study question, methods, results, figures, interpretation, limitations, and reproducibility notes as a unified analysis narrative. The `docs/` directory provides modular reference documentation and the GitHub Pages HTML report, while `notebooks/` contains the executable analysis workflow.
 
 ## What This Demonstrates
 
@@ -119,9 +120,9 @@ Validation scope:
 ```text
 mimic-iv-copd-raas-analysis/
 |-- assets/           # Portfolio visuals
-|-- docs/             # Study background, methods, results, limitations, validation notes
+|-- docs/             # Study background, methods, results, limitations, validation notes, and Pages HTML
 |-- notebooks/        # 01-05 analysis notebooks
-|-- reports/          # Quarto report source and rendered HTML report
+|-- reports/          # Quarto report source and render configuration
 |-- sas/              # SAS workflow notes and programs
 |-- scripts/          # Validation utilities
 |-- sql/              # BigQuery SQL for cohort/exposure/outcome construction

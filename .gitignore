@@ -70,3 +70,6 @@ sas/docs/results.md
 *.log
 *.lst
 *.sas7bdat
+
+**/.quarto/
+**/*.quarto_ipynb
