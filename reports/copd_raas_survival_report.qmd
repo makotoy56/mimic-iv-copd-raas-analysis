@@ -64,6 +64,10 @@ The primary clinical analysis used Kaplan-Meier survival curves and Cox proporti
 
 Sensitivity analyses evaluated extended covariate adjustment, ICU type, and penalized Cox specifications. A secondary logistic model was fit only for SAS-Python reproducibility comparison; it was not used as the primary clinical analysis.
 
+![Schoenfeld residual proportional hazards diagnostic for the RAAS exposure term](../assets/schoenfeld_raas_diagnostic.svg){fig-alt="Horizontal bar chart showing Schoenfeld residual test p-values for the RAAS exposure term across the primary Cox, extended core, and ICU-extended Cox models."}
+
+The Schoenfeld residual diagnostic summaries did not indicate evidence of proportional hazards violation for the primary RAAS exposure term in the primary, extended core, or ICU-extended Cox specifications. Calendar-era non-proportionality identified in the primary modeling workflow was addressed by stratifying baseline hazards by `anchor_year_group`.
+
 The primary survival notebook is [04a outcomes and modeling](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/04a_outcomes_and_modeling.ipynb), with a concise methods/results note in [04a short documentation](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/04a_outcomes_and_modeling_SHORT.md).
 
 ## Kaplan-Meier survival results
@@ -82,6 +86,8 @@ The refined proportional hazards-compliant Cox model estimated HR 0.71 (95% CI 0
 
 This result should not be interpreted as evidence that RAAS inhibitors caused lower mortality. RAAS exposure may also identify patients with different cardiovascular histories, baseline risk profiles, clinical management patterns, or medication-continuation decisions.
 
+Because the refined primary model was followed by extended covariate and ICU-type sensitivity models, the primary HR should be read alongside the attenuation pattern shown in the sensitivity comparison below rather than as an isolated estimate.
+
 The concise project-level result summary is available in [Results summary](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/RESULTS_SUMMARY.md).
 
 ## ACE inhibitor vs ARB subgroup analysis
@@ -99,6 +105,8 @@ The executable subgroup workflow is available in [04b RAAS subgroup modeling](ht
 Extended covariate models evaluated whether the observed RAAS association persisted after adding additional severity, comorbidity, and ICU care-setting variables.
 
 In the unpenalized core Cox model with extended covariates, pre-ICU RAAS exposure had HR 0.809 (95% CI 0.654-1.000, p = 0.050). In the penalized core model, the point estimate remained below 1 but was not statistically significant. After adding ICU type, the RAAS estimate was attenuated and was not statistically significant.
+
+![Sensitivity comparison of RAAS hazard ratio estimates across Cox model specifications](../assets/cox_model_sensitivity_comparison.svg){fig-alt="Forest-style comparison of hazard ratio estimates for pre-ICU RAAS exposure across primary refined, extended core, penalized core, ICU-type adjusted, and ICU-type adjusted penalized Cox models."}
 
 This attenuation suggests that ICU-level case mix, organ dysfunction, and acute clinical severity may contribute to the observed association. The pattern supports a cautious interpretation: pre-ICU RAAS exposure was associated with lower observed mortality in the primary model, but the association was sensitive to additional adjustment.
 
