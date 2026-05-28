@@ -12,6 +12,14 @@ This repository contains an EHR-based retrospective observational cohort study u
 
 The primary analysis is Kaplan-Meier survival analysis and Cox proportional hazards modeling. The clinical interpretation remains cautious: this is a hypothesis-generating observational association and cannot establish causality.
 
+## Full Analysis Report
+
+A polished Quarto report is available for readers who want a single, narrative version of the analysis:
+
+- [Quarto clinical analysis report](reports/copd_raas_survival_report.html)
+
+The README provides a portfolio-oriented project overview and navigation across the repository. The Quarto report presents the study question, methods, results, figures, interpretation, limitations, and reproducibility notes as a unified analysis narrative. The `docs/` directory provides modular reference documentation, while `notebooks/` contains the executable analysis workflow.
+
 ## What This Demonstrates
 
 - Real-world evidence workflow using ICU EHR data
@@ -113,6 +121,7 @@ mimic-iv-copd-raas-analysis/
 |-- assets/           # Portfolio visuals
 |-- docs/             # Study background, methods, results, limitations, validation notes
 |-- notebooks/        # 01-05 analysis notebooks
+|-- reports/          # Quarto report source and rendered HTML report
 |-- sas/              # SAS workflow notes and programs
 |-- scripts/          # Validation utilities
 |-- sql/              # BigQuery SQL for cohort/exposure/outcome construction
