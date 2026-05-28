@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="420" viewBox="0 0 840 420" role="img" aria-labelledby="title desc">
+  <title id="title">ACE inhibitor versus ARB subgroup hazard ratios</title>
+  <desc id="desc">Forest-style plot comparing hazard ratios and 95 percent confidence intervals for ACE inhibitor monotherapy and ARB monotherapy versus no pre-ICU RAAS exposure.</desc>
+  <rect width="840" height="420" fill="#ffffff"/>
+  <text x="54" y="48" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" fill="#1f2933">ACE inhibitor vs ARB subgroup estimates</text>
+  <text x="54" y="76" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#4b5563">Existing 04b subgroup Cox model outputs; reference group is no pre-ICU RAAS exposure</text>
+
+  <line x1="300" y1="118" x2="690" y2="118" stroke="#d0d7de" stroke-width="1"/>
+  <line x1="300" y1="260" x2="690" y2="260" stroke="#d0d7de" stroke-width="1"/>
+  <line x1="300" y1="118" x2="300" y2="260" stroke="#263238" stroke-width="1"/>
+  <line x1="690" y1="118" x2="690" y2="260" stroke="#d0d7de" stroke-width="1"/>
+
+  <g font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#52616b">
+    <line x1="300" y1="260" x2="300" y2="267" stroke="#52616b"/>
+    <text x="300" y="286" text-anchor="middle">0.4</text>
+    <line x1="397.5" y1="260" x2="397.5" y2="267" stroke="#52616b"/>
+    <text x="397.5" y="286" text-anchor="middle">0.6</text>
+    <line x1="495" y1="260" x2="495" y2="267" stroke="#52616b"/>
+    <text x="495" y="286" text-anchor="middle">0.8</text>
+    <line x1="592.5" y1="260" x2="592.5" y2="267" stroke="#52616b"/>
+    <text x="592.5" y="286" text-anchor="middle">1.0</text>
+    <line x1="690" y1="260" x2="690" y2="267" stroke="#52616b"/>
+    <text x="690" y="286" text-anchor="middle">1.2</text>
+  </g>
+
+  <line x1="592.5" y1="118" x2="592.5" y2="260" stroke="#424242" stroke-width="2" stroke-dasharray="6 5"/>
+  <text x="601" y="136" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#424242">HR = 1.0</text>
+
+  <g font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#1f2933" stroke-linecap="round">
+    <text x="54" y="164">ACE inhibitor monotherapy</text>
+    <line x1="348.75" y1="160" x2="528.75" y2="160" stroke="#6b7280" stroke-width="3"/>
+    <line x1="348.75" y1="153" x2="348.75" y2="167" stroke="#6b7280" stroke-width="2"/>
+    <line x1="528.75" y1="153" x2="528.75" y2="167" stroke="#6b7280" stroke-width="2"/>
+    <circle cx="426.75" cy="160" r="6" fill="#263238"/>
+    <text x="710" y="165">0.66 (0.50-0.87)</text>
+
+    <text x="54" y="224">ARB monotherapy</text>
+    <line x1="382.875" y1="220" x2="655.875" y2="220" stroke="#6b7280" stroke-width="3"/>
+    <line x1="382.875" y1="213" x2="382.875" y2="227" stroke="#6b7280" stroke-width="2"/>
+    <line x1="655.875" y1="213" x2="655.875" y2="227" stroke="#6b7280" stroke-width="2"/>
+    <circle cx="495" cy="220" r="6" fill="#263238"/>
+    <text x="710" y="225">0.80 (0.57-1.13)</text>
+  </g>
+
+  <text x="495" y="324" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#263238">Hazard ratio for in-hospital mortality (95% CI)</text>
+  <text x="54" y="365" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#4b5563">Interpretation: ACE inhibitor monotherapy showed a lower observed hazard estimate; the ARB interval crossed the null.</text>
+  <text x="54" y="387" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#6b7280">Subgroup estimates are hypothesis-generating and were not derived from interaction testing.</text>
+</svg>
