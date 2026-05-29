@@ -133,14 +133,29 @@ Analysis workflow
 <h2 data-number="5" class="anchored" data-anchor-id="statistical-methods"><span class="header-section-number">5</span> Statistical methods</h2>
 <p>The primary clinical analysis used Kaplan-Meier survival curves and Cox proportional hazards regression. Proportional hazards assumptions were assessed using Schoenfeld residual-based diagnostics. A refined Cox model stratified by calendar-era grouping was used to address proportional hazards concerns while preserving the survival-modeling focus.</p>
 <p>Sensitivity analyses evaluated extended covariate adjustment, ICU type, and penalized Cox specifications. A secondary logistic model was fit only for SAS-Python reproducibility comparison; it was not used as the primary clinical analysis.</p>
-<figure class="figure">
-<img src="assets/schoenfeld_raas_diagnostic.svg" class="img-fluid figure-img" alt="Horizontal bar chart showing Schoenfeld residual test p-values for the RAAS exposure term across the primary Cox, extended core, and ICU-extended Cox models.">
-<figcaption>
-Schoenfeld residual proportional hazards diagnostic for the RAAS exposure term
-</figcaption>
-</figure>
-<p>The Schoenfeld residual diagnostic summaries did not indicate evidence of proportional hazards violation for the primary RAAS exposure term in the primary, extended core, or ICU-extended Cox specifications. Calendar-era non-proportionality identified in the primary modeling workflow was addressed by stratifying baseline hazards by <code>anchor_year_group</code>.</p>
-<p>The primary survival notebook is <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/04a_outcomes_and_modeling.ipynb">04a outcomes and modeling</a>, with a concise methods/results note in <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/04a_outcomes_and_modeling_SHORT.md">04a short documentation</a>.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Cox specification</th>
+<th style="text-align: right;">Schoenfeld p-value for RAAS exposure term</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Primary Cox</td>
+<td style="text-align: right;">0.337</td>
+</tr>
+<tr class="even">
+<td>Extended core</td>
+<td style="text-align: right;">0.894</td>
+</tr>
+<tr class="odd">
+<td>ICU-extended</td>
+<td style="text-align: right;">0.657</td>
+</tr>
+</tbody>
+</table>
+<p>These RAAS exposure term diagnostics did not indicate evidence of proportional hazards violation at p &gt; 0.05. Calendar-era non-proportionality identified in the primary modeling workflow was addressed by stratifying baseline hazards by <code>anchor_year_group</code>.</p>
 </section>
 <section id="kaplan-meier-survival-results" class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="kaplan-meier-survival-results"><span class="header-section-number">6</span> Kaplan-Meier survival results</h2>
@@ -152,6 +167,7 @@ Kaplan-Meier survival curve
 </figcaption>
 </figure>
 <p>The Kaplan-Meier curves are best viewed as unadjusted survival patterns. They do not account for all differences in comorbidities, acute illness severity, ICU case mix, or medication-prescribing context.</p>
+<p>The Kaplan-Meier workflow is available in <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/04a_outcomes_and_modeling.ipynb">04a outcomes and modeling</a>, with a concise methods/results note in <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/04a_outcomes_and_modeling_SHORT.md">04a short documentation</a>.</p>
 </section>
 <section id="cox-proportional-hazards-results" class="level2" data-number="7">
 <h2 data-number="7" class="anchored" data-anchor-id="cox-proportional-hazards-results"><span class="header-section-number">7</span> Cox proportional hazards results</h2>
@@ -164,7 +180,7 @@ Cox hazard ratio forest plot
 </figure>
 <p>This estimate is not evidence that RAAS inhibitors caused lower mortality. RAAS exposure may also identify patients with different cardiovascular histories, baseline risk profiles, clinical management patterns, or medication-continuation decisions.</p>
 <p>Because the refined primary model was followed by extended covariate and ICU-type sensitivity models, the primary HR should be read alongside the attenuation pattern shown in the sensitivity comparison below rather than as an isolated estimate.</p>
-<p>The concise project-level result summary is available in <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/RESULTS_SUMMARY.md">Results summary</a>.</p>
+<p>The primary Cox workflow is available in <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/04a_outcomes_and_modeling.ipynb">04a outcomes and modeling</a>, with a concise methods/results note in <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/04a_outcomes_and_modeling_SHORT.md">04a short documentation</a>. A project-level interpretation is available in <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/RESULTS_SUMMARY.md">Results summary</a>.</p>
 </section>
 <section id="ace-inhibitor-vs-arb-subgroup-analysis" class="level2" data-number="8">
 <h2 data-number="8" class="anchored" data-anchor-id="ace-inhibitor-vs-arb-subgroup-analysis"><span class="header-section-number">8</span> ACE inhibitor vs ARB subgroup analysis</h2>
