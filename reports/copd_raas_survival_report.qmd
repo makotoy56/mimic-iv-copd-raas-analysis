@@ -30,7 +30,7 @@ Overall, the findings should be read as observational associations. Residual con
 
 The study question was whether pre-ICU inpatient RAAS inhibitor exposure was associated with time-to-in-hospital mortality among ICU-admitted adults with COPD in MIMIC-IV.
 
-The analysis was designed as a reproducible clinical analytics workflow, not as a causal treatment-effect study. The repository-level study background is available in [Study background](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/STUDY_BACKGROUND.md), and the detailed methods outline is available in [Methods overview](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/METHODS_OVERVIEW.md).
+The analysis was designed as a reproducible clinical analytics workflow, not as a causal treatment-effect study. The repository-level study background is available in [STUDY_BACKGROUND.md](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/STUDY_BACKGROUND.md), and the detailed methods outline is available in [METHODS_OVERVIEW.md](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/METHODS_OVERVIEW.md).
 
 ## Data source and cohort
 
@@ -40,10 +40,25 @@ Adult ICU patients with COPD were identified using ICD-9 and ICD-10 diagnosis co
 
 The cohort workflow is documented across the executable notebooks:
 
-- [01 ICU cohort extraction](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/01_icu_cohort.ipynb)
-- [02 COPD cohort and RAAS exposure construction](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/02_cohort_and_exposures.ipynb)
-- [03a baseline covariates](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/03a_baseline.ipynb)
-- [03b exposure merge](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/03b_merge_exposures.ipynb)
+- [01_icu_cohort.ipynb](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/01_icu_cohort.ipynb)
+- [02_cohort_and_exposures.ipynb](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/02_cohort_and_exposures.ipynb)
+- [03a_baseline.ipynb](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/03a_baseline.ipynb)
+- [03b_merge_exposures.ipynb](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/03b_merge_exposures.ipynb)
+
+| Cohort construction checkpoint | Reader-facing source | Count |
+| --- | --- | ---: |
+| Baseline COPD ICU cohort | Baseline cohort validation | 11,964 |
+| Post-merge cohort with RAAS exposure indicators | Post-merge cohort validation | 11,964 |
+| Unique hospital admissions in exported extended cohort | Final exported analysis cohort | 11,964 |
+| Unique ICU stays in exported extended cohort | Final exported analysis cohort | 11,964 |
+| Unique patients in exported extended cohort | Final exported analysis cohort | 9,157 |
+
+| Exposure/outcome summary | Count | Percent |
+| --- | ---: | ---: |
+| No pre-ICU RAAS exposure | 11,018 | 92.1 |
+| Any pre-ICU RAAS exposure | 946 | 7.9 |
+| In-hospital deaths | 1,692 | 14.1 |
+| Discharged alive/censored | 10,272 | 85.9 |
 
 <figure>
   <img src="assets/workflow_diagram.svg" class="img-fluid" alt="Workflow diagram showing cohort construction, exposure definition, outcome modeling, validation, and reporting.">
@@ -58,7 +73,20 @@ Detailed exposure indicators included ACE inhibitor exposure, ARB exposure, dual
 
 The primary outcome was time-to-in-hospital mortality, measured from ICU admission to in-hospital death or hospital discharge. Patients discharged alive were censored at discharge.
 
-Core covariates were selected using a clinical framework and included demographics, cardiovascular comorbidities, chronic kidney disease, diabetes, and SOFA score. Extended sensitivity models added ICU type and additional severity or case-mix variables. The detailed definitions are summarized in [Methods overview](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/METHODS_OVERVIEW.md) and the short notebook notes under [docs/](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/tree/main/docs).
+Core covariates were selected using a clinical framework and included demographics, cardiovascular comorbidities, chronic kidney disease, diabetes, and SOFA score. Extended sensitivity models added ICU type and additional severity or case-mix variables. The detailed definitions are summarized in [METHODS_OVERVIEW.md](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/METHODS_OVERVIEW.md) and the short notebook notes under [docs/](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/tree/main/docs).
+
+The exported extended cohort supported a compact Table 1-style summary for variables used in the downstream models. Values are descriptive and were not used to introduce additional modeling.
+
+| Characteristic | Overall (N = 11,964) | No RAAS (n = 11,018) | RAAS (n = 946) |
+| --- | ---: | ---: | ---: |
+| Age, median (IQR), years | 70 (61-78) | 69 (61-78) | 70 (63-77) |
+| Male sex, n (%) | 6,447 (53.9) | 5,907 (53.6) | 540 (57.1) |
+| SOFA score, median (IQR) | 4 (2-6) | 4 (2-7) | 4 (2-6) |
+| Charlson comorbidity index, median (IQR) | 6 (5-8) | 6 (5-8) | 7 (5-9) |
+| Congestive heart failure, n (%) | 5,505 (46.0) | 4,964 (45.1) | 541 (57.2) |
+| Chronic kidney disease, n (%) | 3,321 (27.8) | 3,050 (27.7) | 271 (28.6) |
+| Diabetes, n (%) | 4,020 (33.6) | 3,599 (32.7) | 421 (44.5) |
+| In-hospital death, n (%) | 1,692 (14.1) | 1,601 (14.5) | 91 (9.6) |
 
 ## Statistical methods
 
@@ -85,11 +113,16 @@ Kaplan-Meier curves showed lower observed in-hospital mortality among patients w
 
 The Kaplan-Meier curves are best viewed as unadjusted survival patterns. They do not account for all differences in comorbidities, acute illness severity, ICU case mix, or medication-prescribing context.
 
-The Kaplan-Meier workflow is available in [04a outcomes and modeling](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/04a_outcomes_and_modeling.ipynb), with a concise methods/results note in [04a short documentation](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/04a_outcomes_and_modeling_SHORT.md).
+The Kaplan-Meier workflow is available in [04a_outcomes_and_modeling.ipynb](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/04a_outcomes_and_modeling.ipynb), with a concise methods/results note in [04a_outcomes_and_modeling_SHORT.md](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/04a_outcomes_and_modeling_SHORT.md).
 
 ## Cox proportional hazards results
 
 The refined proportional hazards-compliant Cox model estimated HR 0.71 (95% CI 0.58-0.88) for combined pre-ICU RAAS exposure. This indicates that RAAS exposure was associated with lower observed in-hospital mortality hazard after adjustment within the modeled framework.
+
+| Primary Cox model output | Adjustment/structure | RAAS HR (95% CI) | p-value |
+| --- | --- | ---: | ---: |
+| Initial multivariable Cox model | Age, sex, admission year group | 0.70 (0.57-0.87) | <0.005 |
+| Refined Cox model | Age, sex; baseline hazard stratified by `anchor_year_group` | 0.71 (0.58-0.88) | <0.005 |
 
 <figure>
   <img src="assets/cox_forest_plot.png" class="img-fluid" alt="Forest plot showing Cox proportional hazards model estimates for RAAS exposure and covariates.">
@@ -100,7 +133,7 @@ This estimate is not evidence that RAAS inhibitors caused lower mortality. RAAS 
 
 Because the refined primary model was followed by extended covariate and ICU-type sensitivity models, the primary HR should be read alongside the attenuation pattern shown in the sensitivity comparison below rather than as an isolated estimate.
 
-The primary Cox workflow is available in [04a outcomes and modeling](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/04a_outcomes_and_modeling.ipynb), with a concise methods/results note in [04a short documentation](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/04a_outcomes_and_modeling_SHORT.md). A project-level interpretation is available in [Results summary](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/RESULTS_SUMMARY.md).
+The primary Cox workflow is available in [04a_outcomes_and_modeling.ipynb](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/04a_outcomes_and_modeling.ipynb), with a concise methods/results note in [04a_outcomes_and_modeling_SHORT.md](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/04a_outcomes_and_modeling_SHORT.md). A project-level interpretation is available in [RESULTS_SUMMARY.md](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/RESULTS_SUMMARY.md).
 
 ## ACE inhibitor vs ARB subgroup analysis
 
@@ -115,13 +148,20 @@ ACE inhibitor monotherapy was associated with lower observed in-hospital mortali
 
 These subclass comparisons are descriptive and hypothesis-generating, and they do not represent a formal interaction test. The observed pattern should not be read as evidence that ACE inhibitors are clinically superior to ARBs in ICU-admitted COPD patients. Confounding by indication, medication-selection bias, contraindications or tolerance, prescribing history, cardiovascular comorbidity, and differences in patient severity may all contribute to the subclass estimates.
 
-The executable subgroup workflow is available in [04b RAAS subgroup modeling](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/04b_outcomes_and_modeling_raas_subgroups.ipynb), with a concise note in [04b short documentation](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/04b_outcomes_and_modeling_raas_subgroups_SHORT.md).
+The executable subgroup workflow is available in [04b_outcomes_and_modeling_raas_subgroups.ipynb](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/04b_outcomes_and_modeling_raas_subgroups.ipynb), with a concise note in [04b_outcomes_and_modeling_raas_subgroups_SHORT.md](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/04b_outcomes_and_modeling_raas_subgroups_SHORT.md).
 
 ## Extended covariate/sensitivity model interpretation
 
 Extended covariate models evaluated whether the observed RAAS association persisted after adding additional severity, comorbidity, and ICU care-setting variables.
 
 In the unpenalized core Cox model with extended covariates, pre-ICU RAAS exposure had HR 0.809 (95% CI 0.654-1.000, p = 0.050). In the penalized core model, the point estimate remained below 1 but was not statistically significant. After adding ICU type, the RAAS estimate was attenuated and was not statistically significant.
+
+| Sensitivity Cox specification | Additional adjustment/modeling detail | RAAS HR (95% CI) | p-value |
+| --- | --- | ---: | ---: |
+| Extended core Cox | Severity + comorbidity | 0.809 (0.654-1.000) | 0.050 |
+| Penalized extended core | L2 penalizer = 0.1 | 0.880 (0.761-1.017) | 0.084 |
+| ICU-type adjusted | Extended model + ICU type | 0.940 (0.758-1.166) | 0.576 |
+| ICU-type adjusted + L2 | ICU type model; penalizer = 0.01 | 0.895 (0.730-1.096) | 0.283 |
 
 <figure>
   <img src="assets/cox_model_sensitivity_comparison.svg" class="img-fluid" alt="Forest-style comparison of hazard ratio estimates for pre-ICU RAAS exposure across primary refined, extended core, penalized core, ICU-type adjusted, and ICU-type adjusted penalized Cox models.">
@@ -130,15 +170,21 @@ In the unpenalized core Cox model with extended covariates, pre-ICU RAAS exposur
 
 This attenuation suggests that ICU-level case mix, organ dysfunction, and acute clinical severity may contribute to the observed association. In practical terms, pre-ICU RAAS exposure was associated with lower observed mortality in the primary model, but the estimate was sensitive to additional adjustment.
 
-The extended covariate workflow is available in [04c extended covariate Cox model](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/04c_extended_covariate_cox_model.ipynb), with a concise note in [04c short documentation](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/04c_extended_covariate_cox_model_SHORT.md).
+The extended covariate workflow is available in [04c_extended_covariate_cox_model.ipynb](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/04c_extended_covariate_cox_model.ipynb), with a concise note in [04c_extended_covariate_cox_model_SHORT.md](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/04c_extended_covariate_cox_model_SHORT.md).
 
 ## SAS-Python reproducibility validation note
 
 The repository includes SAS-Python reproducibility validation for selected secondary model outputs. This step checks cross-platform agreement for exported parameter results and does not introduce a new clinical analysis.
 
-The secondary Python logistic model in [04d Python logistic validation model](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/04d_python_logistic_model.ipynb) generated parameters for comparison with SAS outputs. The [05 SAS-Python validation notebook](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/05_sas_python_validation.ipynb) compared precomputed SAS and Python secondary logistic validation outputs. Cox proportional hazards survival modeling remained the primary clinical analysis.
+The secondary Python logistic model in [04d_python_logistic_model.ipynb](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/04d_python_logistic_model.ipynb) generated parameters for comparison with SAS outputs. The [05_sas_python_validation.ipynb](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/05_sas_python_validation.ipynb) compared precomputed SAS and Python secondary logistic validation outputs. Cox proportional hazards survival modeling remained the primary clinical analysis.
 
-Additional details are available in [Validation notes](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/VALIDATION_NOTES.md) and [SAS workflow notes](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/sas/README.md).
+| Validation comparison | Variables compared | Reader-facing source | Result |
+| --- | ---: | --- | --- |
+| SAS vs Python secondary logistic parameters | 9 | Cross-platform validation comparison | Absolute estimate differences ranged from 0.000010 to 0.000040 |
+| Largest relative estimate difference | 1 variable | Cross-platform validation comparison | 0.171104% for age |
+| RAAS exposure estimate comparison | RAAS exposure term | Secondary logistic validation outputs | SAS -0.3153; Python -0.315340 |
+
+Additional details are available in [VALIDATION_NOTES.md](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/VALIDATION_NOTES.md) and [sas/README.md](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/sas/README.md).
 
 ## Limitations
 
@@ -152,10 +198,10 @@ MIMIC-IV reflects ICU admissions from a specific health system. Results may not 
 
 The ACE inhibitor versus ARB comparison is particularly exploratory because medication subclasses may reflect different indications, contraindications, tolerability, and comorbidity profiles.
 
-For the full interpretation and limitation discussion, see [Discussion and limitations](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/DISCUSSION_AND_LIMITATIONS.md).
+For the full interpretation and limitation discussion, see [DISCUSSION_AND_LIMITATIONS.md](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/DISCUSSION_AND_LIMITATIONS.md).
 
 ## Portfolio/reproducibility note
 
-This Quarto report is the single polished narrative version of the portfolio analysis. It is intentionally distinct from the repository [README](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/README.md), which provides a portfolio overview and navigation, and from [docs/](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/tree/main/docs), which provides modular reference documentation. The [notebooks/](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/tree/main/notebooks) directory contains the executable analysis workflow.
+Reproducibility was addressed by separating cohort construction, exposure definition, survival modeling, sensitivity analysis, subgroup analysis, figure generation, and SAS-Python validation into version-controlled workflow steps. The rendered report is supported by notebooks, SQL definitions, aggregate validation outputs, and exported figures, while patient-level MIMIC-IV data remain outside the repository.
 
 No patient-level data, credentials, local paths, or large generated intermediate files are included in this repository. Reproduction requires appropriate MIMIC-IV/PhysioNet access, Google Cloud authentication, BigQuery access, and local environment configuration.
