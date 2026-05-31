@@ -54,7 +54,7 @@ The workflow is organized as a stepwise clinical analysis pipeline:
 
 ## Environment Summary
 
-- **Python version**: not pinned in repository-level environment files. Python dependencies are specified in `requirements.txt`.
+- **Python environment**: Analyses were developed and executed in a local Python virtual environment. The active development environment currently reports Python 3.11.15. Project dependencies are documented in `requirements.txt` and include pandas, NumPy, statsmodels, lifelines, matplotlib, and Google BigQuery client libraries.
 - **SAS environment**: SAS® OnDemand for Academics was used for SAS validation workflows. The exact SAS maintenance release was not pinned in the repository.
 - **Quarto version**: 1.9.38 detected locally with `quarto --version`. The report source and render configuration are stored under `reports/`.
 - **Version control**: Git/GitHub are used for code, documentation, SQL definitions, notebooks, SAS programs, curated figures, and rendered portfolio materials.
