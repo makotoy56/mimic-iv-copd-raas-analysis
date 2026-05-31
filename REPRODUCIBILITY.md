@@ -54,8 +54,8 @@ The workflow is organized as a stepwise clinical analysis pipeline:
 
 ## Environment Summary
 
-- **Python version**: not pinned or otherwise documented in this repository.
-- **SAS version**: not documented in this repository. SAS paths and runtime configuration may need local adjustment before running the SAS programs.
+- **Python version**: not pinned in repository-level environment files. Python dependencies are specified in `requirements.txt`.
+- **SAS environment**: SAS® OnDemand for Academics was used for SAS validation workflows. The exact SAS maintenance release was not pinned in the repository.
 - **Quarto version**: 1.9.38 detected locally with `quarto --version`. The report source and render configuration are stored under `reports/`.
 - **Version control**: Git/GitHub are used for code, documentation, SQL definitions, notebooks, SAS programs, curated figures, and rendered portfolio materials.
 
@@ -124,7 +124,7 @@ No `pyproject.toml` or `environment.yml` file was detected.
    - `notebooks/04c_extended_covariate_cox_model.ipynb`
    - `notebooks/04d_python_logistic_model.ipynb`
    - `notebooks/05_sas_python_validation.ipynb`
-5. If SAS validation is being reproduced, update local SAS library paths as needed and run the programs in `sas/programs/` in numeric order.
+5. If SAS validation is being reproduced, run the SAS programs in SAS® OnDemand for Academics or another compatible SAS environment, updating library paths as needed.
 6. Render the Quarto report from the `reports/` directory:
 
    ```bash
