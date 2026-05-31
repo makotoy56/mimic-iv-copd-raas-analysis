@@ -99,6 +99,8 @@ Additional portfolio figures include the RAAS subgroup forest plot and the exten
 
 The workflow uses version-controlled notebooks, SQL scripts, SAS programs, modular documentation, and a Quarto report. No patient-level data are included in this repository.
 
+For complete environment and reproducibility details, see [REPRODUCIBILITY.md](REPRODUCIBILITY.md).
+
 Data-governance practices:
 
 - No raw MIMIC-IV tables are tracked in Git.

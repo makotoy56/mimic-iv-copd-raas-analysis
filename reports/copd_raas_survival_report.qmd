@@ -204,4 +204,6 @@ For the full interpretation and limitation discussion, see [DISCUSSION_AND_LIMIT
 
 Reproducibility was addressed by separating cohort construction, exposure definition, survival modeling, sensitivity analysis, subgroup analysis, figure generation, and SAS-Python validation into version-controlled workflow steps. The rendered report is supported by notebooks, SQL definitions, aggregate validation outputs, and exported figures, while patient-level MIMIC-IV data remain outside the repository.
 
+For complete environment and reproducibility details, see [REPRODUCIBILITY.md](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/REPRODUCIBILITY.md).
+
 No patient-level data, credentials, local paths, or large generated intermediate files are included in this repository. Reproduction requires appropriate MIMIC-IV/PhysioNet access, Google Cloud authentication, BigQuery access, and local environment configuration.
