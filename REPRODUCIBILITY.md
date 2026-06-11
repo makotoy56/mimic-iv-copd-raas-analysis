@@ -54,7 +54,7 @@ The workflow is organized as a stepwise clinical analysis pipeline:
 
 ## Environment Summary
 
-- **Python environment**: Analyses were developed and executed in a local Python virtual environment. The active development environment currently reports Python 3.11.15. Project dependencies are documented in `requirements.txt` and include pandas, NumPy, statsmodels, lifelines, matplotlib, and Google BigQuery client libraries.
+- **Python environment**: Analyses were developed and executed in a local Python virtual environment. The project now targets Python 3.12 through `pyproject.toml` and `.python-version`. Project dependencies are documented in `pyproject.toml` and locked in `uv.lock`; they include pandas, NumPy, statsmodels, lifelines, matplotlib, and Google BigQuery client libraries.
 - **SAS environment**: SAS® OnDemand for Academics was used for SAS validation workflows. The exact SAS maintenance release was not pinned in the repository.
 - **Quarto version**: 1.9.38 detected locally with `quarto --version`. The report source and render configuration are stored under `reports/`.
 - **Version control**: Git/GitHub are used for code, documentation, SQL definitions, notebooks, SAS programs, curated figures, and rendered portfolio materials.
@@ -80,37 +80,38 @@ This project was developed using an AI-assisted workflow that included ChatGPT a
 
 ## Complete Dependency Specification
 
-The project includes `requirements.txt`. Some packages are pinned to exact versions and others are listed without version pins.
+The project includes `pyproject.toml` and `uv.lock`. Exact version pins from the previous `requirements.txt` were preserved verbatim; previously unpinned packages remain unpinned in `pyproject.toml` and are resolved reproducibly in `uv.lock`.
 
-```text
-db-dtypes==1.5.1
-google-cloud-bigquery==3.41.0
-jupyter
-lifelines
-matplotlib==3.10.9
-numpy==2.2.6
-pandas==2.3.3
-pandas-gbq
-pyarrow==24.0.0
-statsmodels
+```toml
+dependencies = [
+    "db-dtypes==1.5.1",
+    "google-cloud-bigquery==3.41.0",
+    "jupyter",
+    "lifelines",
+    "matplotlib==3.10.9",
+    "numpy==2.2.6",
+    "pandas==2.3.3",
+    "pandas-gbq",
+    "pyarrow==24.0.0",
+    "statsmodels",
+]
 ```
 
-No `pyproject.toml` or `environment.yml` file was detected.
+No `requirements.txt` or `environment.yml` file is required for the current uv-managed environment.
 
 ## Reproduction Steps
 
 1. Obtain independent MIMIC-IV/PhysioNet approval and configure Google Cloud/BigQuery access for MIMIC-IV v3.1.
-2. Create and activate a Python virtual environment:
+2. Install Python 3.12 and project dependencies with uv:
 
    ```bash
-   python -m venv .venv
-   source .venv/bin/activate
+   uv sync --locked
    ```
 
-3. Install Python dependencies:
+3. Activate the uv-managed virtual environment:
 
    ```bash
-   pip install -r requirements.txt
+   source .venv/bin/activate
    ```
 
 4. Run the notebooks in workflow order:

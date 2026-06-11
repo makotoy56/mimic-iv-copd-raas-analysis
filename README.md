@@ -112,9 +112,7 @@ Data-governance practices:
 Python environment:
 
 ```text
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
+uv sync --locked
 ```
 
 Validation scope:
