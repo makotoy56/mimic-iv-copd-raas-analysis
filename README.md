@@ -34,7 +34,7 @@ The Quarto report provides the single narrative version of the study question, m
 | Sensitivity analysis | Extended covariate and ICU type adjustment |
 | Validation | Selected SAS-Python reproducibility checks |
 
-Exposure is based on inpatient medication orders before ICU admission and does not directly capture outpatient chronic use, adherence, dose, duration, indication, or medication discontinuation before hospitalization.
+Exposure is based on inpatient medication orders before or at ICU admission and does not directly capture outpatient chronic use, adherence, dose, duration, indication, or medication discontinuation before hospitalization.
 
 ## What This Demonstrates
 

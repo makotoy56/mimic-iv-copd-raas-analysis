@@ -195,7 +195,7 @@ Cohort construction and analysis workflow
 </figure>
 <section id="source-tables-to-analysis-dataset" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="source-tables-to-analysis-dataset"><span class="header-section-number">3.1</span> Source Tables To Analysis Dataset</h3>
-<p>The lineage figure separates MIMIC-IV source and derived tables from project-created analysis tables. The primary path builds the ICU COPD cohort, pre-ICU RAAS exposure flag, primary time-to-in-hospital mortality dataset, and extended covariate sensitivity dataset. The figure is schematic: raw MIMIC-IV patient-level data are not included in this repository, and the lineage supports reproducibility and dataset provenance rather than causal interpretation.</p>
+<p>The lineage figure separates MIMIC-IV source and derived tables from project-created analysis tables. Underlying SQL links tables using subject-, admission-, and ICU-stay-level identifiers (<code>subject_id</code>, <code>hadm_id</code>, and <code>stay_id</code>) depending on table level. The primary path builds the ICU COPD cohort, pre-ICU RAAS exposure flag, primary time-to-in-hospital mortality dataset, and extended covariate sensitivity dataset. The figure is schematic: raw MIMIC-IV patient-level data are not included in this repository, and the lineage supports reproducibility and dataset provenance rather than causal interpretation.</p>
 <figure class="figure">
 <img src="assets/copd_table_lineage_dataset_flow.svg" class="img-fluid figure-img" style="width: 95%;" alt="Schematic lineage diagram separating MIMIC-IV source and derived tables from project-created ICU COPD RAAS cohort, exposure, outcome, and sensitivity analysis tables.">
 <figcaption>
