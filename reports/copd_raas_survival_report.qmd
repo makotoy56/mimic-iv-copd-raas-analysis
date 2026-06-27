@@ -61,8 +61,10 @@ The cohort workflow is documented across the executable notebooks:
 | Discharged alive/censored | 10,272 | 85.9 |
 
 <figure>
-  <img src="assets/workflow_diagram.svg" class="img-fluid" alt="Workflow diagram showing cohort construction, exposure definition, outcome modeling, validation, and reporting.">
-  <figcaption>Cohort construction and analysis workflow</figcaption>
+  <a href="assets/workflow_diagram.svg" target="_blank" rel="noopener">
+    <img src="assets/workflow_diagram.svg" class="img-fluid" alt="Workflow diagram showing cohort construction, exposure definition, outcome modeling, validation, and reporting.">
+  </a>
+  <figcaption>Cohort construction and analysis workflow. Click the figure or select <a href="assets/workflow_diagram.svg" target="_blank" rel="noopener">Open full-size workflow diagram</a>.</figcaption>
 </figure>
 
 ### Source Tables To Analysis Dataset
