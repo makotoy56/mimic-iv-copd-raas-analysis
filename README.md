@@ -62,6 +62,8 @@ See [Results summary](docs/RESULTS_SUMMARY.md) and [Discussion and limitations](
 
 The workflow moves from MIMIC-IV ICU tables to cohort construction, RAAS exposure definition, mortality outcome construction, baseline characterization, Kaplan-Meier and Cox survival analysis, sensitivity modeling, SAS validation, and Quarto reporting.
 
+For the detailed source-table-to-analysis-dataset lineage, see the [Quarto clinical analysis report section on source tables and project-created analysis tables](https://makotoy56.github.io/mimic-iv-copd-raas-analysis/copd_raas_survival_report.html#source-tables-to-analysis-dataset).
+
 For clinical analytics, RWE, HEOR, and outcomes research teams, the portfolio value is the reproducible workflow: defensible cohort definitions, documented modeling decisions, explicit sensitivity analysis, and validation checks that make results easier to review.
 
 ## Representative Figures

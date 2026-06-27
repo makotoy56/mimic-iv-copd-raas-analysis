@@ -65,6 +65,15 @@ The cohort workflow is documented across the executable notebooks:
   <figcaption>Cohort construction and analysis workflow</figcaption>
 </figure>
 
+### Source Tables To Analysis Dataset
+
+The lineage figure separates MIMIC-IV source and derived tables from project-created analysis tables. The primary path builds the ICU COPD cohort, pre-ICU RAAS exposure flag, primary time-to-in-hospital mortality dataset, and extended covariate sensitivity dataset. The figure is schematic: raw MIMIC-IV patient-level data are not included in this repository, and the lineage supports reproducibility and dataset provenance rather than causal interpretation.
+
+<figure>
+  <img src="assets/copd_table_lineage_dataset_flow.svg" class="img-fluid" style="width: 95%;" alt="Schematic lineage diagram separating MIMIC-IV source and derived tables from project-created ICU COPD RAAS cohort, exposure, outcome, and sensitivity analysis tables.">
+  <figcaption>Source tables to analysis dataset lineage</figcaption>
+</figure>
+
 ## Exposure, outcome, and covariates
 
 The primary exposure was pre-ICU RAAS inhibitor use, defined from inpatient prescription orders for ACE inhibitors or ARBs before or at ICU admission. This exposure definition supports reproducible EHR-based construction, but it does not directly measure outpatient chronic use, adherence, dose, duration, indication, or medication discontinuation before hospitalization.
