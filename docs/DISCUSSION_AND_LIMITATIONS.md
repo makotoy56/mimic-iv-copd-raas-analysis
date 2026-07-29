@@ -10,6 +10,8 @@ When RAAS inhibitors were evaluated by subclass, ACE inhibitor exposure showed a
 
 Sensitivity analyses attenuated the association after additional adjustment, including ICU type and acute illness severity measures. This suggests that ICU-level case mix, organ dysfunction, and clinical severity may contribute to the observed signal.
 
+The unpenalized extended core Cox estimate was borderline (HR 0.809, 95% CI 0.654-1.001; p = 0.05072) and did not meet conventional statistical significance. The further attenuation in penalized and ICU-type-adjusted specifications reinforces the sensitivity of the association to model specification and case-mix adjustment.
+
 ## Comparison With Prior Studies
 
 The findings are directionally consistent with prior observational COPD literature, including the Veterans Affairs cohort reported by Mortensen et al., which found lower observed short-term mortality among patients hospitalized for acute COPD exacerbations who were receiving ACE inhibitors or ARBs before admission.
@@ -29,6 +31,10 @@ The exposure definition uses inpatient prescription orders before or at ICU admi
 COPD status is identified using ICD-9 and ICD-10 diagnosis codes recorded during hospitalization. This supports reproducible EHR cohort construction but may introduce misclassification compared with spirometry-confirmed COPD.
 
 The analysis uses MIMIC-IV ICU admissions from a specific health system. Results may not generalize to other hospitals, non-ICU COPD populations, outpatient cohorts, or current prescribing contexts.
+
+Live discharge was treated as censoring in the primary Cox analysis. Because discharge may alter the opportunity to observe in-hospital death, this censoring assumption should be considered when interpreting the survival estimates. A competing-risk framework was not implemented.
+
+Each analytic record represents a qualifying hospital admission anchored to its first ICU stay. Patients may contribute more than one qualifying admission, and the Cox models do not account for within-patient correlation with a clustering or frailty term.
 
 Subclass comparisons between ACE inhibitors and ARBs are especially hypothesis-generating. Patients receiving these medication classes may differ in contraindications, comorbidities, prescribing history, and tolerance of therapy. Observed differences between ACE inhibitor and ARB groups should be treated as signals for future study rather than causal evidence.
 

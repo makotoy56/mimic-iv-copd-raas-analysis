@@ -19,12 +19,14 @@ The extended outcome table supports adjusted Cox models with SOFA score, comorbi
 - Adds first-day SOFA score, Charlson-derived comorbidity indicators, and ICU type.
 - Uses `raas_pre_icu` as the primary exposure.
 - Does not include ACE inhibitor or ARB subclass indicators in the 04c Cox model specification.
+- Carries forward the corrected outcome timing: ICU admission to recorded in-hospital death time for events, with discharge-time fallback only when death time is unavailable; live discharge is censoring.
 - Fits core and ICU-extended Cox proportional hazards models.
 - Evaluates unpenalized and penalized model specifications.
 - Assesses proportional hazards assumptions using Schoenfeld residual-based diagnostics.
+- Does not implement a competing-risk framework.
 
 ## Key Results Summary
-- In the unpenalized core Cox model, pre-ICU RAAS exposure had HR 0.809 (95% CI 0.654-1.000, p = 0.050).
+- In the unpenalized core Cox model, pre-ICU RAAS exposure had HR 0.809 (95% CI 0.654-1.001; p = 0.05072). This borderline estimate did not meet conventional statistical significance.
 - In the penalized core model, the point estimate remained below 1 but was not statistically significant.
 - After adding ICU type, the RAAS estimate was attenuated and was not statistically significant.
 - Results suggest sensitivity to severity, care setting, and ICU-level case mix, and should be interpreted as observational associations.

@@ -20,9 +20,9 @@ This project demonstrates a reproducible real-world evidence workflow using MIMI
 ## Dataset Snapshot
 
 - Data source: MIMIC-IV v3.1 via PhysioNet and BigQuery.
-- Cohort: Adult ICU admissions with COPD identified using ICD-9 and ICD-10 diagnosis codes.
+- Cohort: Adult hospital admissions with COPD identified using ICD-9 and ICD-10 diagnosis codes, with each record anchored to the first ICU stay in that admission.
 - Exposure: Pre-ICU inpatient prescription orders for ACE inhibitors or ARBs before or at ICU admission, with combined RAAS and ACE inhibitor/ARB subclass indicators.
-- Outcome: Time-to-in-hospital mortality from ICU admission to death or hospital discharge; patients discharged alive are censored at discharge.
+- Outcome: For in-hospital deaths, ICU admission to recorded death time, with discharge-time fallback only when death time is unavailable; for live discharges, ICU admission to discharge with censoring at discharge. A competing-risk framework was not implemented.
 - Sample size: Existing notebook outputs report 11,964 COPD ICU admissions for the primary survival cohort.
 - Compliance: Repository contains no patient-level data and requires independent MIMIC-IV/PhysioNet, Google Cloud, BigQuery, and SAS configuration for reproduction.
 

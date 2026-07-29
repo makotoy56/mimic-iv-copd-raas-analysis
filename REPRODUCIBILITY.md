@@ -28,7 +28,7 @@ The workflow is organized as a stepwise clinical analysis pipeline:
    - `sql/03_merge_exposures.sql`
    - `notebooks/03a_baseline.ipynb`
    - `notebooks/03b_merge_exposures.ipynb`
-4. **Outcome construction**: time-to-in-hospital mortality is built from ICU admission through death or discharge.
+4. **Outcome construction**: for in-hospital deaths, follow-up runs from ICU admission to `admissions.deathtime`, with `admissions.dischtime` used as a flagged fallback only when death time is unavailable. For live discharges, follow-up runs from ICU admission to discharge and is censored at discharge. A competing-risk framework is not implemented.
    - `sql/04_build_outcomes.sql`
    - `sql/04_build_outcomes_extended.sql`
 5. **Primary statistical analysis**: Kaplan-Meier survival curves and Cox proportional hazards models are run in Python.

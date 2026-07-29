@@ -20,12 +20,14 @@ Subclass findings provide context for the extended covariate models in `04c_exte
 - Joins outcome data with detailed RAAS subclass exposure indicators.
 - Constructs mutually exclusive ACE inhibitor and ARB monotherapy indicators.
 - Excludes rare dual ACE inhibitor plus ARB exposure from monotherapy Cox modeling.
+- Uses the corrected outcome timing: ICU admission to recorded in-hospital death time for events, with discharge-time fallback only when death time is unavailable; live discharge is censoring.
 - Fits Kaplan-Meier curves and stratified Cox proportional hazards models.
 - Evaluates proportional hazards assumptions using Schoenfeld residual tests.
+- Does not implement a competing-risk framework.
 
 ## Key Results Summary
-- ACE inhibitor monotherapy was associated with lower observed in-hospital mortality in the subclass Cox model.
-- ARB monotherapy had a directionally lower-hazard but statistically non-significant estimate.
+- ACE inhibitor monotherapy was associated with lower observed in-hospital mortality in the subclass Cox model (HR 0.663, 95% CI 0.507-0.869; p = 0.00286).
+- ARB monotherapy had a directionally lower-hazard but statistically non-significant estimate (HR 0.800, 95% CI 0.569-1.124; p = 0.19883).
 - Results are interpreted as observational associations and may be affected by residual confounding.
 
 ## Next Step

@@ -7,7 +7,7 @@ Notebook-generated result figures are written to stable paths under `assets/`. R
 | Figure | Primary use | Exporting notebook | Output path |
 | --- | --- | --- | --- |
 | Kaplan-Meier survival curve | README and Quarto report | `notebooks/04a_outcomes_and_modeling.ipynb` | `assets/kaplan_meier_curve.png` |
-| Cox hazard ratio forest plot | README and Quarto report | `notebooks/04c_extended_covariate_cox_model.ipynb` | `assets/cox_forest_plot.png` |
+| Extended core Cox model forest plot | README and Quarto report | `notebooks/04c_extended_covariate_cox_model.ipynb` | `assets/cox_forest_plot.png` |
 | ACE inhibitor versus ARB subgroup forest plot | Quarto report | `notebooks/04b_outcomes_and_modeling_raas_subgroups.ipynb` | `assets/raas_subgroup_forest_plot.svg` |
 | Extended covariate sensitivity comparison | Quarto report | `notebooks/04c_extended_covariate_cox_model.ipynb` | `assets/cox_model_sensitivity_comparison.svg` |
 

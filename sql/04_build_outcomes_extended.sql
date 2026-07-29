@@ -23,6 +23,8 @@ WITH base AS (
     o.time_to_event_days,
     o.admittime,
     o.dischtime,
+    o.deathtime,
+    o.death_time_fallback_flag,
     o.dod
   FROM `mimic-iv-portfolio.copd_raas.cohort_copd_outcomes` AS o
 ),
@@ -81,6 +83,8 @@ SELECT
   b.time_to_event_days,
   b.admittime,
   b.dischtime,
+  b.deathtime,
+  b.death_time_fallback_flag,
   b.dod,
 
   -- Severity

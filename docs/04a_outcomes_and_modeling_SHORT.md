@@ -17,14 +17,17 @@ The outcome table is used by subclass analyses in `04b_outcomes_and_modeling_raa
 
 ## Key Methods
 - Builds in-hospital mortality outcome variables in BigQuery.
-- Defines `death_event` as in-hospital death and `time_to_event_days` as ICU admission to death or hospital discharge.
+- Defines `death_event` as recorded in-hospital death.
+- For death events, measures `time_to_event_days` from ICU admission to `admissions.deathtime`, with `admissions.dischtime` used as a flagged fallback only when death time is unavailable.
+- For live discharges, measures `time_to_event_days` from ICU admission to discharge and treats discharge as censoring.
 - Fits Kaplan-Meier curves and Cox proportional hazards models.
 - Uses Schoenfeld residual testing to assess proportional hazards assumptions.
 - Uses a refined Cox model stratified by `anchor_year_group`.
+- Does not implement a competing-risk framework.
 
 ## Key Results Summary
 - Pre-ICU RAAS exposure was associated with lower observed in-hospital mortality in the primary and refined Cox models.
-- The refined proportional hazards-compliant model estimated HR 0.71 (95% CI 0.58-0.88).
+- The refined proportional hazards-compliant model estimated HR 0.72 (95% CI 0.58-0.89; p = 0.00208).
 - Findings are interpreted as observational associations, not causal effects.
 
 ## Next Step
