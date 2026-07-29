@@ -39,6 +39,35 @@ ul.task-list li input[type="checkbox"] {
 <link href="copd_raas_survival_report_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="copd_raas_survival_report_files/libs/bootstrap/bootstrap-8ffd5f67044e5306d9846f29df41dda5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -95,7 +124,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="executive-summary" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="executive-summary"><span class="header-section-number">1</span> Executive summary</h2>
 <p>This report presents a polished narrative version of a reproducible MIMIC-IV portfolio analysis evaluating whether pre-ICU renin-angiotensin-aldosterone system (RAAS) inhibitor exposure was associated with time-to-in-hospital mortality among ICU patients with chronic obstructive pulmonary disease (COPD).</p>
-<p>The primary analysis used Kaplan-Meier survival curves and Cox proportional hazards models. Pre-ICU RAAS inhibitor exposure was associated with lower observed in-hospital mortality in the Kaplan-Meier and Cox survival analyses. In the refined proportional hazards-compliant Cox model, combined pre-ICU RAAS exposure had an estimated hazard ratio (HR) of 0.71 (95% CI 0.58-0.88).</p>
+<p>The primary analysis used Kaplan-Meier survival curves and Cox proportional hazards models. Pre-ICU RAAS inhibitor exposure was associated with lower observed in-hospital mortality in the Kaplan-Meier and Cox survival analyses. In the refined proportional hazards-compliant Cox model, combined pre-ICU RAAS exposure had an estimated hazard ratio (HR) of 0.717 (95% CI 0.580-0.886; p = 0.00208).</p>
 <p>Subclass analyses suggested that ACE inhibitor monotherapy had a stronger observed association than ARB monotherapy. ARB monotherapy was directionally associated with lower hazard but was not statistically significant. Extended covariate and sensitivity models attenuated the RAAS association after additional adjustment, including ICU type and acute severity/case-mix variables.</p>
 <p>Overall, the findings should be read as observational associations. Residual confounding, confounding by indication, exposure misclassification, and single-center ICU case mix remain important considerations.</p>
 </section>
@@ -107,7 +136,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="data-source-and-cohort" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="data-source-and-cohort"><span class="header-section-number">3</span> Data source and cohort</h2>
 <p>The analysis used MIMIC-IV v3.1, a de-identified ICU electronic health record database maintained by the MIT Laboratory for Computational Physiology and distributed through PhysioNet.</p>
-<p>Adult ICU patients with COPD were identified using ICD-9 and ICD-10 diagnosis codes recorded during hospitalization. Cohort construction was performed at the ICU-stay/admission level using version-controlled BigQuery SQL and notebook-based checks.</p>
+<p>Adult ICU patients with COPD were identified using ICD-9 and ICD-10 diagnosis codes recorded during hospitalization. Each analytic record represented one qualifying hospital admission, anchored to the first ICU stay within that admission; subsequent ICU stays during the same hospital admission were excluded. A patient could contribute more than one qualifying hospital admission. Cohort construction used version-controlled BigQuery SQL and notebook-based checks.</p>
 <p>The cohort workflow is documented across the executable notebooks:</p>
 <ul>
 <li><a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/01_icu_cohort.ipynb">01_icu_cohort.ipynb</a></li>
@@ -208,7 +237,7 @@ Source tables to analysis dataset lineage. Click the figure or select <a href="a
 <h2 data-number="4" class="anchored" data-anchor-id="exposure-outcome-and-covariates"><span class="header-section-number">4</span> Exposure, outcome, and covariates</h2>
 <p>The primary exposure was pre-ICU RAAS inhibitor use, defined from inpatient prescription orders for ACE inhibitors or ARBs before or at ICU admission. This exposure definition supports reproducible EHR-based construction, but it does not directly measure outpatient chronic use, adherence, dose, duration, indication, or medication discontinuation before hospitalization.</p>
 <p>Detailed exposure indicators included ACE inhibitor exposure, ARB exposure, dual ACE inhibitor plus ARB exposure, and mutually exclusive ACE inhibitor or ARB monotherapy indicators for subgroup analysis.</p>
-<p>The primary outcome was time-to-in-hospital mortality, measured from ICU admission to in-hospital death or hospital discharge. Patients discharged alive were censored at discharge.</p>
+<p>The primary outcome was time to in-hospital death, with follow-up beginning at ICU admission. For a death event, <code>time_to_event_days</code> was measured from ICU admission (<code>intime</code>) to the recorded in-hospital death time (<code>admissions.deathtime</code>); discharge time (<code>admissions.dischtime</code>) was used as an explicitly flagged fallback only when death time was unavailable. For a patient discharged alive, follow-up was measured from ICU admission to discharge time and the record was censored at discharge.</p>
 <p>Core covariates were selected using a clinical framework and included demographics, cardiovascular comorbidities, chronic kidney disease, diabetes, and SOFA score. Extended sensitivity models added ICU type and additional severity or case-mix variables. The detailed definitions are summarized in <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/METHODS_OVERVIEW.md">METHODS_OVERVIEW.md</a> and the short notebook notes under <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/tree/main/docs">docs/</a>.</p>
 <p>The exported extended cohort supported a compact Table 1-style summary for variables used in the downstream models. Values are descriptive and were not used to introduce additional modeling.</p>
 <table class="caption-top table">
@@ -282,6 +311,7 @@ Source tables to analysis dataset lineage. Click the figure or select <a href="a
 <h2 data-number="5" class="anchored" data-anchor-id="statistical-methods"><span class="header-section-number">5</span> Statistical methods</h2>
 <p>The primary clinical analysis used Kaplan-Meier survival curves and Cox proportional hazards regression. Proportional hazards assumptions were assessed using Schoenfeld residual-based diagnostics. A refined Cox model stratified by calendar-era grouping was used to address proportional hazards concerns while preserving the survival-modeling focus.</p>
 <p>Sensitivity analyses evaluated extended covariate adjustment, ICU type, and penalized Cox specifications. A secondary logistic model was fit only for SAS-Python reproducibility comparison; it was not used as the primary clinical analysis.</p>
+<p>Live discharge was treated as censoring in the primary Cox analysis. A competing-risk framework was not implemented. The Cox models analyzed admission-level records and did not include a patient-level clustering or frailty term for patients with more than one qualifying admission.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -292,15 +322,15 @@ Source tables to analysis dataset lineage. Click the figure or select <a href="a
 <tbody>
 <tr class="odd">
 <td>Primary Cox</td>
-<td style="text-align: right;">0.337</td>
+<td style="text-align: right;">0.340</td>
 </tr>
 <tr class="even">
 <td>Extended core</td>
-<td style="text-align: right;">0.894</td>
+<td style="text-align: right;">0.888</td>
 </tr>
 <tr class="odd">
 <td>ICU-extended</td>
-<td style="text-align: right;">0.657</td>
+<td style="text-align: right;">0.649</td>
 </tr>
 </tbody>
 </table>
@@ -308,11 +338,11 @@ Source tables to analysis dataset lineage. Click the figure or select <a href="a
 </section>
 <section id="kaplan-meier-survival-results" class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="kaplan-meier-survival-results"><span class="header-section-number">6</span> Kaplan-Meier survival results</h2>
-<p>Kaplan-Meier curves showed lower observed in-hospital mortality among patients with pre-ICU RAAS inhibitor exposure compared with those without RAAS exposure. The visual separation supported further Cox proportional hazards modeling, while remaining descriptive and observational.</p>
+<p>Kaplan-Meier curves showed lower observed in-hospital mortality among patients with pre-ICU RAAS inhibitor exposure compared with those without RAAS exposure. The log-rank comparison yielded <span class="math inline">\(\chi^2 = 8.22\)</span> and p = 0.00414. The visual separation supported further Cox proportional hazards modeling, while remaining descriptive and observational.</p>
 <figure class="figure">
 <img src="assets/kaplan_meier_curve.png" class="img-fluid figure-img" alt="Kaplan-Meier survival curve comparing ICU COPD patients with and without pre-ICU RAAS inhibitor exposure.">
 <figcaption>
-Kaplan-Meier survival curve
+Kaplan-Meier survival curve for time from ICU admission to recorded in-hospital death, with live discharge treated as censoring
 </figcaption>
 </figure>
 <p>The Kaplan-Meier curves are best viewed as unadjusted survival patterns. They do not account for all differences in comorbidities, acute illness severity, ICU case mix, or medication-prescribing context.</p>
@@ -320,7 +350,7 @@ Kaplan-Meier survival curve
 </section>
 <section id="cox-proportional-hazards-results" class="level2" data-number="7">
 <h2 data-number="7" class="anchored" data-anchor-id="cox-proportional-hazards-results"><span class="header-section-number">7</span> Cox proportional hazards results</h2>
-<p>The refined proportional hazards-compliant Cox model estimated HR 0.71 (95% CI 0.58-0.88) for combined pre-ICU RAAS exposure. This indicates that RAAS exposure was associated with lower observed in-hospital mortality hazard after adjustment within the modeled framework.</p>
+<p>The refined proportional hazards-compliant Cox model estimated HR 0.717 (95% CI 0.580-0.886; p = 0.00208) for combined pre-ICU RAAS exposure. This indicates that RAAS exposure was associated with lower observed in-hospital mortality hazard after adjustment within the modeled framework.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 21%">
@@ -340,23 +370,17 @@ Kaplan-Meier survival curve
 <tr class="odd">
 <td>Initial multivariable Cox model</td>
 <td>Age, sex, admission year group</td>
-<td style="text-align: right;">0.70 (0.57-0.87)</td>
-<td style="text-align: right;">&lt;0.005</td>
+<td style="text-align: right;">0.708 (0.573-0.875)</td>
+<td style="text-align: right;">0.00140</td>
 </tr>
 <tr class="even">
 <td>Refined Cox model</td>
 <td>Age, sex; baseline hazard stratified by <code>anchor_year_group</code></td>
-<td style="text-align: right;">0.71 (0.58-0.88)</td>
-<td style="text-align: right;">&lt;0.005</td>
+<td style="text-align: right;">0.717 (0.580-0.886)</td>
+<td style="text-align: right;">0.00208</td>
 </tr>
 </tbody>
 </table>
-<figure class="figure">
-<img src="assets/cox_forest_plot.png" class="img-fluid figure-img" alt="Forest plot showing Cox proportional hazards model estimates for RAAS exposure and covariates.">
-<figcaption>
-Cox hazard ratio forest plot
-</figcaption>
-</figure>
 <p>This estimate is not evidence that RAAS inhibitors caused lower mortality. RAAS exposure may also identify patients with different cardiovascular histories, baseline risk profiles, clinical management patterns, or medication-continuation decisions.</p>
 <p>Because the refined primary model was followed by extended covariate and ICU-type sensitivity models, the primary HR should be read alongside the attenuation pattern shown in the sensitivity comparison below rather than as an isolated estimate.</p>
 <p>The primary Cox workflow is available in <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/04a_outcomes_and_modeling.ipynb">04a_outcomes_and_modeling.ipynb</a>, with a concise methods/results note in <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/04a_outcomes_and_modeling_SHORT.md">04a_outcomes_and_modeling_SHORT.md</a>. A project-level interpretation is available in <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/RESULTS_SUMMARY.md">RESULTS_SUMMARY.md</a>.</p>
@@ -364,7 +388,7 @@ Cox hazard ratio forest plot
 <section id="ace-inhibitor-vs-arb-subgroup-analysis" class="level2" data-number="8">
 <h2 data-number="8" class="anchored" data-anchor-id="ace-inhibitor-vs-arb-subgroup-analysis"><span class="header-section-number">8</span> ACE inhibitor vs ARB subgroup analysis</h2>
 <p>The subclass analysis evaluated whether the observed association for combined RAAS exposure appeared similar for ACE inhibitors and ARBs.</p>
-<p>ACE inhibitor monotherapy was associated with lower observed in-hospital mortality in the subclass Cox model. ARB monotherapy had a directionally lower-hazard but statistically non-significant estimate. Dual ACE inhibitor plus ARB therapy was rare and excluded from monotherapy Cox modeling.</p>
+<p>ACE inhibitor monotherapy was associated with lower observed in-hospital mortality in the subclass Cox model (HR 0.663, 95% CI 0.507-0.869; p = 0.00286). ARB monotherapy had a directionally lower-hazard but statistically non-significant estimate (HR 0.800, 95% CI 0.569-1.124; p = 0.19883). The global three-group log-rank comparison yielded <span class="math inline">\(\chi^2 = 9.14\)</span> with 2 degrees of freedom and p = 0.01036. Dual ACE inhibitor plus ARB therapy was rare and excluded from monotherapy Cox modeling.</p>
 <figure class="figure">
 <img src="assets/raas_subgroup_forest_plot.svg" class="img-fluid figure-img" alt="Forest-style comparison of hazard ratio estimates for ACE inhibitor monotherapy and ARB monotherapy versus no pre-ICU RAAS exposure.">
 <figcaption>
@@ -377,7 +401,7 @@ ACE inhibitor versus ARB subgroup hazard ratio estimates
 <section id="extended-covariatesensitivity-model-interpretation" class="level2" data-number="9">
 <h2 data-number="9" class="anchored" data-anchor-id="extended-covariatesensitivity-model-interpretation"><span class="header-section-number">9</span> Extended covariate/sensitivity model interpretation</h2>
 <p>Extended covariate models evaluated whether the observed RAAS association persisted after adding additional severity, comorbidity, and ICU care-setting variables.</p>
-<p>In the unpenalized core Cox model with extended covariates, pre-ICU RAAS exposure had HR 0.809 (95% CI 0.654-1.000, p = 0.050). In the penalized core model, the point estimate remained below 1 but was not statistically significant. After adding ICU type, the RAAS estimate was attenuated and was not statistically significant.</p>
+<p>In the unpenalized core Cox model with extended covariates, pre-ICU RAAS exposure had HR 0.809 (95% CI 0.654-1.001; p = 0.05072). This borderline estimate did not meet conventional statistical significance because the confidence interval included 1 and the p-value was greater than 0.05. In the penalized core model, the point estimate remained below 1 but was not statistically significant. After adding ICU type, the RAAS estimate was attenuated and was not statistically significant.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 21%">
@@ -397,8 +421,8 @@ ACE inhibitor versus ARB subgroup hazard ratio estimates
 <tr class="odd">
 <td>Extended core Cox</td>
 <td>Severity + comorbidity</td>
-<td style="text-align: right;">0.809 (0.654-1.000)</td>
-<td style="text-align: right;">0.050</td>
+<td style="text-align: right;">0.809 (0.654-1.001)</td>
+<td style="text-align: right;">0.05072</td>
 </tr>
 <tr class="even">
 <td>Penalized extended core</td>
@@ -420,6 +444,12 @@ ACE inhibitor versus ARB subgroup hazard ratio estimates
 </tr>
 </tbody>
 </table>
+<figure class="figure">
+<img src="assets/cox_forest_plot.png" class="img-fluid figure-img" alt="Forest plot of the unpenalized 04c extended core Cox model adjusted for age, sex, SOFA score, congestive heart failure, chronic kidney disease, and diabetes.">
+<figcaption>
+Unpenalized 04c extended core Cox model. This figure does not depict the refined primary 04a Cox model; the RAAS estimate was borderline and did not meet conventional statistical significance.
+</figcaption>
+</figure>
 <figure class="figure">
 <img src="assets/cox_model_sensitivity_comparison.svg" class="img-fluid figure-img" alt="Forest-style comparison of hazard ratio estimates for pre-ICU RAAS exposure across primary refined, extended core, penalized core, ICU-type adjusted, and ICU-type adjusted penalized Cox models.">
 <figcaption>
@@ -475,6 +505,8 @@ Sensitivity comparison of RAAS hazard ratio estimates across Cox model specifica
 <h2 data-number="11" class="anchored" data-anchor-id="limitations"><span class="header-section-number">11</span> Limitations</h2>
 <p>The observational design limits causal interpretation. The observed association may reflect residual confounding, confounding by indication, differences in medication continuation or withholding, and unmeasured outpatient care patterns.</p>
 <p>The RAAS exposure definition used inpatient prescription orders before or at ICU admission. It does not directly capture outpatient chronic exposure, adherence, dose, duration, patient-level indication, or medication discontinuation before hospitalization.</p>
+<p>Live discharge was treated as censoring in the primary Cox analysis. Because discharge may alter the opportunity to observe in-hospital death, this censoring assumption should be considered when interpreting the survival estimates. A competing-risk framework was not implemented.</p>
+<p>Each analytic record represented a qualifying hospital admission anchored to its first ICU stay. Patients could contribute more than one qualifying admission, and the Cox models did not account for within-patient correlation with a clustering or frailty term.</p>
 <p>COPD status was identified using diagnosis codes recorded during hospitalization. This supports reproducible EHR cohort construction but may introduce misclassification relative to spirometry-confirmed COPD.</p>
 <p>MIMIC-IV reflects ICU admissions from a specific health system. Results may not generalize to other hospitals, non-ICU COPD populations, outpatient cohorts, or current prescribing contexts.</p>
 <p>The ACE inhibitor versus ARB comparison is particularly exploratory because medication subclasses may reflect different indications, contraindications, tolerability, and comorbidity profiles.</p>
