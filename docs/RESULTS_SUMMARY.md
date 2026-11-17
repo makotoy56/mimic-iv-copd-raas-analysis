@@ -1,27 +1,52 @@
-# Results Summary
+# Current Results (2026-11-18)
 
-This document provides a concise summary of the study findings without strengthening causal interpretation.
+Analysis version: `admission_age_elapsed_time_los_v2`. These estimates and the figures use regenerated analysis tables and continuous elapsed follow-up.
 
-## Primary Survival Analysis
+The cohort contains 11,964 admissions and 1,692 in-hospital deaths. Refined primary RAAS HR: 0.732 (0.592–0.904), p=0.00383. Extended core RAAS HR: 0.833 (0.673–1.030), p=0.09122.
 
-Pre-ICU RAAS inhibitor exposure was associated with lower observed in-hospital mortality among ICU-admitted COPD patients in Kaplan-Meier and Cox proportional hazards analyses.
+| Model | RAAS HR (95% CI) | p |
+| --- | --- | ---: |
+| Primary refined | 0.732 (0.592–0.904) | 0.00383 |
+| Extended core | 0.833 (0.673–1.030) | 0.09122 |
+| Core + L2 (0.1) | 0.886 (0.766–1.025) | 0.10376 |
+| ICU adjusted (rare types pooled) | 0.958 (0.772–1.187) | 0.69262 |
+| ICU pooled + L2 (0.01) | 0.910 (0.743–1.115) | 0.36324 |
+| Core CHF/SOFA strata (exploratory) | 0.830 (0.666–1.034) | 0.09666 |
+| ICU CHF/SOFA/type strata (exploratory) | 1.127 (0.880–1.443) | 0.34395 |
 
-The refined proportional hazards-compliant Cox model estimated HR 0.72 (95% CI 0.58-0.89; p = 0.00208) for combined pre-ICU RAAS exposure.
+Subclass estimates compare ACEi or ARB monotherapy with no exposure; dual exposure is excluded.
 
-## Subgroup Analysis
+| Subclass | HR (95% CI) | p |
+| --- | --- | ---: |
+| ACEi | 0.683 (0.521–0.894) | 0.00550 |
+| ARB | 0.805 (0.573–1.131) | 0.21116 |
 
-ACE inhibitor monotherapy was associated with lower observed in-hospital mortality in the subclass Cox model (HR 0.663, 95% CI 0.507-0.869; p = 0.00286). ARB monotherapy had a directionally lower-hazard but statistically non-significant estimate (HR 0.800, 95% CI 0.569-1.124; p = 0.19883).
+## Diagnostics and interpretation
 
-Subclass comparisons are hypothesis-generating and may be affected by confounding by indication, prescribing history, contraindications, and differences in comorbidity profiles.
+The core and pooled ICU models retain their original covariate structure. Additional exploratory models stratify baseline hazards by era, CHF and exact SOFA; the ICU variant also stratifies by pooled ICU type. These models do not estimate CHF or SOFA coefficients. They supplement the primary analysis and are not chosen by searching for non-significant PH tests.
 
-## Extended Covariate Models
+| Model | Number of strata | Rank PH tests with p<0.05 | Model warnings |
+| --- | ---: | --- | --- |
+| Primary refined | 5 | None detected | None |
+| Extended core | 5 | chf (<0.00001), sofa_score (0.01924) | None |
+| Core + L2 (0.1) | 5 | chf (0.00126) | None |
+| ICU adjusted (rare types pooled) | 5 | chf (0.00008), sofa_score (0.00157) | None |
+| ICU pooled + L2 (0.01) | 5 | chf (0.00018), sofa_score (0.00318) | None |
+| Core CHF/SOFA strata (exploratory) | 191 | None detected | None |
+| ICU CHF/SOFA/type strata (exploratory) | 1118 | diabetes (0.02879) | None |
 
-In the unpenalized core Cox model with extended covariates, pre-ICU RAAS exposure had HR 0.809 (95% CI 0.654-1.001; p = 0.05072). This borderline estimate did not meet conventional statistical significance because the confidence interval included 1 and the p-value was greater than 0.05.
+A non-significant PH test does not establish that the PH assumption is true. The exploratory ICU-stratified RAAS point estimate is above 1 while its confidence interval includes 1, demonstrating sensitivity to adjustment structure. The ICU-stratified model retains a diabetes PH flag, so the diagnostic issues are not universally resolved. Stratified models permit different baseline hazards for the stratifying covariates; their estimates are conditional on these strata, some of which are sparse. The sensitivity specifications are exploratory responses to diagnostics in this dataset.
 
-In the penalized core model, the point estimate remained below 1 but was not statistically significant. After adding ICU type, the RAAS estimate was attenuated and was not statistically significant.
+Rare ICU labels with fewer than 50 admissions are pooled using admission counts alone, independently of outcome. The pooled labels are: Intensive Care Unit (ICU), Medicine, PACU, Surgery/Trauma, Surgery/Vascular/Intermediate.
 
-## Interpretation
+This observational admission-level analysis retains discharge censoring and does not account for within-patient correlation or implement competing risks. Year-based age remains approximate, especially for the anchor-age 91 group. Residual confounding remains possible.
 
-The findings are observational associations. They are consistent with a hypothesis that pre-ICU RAAS exposure may identify a lower-risk or differently managed COPD ICU population, but the analysis cannot establish causality. Residual confounding may remain despite covariate adjustment and sensitivity analyses.
+## Independent SAS validation status
 
-Death events were timed from ICU admission to recorded in-hospital death time, with discharge time used only as a flagged fallback when death time was unavailable. Live discharge was treated as censoring, and a competing-risk framework was not implemented.
+Python secondary logistic parameters have been regenerated from the current BigQuery table. Current cross-platform agreement is **pending an independent SAS rerun**. Historical SAS parameters are rejected by the provenance and exact-parameter-key guards; historical numerical agreement is not evidence for the corrected dataset.
+
+SAS 07 now exports distinct era-stratified primary 04a and extended core 04c models. SAS 01 no longer prints patient records. The versioned private input query is `sql/06_export_sas_validation.sql`; no individual SAS input was exported during this refresh.
+
+The refreshed figures contain aggregate results only. Full estimates and PH p-values are in [CURRENT_ANALYSIS.json](CURRENT_ANALYSIS.json). The earlier age/time comparison remains an archived validation snapshot in [AGE_TIME_REVALIDATION.md](AGE_TIME_REVALIDATION.md).
+
+PH methods reference: [lifelines stratification documentation](https://lifelines.readthedocs.io/en/latest/jupyter_notebooks/Proportional%20hazard%20assumption.html#Stratification).

@@ -1,0 +1,83 @@
+{
+  "started_at_utc": "2026-11-17T17:50:46.107004+00:00",
+  "dataset_default_expiration_ms": 5184000000,
+  "tables": [
+    {
+      "table": "cohort_icu",
+      "sql": "01_extract_base.sql",
+      "job_id": "aa162193-77d3-4e0a-beba-ee13fea846f6",
+      "rows": 85242,
+      "processed_bytes": 31467960,
+      "billed_bytes": 32505856,
+      "qa": [],
+      "created_at_utc": "2026-11-17T17:50:49.480000+00:00",
+      "expires_at_utc": "2027-01-16T17:50:49.480000+00:00"
+    },
+    {
+      "table": "cohort_copd",
+      "sql": "02_build_cohort_copd.sql",
+      "job_id": "e350f88b-0de9-43a9-a75f-79e0052a5d05",
+      "rows": 11964,
+      "processed_bytes": 202876718,
+      "billed_bytes": 203423744,
+      "qa": [],
+      "created_at_utc": "2026-11-17T17:50:53.521000+00:00",
+      "expires_at_utc": "2027-01-16T17:50:53.521000+00:00"
+    },
+    {
+      "table": "cohort_copd_baseline",
+      "sql": "03_build_baseline.sql",
+      "job_id": "a4637bc9-b7fd-4a4a-b0a3-97736d21b1e3",
+      "rows": 11964,
+      "processed_bytes": 26323368,
+      "billed_bytes": 41943040,
+      "qa": [],
+      "created_at_utc": "2026-11-17T17:50:56.565000+00:00",
+      "expires_at_utc": "2027-01-16T17:50:56.565000+00:00"
+    },
+    {
+      "table": "cohort_copd_with_raas",
+      "sql": "03_merge_exposures.sql",
+      "job_id": "4ceeecf8-bd43-443a-b978-3ee06a0f243f",
+      "rows": 11964,
+      "processed_bytes": 2132556,
+      "billed_bytes": 20971520,
+      "qa": [],
+      "created_at_utc": "2026-11-17T17:50:59.853000+00:00",
+      "expires_at_utc": "2027-01-16T17:50:59.853000+00:00"
+    },
+    {
+      "table": "cohort_copd_outcomes",
+      "sql": "04_build_outcomes.sql",
+      "job_id": "8a105963-3511-474d-a352-6b22860bdd8f",
+      "rows": 11964,
+      "processed_bytes": 22618672,
+      "billed_bytes": 115343360,
+      "qa": [
+        {
+          "negative_time_to_event_count": 0,
+          "zero_time_to_event_count": 0,
+          "positive_subhour_count": 2,
+          "discharge_before_icu_count": 0,
+          "death_before_icu_count": 0,
+          "fallback_death_count": 2
+        }
+      ],
+      "created_at_utc": "2026-11-17T17:51:09.592000+00:00",
+      "expires_at_utc": "2027-01-16T17:51:09.592000+00:00"
+    },
+    {
+      "table": "cohort_copd_outcomes_extended",
+      "sql": "04_build_outcomes_extended.sql",
+      "job_id": "6450a657-2b7a-4959-9e51-668e01e8cf0d",
+      "rows": 11964,
+      "processed_bytes": 38137089,
+      "billed_bytes": 41943040,
+      "qa": [],
+      "created_at_utc": "2026-11-17T17:51:14.557000+00:00",
+      "expires_at_utc": "2027-01-16T17:51:14.557000+00:00"
+    }
+  ],
+  "finished_at_utc": "2026-11-17T17:51:15.886987+00:00",
+  "dataset_settings_unchanged": true
+}

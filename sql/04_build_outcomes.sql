@@ -12,6 +12,8 @@ WITH base AS (
     b.outtime,
     b.icu_los,
     b.age,
+    b.anchor_age,
+    b.age_anchor_topcoded,
     b.gender,
     b.anchor_year,
     b.anchor_year_group,
@@ -33,14 +35,16 @@ events AS (
     -- In-hospital death indicator
     hospital_expire_flag AS death_event,
 
+    -- Continuous elapsed days from the source DATETIME values, preserving sub-hour follow-up.
+    -- MICROSECOND avoids hour-boundary counting and retains source precision.
     -- Time-to-event (days)
     -- Death: ICU admission → hospital death (discharge fallback only if death time is missing)
     -- Survival: ICU admission → hospital discharge
     CASE
       WHEN hospital_expire_flag = 1 THEN
-        TIMESTAMP_DIFF(COALESCE(deathtime, dischtime), intime, HOUR) / 24.0
+        DATETIME_DIFF(COALESCE(deathtime, dischtime), intime, MICROSECOND) / 86400000000.0
       ELSE
-        TIMESTAMP_DIFF(dischtime, intime, HOUR) / 24.0
+        DATETIME_DIFF(dischtime, intime, MICROSECOND) / 86400000000.0
     END AS time_to_event_days,
 
     -- Explicitly identify deaths that use discharge time as a fallback
@@ -59,6 +63,8 @@ SELECT
   outtime,
   icu_los,
   age,
+  anchor_age,
+  age_anchor_topcoded,
   gender,
   anchor_year,
   anchor_year_group,
@@ -73,7 +79,34 @@ SELECT
   dod
 FROM events;
 
--- Outcome construction QA checks
+-- Outcome construction QA checks: all run before the persistent table is replaced.
+ASSERT (
+  SELECT COUNTIF(death_event IS NULL OR death_event NOT IN (0, 1)) = 0
+  FROM cohort_copd_outcomes_staged
+) AS 'Outcome QA failed: death_event must be 0 or 1';
+
+ASSERT (
+  SELECT COUNTIF(
+    intime IS NULL
+    OR CASE WHEN death_event = 1 THEN COALESCE(deathtime, dischtime)
+            ELSE dischtime END IS NULL
+  ) = 0
+  FROM cohort_copd_outcomes_staged
+) AS 'Outcome QA failed: missing ICU admission or endpoint timestamp';
+
+ASSERT (
+  SELECT COUNTIF(
+    CASE WHEN death_event = 1 THEN COALESCE(deathtime, dischtime)
+         ELSE dischtime END < intime
+  ) = 0
+  FROM cohort_copd_outcomes_staged
+) AS 'Outcome QA failed: endpoint precedes ICU admission (death or live discharge)';
+
+-- True zero follow-up requires adjudication before fitting the survival models.
+ASSERT (
+  SELECT COUNTIF(time_to_event_days = 0) = 0
+  FROM cohort_copd_outcomes_staged
+) AS 'Outcome QA failed: true zero follow-up requires adjudication';
 ASSERT (
   SELECT COUNTIF(time_to_event_days IS NULL) = 0
   FROM cohort_copd_outcomes_staged
@@ -100,6 +133,10 @@ FROM cohort_copd_outcomes_staged;
 -- Return a compact QA summary, including the number of fallback deaths
 SELECT
   COUNTIF(time_to_event_days < 0) AS negative_time_to_event_count,
+  COUNTIF(time_to_event_days = 0) AS zero_time_to_event_count,
+  COUNTIF(time_to_event_days > 0 AND time_to_event_days < 1.0 / 24.0)
+    AS positive_subhour_count,
+  COUNTIF(death_event = 0 AND dischtime < intime) AS discharge_before_icu_count,
   COUNTIF(
     death_event = 1
     AND COALESCE(deathtime, dischtime) < intime

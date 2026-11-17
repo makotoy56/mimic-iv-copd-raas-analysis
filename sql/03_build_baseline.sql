@@ -8,11 +8,14 @@ WITH base AS (
         c.intime,
         c.outtime,
         c.icu_los,
-        p.anchor_age AS age,
+        -- Preserve the admission-age definition used for adult cohort selection.
+        c.age,
+        c.anchor_age,
+        c.age_anchor_topcoded,
         p.gender,
         p.anchor_year,
         p.anchor_year_group,
-        TIMESTAMP_DIFF(a.dischtime, a.admittime, HOUR) / 24.0 AS hosp_los,
+        DATETIME_DIFF(a.dischtime, a.admittime, MICROSECOND) / 86400000000.0 AS hosp_los,
         p.dod
     FROM `mimic-iv-portfolio.copd_raas.cohort_copd` AS c
     LEFT JOIN `physionet-data.mimiciv_3_1_hosp.patients` AS p
@@ -28,6 +31,8 @@ SELECT
     b.outtime,
     b.icu_los,
     b.age,
+    b.anchor_age,
+    b.age_anchor_topcoded,
     b.gender,
     b.anchor_year,
     b.anchor_year_group,

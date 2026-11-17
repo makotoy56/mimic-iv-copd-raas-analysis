@@ -32,6 +32,8 @@ SELECT
   outtime,
   icu_los,
   age,
+  anchor_age,
+  age_anchor_topcoded,
   gender,
   anchor_year,
   anchor_year_group

@@ -10,7 +10,7 @@ WITH base_stays AS (
     i.intime,
     i.outtime,
     -- ICU length of stay in days (continuous)
-    DATETIME_DIFF(i.outtime, i.intime, HOUR) / 24.0 AS icu_los
+    DATETIME_DIFF(i.outtime, i.intime, MICROSECOND) / 86400000000.0 AS icu_los
   FROM `physionet-data.mimiciv_3_1_icu.icustays` AS i
 ),
 
@@ -23,15 +23,22 @@ with_age AS (
     b.outtime,
     b.icu_los,
     p.gender,
-    p.anchor_age AS age,
+    -- Approximate age at hospital admission, using the deidentified admission year.
+    -- anchor_age = 91 is an aggregated >89 group; year adjustment is still a proxy.
+    p.anchor_age + EXTRACT(YEAR FROM a.admittime) - p.anchor_year AS age,
+    p.anchor_age,
+    CAST(p.anchor_age = 91 AS INT64) AS age_anchor_topcoded,
     p.anchor_year,
     p.anchor_year_group
   FROM base_stays AS b
   JOIN `physionet-data.mimiciv_3_1_hosp.patients` AS p
     ON b.subject_id = p.subject_id
+  JOIN `physionet-data.mimiciv_3_1_hosp.admissions` AS a
+    ON b.subject_id = a.subject_id
+   AND b.hadm_id = a.hadm_id
 ),
 
--- Keep only adults (age >= 18) and the first ICU stay per subject_id + hadm_id
+-- Keep only adults (estimated admission age >= 18) and the first ICU stay per subject_id + hadm_id
 adult_first_icu AS (
   SELECT *
   FROM (
@@ -55,6 +62,8 @@ SELECT
   outtime,
   icu_los,
   age,
+  anchor_age,
+  age_anchor_topcoded,
   gender,
   anchor_year,
   anchor_year_group

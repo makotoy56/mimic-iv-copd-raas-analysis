@@ -18,7 +18,7 @@ Construct the baseline COPD ICU cohort with demographic characteristics, pre-ICU
 This baseline cohort table is the primary input for outcome construction and downstream mortality modeling in `04a_outcomes_and_modeling.ipynb`.
 
 ## Key Methods and Checks
-- Adds age, sex, calendar-time variables, hospital length of stay, and date-of-death information.
+- Preserves the cohort admission-age estimate and raw/topcoded-age fields; adds sex, calendar-time variables, hospital length of stay, and date-of-death information.
 - Merges the binary pre-ICU RAAS exposure flag at the ICU-stay level.
 - Treats missing RAAS exposure records as non-exposure.
 - Checks cohort size and exposure distribution before downstream modeling.

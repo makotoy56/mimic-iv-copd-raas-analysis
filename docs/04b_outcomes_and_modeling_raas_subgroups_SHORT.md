@@ -1,5 +1,7 @@
 # 04b - Class-Specific Effects of ACE Inhibitors vs ARBs on In-Hospital Mortality in ICU COPD Patients (SHORT)
 
+Current estimates below use the 2026-11-18 admission-age and continuous follow-up corrections; see [the validation report](AGE_TIME_REVALIDATION.md). Figures and the local rendered report are refreshed through the shared current-analysis workflow; independent SAS validation remains pending.
+
 Full notebook:
 [04b - Class-Specific Effects of ACE Inhibitors vs ARBs on In-Hospital Mortality in ICU COPD Patients](../notebooks/04b_outcomes_and_modeling_raas_subgroups.ipynb)
 
@@ -26,8 +28,8 @@ Subclass findings provide context for the extended covariate models in `04c_exte
 - Does not implement a competing-risk framework.
 
 ## Key Results Summary
-- ACE inhibitor monotherapy was associated with lower observed in-hospital mortality in the subclass Cox model (HR 0.663, 95% CI 0.507-0.869; p = 0.00286).
-- ARB monotherapy had a directionally lower-hazard but statistically non-significant estimate (HR 0.800, 95% CI 0.569-1.124; p = 0.19883).
+- ACE inhibitor monotherapy was associated with lower observed in-hospital mortality in the subclass Cox model (HR 0.683, 95% CI 0.521-0.894; p = 0.00550).
+- ARB monotherapy had a directionally lower-hazard but statistically non-significant estimate (HR 0.805, 95% CI 0.573-1.131; p = 0.21116).
 - Results are interpreted as observational associations and may be affected by residual confounding.
 
 ## Next Step

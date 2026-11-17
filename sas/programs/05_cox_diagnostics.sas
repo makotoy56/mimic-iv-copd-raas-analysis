@@ -26,7 +26,6 @@ proc phreg data=data.copd_cohort;
         age
         gender
         sofa_score
-        charlson_comorbidity_index
         chf
         ckd
         diabetes

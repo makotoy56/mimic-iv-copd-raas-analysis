@@ -87,3 +87,6 @@ sas/docs/results.md
 **/*.quarto_ipynb
 _site/
 **/_site/
+
+# Local manual Quarto render (canonical docs build uses scripts/build_report.py)
+reports/_rendered/

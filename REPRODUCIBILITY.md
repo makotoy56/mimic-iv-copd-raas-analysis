@@ -145,10 +145,11 @@ No `requirements.txt` or `environment.yml` file is required for the current uv-m
    - `notebooks/04d_python_logistic_model.ipynb`
    - `notebooks/05_sas_python_validation.ipynb`
 5. If SAS validation is being reproduced, run the SAS programs in SAS® OnDemand for Academics or another compatible SAS environment, updating library paths as needed.
-6. Render the Quarto report from the `reports/` directory:
+6. Build the current report from the repository root:
 
    ```bash
-   quarto render copd_raas_survival_report.qmd
+    .venv/bin/python scripts/current_analysis.py
+   .venv/bin/python scripts/build_report.py
    ```
 
 7. Review the rendered report at `docs/copd_raas_survival_report.html`.

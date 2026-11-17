@@ -1,0 +1,825 @@
+{
+  "analysis_version": "admission_age_elapsed_time_los_v2",
+  "n": 11964,
+  "deaths": 1692,
+  "fallback_deaths": 2,
+  "models": {
+    "primary_refined": {
+      "n": 11964,
+      "deaths": 1692,
+      "penalizer": 0.0,
+      "strata": [
+        "anchor_year_group"
+      ],
+      "strata_count": 5,
+      "single_admission_strata": 0,
+      "zero_event_strata": 0,
+      "admissions_in_zero_event_strata": 0,
+      "estimates": {
+        "raas_pre_icu": {
+          "hr": 0.7316485472975431,
+          "lower_95": 0.5920054486990013,
+          "upper_95": 0.9042308612851595,
+          "p": 0.0038325856277324597
+        },
+        "age": {
+          "hr": 1.0356576690100385,
+          "lower_95": 1.0308976249823931,
+          "upper_95": 1.04043969196032,
+          "p": 2.989709435782154e-50
+        },
+        "gender_M": {
+          "hr": 1.0195164040202702,
+          "lower_95": 0.9261107399619606,
+          "upper_95": 1.1223427752377821,
+          "p": 0.693399995482008
+        }
+      },
+      "ph_rank_p": {
+        "age": 0.7980258664176774,
+        "gender_M": 0.32497609864975274,
+        "raas_pre_icu": 0.7206419361921679
+      },
+      "warnings": []
+    },
+    "subgroups": {
+      "n": 11951,
+      "deaths": 1690,
+      "penalizer": 0.0,
+      "strata": [
+        "anchor_year_group"
+      ],
+      "strata_count": 5,
+      "single_admission_strata": 0,
+      "zero_event_strata": 0,
+      "admissions_in_zero_event_strata": 0,
+      "estimates": {
+        "acei_pre_icu": {
+          "hr": 0.6825567951530007,
+          "lower_95": 0.5212450734785212,
+          "upper_95": 0.8937902770005421,
+          "p": 0.0055001592713461445
+        },
+        "arb_pre_icu": {
+          "hr": 0.8049541314601719,
+          "lower_95": 0.5728864696149966,
+          "upper_95": 1.1310289003513205,
+          "p": 0.2111586743927521
+        },
+        "age": {
+          "hr": 1.0356538714132464,
+          "lower_95": 1.0308905957455752,
+          "upper_95": 1.0404391560071604,
+          "p": 3.564580212542977e-50
+        },
+        "gender_M": {
+          "hr": 1.0210214373612805,
+          "lower_95": 0.9274084617311471,
+          "upper_95": 1.1240837436455355,
+          "p": 0.671563238110578
+        }
+      },
+      "ph_rank_p": {
+        "acei_pre_icu": 0.45116379692324404,
+        "age": 0.8309585981379723,
+        "arb_pre_icu": 0.37918714388819086,
+        "gender_M": 0.3088839585391904
+      },
+      "warnings": []
+    },
+    "core": {
+      "n": 11964,
+      "deaths": 1692,
+      "penalizer": 0.0,
+      "strata": [
+        "anchor_year_group"
+      ],
+      "strata_count": 5,
+      "single_admission_strata": 0,
+      "zero_event_strata": 0,
+      "admissions_in_zero_event_strata": 0,
+      "estimates": {
+        "raas_pre_icu": {
+          "hr": 0.8326505261960626,
+          "lower_95": 0.6732318284597014,
+          "upper_95": 1.0298189560657116,
+          "p": 0.09122234084644912
+        },
+        "age": {
+          "hr": 1.0407129657033478,
+          "lower_95": 1.035761366831894,
+          "upper_95": 1.045688236370419,
+          "p": 1.920748155879552e-60
+        },
+        "gender_M": {
+          "hr": 0.9197049144964619,
+          "lower_95": 0.834734776961814,
+          "upper_95": 1.0133244152443395,
+          "p": 0.09058069710624217
+        },
+        "sofa_score": {
+          "hr": 1.204723696331175,
+          "lower_95": 1.1903485513636887,
+          "upper_95": 1.2192724415375151,
+          "p": 4.054127899741587e-203
+        },
+        "chf": {
+          "hr": 0.9575832961721986,
+          "lower_95": 0.8643576438731617,
+          "upper_95": 1.0608638398789598,
+          "p": 0.40689093835099344
+        },
+        "ckd": {
+          "hr": 0.8913158436193693,
+          "lower_95": 0.7994709200970774,
+          "upper_95": 0.9937121077405056,
+          "p": 0.03811204447852721
+        },
+        "diabetes": {
+          "hr": 0.9214544547604577,
+          "lower_95": 0.829306511114025,
+          "upper_95": 1.0238413672374376,
+          "p": 0.12809104235690796
+        }
+      },
+      "ph_rank_p": {
+        "age": 0.27870362343770755,
+        "chf": 5.75002373774533e-06,
+        "ckd": 0.8437102218891346,
+        "diabetes": 0.37674315602815844,
+        "gender_M": 0.6784469588707016,
+        "raas_pre_icu": 0.995199786970667,
+        "sofa_score": 0.01924264806473267
+      },
+      "warnings": []
+    },
+    "core_penalized": {
+      "n": 11964,
+      "deaths": 1692,
+      "penalizer": 0.1,
+      "strata": [
+        "anchor_year_group"
+      ],
+      "strata_count": 5,
+      "single_admission_strata": 0,
+      "zero_event_strata": 0,
+      "admissions_in_zero_event_strata": 0,
+      "estimates": {
+        "raas_pre_icu": {
+          "hr": 0.88626629310604,
+          "lower_95": 0.7662893222513517,
+          "upper_95": 1.0250279098085602,
+          "p": 0.10376314468713861
+        },
+        "age": {
+          "hr": 1.0200383396537698,
+          "lower_95": 1.0166114221909401,
+          "upper_95": 1.0234768089869017,
+          "p": 6.950085681566967e-31
+        },
+        "gender_M": {
+          "hr": 0.9690751388112151,
+          "lower_95": 0.9003180666276351,
+          "upper_95": 1.0430831719057165,
+          "p": 0.40281880651299806
+        },
+        "sofa_score": {
+          "hr": 1.1269796741917117,
+          "lower_95": 1.115588152578832,
+          "upper_95": 1.1384875171946645,
+          "p": 1.1163844150102203e-117
+        },
+        "chf": {
+          "hr": 1.0066635413438467,
+          "lower_95": 0.9338534015144693,
+          "upper_95": 1.0851504998830732,
+          "p": 0.8623518438297773
+        },
+        "ckd": {
+          "hr": 1.006824959136816,
+          "lower_95": 0.9283729940629053,
+          "upper_95": 1.091906491058662,
+          "p": 0.8694692936257556
+        },
+        "diabetes": {
+          "hr": 0.9323188252836788,
+          "lower_95": 0.8622288906420877,
+          "upper_95": 1.008106317721558,
+          "p": 0.07883404822650224
+        }
+      },
+      "ph_rank_p": {
+        "age": 0.35002222078585,
+        "chf": 0.00126265216054554,
+        "ckd": 0.5512804043490123,
+        "diabetes": 0.48879018051814793,
+        "gender_M": 0.6608917980719144,
+        "raas_pre_icu": 0.787137845501388,
+        "sofa_score": 0.14657265491029878
+      },
+      "warnings": []
+    },
+    "icu_pooled": {
+      "n": 11964,
+      "deaths": 1692,
+      "penalizer": 0.0,
+      "strata": [
+        "anchor_year_group"
+      ],
+      "strata_count": 5,
+      "single_admission_strata": 0,
+      "zero_event_strata": 0,
+      "admissions_in_zero_event_strata": 0,
+      "estimates": {
+        "raas_pre_icu": {
+          "hr": 0.9575474725844604,
+          "lower_95": 0.7722357100509488,
+          "upper_95": 1.1873281050320699,
+          "p": 0.6926218076022561
+        },
+        "age": {
+          "hr": 1.041586907263735,
+          "lower_95": 1.0366357062182519,
+          "upper_95": 1.0465617563387484,
+          "p": 4.7751011289343106e-63
+        },
+        "gender_M": {
+          "hr": 0.9277182465599042,
+          "lower_95": 0.8419227277405915,
+          "upper_95": 1.022256694874931,
+          "p": 0.12968038333949408
+        },
+        "sofa_score": {
+          "hr": 1.2024394343845224,
+          "lower_95": 1.18786423180636,
+          "upper_95": 1.2171934760290581,
+          "p": 6.547288380640305e-193
+        },
+        "chf": {
+          "hr": 0.8741760687155552,
+          "lower_95": 0.7863669116836478,
+          "upper_95": 0.971790378970588,
+          "p": 0.012782474749321829
+        },
+        "ckd": {
+          "hr": 0.8657420226635748,
+          "lower_95": 0.7761505593829647,
+          "upper_95": 0.9656750752089559,
+          "p": 0.009691940608254306
+        },
+        "diabetes": {
+          "hr": 0.9166554919975219,
+          "lower_95": 0.8248191712447811,
+          "upper_95": 1.0187169749475384,
+          "p": 0.10616412653800476
+        },
+        "icu_group_Coronary Care Unit (CCU)": {
+          "hr": 3.2189176295571076,
+          "lower_95": 2.560821300267919,
+          "upper_95": 4.046135786510956,
+          "p": 1.270581684783245e-23
+        },
+        "icu_group_Medical Intensive Care Unit (MICU)": {
+          "hr": 2.359875435870237,
+          "lower_95": 1.9054744406295272,
+          "upper_95": 2.9226380339081643,
+          "p": 3.596588115888262e-15
+        },
+        "icu_group_Medical/Surgical Intensive Care Unit (MICU/SICU)": {
+          "hr": 2.6436465654387225,
+          "lower_95": 2.1234838258302196,
+          "upper_95": 3.2912269346923386,
+          "p": 3.425028481759983e-18
+        },
+        "icu_group_Neuro Intermediate": {
+          "hr": 0.7017913817292221,
+          "lower_95": 0.3749156600298188,
+          "upper_95": 1.3136584997016099,
+          "p": 0.26826390900295083
+        },
+        "icu_group_Neuro Stepdown": {
+          "hr": 0.8877026203587866,
+          "lower_95": 0.28053155210716607,
+          "upper_95": 2.809010024978671,
+          "p": 0.8393915470351428
+        },
+        "icu_group_Neuro Surgical Intensive Care Unit (Neuro SICU)": {
+          "hr": 4.208681621466299,
+          "lower_95": 2.908002358539711,
+          "upper_95": 6.091123323491043,
+          "p": 2.5486856945973124e-14
+        },
+        "icu_group_Other (rare ICU types)": {
+          "hr": 1.810006848647495,
+          "lower_95": 0.9890918811482546,
+          "upper_95": 3.312255266262547,
+          "p": 0.05430564823365534
+        },
+        "icu_group_Surgical Intensive Care Unit (SICU)": {
+          "hr": 1.9985668838037158,
+          "lower_95": 1.5574221897333023,
+          "upper_95": 2.5646671887478925,
+          "p": 5.278928295622613e-08
+        },
+        "icu_group_Trauma SICU (TSICU)": {
+          "hr": 1.732463319874707,
+          "lower_95": 1.3394445063430673,
+          "upper_95": 2.240801422155033,
+          "p": 2.8355406109240083e-05
+        }
+      },
+      "ph_rank_p": {
+        "age": 0.4806642035742129,
+        "chf": 7.571315860351003e-05,
+        "ckd": 0.9073580871943172,
+        "diabetes": 0.41967794027422844,
+        "gender_M": 0.4993840092190931,
+        "icu_group_Coronary Care Unit (CCU)": 0.8717984953038973,
+        "icu_group_Medical Intensive Care Unit (MICU)": 0.7075613548950126,
+        "icu_group_Medical/Surgical Intensive Care Unit (MICU/SICU)": 0.7817512150268066,
+        "icu_group_Neuro Intermediate": 0.2556678076254571,
+        "icu_group_Neuro Stepdown": 0.5147903539033685,
+        "icu_group_Neuro Surgical Intensive Care Unit (Neuro SICU)": 0.9732202955561886,
+        "icu_group_Other (rare ICU types)": 0.3699955607942377,
+        "icu_group_Surgical Intensive Care Unit (SICU)": 0.10425137036123336,
+        "icu_group_Trauma SICU (TSICU)": 0.414774591911512,
+        "raas_pre_icu": 0.7598734247692337,
+        "sofa_score": 0.001571993514668042
+      },
+      "warnings": []
+    },
+    "icu_pooled_penalized": {
+      "n": 11964,
+      "deaths": 1692,
+      "penalizer": 0.01,
+      "strata": [
+        "anchor_year_group"
+      ],
+      "strata_count": 5,
+      "single_admission_strata": 0,
+      "zero_event_strata": 0,
+      "admissions_in_zero_event_strata": 0,
+      "estimates": {
+        "raas_pre_icu": {
+          "hr": 0.9100142429113374,
+          "lower_95": 0.7426239033315228,
+          "upper_95": 1.1151350213565665,
+          "p": 0.3632411859093251
+        },
+        "age": {
+          "hr": 1.0373656005809646,
+          "lower_95": 1.032676685370255,
+          "upper_95": 1.0420758060233264,
+          "p": 1.0053151911778686e-56
+        },
+        "gender_M": {
+          "hr": 0.9320413181723871,
+          "lower_95": 0.8487559986613085,
+          "upper_95": 1.0234991212441156,
+          "p": 0.14058446468538388
+        },
+        "sofa_score": {
+          "hr": 1.1903255388066878,
+          "lower_95": 1.176182458484349,
+          "upper_95": 1.2046386834923923,
+          "p": 1.6410913022987977e-179
+        },
+        "chf": {
+          "hr": 0.8965838321078705,
+          "lower_95": 0.8104716924152761,
+          "upper_95": 0.9918453358952659,
+          "p": 0.03409913117405646
+        },
+        "ckd": {
+          "hr": 0.8910506033395207,
+          "lower_95": 0.8023961111107839,
+          "upper_95": 0.9895002813667714,
+          "p": 0.030976883602388067
+        },
+        "diabetes": {
+          "hr": 0.912884064543653,
+          "lower_95": 0.8248797919969533,
+          "upper_95": 1.0102772832878641,
+          "p": 0.07802339046726674
+        },
+        "icu_group_Coronary Care Unit (CCU)": {
+          "hr": 2.1924205304903994,
+          "lower_95": 1.8440030049057925,
+          "upper_95": 2.6066702547273626,
+          "p": 6.106348060027128e-19
+        },
+        "icu_group_Medical Intensive Care Unit (MICU)": {
+          "hr": 1.65201739741407,
+          "lower_95": 1.4176788392065798,
+          "upper_95": 1.9250914987813204,
+          "p": 1.2619098166038708e-10
+        },
+        "icu_group_Medical/Surgical Intensive Care Unit (MICU/SICU)": {
+          "hr": 1.8369082701929929,
+          "lower_95": 1.5656685856840213,
+          "upper_95": 2.1551380821946124,
+          "p": 8.680498709873744e-14
+        },
+        "icu_group_Neuro Intermediate": {
+          "hr": 0.5877389235383408,
+          "lower_95": 0.35995796406693553,
+          "upper_95": 0.9596593956114616,
+          "p": 0.03362258635827853
+        },
+        "icu_group_Neuro Stepdown": {
+          "hr": 0.6972286409657035,
+          "lower_95": 0.2726210084944124,
+          "upper_95": 1.7831633022986397,
+          "p": 0.4516067718439162
+        },
+        "icu_group_Neuro Surgical Intensive Care Unit (Neuro SICU)": {
+          "hr": 2.8725397329666813,
+          "lower_95": 2.0474912782401793,
+          "upper_95": 4.030046235197862,
+          "p": 1.0071435355881749e-09
+        },
+        "icu_group_Other (rare ICU types)": {
+          "hr": 1.3410911816012745,
+          "lower_95": 0.7501114085835878,
+          "upper_95": 2.397677913957878,
+          "p": 0.3221654407329803
+        },
+        "icu_group_Surgical Intensive Care Unit (SICU)": {
+          "hr": 1.3927386934055983,
+          "lower_95": 1.145861349146771,
+          "upper_95": 1.6928060882352687,
+          "p": 0.00087573152200941
+        },
+        "icu_group_Trauma SICU (TSICU)": {
+          "hr": 1.2189711562200152,
+          "lower_95": 0.9942179568103793,
+          "upper_95": 1.494532129014599,
+          "p": 0.05688442964666842
+        }
+      },
+      "ph_rank_p": {
+        "age": 0.47910670606064665,
+        "chf": 0.00017689080926093037,
+        "ckd": 0.8505068042450422,
+        "diabetes": 0.3714574036683802,
+        "gender_M": 0.531706736511901,
+        "icu_group_Coronary Care Unit (CCU)": 0.7727387619513924,
+        "icu_group_Medical Intensive Care Unit (MICU)": 0.3251702271585837,
+        "icu_group_Medical/Surgical Intensive Care Unit (MICU/SICU)": 0.9562671476779231,
+        "icu_group_Neuro Intermediate": 0.21514050063506487,
+        "icu_group_Neuro Stepdown": 0.5989983160981942,
+        "icu_group_Neuro Surgical Intensive Care Unit (Neuro SICU)": 0.6277868053022766,
+        "icu_group_Other (rare ICU types)": 0.42943067135840696,
+        "icu_group_Surgical Intensive Care Unit (SICU)": 0.113570072070386,
+        "icu_group_Trauma SICU (TSICU)": 0.5635989424175759,
+        "raas_pre_icu": 0.7351733908035765,
+        "sofa_score": 0.0031830978881794273
+      },
+      "warnings": []
+    },
+    "core_ph_stratified": {
+      "n": 11964,
+      "deaths": 1692,
+      "penalizer": 0.0,
+      "strata": [
+        "anchor_year_group",
+        "chf",
+        "sofa_score"
+      ],
+      "strata_count": 191,
+      "single_admission_strata": 17,
+      "zero_event_strata": 10,
+      "admissions_in_zero_event_strata": 152,
+      "estimates": {
+        "raas_pre_icu": {
+          "hr": 0.8299655356898531,
+          "lower_95": 0.6661436621390455,
+          "upper_95": 1.0340754248430595,
+          "p": 0.09665689488963727
+        },
+        "age": {
+          "hr": 1.040542765698205,
+          "lower_95": 1.0353087921709454,
+          "upper_95": 1.0458031994266055,
+          "p": 7.935968549396047e-54
+        },
+        "gender_M": {
+          "hr": 0.9388046915764108,
+          "lower_95": 0.848634234203115,
+          "upper_95": 1.0385560862430794,
+          "p": 0.2203218121211537
+        },
+        "ckd": {
+          "hr": 0.8726310780353215,
+          "lower_95": 0.7784392099004039,
+          "upper_95": 0.9782202497874102,
+          "p": 0.01939668307277138
+        },
+        "diabetes": {
+          "hr": 0.9345440143561355,
+          "lower_95": 0.8367182158403632,
+          "upper_95": 1.0438072199631792,
+          "p": 0.23014930830368385
+        }
+      },
+      "ph_rank_p": {
+        "age": 0.9346822712895573,
+        "ckd": 0.8473171962302861,
+        "diabetes": 0.32688520890347206,
+        "gender_M": 0.6461231067778822,
+        "raas_pre_icu": 0.6052063721835053
+      },
+      "warnings": []
+    },
+    "icu_ph_stratified": {
+      "n": 11964,
+      "deaths": 1692,
+      "penalizer": 0.0,
+      "strata": [
+        "anchor_year_group",
+        "chf",
+        "sofa_score",
+        "icu_type_group"
+      ],
+      "strata_count": 1118,
+      "single_admission_strata": 245,
+      "zero_event_strata": 403,
+      "admissions_in_zero_event_strata": 2541,
+      "estimates": {
+        "raas_pre_icu": {
+          "hr": 1.1268351227328401,
+          "lower_95": 0.8799493313136751,
+          "upper_95": 1.442989213854752,
+          "p": 0.3439515208063191
+        },
+        "age": {
+          "hr": 1.0403060464928315,
+          "lower_95": 1.03441871516832,
+          "upper_95": 1.046226885206195,
+          "p": 2.118967720176418e-42
+        },
+        "gender_M": {
+          "hr": 0.9410233551657265,
+          "lower_95": 0.8368699021740433,
+          "upper_95": 1.0581393268737715,
+          "p": 0.30977216702911053
+        },
+        "ckd": {
+          "hr": 0.8662422028397334,
+          "lower_95": 0.7577087225616556,
+          "upper_95": 0.9903219161101515,
+          "p": 0.03552229655818245
+        },
+        "diabetes": {
+          "hr": 0.8511662630245727,
+          "lower_95": 0.7493820534723385,
+          "upper_95": 0.9667752302770597,
+          "p": 0.013139776240175849
+        }
+      },
+      "ph_rank_p": {
+        "age": 0.5248697151447808,
+        "ckd": 0.49461308395669046,
+        "diabetes": 0.028793506548072896,
+        "gender_M": 0.5389694119302886,
+        "raas_pre_icu": 0.99331878860421
+      },
+      "warnings": []
+    }
+  },
+  "rare_icu_rule": {
+    "minimum_admissions": 50,
+    "pooled_labels": [
+      "Intensive Care Unit (ICU)",
+      "Medicine",
+      "PACU",
+      "Surgery/Trauma",
+      "Surgery/Vascular/Intermediate"
+    ],
+    "group_counts": {
+      "Medical Intensive Care Unit (MICU)": 3223,
+      "Medical/Surgical Intensive Care Unit (MICU/SICU)": 2370,
+      "Coronary Care Unit (CCU)": 1629,
+      "Cardiac Vascular Intensive Care Unit (CVICU)": 1555,
+      "Surgical Intensive Care Unit (SICU)": 1329,
+      "Trauma SICU (TSICU)": 1170,
+      "Neuro Intermediate": 401,
+      "Neuro Surgical Intensive Care Unit (Neuro SICU)": 150,
+      "Neuro Stepdown": 106,
+      "Other (rare ICU types)": 31
+    }
+  },
+  "initial_primary": {
+    "hr": 0.7235052448531606,
+    "lower_95": 0.5855143251230331,
+    "upper_95": 0.8940171347986032,
+    "p": 0.0027214049602684986
+  },
+  "logrank": {
+    "statistic": 8.206867048643822,
+    "p": 0.004173214485017391
+  },
+  "subgroup_logrank": {
+    "statistic": 9.124120503814654,
+    "p": 0.010440526655119462
+  },
+  "baseline": {
+    "overall": {
+      "n": 11964,
+      "deaths": 1692,
+      "male": 6447,
+      "chf": 5505,
+      "ckd": 3321,
+      "diabetes": 4020,
+      "quantiles": {
+        "age": [
+          64.0,
+          72.0,
+          80.0
+        ],
+        "icu_los": [
+          1.1542447916666667,
+          2.109560185185185,
+          4.235711805555556
+        ],
+        "hosp_los": [
+          4.532986111111111,
+          7.626736111111111,
+          13.105555555555554
+        ],
+        "sofa_score": [
+          2.0,
+          4.0,
+          6.0
+        ],
+        "charlson_comorbidity_index": [
+          5.0,
+          6.0,
+          8.0
+        ]
+      }
+    },
+    "no_raas": {
+      "n": 11018,
+      "deaths": 1601,
+      "male": 5907,
+      "chf": 4964,
+      "ckd": 3050,
+      "diabetes": 3599,
+      "quantiles": {
+        "age": [
+          63.0,
+          72.0,
+          80.0
+        ],
+        "icu_los": [
+          1.1540538194444445,
+          2.121394675925926,
+          4.303451967592593
+        ],
+        "hosp_los": [
+          4.399305555555555,
+          7.4319444444444445,
+          12.878645833333334
+        ],
+        "sofa_score": [
+          2.0,
+          4.0,
+          7.0
+        ],
+        "charlson_comorbidity_index": [
+          5.0,
+          6.0,
+          8.0
+        ]
+      }
+    },
+    "raas": {
+      "n": 946,
+      "deaths": 91,
+      "male": 540,
+      "chf": 541,
+      "ckd": 271,
+      "diabetes": 421,
+      "quantiles": {
+        "age": [
+          65.0,
+          72.0,
+          79.0
+        ],
+        "icu_los": [
+          1.1570978009259258,
+          2.002881944444445,
+          3.76412037037037
+        ],
+        "hosp_los": [
+          5.993402777777778,
+          9.734375,
+          14.783333333333333
+        ],
+        "sofa_score": [
+          2.0,
+          4.0,
+          6.0
+        ],
+        "charlson_comorbidity_index": [
+          5.0,
+          7.0,
+          9.0
+        ]
+      }
+    }
+  },
+  "secondary_python_logistic": {
+    "manifest": {
+      "analysis_version": "admission_age_elapsed_time_los_v2",
+      "model_spec": "raas_pre_icu+age+gender+sofa_score+charlson_comorbidity+chf+ckd+diabetes",
+      "n": 11964,
+      "events": 1692,
+      "age_sum": 853097.0,
+      "duration_sum": 113625.48267361111
+    },
+    "parameters": [
+      {
+        "Variable": "Intercept",
+        "Python_Estimate": -5.9487603837812175,
+        "Python_OR": 0.0026090727635365183,
+        "Python_pvalue": 7.006789512959397e-155,
+        "Python_CI_Lower": 0.0016807196133554931,
+        "Python_CI_Upper": 0.0040502060137429146
+      },
+      {
+        "Variable": "raas_pre_icu",
+        "Python_Estimate": -0.30809645108609807,
+        "Python_OR": 0.7348444380467363,
+        "Python_pvalue": 0.011160136558301706,
+        "Python_CI_Lower": 0.5792295043671193,
+        "Python_CI_Upper": 0.9322666474288757
+      },
+      {
+        "Variable": "age",
+        "Python_Estimate": 0.02205590490210592,
+        "Python_OR": 1.022300934506606,
+        "Python_pvalue": 7.250447609766004e-14,
+        "Python_CI_Lower": 1.0164123971268295,
+        "Python_CI_Upper": 1.0282235868505165
+      },
+      {
+        "Variable": "gender",
+        "Python_Estimate": -0.0876313716643545,
+        "Python_OR": 0.9160985143587378,
+        "Python_pvalue": 0.13370783233965058,
+        "Python_CI_Lower": 0.8169627392276,
+        "Python_CI_Upper": 1.0272640938358406
+      },
+      {
+        "Variable": "sofa_score",
+        "Python_Estimate": 0.28197220265106815,
+        "Python_OR": 1.325741867365311,
+        "Python_pvalue": 1.0068849333295019e-244,
+        "Python_CI_Lower": 1.3039918417330196,
+        "Python_CI_Upper": 1.3478546741131474
+      },
+      {
+        "Variable": "charlson_comorbidity",
+        "Python_Estimate": 0.18307507022660782,
+        "Python_OR": 1.2009045568742622,
+        "Python_pvalue": 2.3220372659342997e-42,
+        "Python_CI_Lower": 1.169724427037417,
+        "Python_CI_Upper": 1.2329158230661077
+      },
+      {
+        "Variable": "chf",
+        "Python_Estimate": -0.06792855281487063,
+        "Python_OR": 0.9343272262428449,
+        "Python_pvalue": 0.2727962215372318,
+        "Python_CI_Lower": 0.82751102812012,
+        "Python_CI_Upper": 1.05493139793169
+      },
+      {
+        "Variable": "ckd",
+        "Python_Estimate": -0.5107506323651445,
+        "Python_OR": 0.600044996527663,
+        "Python_pvalue": 2.586183026199802e-12,
+        "Python_CI_Lower": 0.5200721454355339,
+        "Python_CI_Upper": 0.6923154816460246
+      },
+      {
+        "Variable": "diabetes",
+        "Python_Estimate": -0.3299879405289557,
+        "Python_OR": 0.7189324033241496,
+        "Python_pvalue": 4.995402493592188e-07,
+        "Python_CI_Lower": 0.6321306678412268,
+        "Python_CI_Upper": 0.8176534169977324
+      }
+    ]
+  },
+  "execution": {
+    "job_id": "eed08cb2-964e-4d80-972d-1f9540082c6a",
+    "dry_run_bytes": 2736972,
+    "processed_bytes": 2736972,
+    "billed_bytes": 20971520,
+    "generated_at_utc": "2026-11-17T17:57:12.402332+00:00",
+    "query_sha256": "46240e0dee821664c52b06257b6187e9af66e9277313f1513249fc6ee3a94b54"
+  }
+}

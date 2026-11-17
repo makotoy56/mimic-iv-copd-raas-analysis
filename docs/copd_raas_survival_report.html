@@ -39,35 +39,6 @@ ul.task-list li input[type="checkbox"] {
 <link href="copd_raas_survival_report_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="copd_raas_survival_report_files/libs/bootstrap/bootstrap-8ffd5f67044e5306d9846f29df41dda5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -78,19 +49,17 @@ window.Quarto = {
   <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
-  <ul class="collapse">
+  <ul>
   <li><a href="#executive-summary" id="toc-executive-summary" class="nav-link active" data-scroll-target="#executive-summary"><span class="header-section-number">1</span> Executive summary</a></li>
-  <li><a href="#study-question" id="toc-study-question" class="nav-link" data-scroll-target="#study-question"><span class="header-section-number">2</span> Study question</a></li>
-  <li><a href="#data-source-and-cohort" id="toc-data-source-and-cohort" class="nav-link" data-scroll-target="#data-source-and-cohort"><span class="header-section-number">3</span> Data source and cohort</a></li>
-  <li><a href="#exposure-outcome-and-covariates" id="toc-exposure-outcome-and-covariates" class="nav-link" data-scroll-target="#exposure-outcome-and-covariates"><span class="header-section-number">4</span> Exposure, outcome, and covariates</a></li>
-  <li><a href="#statistical-methods" id="toc-statistical-methods" class="nav-link" data-scroll-target="#statistical-methods"><span class="header-section-number">5</span> Statistical methods</a></li>
-  <li><a href="#kaplan-meier-survival-results" id="toc-kaplan-meier-survival-results" class="nav-link" data-scroll-target="#kaplan-meier-survival-results"><span class="header-section-number">6</span> Kaplan-Meier survival results</a></li>
-  <li><a href="#cox-proportional-hazards-results" id="toc-cox-proportional-hazards-results" class="nav-link" data-scroll-target="#cox-proportional-hazards-results"><span class="header-section-number">7</span> Cox proportional hazards results</a></li>
-  <li><a href="#ace-inhibitor-vs-arb-subgroup-analysis" id="toc-ace-inhibitor-vs-arb-subgroup-analysis" class="nav-link" data-scroll-target="#ace-inhibitor-vs-arb-subgroup-analysis"><span class="header-section-number">8</span> ACE inhibitor vs ARB subgroup analysis</a></li>
-  <li><a href="#extended-covariatesensitivity-model-interpretation" id="toc-extended-covariatesensitivity-model-interpretation" class="nav-link" data-scroll-target="#extended-covariatesensitivity-model-interpretation"><span class="header-section-number">9</span> Extended covariate/sensitivity model interpretation</a></li>
-  <li><a href="#sas-python-reproducibility-validation-note" id="toc-sas-python-reproducibility-validation-note" class="nav-link" data-scroll-target="#sas-python-reproducibility-validation-note"><span class="header-section-number">10</span> SAS-Python reproducibility validation note</a></li>
-  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations"><span class="header-section-number">11</span> Limitations</a></li>
-  <li><a href="#portfolioreproducibility-note" id="toc-portfolioreproducibility-note" class="nav-link" data-scroll-target="#portfolioreproducibility-note"><span class="header-section-number">12</span> Portfolio/reproducibility note</a></li>
+  <li><a href="#data-source-and-cohort" id="toc-data-source-and-cohort" class="nav-link" data-scroll-target="#data-source-and-cohort"><span class="header-section-number">2</span> Data source and cohort</a></li>
+  <li><a href="#exposure-outcome-and-methods" id="toc-exposure-outcome-and-methods" class="nav-link" data-scroll-target="#exposure-outcome-and-methods"><span class="header-section-number">3</span> Exposure, outcome, and methods</a></li>
+  <li><a href="#kaplan-meier-results" id="toc-kaplan-meier-results" class="nav-link" data-scroll-target="#kaplan-meier-results"><span class="header-section-number">4</span> Kaplan-Meier results</a></li>
+  <li><a href="#primary-and-extended-cox-results" id="toc-primary-and-extended-cox-results" class="nav-link" data-scroll-target="#primary-and-extended-cox-results"><span class="header-section-number">5</span> Primary and extended Cox results</a></li>
+  <li><a href="#subclass-comparison" id="toc-subclass-comparison" class="nav-link" data-scroll-target="#subclass-comparison"><span class="header-section-number">6</span> Subclass comparison</a></li>
+  <li><a href="#ph-diagnostics-and-interpretation" id="toc-ph-diagnostics-and-interpretation" class="nav-link" data-scroll-target="#ph-diagnostics-and-interpretation"><span class="header-section-number">7</span> PH diagnostics and interpretation</a></li>
+  <li><a href="#sas-python-reproducibility-status" id="toc-sas-python-reproducibility-status" class="nav-link" data-scroll-target="#sas-python-reproducibility-status"><span class="header-section-number">8</span> SAS-Python reproducibility status</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations"><span class="header-section-number">9</span> Limitations</a></li>
+  <li><a href="#reproduction-and-sources" id="toc-reproduction-and-sources" class="nav-link" data-scroll-target="#reproduction-and-sources"><span class="header-section-number">10</span> Reproduction and sources</a></li>
   </ul>
 </nav>
 </div>
@@ -121,125 +90,14 @@ window.Quarto = {
 </header>
 
 
+<p>Updated 2026-11-18 from analysis version <code>admission_age_elapsed_time_los_v2</code>. Generated from aggregate <a href="CURRENT_ANALYSIS.json">current results</a>.</p>
 <section id="executive-summary" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="executive-summary"><span class="header-section-number">1</span> Executive summary</h2>
-<p>This report presents a polished narrative version of a reproducible MIMIC-IV portfolio analysis evaluating whether pre-ICU renin-angiotensin-aldosterone system (RAAS) inhibitor exposure was associated with time-to-in-hospital mortality among ICU patients with chronic obstructive pulmonary disease (COPD).</p>
-<p>The primary analysis used Kaplan-Meier survival curves and Cox proportional hazards models. Pre-ICU RAAS inhibitor exposure was associated with lower observed in-hospital mortality in the Kaplan-Meier and Cox survival analyses. In the refined proportional hazards-compliant Cox model, combined pre-ICU RAAS exposure had an estimated hazard ratio (HR) of 0.717 (95% CI 0.580-0.886; p = 0.00208).</p>
-<p>Subclass analyses suggested that ACE inhibitor monotherapy had a stronger observed association than ARB monotherapy. ARB monotherapy was directionally associated with lower hazard but was not statistically significant. Extended covariate and sensitivity models attenuated the RAAS association after additional adjustment, including ICU type and acute severity/case-mix variables.</p>
-<p>Overall, the findings should be read as observational associations. Residual confounding, confounding by indication, exposure misclassification, and single-center ICU case mix remain important considerations.</p>
+<p>In 11,964 COPD ICU admissions, pre-ICU RAAS exposure was associated with lower observed in-hospital mortality hazard in the refined age/sex-adjusted, era-stratified Cox model (HR 0.732 (0.592–0.904); p=0.00383). Extended core adjustment attenuated the association (HR 0.833 (0.673–1.030); p=0.09122). These estimates are observational associations and cannot establish a treatment effect.</p>
 </section>
-<section id="study-question" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="study-question"><span class="header-section-number">2</span> Study question</h2>
-<p>The study question was whether pre-ICU inpatient RAAS inhibitor exposure was associated with time-to-in-hospital mortality among ICU-admitted adults with COPD in MIMIC-IV.</p>
-<p>The analysis was designed as a reproducible clinical analytics workflow, not as a causal treatment-effect study. The repository-level study background is available in <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/STUDY_BACKGROUND.md">STUDY_BACKGROUND.md</a>, and the detailed methods outline is available in <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/METHODS_OVERVIEW.md">METHODS_OVERVIEW.md</a>.</p>
-</section>
-<section id="data-source-and-cohort" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="data-source-and-cohort"><span class="header-section-number">3</span> Data source and cohort</h2>
-<p>The analysis used MIMIC-IV v3.1, a de-identified ICU electronic health record database maintained by the MIT Laboratory for Computational Physiology and distributed through PhysioNet.</p>
-<p>Adult ICU patients with COPD were identified using ICD-9 and ICD-10 diagnosis codes recorded during hospitalization. Each analytic record represented one qualifying hospital admission, anchored to the first ICU stay within that admission; subsequent ICU stays during the same hospital admission were excluded. A patient could contribute more than one qualifying hospital admission. Cohort construction used version-controlled BigQuery SQL and notebook-based checks.</p>
-<p>The cohort workflow is documented across the executable notebooks:</p>
-<ul>
-<li><a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/01_icu_cohort.ipynb">01_icu_cohort.ipynb</a></li>
-<li><a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/02_cohort_and_exposures.ipynb">02_cohort_and_exposures.ipynb</a></li>
-<li><a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/03a_baseline.ipynb">03a_baseline.ipynb</a></li>
-<li><a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/03b_merge_exposures.ipynb">03b_merge_exposures.ipynb</a></li>
-</ul>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 30%">
-<col style="width: 30%">
-<col style="width: 40%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Cohort construction checkpoint</th>
-<th>Reader-facing source</th>
-<th style="text-align: right;">Count</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Baseline COPD ICU cohort</td>
-<td>Baseline cohort validation</td>
-<td style="text-align: right;">11,964</td>
-</tr>
-<tr class="even">
-<td>Post-merge cohort with RAAS exposure indicators</td>
-<td>Post-merge cohort validation</td>
-<td style="text-align: right;">11,964</td>
-</tr>
-<tr class="odd">
-<td>Unique hospital admissions in exported extended cohort</td>
-<td>Final exported analysis cohort</td>
-<td style="text-align: right;">11,964</td>
-</tr>
-<tr class="even">
-<td>Unique ICU stays in exported extended cohort</td>
-<td>Final exported analysis cohort</td>
-<td style="text-align: right;">11,964</td>
-</tr>
-<tr class="odd">
-<td>Unique patients in exported extended cohort</td>
-<td>Final exported analysis cohort</td>
-<td style="text-align: right;">9,157</td>
-</tr>
-</tbody>
-</table>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Exposure/outcome summary</th>
-<th style="text-align: right;">Count</th>
-<th style="text-align: right;">Percent</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>No pre-ICU RAAS exposure</td>
-<td style="text-align: right;">11,018</td>
-<td style="text-align: right;">92.1</td>
-</tr>
-<tr class="even">
-<td>Any pre-ICU RAAS exposure</td>
-<td style="text-align: right;">946</td>
-<td style="text-align: right;">7.9</td>
-</tr>
-<tr class="odd">
-<td>In-hospital deaths</td>
-<td style="text-align: right;">1,692</td>
-<td style="text-align: right;">14.1</td>
-</tr>
-<tr class="even">
-<td>Discharged alive/censored</td>
-<td style="text-align: right;">10,272</td>
-<td style="text-align: right;">85.9</td>
-</tr>
-</tbody>
-</table>
-<figure class="figure">
-<a href="assets/workflow_diagram.svg" target="_blank" rel="noopener"> <img src="assets/workflow_diagram.svg" class="img-fluid figure-img" alt="Workflow diagram showing cohort construction, exposure definition, outcome modeling, validation, and reporting."> </a>
-<figcaption>
-Cohort construction and analysis workflow. Click the figure or select <a href="assets/workflow_diagram.svg" target="_blank" rel="noopener">Open full-size workflow diagram</a>.
-</figcaption>
-</figure>
-<section id="source-tables-to-analysis-dataset" class="level3" data-number="3.1">
-<h3 data-number="3.1" class="anchored" data-anchor-id="source-tables-to-analysis-dataset"><span class="header-section-number">3.1</span> Source Tables To Analysis Dataset</h3>
-<p>The lineage figure separates MIMIC-IV source and derived tables from project-created analysis tables. Underlying SQL links tables using subject-, admission-, and ICU-stay-level identifiers (<code>subject_id</code>, <code>hadm_id</code>, and <code>stay_id</code>) depending on table level. The primary path builds the ICU COPD cohort, pre-ICU RAAS exposure flag, primary time-to-in-hospital mortality dataset, and extended covariate sensitivity dataset. The figure is schematic: raw MIMIC-IV patient-level data are not included in this repository, and the lineage supports reproducibility and dataset provenance rather than causal interpretation.</p>
-<figure class="figure">
-<a href="assets/copd_table_lineage_dataset_flow.svg" target="_blank" rel="noopener"> <img src="assets/copd_table_lineage_dataset_flow.svg" class="img-fluid figure-img" style="width: 95%;" alt="Schematic lineage diagram separating MIMIC-IV source and derived tables from project-created ICU COPD RAAS cohort, exposure, outcome, and sensitivity analysis tables."> </a>
-<figcaption>
-Source tables to analysis dataset lineage. Click the figure or select <a href="assets/copd_table_lineage_dataset_flow.svg" target="_blank" rel="noopener">Open full-size SVG</a> for detailed table labels.
-</figcaption>
-</figure>
-</section>
-</section>
-<section id="exposure-outcome-and-covariates" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="exposure-outcome-and-covariates"><span class="header-section-number">4</span> Exposure, outcome, and covariates</h2>
-<p>The primary exposure was pre-ICU RAAS inhibitor use, defined from inpatient prescription orders for ACE inhibitors or ARBs before or at ICU admission. This exposure definition supports reproducible EHR-based construction, but it does not directly measure outpatient chronic use, adherence, dose, duration, indication, or medication discontinuation before hospitalization.</p>
-<p>Detailed exposure indicators included ACE inhibitor exposure, ARB exposure, dual ACE inhibitor plus ARB exposure, and mutually exclusive ACE inhibitor or ARB monotherapy indicators for subgroup analysis.</p>
-<p>The primary outcome was time to in-hospital death, with follow-up beginning at ICU admission. For a death event, <code>time_to_event_days</code> was measured from ICU admission (<code>intime</code>) to the recorded in-hospital death time (<code>admissions.deathtime</code>); discharge time (<code>admissions.dischtime</code>) was used as an explicitly flagged fallback only when death time was unavailable. For a patient discharged alive, follow-up was measured from ICU admission to discharge time and the record was censored at discharge.</p>
-<p>Core covariates were selected using a clinical framework and included demographics, cardiovascular comorbidities, chronic kidney disease, diabetes, and SOFA score. Extended sensitivity models added ICU type and additional severity or case-mix variables. The detailed definitions are summarized in <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/METHODS_OVERVIEW.md">METHODS_OVERVIEW.md</a> and the short notebook notes under <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/tree/main/docs">docs/</a>.</p>
-<p>The exported extended cohort supported a compact Table 1-style summary for variables used in the downstream models. Values are descriptive and were not used to introduce additional modeling.</p>
+<section id="data-source-and-cohort" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="data-source-and-cohort"><span class="header-section-number">2</span> Data source and cohort</h2>
+<p>MIMIC-IV v3.1 admissions with the existing ICD-9/10 COPD definition were anchored to the first ICU stay within each hospital admission. Patients may contribute repeated admissions. Adult selection uses <code>anchor_age + admission_year - anchor_year &gt;= 18</code>. The same admission-age estimate is preserved through baseline and outcome construction. <code>anchor_age=91</code> denotes an aggregated age group above 89 in the anchor year, so year adjustment does not recover an exact age.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 20%">
@@ -250,273 +108,201 @@ Source tables to analysis dataset lineage. Click the figure or select <a href="a
 <thead>
 <tr class="header">
 <th>Characteristic</th>
-<th style="text-align: right;">Overall (N = 11,964)</th>
-<th style="text-align: right;">No RAAS (n = 11,018)</th>
-<th style="text-align: right;">RAAS (n = 946)</th>
+<th style="text-align: right;">Overall</th>
+<th style="text-align: right;">No RAAS</th>
+<th style="text-align: right;">RAAS</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
+<td>Admissions</td>
+<td style="text-align: right;">11,964</td>
+<td style="text-align: right;">11,018</td>
+<td style="text-align: right;">946</td>
+</tr>
+<tr class="even">
 <td>Age, median (IQR), years</td>
-<td style="text-align: right;">70 (61-78)</td>
-<td style="text-align: right;">69 (61-78)</td>
-<td style="text-align: right;">70 (63-77)</td>
-</tr>
-<tr class="even">
-<td>Male sex, n (%)</td>
-<td style="text-align: right;">6,447 (53.9)</td>
-<td style="text-align: right;">5,907 (53.6)</td>
-<td style="text-align: right;">540 (57.1)</td>
+<td style="text-align: right;">72 (64–80)</td>
+<td style="text-align: right;">72 (63–80)</td>
+<td style="text-align: right;">72 (65–79)</td>
 </tr>
 <tr class="odd">
-<td>SOFA score, median (IQR)</td>
-<td style="text-align: right;">4 (2-6)</td>
-<td style="text-align: right;">4 (2-7)</td>
-<td style="text-align: right;">4 (2-6)</td>
+<td>Male sex</td>
+<td style="text-align: right;">6,447 (53.9%)</td>
+<td style="text-align: right;">5,907 (53.6%)</td>
+<td style="text-align: right;">540 (57.1%)</td>
 </tr>
 <tr class="even">
-<td>Charlson comorbidity index, median (IQR)</td>
-<td style="text-align: right;">6 (5-8)</td>
-<td style="text-align: right;">6 (5-8)</td>
-<td style="text-align: right;">7 (5-9)</td>
+<td>SOFA, median (IQR)</td>
+<td style="text-align: right;">4 (2–6)</td>
+<td style="text-align: right;">4 (2–7)</td>
+<td style="text-align: right;">4 (2–6)</td>
 </tr>
 <tr class="odd">
-<td>Congestive heart failure, n (%)</td>
-<td style="text-align: right;">5,505 (46.0)</td>
-<td style="text-align: right;">4,964 (45.1)</td>
-<td style="text-align: right;">541 (57.2)</td>
+<td>Charlson index, median (IQR)</td>
+<td style="text-align: right;">6 (5–8)</td>
+<td style="text-align: right;">6 (5–8)</td>
+<td style="text-align: right;">7 (5–9)</td>
 </tr>
 <tr class="even">
-<td>Chronic kidney disease, n (%)</td>
-<td style="text-align: right;">3,321 (27.8)</td>
-<td style="text-align: right;">3,050 (27.7)</td>
-<td style="text-align: right;">271 (28.6)</td>
+<td>ICU LOS, median (IQR), days</td>
+<td style="text-align: right;">2.10956 (1.15424–4.23571)</td>
+<td style="text-align: right;">2.12139 (1.15405–4.30345)</td>
+<td style="text-align: right;">2.00288 (1.1571–3.76412)</td>
 </tr>
 <tr class="odd">
-<td>Diabetes, n (%)</td>
-<td style="text-align: right;">4,020 (33.6)</td>
-<td style="text-align: right;">3,599 (32.7)</td>
-<td style="text-align: right;">421 (44.5)</td>
+<td>Hospital LOS, median (IQR), days</td>
+<td style="text-align: right;">7.62674 (4.53299–13.1056)</td>
+<td style="text-align: right;">7.43194 (4.39931–12.8786)</td>
+<td style="text-align: right;">9.73438 (5.9934–14.7833)</td>
 </tr>
 <tr class="even">
-<td>In-hospital death, n (%)</td>
-<td style="text-align: right;">1,692 (14.1)</td>
-<td style="text-align: right;">1,601 (14.5)</td>
-<td style="text-align: right;">91 (9.6)</td>
+<td>CHF</td>
+<td style="text-align: right;">5,505 (46.0%)</td>
+<td style="text-align: right;">4,964 (45.1%)</td>
+<td style="text-align: right;">541 (57.2%)</td>
+</tr>
+<tr class="odd">
+<td>CKD</td>
+<td style="text-align: right;">3,321 (27.8%)</td>
+<td style="text-align: right;">3,050 (27.7%)</td>
+<td style="text-align: right;">271 (28.6%)</td>
+</tr>
+<tr class="even">
+<td>Diabetes</td>
+<td style="text-align: right;">4,020 (33.6%)</td>
+<td style="text-align: right;">3,599 (32.7%)</td>
+<td style="text-align: right;">421 (44.5%)</td>
+</tr>
+<tr class="odd">
+<td>In-hospital death</td>
+<td style="text-align: right;">1,692 (14.1%)</td>
+<td style="text-align: right;">1,601 (14.5%)</td>
+<td style="text-align: right;">91 (9.6%)</td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="statistical-methods" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="statistical-methods"><span class="header-section-number">5</span> Statistical methods</h2>
-<p>The primary clinical analysis used Kaplan-Meier survival curves and Cox proportional hazards regression. Proportional hazards assumptions were assessed using Schoenfeld residual-based diagnostics. A refined Cox model stratified by calendar-era grouping was used to address proportional hazards concerns while preserving the survival-modeling focus.</p>
-<p>Sensitivity analyses evaluated extended covariate adjustment, ICU type, and penalized Cox specifications. A secondary logistic model was fit only for SAS-Python reproducibility comparison; it was not used as the primary clinical analysis.</p>
-<p>Live discharge was treated as censoring in the primary Cox analysis. A competing-risk framework was not implemented. The Cox models analyzed admission-level records and did not include a patient-level clustering or frailty term for patients with more than one qualifying admission.</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Cox specification</th>
-<th style="text-align: right;">Schoenfeld p-value for RAAS exposure term</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Primary Cox</td>
-<td style="text-align: right;">0.340</td>
-</tr>
-<tr class="even">
-<td>Extended core</td>
-<td style="text-align: right;">0.888</td>
-</tr>
-<tr class="odd">
-<td>ICU-extended</td>
-<td style="text-align: right;">0.649</td>
-</tr>
-</tbody>
-</table>
-<p>These RAAS exposure term diagnostics did not indicate evidence of proportional hazards violation at p &gt; 0.05. Calendar-era non-proportionality identified in the primary modeling workflow was addressed by stratifying baseline hazards by <code>anchor_year_group</code>.</p>
+<section id="exposure-outcome-and-methods" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="exposure-outcome-and-methods"><span class="header-section-number">3</span> Exposure, outcome, and methods</h2>
+<p>Exposure is based on inpatient ACEi/ARB prescription orders before or at ICU admission. It does not directly measure outpatient chronic use or adherence. Follow-up begins at ICU admission and ends at recorded in-hospital death or live discharge. Discharge time is used for death only when death time is missing, with an explicit fallback flag. All intervals, including ICU and hospital LOS, are calculated from DATETIME microsecond differences divided by 86,400,000,000. Death/discharge timestamps, event values, positive follow-up, and downstream lineage are validated before analysis.</p>
+<p>There were 2 fallback deaths. Live discharge is censored; a competing-risk framework is not implemented. Cox models use admission-level records without patient clustering or frailty. Primary 04a adjusts for age and sex and stratifies by anchor year group. Core 04c additionally adjusts for SOFA, CHF, CKD and diabetes. ICU sensitivity models add pooled ICU types; penalties remain 0.1 for core and 0.01 for ICU. Original unpooled ICU estimates are retained in the archived age/time audit.</p>
 </section>
-<section id="kaplan-meier-survival-results" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="kaplan-meier-survival-results"><span class="header-section-number">6</span> Kaplan-Meier survival results</h2>
-<p>Kaplan-Meier curves showed lower observed in-hospital mortality among patients with pre-ICU RAAS inhibitor exposure compared with those without RAAS exposure. The log-rank comparison yielded <span class="math inline">\(\chi^2 = 8.22\)</span> and p = 0.00414. The visual separation supported further Cox proportional hazards modeling, while remaining descriptive and observational.</p>
+<section id="kaplan-meier-results" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="kaplan-meier-results"><span class="header-section-number">4</span> Kaplan-Meier results</h2>
+<p>The two-group log-rank statistic was 8.207, p=0.00417. These are unadjusted survival estimates under live-discharge censoring, not competing-risk-adjusted hospital death probabilities.</p>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<img src="assets/kaplan_meier_curve.png" class="img-fluid figure-img" alt="Kaplan-Meier survival curve comparing ICU COPD patients with and without pre-ICU RAAS inhibitor exposure.">
-<figcaption>
-Kaplan-Meier survival curve for time from ICU admission to recorded in-hospital death, with live discharge treated as censoring
-</figcaption>
+<p><img src="assets/kaplan_meier_curve.png" class="img-fluid figure-img"></p>
+<figcaption>Current Kaplan-Meier estimates</figcaption>
 </figure>
-<p>The Kaplan-Meier curves are best viewed as unadjusted survival patterns. They do not account for all differences in comorbidities, acute illness severity, ICU case mix, or medication-prescribing context.</p>
-<p>The Kaplan-Meier workflow is available in <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/04a_outcomes_and_modeling.ipynb">04a_outcomes_and_modeling.ipynb</a>, with a concise methods/results note in <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/04a_outcomes_and_modeling_SHORT.md">04a_outcomes_and_modeling_SHORT.md</a>.</p>
+</div>
 </section>
-<section id="cox-proportional-hazards-results" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="cox-proportional-hazards-results"><span class="header-section-number">7</span> Cox proportional hazards results</h2>
-<p>The refined proportional hazards-compliant Cox model estimated HR 0.717 (95% CI 0.580-0.886; p = 0.00208) for combined pre-ICU RAAS exposure. This indicates that RAAS exposure was associated with lower observed in-hospital mortality hazard after adjustment within the modeled framework.</p>
+<section id="primary-and-extended-cox-results" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="primary-and-extended-cox-results"><span class="header-section-number">5</span> Primary and extended Cox results</h2>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 21%">
-<col style="width: 21%">
-<col style="width: 28%">
-<col style="width: 28%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Primary Cox model output</th>
-<th>Adjustment/structure</th>
-<th style="text-align: right;">RAAS HR (95% CI)</th>
-<th style="text-align: right;">p-value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Initial multivariable Cox model</td>
-<td>Age, sex, admission year group</td>
-<td style="text-align: right;">0.708 (0.573-0.875)</td>
-<td style="text-align: right;">0.00140</td>
-</tr>
-<tr class="even">
-<td>Refined Cox model</td>
-<td>Age, sex; baseline hazard stratified by <code>anchor_year_group</code></td>
-<td style="text-align: right;">0.717 (0.580-0.886)</td>
-<td style="text-align: right;">0.00208</td>
-</tr>
-</tbody>
-</table>
-<p>This estimate is not evidence that RAAS inhibitors caused lower mortality. RAAS exposure may also identify patients with different cardiovascular histories, baseline risk profiles, clinical management patterns, or medication-continuation decisions.</p>
-<p>Because the refined primary model was followed by extended covariate and ICU-type sensitivity models, the primary HR should be read alongside the attenuation pattern shown in the sensitivity comparison below rather than as an isolated estimate.</p>
-<p>The primary Cox workflow is available in <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/04a_outcomes_and_modeling.ipynb">04a_outcomes_and_modeling.ipynb</a>, with a concise methods/results note in <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/04a_outcomes_and_modeling_SHORT.md">04a_outcomes_and_modeling_SHORT.md</a>. A project-level interpretation is available in <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/RESULTS_SUMMARY.md">RESULTS_SUMMARY.md</a>.</p>
-</section>
-<section id="ace-inhibitor-vs-arb-subgroup-analysis" class="level2" data-number="8">
-<h2 data-number="8" class="anchored" data-anchor-id="ace-inhibitor-vs-arb-subgroup-analysis"><span class="header-section-number">8</span> ACE inhibitor vs ARB subgroup analysis</h2>
-<p>The subclass analysis evaluated whether the observed association for combined RAAS exposure appeared similar for ACE inhibitors and ARBs.</p>
-<p>ACE inhibitor monotherapy was associated with lower observed in-hospital mortality in the subclass Cox model (HR 0.663, 95% CI 0.507-0.869; p = 0.00286). ARB monotherapy had a directionally lower-hazard but statistically non-significant estimate (HR 0.800, 95% CI 0.569-1.124; p = 0.19883). The global three-group log-rank comparison yielded <span class="math inline">\(\chi^2 = 9.14\)</span> with 2 degrees of freedom and p = 0.01036. Dual ACE inhibitor plus ARB therapy was rare and excluded from monotherapy Cox modeling.</p>
-<figure class="figure">
-<img src="assets/raas_subgroup_forest_plot.svg" class="img-fluid figure-img" alt="Forest-style comparison of hazard ratio estimates for ACE inhibitor monotherapy and ARB monotherapy versus no pre-ICU RAAS exposure.">
-<figcaption>
-ACE inhibitor versus ARB subgroup hazard ratio estimates
-</figcaption>
-</figure>
-<p>These subclass comparisons are descriptive and hypothesis-generating, and they do not represent a formal interaction test. The observed pattern should not be read as evidence that ACE inhibitors are clinically superior to ARBs in ICU-admitted COPD patients. Confounding by indication, medication-selection bias, contraindications or tolerance, prescribing history, cardiovascular comorbidity, and differences in patient severity may all contribute to the subclass estimates.</p>
-<p>The executable subgroup workflow is available in <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/04b_outcomes_and_modeling_raas_subgroups.ipynb">04b_outcomes_and_modeling_raas_subgroups.ipynb</a>, with a concise note in <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/04b_outcomes_and_modeling_raas_subgroups_SHORT.md">04b_outcomes_and_modeling_raas_subgroups_SHORT.md</a>.</p>
-</section>
-<section id="extended-covariatesensitivity-model-interpretation" class="level2" data-number="9">
-<h2 data-number="9" class="anchored" data-anchor-id="extended-covariatesensitivity-model-interpretation"><span class="header-section-number">9</span> Extended covariate/sensitivity model interpretation</h2>
-<p>Extended covariate models evaluated whether the observed RAAS association persisted after adding additional severity, comorbidity, and ICU care-setting variables.</p>
-<p>In the unpenalized core Cox model with extended covariates, pre-ICU RAAS exposure had HR 0.809 (95% CI 0.654-1.001; p = 0.05072). This borderline estimate did not meet conventional statistical significance because the confidence interval included 1 and the p-value was greater than 0.05. In the penalized core model, the point estimate remained below 1 but was not statistically significant. After adding ICU type, the RAAS estimate was attenuated and was not statistically significant.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 21%">
-<col style="width: 21%">
-<col style="width: 28%">
-<col style="width: 28%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Sensitivity Cox specification</th>
-<th>Additional adjustment/modeling detail</th>
-<th style="text-align: right;">RAAS HR (95% CI)</th>
-<th style="text-align: right;">p-value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Extended core Cox</td>
-<td>Severity + comorbidity</td>
-<td style="text-align: right;">0.809 (0.654-1.001)</td>
-<td style="text-align: right;">0.05072</td>
-</tr>
-<tr class="even">
-<td>Penalized extended core</td>
-<td>L2 penalizer = 0.1</td>
-<td style="text-align: right;">0.880 (0.761-1.017)</td>
-<td style="text-align: right;">0.084</td>
-</tr>
-<tr class="odd">
-<td>ICU-type adjusted</td>
-<td>Extended model + ICU type</td>
-<td style="text-align: right;">0.940 (0.758-1.166)</td>
-<td style="text-align: right;">0.576</td>
-</tr>
-<tr class="even">
-<td>ICU-type adjusted + L2</td>
-<td>ICU type model; penalizer = 0.01</td>
-<td style="text-align: right;">0.895 (0.730-1.096)</td>
-<td style="text-align: right;">0.283</td>
-</tr>
-</tbody>
-</table>
-<figure class="figure">
-<img src="assets/cox_forest_plot.png" class="img-fluid figure-img" alt="Forest plot of the unpenalized 04c extended core Cox model adjusted for age, sex, SOFA score, congestive heart failure, chronic kidney disease, and diabetes.">
-<figcaption>
-Unpenalized 04c extended core Cox model. This figure does not depict the refined primary 04a Cox model; the RAAS estimate was borderline and did not meet conventional statistical significance.
-</figcaption>
-</figure>
-<figure class="figure">
-<img src="assets/cox_model_sensitivity_comparison.svg" class="img-fluid figure-img" alt="Forest-style comparison of hazard ratio estimates for pre-ICU RAAS exposure across primary refined, extended core, penalized core, ICU-type adjusted, and ICU-type adjusted penalized Cox models.">
-<figcaption>
-Sensitivity comparison of RAAS hazard ratio estimates across Cox model specifications
-</figcaption>
-</figure>
-<p>This attenuation suggests that ICU-level case mix, organ dysfunction, and acute clinical severity may contribute to the observed association. In practical terms, pre-ICU RAAS exposure was associated with lower observed mortality in the primary model, but the estimate was sensitive to additional adjustment.</p>
-<p>The extended covariate workflow is available in <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/04c_extended_covariate_cox_model.ipynb">04c_extended_covariate_cox_model.ipynb</a>, with a concise note in <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/04c_extended_covariate_cox_model_SHORT.md">04c_extended_covariate_cox_model_SHORT.md</a>.</p>
-</section>
-<section id="sas-python-reproducibility-validation-note" class="level2" data-number="10">
-<h2 data-number="10" class="anchored" data-anchor-id="sas-python-reproducibility-validation-note"><span class="header-section-number">10</span> SAS-Python reproducibility validation note</h2>
-<p>The repository includes SAS-Python reproducibility validation for selected secondary model outputs. This step checks cross-platform agreement for exported parameter results and does not introduce a new clinical analysis.</p>
-<p>The secondary Python logistic model in <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/04d_python_logistic_model.ipynb">04d_python_logistic_model.ipynb</a> generated parameters for comparison with SAS outputs. The <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/notebooks/05_sas_python_validation.ipynb">05_sas_python_validation.ipynb</a> compared precomputed SAS and Python secondary logistic validation outputs. Cox proportional hazards survival modeling remained the primary clinical analysis.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 23%">
 <col style="width: 30%">
-<col style="width: 23%">
-<col style="width: 23%">
+<col style="width: 30%">
+<col style="width: 40%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Validation comparison</th>
-<th style="text-align: right;">Variables compared</th>
-<th>Reader-facing source</th>
-<th>Result</th>
+<th>Specification</th>
+<th>RAAS HR (95% CI)</th>
+<th style="text-align: right;">p</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>SAS vs Python secondary logistic parameters</td>
-<td style="text-align: right;">9</td>
-<td>Cross-platform validation comparison</td>
-<td>Absolute estimate differences ranged from 0.000010 to 0.000040</td>
+<td>Initial 04a: era entered as covariate</td>
+<td>0.724 (0.586–0.894)</td>
+<td style="text-align: right;">0.00272</td>
 </tr>
 <tr class="even">
-<td>Largest relative estimate difference</td>
-<td style="text-align: right;">1 variable</td>
-<td>Cross-platform validation comparison</td>
-<td>0.171104% for age</td>
+<td>Primary refined</td>
+<td>0.732 (0.592–0.904)</td>
+<td style="text-align: right;">0.00383</td>
 </tr>
 <tr class="odd">
-<td>RAAS exposure estimate comparison</td>
-<td style="text-align: right;">RAAS exposure term</td>
-<td>Secondary logistic validation outputs</td>
-<td>SAS -0.3153; Python -0.315340</td>
+<td>Extended core</td>
+<td>0.833 (0.673–1.030)</td>
+<td style="text-align: right;">0.09122</td>
+</tr>
+<tr class="even">
+<td>Core + L2 (0.1)</td>
+<td>0.886 (0.766–1.025)</td>
+<td style="text-align: right;">0.10376</td>
+</tr>
+<tr class="odd">
+<td>ICU adjusted (rare types pooled)</td>
+<td>0.958 (0.772–1.187)</td>
+<td style="text-align: right;">0.69262</td>
+</tr>
+<tr class="even">
+<td>ICU pooled + L2 (0.01)</td>
+<td>0.910 (0.743–1.115)</td>
+<td style="text-align: right;">0.36324</td>
+</tr>
+<tr class="odd">
+<td>Core CHF/SOFA strata (exploratory)</td>
+<td>0.830 (0.666–1.034)</td>
+<td style="text-align: right;">0.09666</td>
+</tr>
+<tr class="even">
+<td>ICU CHF/SOFA/type strata (exploratory)</td>
+<td>1.127 (0.880–1.443)</td>
+<td style="text-align: right;">0.34395</td>
 </tr>
 </tbody>
 </table>
-<p>Additional details are available in <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/VALIDATION_NOTES.md">VALIDATION_NOTES.md</a> and <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/sas/README.md">sas/README.md</a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/cox_forest_plot.png" class="img-fluid figure-img"></p>
+<figcaption>Extended core Cox estimates</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/cox_model_sensitivity_comparison.svg" class="img-fluid figure-img"></p>
+<figcaption>Current sensitivity comparison</figcaption>
+</figure>
+</div>
 </section>
-<section id="limitations" class="level2" data-number="11">
-<h2 data-number="11" class="anchored" data-anchor-id="limitations"><span class="header-section-number">11</span> Limitations</h2>
-<p>The observational design limits causal interpretation. The observed association may reflect residual confounding, confounding by indication, differences in medication continuation or withholding, and unmeasured outpatient care patterns.</p>
-<p>The RAAS exposure definition used inpatient prescription orders before or at ICU admission. It does not directly capture outpatient chronic exposure, adherence, dose, duration, patient-level indication, or medication discontinuation before hospitalization.</p>
-<p>Live discharge was treated as censoring in the primary Cox analysis. Because discharge may alter the opportunity to observe in-hospital death, this censoring assumption should be considered when interpreting the survival estimates. A competing-risk framework was not implemented.</p>
-<p>Each analytic record represented a qualifying hospital admission anchored to its first ICU stay. Patients could contribute more than one qualifying admission, and the Cox models did not account for within-patient correlation with a clustering or frailty term.</p>
-<p>COPD status was identified using diagnosis codes recorded during hospitalization. This supports reproducible EHR cohort construction but may introduce misclassification relative to spirometry-confirmed COPD.</p>
-<p>MIMIC-IV reflects ICU admissions from a specific health system. Results may not generalize to other hospitals, non-ICU COPD populations, outpatient cohorts, or current prescribing contexts.</p>
-<p>The ACE inhibitor versus ARB comparison is particularly exploratory because medication subclasses may reflect different indications, contraindications, tolerability, and comorbidity profiles.</p>
-<p>For the full interpretation and limitation discussion, see <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/DISCUSSION_AND_LIMITATIONS.md">DISCUSSION_AND_LIMITATIONS.md</a>.</p>
+<section id="subclass-comparison" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="subclass-comparison"><span class="header-section-number">6</span> Subclass comparison</h2>
+<p>The monotherapy/neither analysis includes 11,951 admissions. Its global three-group log-rank statistic is 9.124, p=0.01044. Dual-exposure admissions are excluded. Each coefficient compares a subclass with neither exposure; this is not a formal ACEi-versus-ARB interaction test.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/raas_subgroup_forest_plot.svg" class="img-fluid figure-img"></p>
+<figcaption>Current ACEi/ARB estimates</figcaption>
+</figure>
+</div>
 </section>
-<section id="portfolioreproducibility-note" class="level2" data-number="12">
-<h2 data-number="12" class="anchored" data-anchor-id="portfolioreproducibility-note"><span class="header-section-number">12</span> Portfolio/reproducibility note</h2>
-<p>Reproducibility was addressed by separating cohort construction, exposure definition, survival modeling, sensitivity analysis, subgroup analysis, figure generation, and SAS-Python validation into version-controlled workflow steps. The rendered report is supported by notebooks, SQL definitions, aggregate validation outputs, and exported figures, while patient-level MIMIC-IV data remain outside the repository.</p>
-<p>For complete environment and reproducibility details, see <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/REPRODUCIBILITY.md">REPRODUCIBILITY.md</a>.</p>
-<p>No patient-level data, credentials, local paths, or large generated intermediate files are included in this repository. Reproduction requires appropriate MIMIC-IV/PhysioNet access, Google Cloud authentication, BigQuery access, and local environment configuration.</p>
+<section id="ph-diagnostics-and-interpretation" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="ph-diagnostics-and-interpretation"><span class="header-section-number">7</span> PH diagnostics and interpretation</h2>
+<p>Primary refined rank PH p-values: age 0.79803, sex 0.32498, RAAS 0.72064. Core and ICU models still require diagnostic interpretation. The current results summary records every covariate-level PH test and warning. Exploratory CHF/SOFA-stratified models allow different baseline hazards; they supplement the primary model rather than redefine it.</p>
+<p>For full diagnostics, sparse-strata limitations and rare-category pooling, see <a href="RESULTS_SUMMARY.md">current results</a>. The approach follows <a href="https://lifelines.readthedocs.io/en/latest/jupyter_notebooks/Proportional%20hazard%20assumption.html#Stratification">lifelines documentation on stratification</a>. A non-significant diagnostic does not prove PH, and additional stratification changes the adjustment structure.</p>
+</section>
+<section id="sas-python-reproducibility-status" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="sas-python-reproducibility-status"><span class="header-section-number">8</span> SAS-Python reproducibility status</h2>
+<p>Python secondary logistic coefficients have been refreshed. Independent SAS rerun and current cross-platform validation are <strong>pending</strong> because no local SAS runtime is available. Historical SAS outputs are not used to claim agreement for this analysis. Both outputs must have matching current cohort/model provenance and exact parameter keys before notebook 05 compares them. SAS code now distinguishes primary 04a and extended core 04c and omits all patient previews.</p>
+</section>
+<section id="limitations" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="limitations"><span class="header-section-number">9</span> Limitations</h2>
+<p>These findings cannot establish causality. Confounding by indication, unmeasured severity, exposure misclassification and a single health system limit interpretation. Age is approximate, especially in the aggregated oldest group. Repeated admissions are not clustered; live discharge remains censoring; rare ICU pooling and PH-responsive strata are exploratory sensitivity choices. SAS validation is pending and must not be presented as completed.</p>
+</section>
+<section id="reproduction-and-sources" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="reproduction-and-sources"><span class="header-section-number">10</span> Reproduction and sources</h2>
+<p>Run the upstream SQL, then <code>.venv/bin/python scripts/current_analysis.py</code>, <code>.venv/bin/python scripts/render_current_report.py</code>, and <code>.venv/bin/python scripts/build_report.py</code> from the repository root. Notebooks 04a–04d use the same model/figure functions. Generated notebook outputs are stripped before commit. No patient records or identifiers are included in the aggregate outputs.</p>
+<ul>
+<li><a href="https://physionet.org/content/mimiciv/3.1/">MIMIC-IV v3.1</a></li>
+<li><a href="METHODS_OVERVIEW.md">Methods overview</a></li>
+<li><a href="VALIDATION_NOTES.md">Validation notes</a></li>
+<li><a href="CURRENT_ANALYSIS.json">Current aggregate model results</a></li>
+<li><a href="AGE_TIME_REVALIDATION.md">Original age/time correction audit</a></li>
+<li><a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/sas/README.md">SAS workflow</a></li>
+</ul>
 </section>
 
 </main>

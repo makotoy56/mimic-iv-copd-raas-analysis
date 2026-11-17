@@ -1,0 +1,15 @@
+[
+  {
+    "notebook": "04c_extended_covariate_cox_model.ipynb",
+    "status": "passed"
+  },
+  {
+    "notebook": "04d_python_logistic_model.ipynb",
+    "status": "passed"
+  },
+  {
+    "notebook": "05_sas_python_validation.ipynb",
+    "status": "correctly_rejected_historical_SAS",
+    "reason": "SAS validation pending: fresh cohort/model provenance is required for both outputs"
+  }
+]

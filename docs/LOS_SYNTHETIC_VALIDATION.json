@@ -1,0 +1,21 @@
+{
+  "synthetic_cases_passed": 12,
+  "production_qa_assertions_exercised": 7,
+  "execution": {
+    "executed_at_utc": "2026-11-17T17:50:44.752779+00:00",
+    "project": "mimic-iv-portfolio",
+    "job_id": "1de41967-a0b1-459e-a21b-8b807ed3e00d",
+    "processed_bytes": 0,
+    "billed_bytes": 0,
+    "query_sha256": "14ee380af5c2c9dfabdc7b58cb139d89c79158005c907094e561ed97e1acd71e",
+    "pipeline_sha256": {
+      "01_extract_base.sql": "2a55ea3cde20723324ddc833dfe17627e1b41d994cf7f219d4b833fde4d060a8",
+      "02_build_cohort_copd.sql": "0eb4f1c39c0e5d76c7e3040f05f8fccd95efe35526072c0bb6d4bdd4838ea0a6",
+      "02_exposure_raas.sql": "bf64d8672fe68f791b81bcf7e6c8584cb7e46f2b8fc1f19f19a8bdca0f8964d5",
+      "02_exposure_raas_detailed.sql": "7c904ea70a9a0b6043c8c612e80902f2aa6c52e3df7712fb6a529e372883ad36",
+      "03_build_baseline.sql": "6faae9e205d316ac8d6260728c970778080309fc43cc427a820ab8b9d00ae06f",
+      "04_build_outcomes.sql": "cad8bebdf56175fc953f808b9c07a11cdfb8f6da2804f12ba78704f1aad87d40",
+      "04_build_outcomes_extended.sql": "d2753309a1a7ceba47c179d01f7ecd8041341d94a619a0d67a4b3b5fe2e54b25"
+    }
+  }
+}

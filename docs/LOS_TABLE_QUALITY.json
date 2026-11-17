@@ -1,0 +1,94 @@
+{
+  "checked_at_utc": "2026-11-17T17:58:47.698068+00:00",
+  "jobs": {
+    "row_counts": {
+      "job_id": "815129d8-d372-455a-9fa2-652a962e9fa3",
+      "processed_bytes": 4055760,
+      "billed_bytes": 83886080
+    },
+    "quality": {
+      "job_id": "a0ec5937-60fb-45e1-a163-e459b9ac6789",
+      "processed_bytes": 4416176,
+      "billed_bytes": 52428800
+    }
+  },
+  "row_counts": [
+    {
+      "table_name": "cohort_icu",
+      "n": 85242,
+      "unique_stays": 85242,
+      "unique_admissions": 85242,
+      "subjects": 65366
+    },
+    {
+      "table_name": "cohort_copd",
+      "n": 11964,
+      "unique_stays": 11964,
+      "unique_admissions": 11964,
+      "subjects": 9157
+    },
+    {
+      "table_name": "cohort_copd_raas",
+      "n": 11964,
+      "unique_stays": 11964,
+      "unique_admissions": 11964,
+      "subjects": 9157
+    },
+    {
+      "table_name": "cohort_copd_raas_detailed",
+      "n": 11964,
+      "unique_stays": 11964,
+      "unique_admissions": 11964,
+      "subjects": 9157
+    },
+    {
+      "table_name": "cohort_copd_baseline",
+      "n": 11964,
+      "unique_stays": 11964,
+      "unique_admissions": 11964,
+      "subjects": 9157
+    },
+    {
+      "table_name": "cohort_copd_with_raas",
+      "n": 11964,
+      "unique_stays": 11964,
+      "unique_admissions": 11964,
+      "subjects": 9157
+    },
+    {
+      "table_name": "cohort_copd_outcomes",
+      "n": 11964,
+      "unique_stays": 11964,
+      "unique_admissions": 11964,
+      "subjects": 9157
+    },
+    {
+      "table_name": "cohort_copd_outcomes_extended",
+      "n": 11964,
+      "unique_stays": 11964,
+      "unique_admissions": 11964,
+      "subjects": 9157
+    }
+  ],
+  "quality": [
+    {
+      "n": 11964,
+      "deaths": 1692,
+      "invalid_followup": 0,
+      "positive_subhour": 2,
+      "fallback_deaths": 2,
+      "incorrect_admission_age": 0,
+      "age_lineage_mismatches": 0,
+      "topcode_mismatches": 0,
+      "topcode_lineage_mismatches": 0,
+      "incorrect_time": 0,
+      "outcome_lineage_mismatches": 0,
+      "incorrect_fallback_flags": 0,
+      "incorrect_icu_los": 0,
+      "incorrect_hosp_los": 0,
+      "icu_los_lineage_mismatches": 0,
+      "hosp_los_lineage_mismatches": 0,
+      "exposure_lineage_mismatches": 0
+    }
+  ]
+}

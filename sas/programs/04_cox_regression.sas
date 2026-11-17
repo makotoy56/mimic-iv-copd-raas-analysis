@@ -1,5 +1,5 @@
 /* 04_cox_regression.sas */
-/* Primary Cox proportional hazards model for mortality */
+/* Extended core Cox model aligned with Python 04c */
 options nodate nonumber;
 ods noproctitle;
 %let output_path=/home/u64438249/portfolio-ICU/output;
@@ -35,7 +35,7 @@ data work.analysis_dataset;
 		ckd, diabetes)=0;
 run;
 
-/* Primary Cox proportional hazards model */
+/* Extended core model: this is distinct from refined primary 04a. */
 proc phreg data=work.analysis_dataset;
 	class gender(ref='F') chf(ref='0') ckd(ref='0') diabetes(ref='0') 
 		anchor_year_group / param=ref;

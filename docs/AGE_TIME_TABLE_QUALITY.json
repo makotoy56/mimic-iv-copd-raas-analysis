@@ -1,0 +1,97 @@
+{
+  "checked_at_utc": "2026-11-17T17:33:21.889688+00:00",
+  "jobs": {
+    "row_counts": {
+      "job_id": "1d7ef701-416a-489d-87dd-00abbb2badbc",
+      "processed_bytes": 4055760,
+      "billed_bytes": 83886080
+    },
+    "quality": {
+      "job_id": "533d52c5-ca26-487e-a698-9a09eff2d346",
+      "processed_bytes": 3554864,
+      "billed_bytes": 52428800
+    },
+    "table_models": {
+      "job_id": "cdeb5d00-8541-4e50-b3c9-79b3ca59aa1b",
+      "processed_bytes": 2654796,
+      "billed_bytes": 20971520
+    }
+  },
+  "row_counts": [
+    {
+      "table_name": "cohort_icu",
+      "n": 85242,
+      "unique_stays": 85242,
+      "unique_admissions": 85242,
+      "subjects": 65366
+    },
+    {
+      "table_name": "cohort_copd",
+      "n": 11964,
+      "unique_stays": 11964,
+      "unique_admissions": 11964,
+      "subjects": 9157
+    },
+    {
+      "table_name": "cohort_copd_raas",
+      "n": 11964,
+      "unique_stays": 11964,
+      "unique_admissions": 11964,
+      "subjects": 9157
+    },
+    {
+      "table_name": "cohort_copd_raas_detailed",
+      "n": 11964,
+      "unique_stays": 11964,
+      "unique_admissions": 11964,
+      "subjects": 9157
+    },
+    {
+      "table_name": "cohort_copd_baseline",
+      "n": 11964,
+      "unique_stays": 11964,
+      "unique_admissions": 11964,
+      "subjects": 9157
+    },
+    {
+      "table_name": "cohort_copd_with_raas",
+      "n": 11964,
+      "unique_stays": 11964,
+      "unique_admissions": 11964,
+      "subjects": 9157
+    },
+    {
+      "table_name": "cohort_copd_outcomes",
+      "n": 11964,
+      "unique_stays": 11964,
+      "unique_admissions": 11964,
+      "subjects": 9157
+    },
+    {
+      "table_name": "cohort_copd_outcomes_extended",
+      "n": 11964,
+      "unique_stays": 11964,
+      "unique_admissions": 11964,
+      "subjects": 9157
+    }
+  ],
+  "quality": [
+    {
+      "n": 11964,
+      "deaths": 1692,
+      "invalid_followup": 0,
+      "positive_subhour": 2,
+      "fallback_deaths": 2,
+      "incorrect_admission_age": 0,
+      "age_lineage_mismatches": 0,
+      "topcode_mismatches": 0,
+      "topcode_lineage_mismatches": 0,
+      "incorrect_time": 0,
+      "outcome_lineage_mismatches": 0,
+      "incorrect_fallback_flags": 0,
+      "exposure_lineage_mismatches": 0
+    }
+  ],
+  "models_match_source_reconstruction": true,
+  "maximum_absolute_estimate_difference": 4.263256414560601e-14
+}

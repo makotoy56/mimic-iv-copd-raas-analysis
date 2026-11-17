@@ -1,5 +1,7 @@
 # 04a - Pre-ICU RAAS Exposure and In-Hospital Mortality in ICU COPD Patients (SHORT)
 
+Current estimates below use the 2026-11-18 admission-age and continuous follow-up corrections; see [the validation report](AGE_TIME_REVALIDATION.md). Figures and the local rendered report are refreshed through the shared current-analysis workflow; independent SAS validation remains pending.
+
 Full notebook:
 [04a - Pre-ICU RAAS Exposure and In-Hospital Mortality in ICU COPD Patients](../notebooks/04a_outcomes_and_modeling.ipynb)
 
@@ -27,7 +29,7 @@ The outcome table is used by subclass analyses in `04b_outcomes_and_modeling_raa
 
 ## Key Results Summary
 - Pre-ICU RAAS exposure was associated with lower observed in-hospital mortality in the primary and refined Cox models.
-- The refined proportional hazards-compliant model estimated HR 0.72 (95% CI 0.58-0.89; p = 0.00208).
+- The refined era-stratified model estimated HR 0.732 (95% CI 0.592-0.904; p = 0.00383).
 - Findings are interpreted as observational associations, not causal effects.
 
 ## Next Step

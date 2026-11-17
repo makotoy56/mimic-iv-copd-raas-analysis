@@ -29,10 +29,7 @@ title2 "Step 2: Dataset Structure (PROC CONTENTS)";
 proc contents data=data.copd_cohort varnum;
 run;
 
-/* First 20 observations */
-title2 "Step 3: First 20 Observations (PROC PRINT)";
-proc print data=data.copd_cohort(obs=20);
-run;
+/* Patient-level previews are omitted; validation outputs are aggregate only. */
 
 /* Categorical variables */
 title2 "Step 4: Frequency Distribution of Key Variables";
