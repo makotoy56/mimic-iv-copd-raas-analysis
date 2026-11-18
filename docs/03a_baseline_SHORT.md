@@ -15,7 +15,7 @@ Construct the baseline COPD ICU cohort with demographic characteristics, pre-ICU
 - `mimic-iv-portfolio.copd_raas.cohort_copd_baseline`
 
 ## Downstream Usage
-This baseline cohort table is the primary input for outcome construction and downstream mortality modeling in `04a_outcomes_and_modeling.ipynb`.
+This cohort table feeds `sql/04_build_outcomes.sql`; run that script and then `sql/04_build_outcomes_extended.sql` after phase 03 and before 04a. The shared model loader reads the resulting extended outcome table.
 
 ## Key Methods and Checks
 - Preserves the cohort admission-age estimate and raw/topcoded-age fields; adds sex, calendar-time variables, hospital length of stay, and date-of-death information.

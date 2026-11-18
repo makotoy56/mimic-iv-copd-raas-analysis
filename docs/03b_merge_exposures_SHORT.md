@@ -22,4 +22,6 @@ This exposure-enhanced cohort table supports exposure distribution checks and do
 - Validates row counts, missing exposure fields, exposure distributions, and cross-tabulated RAAS counts.
 
 ## Next Step
+Before 04a, run `sql/04_build_outcomes.sql` and then `sql/04_build_outcomes_extended.sql`; the merge notebook does not create either outcome table. See [the dependency map](METHODS_OVERVIEW.md#outcome-table-dependencies).
+
 Next: [04a - Outcomes and Primary Modeling](04a_outcomes_and_modeling_SHORT.md)

@@ -23,7 +23,7 @@ The workflow is organized as a stepwise clinical analysis pipeline:
    - `sql/02_exposure_raas.sql`
    - `sql/02_exposure_raas_detailed.sql`
    - `notebooks/02_cohort_and_exposures.ipynb`
-3. **Baseline covariates and merge step**: baseline variables and exposure indicators are prepared and merged for analysis.
+3. **Cohort descriptors and merge step**: demographic fields and prescription-order indicators are prepared and merged. The later first-day SOFA score is not assumed to be known at ICU entry.
    - `sql/03_build_baseline.sql`
    - `sql/03_merge_exposures.sql`
    - `notebooks/03a_baseline.ipynb`
@@ -33,9 +33,9 @@ The workflow is organized as a stepwise clinical analysis pipeline:
    - `sql/04_build_outcomes_extended.sql`
 5. **Primary statistical analysis**: Kaplan-Meier survival curves and Cox proportional hazards models are run in Python.
    - `notebooks/04a_outcomes_and_modeling.ipynb`
-6. **Subgroup analysis**: ACE inhibitor and ARB monotherapy exposure groups are evaluated descriptively.
+6. **Subclass analysis**: ACEi-only and ARB-only prescription-order groups are each compared with neither; no direct between-class contrast is reported in the main analysis.
    - `notebooks/04b_outcomes_and_modeling_raas_subgroups.ipynb`
-7. **Sensitivity analysis**: extended covariate, ICU-type, and penalized Cox specifications are evaluated.
+7. **Exploratory sensitivity analysis**: extended covariate, ICU-type, penalized and CHF/SOFA-stratified Cox specifications can include first-day information through 24 hours after ICU entry; they are not baseline-only severity adjustment.
    - `notebooks/04c_extended_covariate_cox_model.ipynb`
 8. **Independent calculation**: statsmodels PHReg independently fits six unpenalized Cox specifications and compares 40 coefficients, HRs, confidence intervals and p-values with the current lifelines reference.
    - `scripts/independent_cox_crosscheck.py`
@@ -139,6 +139,16 @@ No `requirements.txt` or `environment.yml` file is required for the current uv-m
    - `notebooks/02_cohort_and_exposures.ipynb`
    - `notebooks/03a_baseline.ipynb`
    - `notebooks/03b_merge_exposures.ipynb`
+
+   **Before 04a, run the following entire BigQuery scripts in US, in this order, and wait for each to finish:**
+
+   1. `sql/04_build_outcomes.sql`: reads `cohort_copd_baseline` and source `admissions`, runs endpoint/follow-up QA, then writes `cohort_copd_outcomes`.
+   2. `sql/04_build_outcomes_extended.sql`: reads `cohort_copd_outcomes`, joins `first_day_sofa`, `charlson` and ICU type, then writes `cohort_copd_outcomes_extended`.
+
+   `03_merge_exposures.sql` writes `cohort_copd_with_raas`; that table does not replace either outcome table. The shared loader used by 04a–04d reads `cohort_copd_outcomes_extended` and joins `cohort_copd_raas_detailed`, so even the age/sex-only primary model requires the extended table to exist. The notebooks do not create either outcome table. See [the dependency map](docs/METHODS_OVERVIEW.md#outcome-table-dependencies).
+
+   Then continue with:
+
    - `notebooks/04a_outcomes_and_modeling.ipynb`
    - `notebooks/04b_outcomes_and_modeling_raas_subgroups.ipynb`
    - `notebooks/04c_extended_covariate_cox_model.ipynb`

@@ -86,3 +86,6 @@ _site/
 
 # Local manual Quarto render (canonical docs build uses scripts/build_report.py)
 reports/_rendered/
+
+# Unpublished local exploratory supplements
+/reports/local_supplements/

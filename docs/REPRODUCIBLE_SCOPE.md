@@ -20,3 +20,5 @@ The current portfolio includes the following BigQuery/Python workflow. It has no
 The optional 04d notebook produces a secondary Python logistic parameter export; it does not define a new primary clinical analysis or establish independent clinical validation.
 
 [Full environment and execution steps](../REPRODUCIBILITY.md) · [Validation details](VALIDATION_NOTES.md) · [Independent calculation record](INDEPENDENT_REVALIDATION.md)
+
+The core/ICU specifications using first-day SOFA are exploratory sensitivity analyses that can include information through 24 hours after ICU entry, rather than baseline-only severity adjustment. Numerical reproduction does not validate covariate timing or establish a direct ACEi-versus-ARB contrast. See [timing limitations](ANALYSIS_TIMING_LIMITATIONS.md).

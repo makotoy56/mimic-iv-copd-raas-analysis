@@ -37,11 +37,11 @@ The Quarto report provides the single narrative version of the study question, m
 | Exposure | Pre-ICU inpatient ACE inhibitor or ARB prescription orders before or at ICU admission |
 | Outcome | In-hospital death: ICU admission to recorded death time, with discharge-time fallback if death time is unavailable; live discharge: ICU admission to discharge, censored at discharge |
 | Primary analysis | Kaplan-Meier survival curves and Cox proportional hazards modeling |
-| Subgroup analysis | ACE inhibitor vs ARB monotherapy comparison |
-| Sensitivity analysis | Extended covariate and ICU type adjustment |
+| Subclass analysis | ACEi-only and ARB-only prescription-order groups, each versus neither; no direct between-class test |
+| Sensitivity analysis | Exploratory first-day-SOFA, comorbidity and ICU-type specifications; not baseline-only severity adjustment |
 | Validation | Source-SQL and table QA; independent lifelines–PHReg comparison of six unpenalized Cox specifications |
 
-Exposure is based on inpatient medication orders before or at ICU admission and does not directly capture outpatient chronic use, adherence, dose, duration, indication, or medication discontinuation before hospitalization.
+Exposure flags identify inpatient prescription records in the same hospital admission with `starttime <= intime`. They do not verify actual administration, continued treatment at ICU entry, adherence or concurrent ACEi/ARB administration. Both positive class flags mean qualifying records for both classes; they do not establish simultaneous treatment. Neither means no qualifying prescription record for either class, not proven absence of all medication use. Outpatient chronic use, dose, duration, indication and discontinuation before hospitalization are not directly measured.
 
 ## What This Demonstrates
 
@@ -49,17 +49,17 @@ Exposure is based on inpatient medication orders before or at ICU admission and 
 - Reproducible cohort, exposure, covariate, and outcome construction in BigQuery SQL
 - Time-to-event analysis using Kaplan-Meier curves and Cox proportional hazards regression
 - Proportional hazards diagnostics and refined survival-model specification
-- ACE inhibitor vs ARB subgroup analysis with cautious interpretation
-- Extended covariate sensitivity modeling for severity, comorbidity, and ICU case mix
+- ACEi-only and ARB-only prescription-order associations against a shared neither-order reference
+- Exploratory sensitivity modeling using first-day severity, comorbidity, and ICU case mix, with explicit timing limitations
 - Independent Cox calculations using lifelines and statsmodels PHReg, with recorded cohort and query provenance
 - Clinical reporting with transparent limitations and residual-confounding discussion
 
 ## Key Findings
 
 - Pre-ICU RAAS inhibitor exposure was associated with lower observed in-hospital mortality in Kaplan-Meier and Cox survival analyses.
-- The refined era-stratified Cox model estimated HR 0.732 (95% CI 0.592-0.904; p = 0.00383) for combined pre-ICU RAAS exposure.
-- ACE inhibitor monotherapy showed a stronger observed association than ARB monotherapy; ARB estimates were directionally lower-hazard but not statistically significant.
-- Extended adjustment, including ICU type and additional severity/case-mix variables, attenuated the association. The unpenalized extended core estimate did not meet conventional statistical significance (HR 0.833, 95% CI 0.673-1.030; p = 0.09122).
+- The refined era-stratified Cox model estimated HR 0.732 (95% CI 0.592-0.904; p = 0.00383) for any qualifying pre-ICU ACEi/ARB prescription order.
+- Against neither qualifying prescription order, ACEi-only orders had HR 0.683 (95% CI 0.521-0.894; p = 0.00550) and ARB-only orders had HR 0.805 (95% CI 0.573-1.131; p = 0.21116). The main results report no direct ACEi-versus-ARB test; the differing significance levels do not establish a between-class difference.
+- The exploratory extended core specification had HR 0.833 (95% CI 0.673-1.030; p = 0.09122). SOFA-containing core and ICU specifications can include information through 24 hours after follow-up starts. Their attenuation cannot be attributed solely to controlling pre-ICU confounding.
 
 See [Results summary](docs/RESULTS_SUMMARY.md) and [Discussion and limitations](docs/DISCUSSION_AND_LIMITATIONS.md) for interpretation details.
 
@@ -69,7 +69,7 @@ See [Results summary](docs/RESULTS_SUMMARY.md) and [Discussion and limitations](
 
 The workflow moves from MIMIC-IV ICU tables to cohort construction, RAAS exposure definition, mortality outcome construction, baseline characterization, Kaplan-Meier and Cox survival analysis, sensitivity modeling, independent Cox calculations, and Quarto reporting.
 
-For the detailed source-table-to-analysis-dataset lineage, see the [Quarto clinical analysis report section on source tables and project-created analysis tables](https://makotoy56.github.io/mimic-iv-copd-raas-analysis/copd_raas_survival_report.html#source-tables-to-analysis-dataset).
+For source tables, outcome-table outputs and model dependencies, see [the outcome-table dependency map](docs/METHODS_OVERVIEW.md#outcome-table-dependencies).
 
 For clinical analytics, RWE, HEOR, and outcomes research teams, the portfolio value is the reproducible workflow: defensible cohort definitions, documented modeling decisions, explicit sensitivity analysis, and validation checks that make results easier to review.
 
@@ -83,11 +83,11 @@ Figures shown in the README are generated from the analysis notebooks and saved 
 
 This unadjusted survival curve compares observed in-hospital survival patterns between ICU COPD patients with and without pre-ICU RAAS inhibitor exposure.
 
-### Extended Core Cox Model Forest Plot
+### Exploratory Extended Core Cox Model Forest Plot
 
 ![Cox hazard ratio forest plot](assets/cox_forest_plot.png)
 
-This forest plot is generated by the 04c extended-covariate notebook and summarizes the unpenalized extended core Cox model adjusted for age, sex, SOFA score, congestive heart failure, chronic kidney disease, and diabetes. It does not depict the refined primary 04a Cox model. The current corrected estimate is HR 0.833 (95% CI 0.673-1.030; p = 0.09122). All estimates should be interpreted as observational associations, not causal treatment effects.
+This forest plot is generated by the 04c notebook and summarizes the exploratory unpenalized core model adjusted for age, sex, first-day SOFA, congestive heart failure, chronic kidney disease, and diabetes. First-day SOFA can use information through 24 hours after ICU entry; this is not baseline-only severity adjustment. It does not depict the refined primary 04a Cox model. The current corrected estimate is HR 0.833 (95% CI 0.673-1.030; p = 0.09122). All estimates should be interpreted as observational associations, not causal treatment effects.
 
 Additional portfolio figures include the RAAS subgroup forest plot and the extended covariate sensitivity comparison in [assets/](assets/).
 
@@ -100,7 +100,7 @@ Additional portfolio figures include the RAAS subgroup forest plot and the exten
 | Analysis environment | Python, pandas, lifelines, statsmodels, Jupyter |
 | Survival methods | Kaplan-Meier curves, log-rank comparison, Cox proportional hazards models |
 | Model diagnostics | Schoenfeld residual-based proportional hazards checks |
-| Sensitivity models | Extended covariates, ICU type adjustment, penalized Cox specifications |
+| Sensitivity models | Exploratory first-day-SOFA, ICU-type, penalized and CHF/SOFA-stratified Cox specifications |
 | Independent model implementation | statsmodels PHReg compared with lifelines, using Efron ties and matched strata |
 | Reporting | Quarto HTML report and modular documentation |
 
@@ -140,7 +140,7 @@ Notebook workflow:
 - [03 baseline covariates](notebooks/03a_baseline.ipynb) and [short notes](docs/03a_baseline_SHORT.md)
 - [03 exposure merge](notebooks/03b_merge_exposures.ipynb) and [short notes](docs/03b_merge_exposures_SHORT.md)
 - [04a primary survival analysis](notebooks/04a_outcomes_and_modeling.ipynb) and [short notes](docs/04a_outcomes_and_modeling_SHORT.md)
-- [04b ACE inhibitor vs ARB subgroup analysis](notebooks/04b_outcomes_and_modeling_raas_subgroups.ipynb) and [short notes](docs/04b_outcomes_and_modeling_raas_subgroups_SHORT.md)
+- [04b ACEi-only and ARB-only orders versus neither](notebooks/04b_outcomes_and_modeling_raas_subgroups.ipynb) and [short notes](docs/04b_outcomes_and_modeling_raas_subgroups_SHORT.md)
 - [04c extended covariate Cox models](notebooks/04c_extended_covariate_cox_model.ipynb) and [short notes](docs/04c_extended_covariate_cox_model_SHORT.md)
 - [04d secondary Python logistic validation model](notebooks/04d_python_logistic_model.ipynb) and [short notes](docs/04d_python_logistic_model_SHORT.md)
 
@@ -167,8 +167,9 @@ Key limitations:
 - MIMIC-IV reflects ICU admissions from a specific health system and may not generalize to other settings.
 - Live discharge is treated as censoring in the primary Cox analysis; a competing-risk framework was not implemented.
 - Each record represents a qualifying hospital admission anchored to its first ICU stay. Patients may contribute more than one admission, and the Cox models do not include a patient-level clustering or frailty term.
-- ACE inhibitor vs ARB subgroup comparisons are descriptive and hypothesis-generating.
-- Extended covariate and ICU type adjustment attenuated the observed RAAS association, indicating sensitivity to case-mix and severity adjustment.
+- Each subclass is compared with neither qualifying prescription order; no direct ACEi-versus-ARB contrast supports a superiority claim.
+- `sofa_score` comes from `mimiciv_3_1_derived.first_day_sofa`. Its published definition can use information through 24 hours after ICU entry, while follow-up starts at ICU entry. All SOFA-containing core, ICU-adjusted and CHF/SOFA-stratified models are therefore exploratory sensitivity analyses that can use post-start information, not baseline-only severity adjustment. Temporal leakage or adjustment for post-exposure information may affect interpretation; its impact has not been quantified here. The primary age/sex model with era strata is unchanged. Time-aligned severity adjustment or a separate landmark design would require reanalysis.
+- Differences across the exploratory SOFA/ICU specifications cannot be interpreted solely as correction of baseline confounding. See [timing limitations and separate reanalysis options](docs/ANALYSIS_TIMING_LIMITATIONS.md).
 
 ## Project Structure
 

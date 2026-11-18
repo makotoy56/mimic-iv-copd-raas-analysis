@@ -8,9 +8,9 @@ This document contains the extended interpretation and limitation discussion for
 
 Pre-ICU RAAS inhibitor exposure was associated with lower observed in-hospital mortality among ICU-admitted COPD patients. The association was visible in Kaplan-Meier analyses and in the primary and core Cox models. It was sensitive to additional adjustment; the exploratory ICU/CHF/SOFA-stratified point estimate crossed above 1 with a confidence interval including 1.
 
-When RAAS inhibitors were evaluated by subclass, ACE inhibitor exposure showed a more pronounced association with lower observed mortality than ARB exposure. This pattern is consistent with the rationale for evaluating RAAS inhibitor subclasses separately, but it should not be interpreted as evidence that ACE inhibitors are clinically superior to ARBs in this setting.
+ACEi-only and ARB-only prescription-order groups are each compared with neither qualifying order. Records with both class flags positive are excluded from this subclass analysis. The main analysis reports no direct ACEi-versus-ARB contrast or interaction test. Different point estimates, or one p-value below 0.05 and the other above it, do not establish a difference between the classes.
 
-Sensitivity analyses attenuated the association after additional adjustment, including ICU type and acute illness severity measures. This suggests that ICU-level case mix, organ dysfunction, and clinical severity may contribute to the observed signal.
+Exploratory SOFA-containing models produced different estimates from the age/sex/era primary model. Because first-day severity can use information after follow-up begins, this attenuation cannot be attributed solely to control of pre-ICU confounding. `sofa_score` comes from `mimiciv_3_1_derived.first_day_sofa`. Its published definition can use information through 24 hours after ICU entry, while follow-up starts at ICU entry. All SOFA-containing core, ICU-adjusted and CHF/SOFA-stratified models are therefore exploratory sensitivity analyses that can use post-start information, not baseline-only severity adjustment. Temporal leakage or adjustment for post-exposure information may affect interpretation; its impact has not been quantified here. The primary age/sex model with era strata is unchanged. Time-aligned severity adjustment or a separate landmark design would require reanalysis.
 
 The unpenalized extended core Cox estimate (HR 0.833, 95% CI 0.673-1.030; p = 0.09122) did not meet conventional statistical significance. The further attenuation in penalized and ICU-type-adjusted specifications reinforces the sensitivity of the association to model specification and case-mix adjustment.
 
@@ -26,11 +26,11 @@ Differences between this analysis and prior studies should be interpreted carefu
 
 Age is approximated from admission year and the anchor year. Admissions whose anchor age is the aggregated 91 group retain additional age uncertainty. Corrected core/ICU models also retain PH violations for some covariates; these are not resolved by the age/time corrections.
 
-This analysis is observational and cannot establish causality. Despite strict temporal ordering of exposure before ICU admission and extensive covariate adjustment, residual confounding by indication and unmeasured severity factors may remain.
+This analysis is observational and cannot establish causality. Prescription flags are defined by records with start time before or at ICU entry, but the first-day severity covariate need not precede follow-up or exposure. Residual confounding and post-exposure adjustment remain concerns.
 
 RAAS inhibitor use likely reflects underlying cardiovascular comorbidity, chronic disease management, outpatient access to care, prescribing preferences, and medication continuation or withholding decisions that are not fully captured in EHR data.
 
-The exposure definition uses inpatient prescription orders before or at ICU admission. It does not directly measure outpatient chronic use, adherence, dose, duration, medication discontinuation before hospitalization, or patient-level indication for RAAS inhibitor therapy.
+Exposure flags identify inpatient prescription records in the same hospital admission with `starttime <= intime`. They do not verify actual administration, continued treatment at ICU entry, adherence or concurrent ACEi/ARB administration. Both positive class flags mean qualifying records for both classes; they do not establish simultaneous treatment. Neither means no qualifying prescription record for either class, not proven absence of all medication use. Outpatient use, dose, duration and indication are also not directly measured.
 
 COPD status is identified using ICD-9 and ICD-10 diagnosis codes recorded during hospitalization. This supports reproducible EHR cohort construction but may introduce misclassification compared with spirometry-confirmed COPD.
 
@@ -40,11 +40,11 @@ Live discharge was treated as censoring in the primary Cox analysis. Because dis
 
 Each analytic record represents a qualifying hospital admission anchored to its first ICU stay. Patients may contribute more than one qualifying admission, and the Cox models do not account for within-patient correlation with a clustering or frailty term.
 
-Subclass comparisons between ACE inhibitors and ARBs are especially hypothesis-generating. Patients receiving these medication classes may differ in contraindications, comorbidities, prescribing history, and tolerance of therapy. Observed differences between ACE inhibitor and ARB groups should be treated as signals for future study rather than causal evidence.
+The fitted subclass coefficients each use neither qualifying order as reference. A direct between-class contrast with its covariance and uncertainty would require a separate analysis; none is reported here.
 
-## Bottom Line
+## Interpretation scope
 
-The project demonstrates a transparent clinical data analysis workflow using MIMIC-IV, BigQuery SQL, Python, Jupyter, and Quarto. The clinical finding is best summarized as an observational association: pre-ICU RAAS inhibitor exposure was associated with lower observed in-hospital mortality among ICU-admitted COPD patients, with a more pronounced observed association for ACE inhibitors than for ARBs.
+The project demonstrates a transparent clinical data analysis workflow using MIMIC-IV, BigQuery SQL, Python, Jupyter, and Quarto. The clinical finding is best summarized as an observational association: pre-ICU RAAS inhibitor exposure was associated with lower observed in-hospital mortality among ICU-admitted COPD patients, with separate subclass-versus-neither estimates and no direct between-class test.
 
 These findings are hypothesis-generating and cannot establish causality. Prospective, quasi-experimental, or externally validated analyses would be needed before making clinical conclusions about RAAS inhibitor treatment effects in ICU COPD populations.
 

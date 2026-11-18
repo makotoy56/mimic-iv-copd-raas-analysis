@@ -192,7 +192,7 @@ def export_figures(result, models, kms, assets: Path):
         plt.close(fig)
     labels = {"raas_pre_icu": "Pre-ICU RAAS", "age": "Age (per year)", "gender_M": "Male sex", "sofa_score": "SOFA (per point)", "chf": "CHF", "ckd": "CKD", "diabetes": "Diabetes"}
     forest([(labels.get(k,k),v) for k,v in result["models"]["core"]["estimates"].items()], "Extended core Cox model", assets / "cox_forest_plot.png")
-    forest([(label, result["models"]["subgroups"]["estimates"][cov]) for label, cov in [("ACEi monotherapy", "acei_pre_icu"), ("ARB monotherapy", "arb_pre_icu")]], "RAAS subclasses versus no exposure", assets / "raas_subgroup_forest_plot.svg")
+    forest([(label, result["models"]["subgroups"]["estimates"][cov]) for label, cov in [("ACEi-only orders", "acei_pre_icu"), ("ARB-only orders", "arb_pre_icu")]], "ACEi-only and ARB-only orders versus neither", assets / "raas_subgroup_forest_plot.svg")
     keys = [("Primary refined", "primary_refined"), ("Extended core", "core"), ("Core + L2 (0.1)", "core_penalized"), ("ICU pooled", "icu_pooled"), ("ICU pooled + L2 (0.01)", "icu_pooled_penalized"), ("Core PH strata (exploratory)", "core_ph_stratified"), ("ICU PH strata (exploratory)", "icu_ph_stratified")]
     forest([(label, result["models"][key]["estimates"]["raas_pre_icu"]) for label, key in keys], "RAAS estimates across model specifications", assets / "cox_model_sensitivity_comparison.svg")
 

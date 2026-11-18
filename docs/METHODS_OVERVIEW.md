@@ -18,12 +18,23 @@ Primary workflow:
 - `02_cohort_and_exposures.ipynb`: COPD cohort and RAAS exposure construction
 - `03a_baseline.ipynb`: baseline covariate table
 - `03b_merge_exposures.ipynb`: detailed exposure merge
+- Run both outcome SQL scripts below before any 04-series notebook.
+
+## Outcome-table dependencies
+
+| Script | Input | Persistent output | Downstream use |
+| --- | --- | --- | --- |
+| `sql/03_merge_exposures.sql` | `cohort_copd` and `cohort_copd_raas_detailed` | `cohort_copd_with_raas` | Exposure distribution checks; does not create the outcomes used by the shared model loader |
+| `sql/04_build_outcomes.sql` | `cohort_copd_baseline` and source hospital `admissions` | `cohort_copd_outcomes` | Endpoint/follow-up QA; mandatory input to the extended-outcome SQL |
+| `sql/04_build_outcomes_extended.sql` | `cohort_copd_outcomes`, derived `first_day_sofa` and `charlson`, and source ICU stays | `cohort_copd_outcomes_extended` | The shared `load_current_data()` reads this table and joins `cohort_copd_raas_detailed` for notebooks 04a–04d |
+
+Run the full outcome scripts sequentially in US after phase 03 and before 04a. Even the primary age/sex model reads the shared extended input; joining SOFA into that input does not mean SOFA is included in the primary model formula. The 04-series notebooks refresh model results and figures, not BigQuery tables.
 
 ## Exposure Definition
 
-The primary exposure is pre-ICU RAAS inhibitor use, defined from inpatient prescription orders for ACE inhibitors or ARBs before or at ICU admission. This definition does not directly measure outpatient chronic medication use, adherence, dose, duration, or medication discontinuation before hospitalization.
+Exposure flags identify inpatient prescription records in the same hospital admission with `starttime <= intime`. They do not verify actual administration, continued treatment at ICU entry, adherence or concurrent ACEi/ARB administration. Both positive class flags mean qualifying records for both classes; they do not establish simultaneous treatment. Neither means no qualifying prescription record for either class, not proven absence of all medication use.
 
-Detailed exposure indicators include ACE inhibitor exposure, ARB exposure, dual exposure, and mutually exclusive ACE inhibitor or ARB monotherapy indicators for subgroup analysis.
+Detailed indicators identify ACEi-only orders, ARB-only orders, records for both classes, and neither. Legacy field names such as `is_monotherapy` and `exposure_group_3cat_monotherapy` are order-flag labels, not verified medication administration. ACEi-only and ARB-only prescription-order groups are each compared with neither qualifying order. Records with both class flags positive are excluded from this subclass analysis. The main analysis reports no direct ACEi-versus-ARB contrast or interaction test. Different point estimates, or one p-value below 0.05 and the other above it, do not establish a difference between the classes.
 
 ## Outcome Definition
 
@@ -33,11 +44,13 @@ Follow-up is calculated as `DATETIME_DIFF(endpoint, intime, MICROSECOND) / 86400
 
 ## Covariates
 
-Covariates were selected a priori based on a conceptual clinical framework and include demographics, cardiovascular comorbidities, chronic kidney disease, diabetes, and SOFA score. Extended sensitivity models include ICU type and additional clinical variables.
+The refined primary model adjusts for admission-age estimate and sex, stratified by anchor-year group. Its formula is unchanged. Extended core models add first-day SOFA, CHF, CKD and diabetes; ICU models add pooled ICU type. `sofa_score` comes from `mimiciv_3_1_derived.first_day_sofa`. Its published definition can use information through 24 hours after ICU entry, while follow-up starts at ICU entry. All SOFA-containing core, ICU-adjusted and CHF/SOFA-stratified models are therefore exploratory sensitivity analyses that can use post-start information, not baseline-only severity adjustment. Temporal leakage or adjustment for post-exposure information may affect interpretation; its impact has not been quantified here. The primary age/sex model with era strata is unchanged. Time-aligned severity adjustment or a separate landmark design would require reanalysis.
+
+The source for this timing caution is the [published MIMIC first-day SOFA SQL](https://github.com/MIT-LCP/mimic-code/blob/main/mimic-iv/concepts/firstday/first_day_sofa.sql). This audit did not inspect the deployed derived table or individual measurement times. See [separate reanalysis options](ANALYSIS_TIMING_LIMITATIONS.md).
 
 ## Statistical Analysis
 
-The primary clinical analysis uses Kaplan-Meier survival curves and Cox proportional hazards regression. Proportional hazards assumptions are assessed using Schoenfeld residual-based diagnostics. Sensitivity analyses evaluate extended covariates, ICU type, and penalized Cox specifications.
+The primary clinical analysis uses Kaplan-Meier survival curves and Cox proportional hazards regression. Proportional hazards assumptions are assessed using Schoenfeld residual-based diagnostics. Exploratory sensitivity analyses evaluate first-day covariates, ICU type, penalized fits and CHF/SOFA strata, with the post-start information limitation above.
 
 Live discharge is treated as censoring in the primary Cox analysis. A competing-risk framework was not implemented. The Cox models analyze admission-level records and do not include a patient-level clustering or frailty term for patients with more than one qualifying admission.
 

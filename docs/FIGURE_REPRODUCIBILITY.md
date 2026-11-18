@@ -8,7 +8,7 @@ Current result figures are written to stable paths under `assets/` and copied to
 | --- | --- | --- | --- |
 | Kaplan-Meier survival curve | README and Quarto report | `notebooks/04a_outcomes_and_modeling.ipynb` | `assets/kaplan_meier_curve.png` |
 | Extended core Cox model forest plot | README and Quarto report | `notebooks/04c_extended_covariate_cox_model.ipynb` | `assets/cox_forest_plot.png` |
-| ACE inhibitor versus ARB subgroup forest plot | Quarto report | `notebooks/04b_outcomes_and_modeling_raas_subgroups.ipynb` | `assets/raas_subgroup_forest_plot.svg` |
+| ACEi-only and ARB-only orders, each versus neither | Quarto report | `notebooks/04b_outcomes_and_modeling_raas_subgroups.ipynb` | `assets/raas_subgroup_forest_plot.svg` |
 | Extended covariate sensitivity comparison | Quarto report | `notebooks/04c_extended_covariate_cox_model.ipynb` | `assets/cox_model_sensitivity_comparison.svg` |
 
 Run the shared refresh or rerun a 04a/b/c notebook after the upstream cohort tables have been regenerated. The figure-export code uses existing notebook analysis objects and does not simulate or invent results.
@@ -19,6 +19,8 @@ Run the shared refresh or rerun a 04a/b/c notebook after the upstream cohort tab
 - `assets/copd_table_lineage_dataset_flow.svg`: manually curated source-table-to-analysis-dataset lineage figure used by the Quarto report.
 
 The COPD table-lineage SVG contains no patient-level data. It documents table provenance and the analysis workflow, and should be refreshed manually if the SQL table structure or report architecture changes.
+
+The core and ICU plots are exploratory first-day-SOFA sensitivity analyses: SOFA can include information through 24 hours after follow-up begins. Subclass forest-plot rows each compare qualifying orders with neither; they are not a direct ACEi-versus-ARB comparison. The current audit corrects SVG wording and captions using existing published artifacts without fitting new models.
 
 ## Data Protection
 

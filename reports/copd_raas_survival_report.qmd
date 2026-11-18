@@ -12,7 +12,7 @@ Updated 2026-11-18 from analysis version `admission_age_elapsed_time_los_v2`. Ge
 
 ## Executive summary
 
-In 11,964 COPD ICU admissions, pre-ICU RAAS exposure was associated with lower observed in-hospital mortality hazard in the refined age/sex-adjusted, era-stratified Cox model (HR 0.732 (0.592–0.904); p=0.00383). Extended core adjustment attenuated the association (HR 0.833 (0.673–1.030); p=0.09122). These estimates are observational associations and cannot establish a treatment effect.
+In 11,964 COPD ICU admissions, pre-ICU RAAS exposure was associated with lower observed in-hospital mortality hazard in the refined age/sex-adjusted, era-stratified Cox model (HR 0.732 (0.592–0.904); p=0.00383). The exploratory first-day-SOFA core specification had an attenuated estimate (HR 0.833 (0.673–1.030); p=0.09122). These estimates are observational associations and cannot establish a treatment effect.
 
 ## Data source and cohort
 
@@ -23,7 +23,7 @@ MIMIC-IV v3.1 admissions with the existing ICD-9/10 COPD definition were anchore
 | Admissions | 11,964 | 11,018 | 946 |
 | Age, median (IQR), years | 72 (64–80) | 72 (63–80) | 72 (65–79) |
 | Male sex | 6,447 (53.9%) | 5,907 (53.6%) | 540 (57.1%) |
-| SOFA, median (IQR) | 4 (2–6) | 4 (2–7) | 4 (2–6) |
+| First-day SOFA, median (IQR) | 4 (2–6) | 4 (2–7) | 4 (2–6) |
 | Charlson index, median (IQR) | 6 (5–8) | 6 (5–8) | 7 (5–9) |
 | ICU LOS, median (IQR), days | 2.10956 (1.15424–4.23571) | 2.12139 (1.15405–4.30345) | 2.00288 (1.1571–3.76412) |
 | Hospital LOS, median (IQR), days | 7.62674 (4.53299–13.1056) | 7.43194 (4.39931–12.8786) | 9.73438 (5.9934–14.7833) |
@@ -32,11 +32,29 @@ MIMIC-IV v3.1 admissions with the existing ICD-9/10 COPD definition were anchore
 | Diabetes | 4,020 (33.6%) | 3,599 (32.7%) | 421 (44.5%) |
 | In-hospital death | 1,692 (14.1%) | 1,601 (14.5%) | 91 (9.6%) |
 
+## Source tables to analysis dataset {#source-tables-to-analysis-dataset}
+
+| Stage | Input | Output and downstream use |
+| --- | --- | --- |
+| Outcome SQL 04 | cohort_copd_baseline and hospital admissions | cohort_copd_outcomes; required by extended-outcome SQL |
+| Extended-outcome SQL 04 | cohort_copd_outcomes, first_day_sofa, Charlson and ICU type | cohort_copd_outcomes_extended; read by the shared loader for 04a–04d |
+| Shared model loader | extended outcomes and cohort_copd_raas_detailed | Explicit model columns; primary formula excludes SOFA, exploratory specifications use it |
+
+Run both complete outcome SQL scripts in US, in this order, after phase 03 and before 04a. The notebooks refresh analyses, not these tables. [Full dependency map](METHODS_OVERVIEW.md#outcome-table-dependencies).
+
 ## Exposure, outcome, and methods
 
-Exposure is based on inpatient ACEi/ARB prescription orders before or at ICU admission. It does not directly measure outpatient chronic use or adherence. Follow-up begins at ICU admission and ends at recorded in-hospital death or live discharge. Discharge time is used for death only when death time is missing, with an explicit fallback flag. All intervals, including ICU and hospital LOS, are calculated from DATETIME microsecond differences divided by 86,400,000,000. Death/discharge timestamps, event values, positive follow-up, and downstream lineage are validated before analysis.
+Exposure flags identify inpatient prescription records in the same hospital admission with `starttime <= intime`. They do not verify actual administration, continued treatment at ICU entry, adherence or concurrent ACEi/ARB administration. Both positive class flags mean qualifying records for both classes; they do not establish simultaneous treatment. Neither means no qualifying prescription record for either class, not proven absence of all medication use.
+
+Follow-up begins at ICU admission and ends at recorded in-hospital death or live discharge. Discharge time is used for death only when death time is missing, with an explicit fallback flag. All intervals, including ICU and hospital LOS, are calculated from DATETIME microsecond differences divided by 86,400,000,000. Death/discharge timestamps, event values, positive follow-up, and downstream lineage are validated before analysis.
 
 There were 2 fallback deaths. Live discharge is censored; a competing-risk framework is not implemented. Cox models use admission-level records without patient clustering or frailty. Primary 04a adjusts for age and sex and stratifies by anchor year group. Core 04c additionally adjusts for SOFA, CHF, CKD and diabetes. ICU sensitivity models add pooled ICU types; penalties remain 0.1 for core and 0.01 for ICU. Original unpooled ICU estimates are retained in the archived age/time audit.
+
+## Timing of severity information
+
+`sofa_score` comes from `mimiciv_3_1_derived.first_day_sofa`. Its published definition can use information through 24 hours after ICU entry, while follow-up starts at ICU entry. All SOFA-containing core, ICU-adjusted and CHF/SOFA-stratified models are therefore exploratory sensitivity analyses that can use post-start information, not baseline-only severity adjustment. Temporal leakage or adjustment for post-exposure information may affect interpretation; its impact has not been quantified here. The primary age/sex model with era strata is unchanged. Time-aligned severity adjustment or a separate landmark design would require reanalysis.
+
+[Published first-day SOFA definition](https://github.com/MIT-LCP/mimic-code/blob/main/mimic-iv/concepts/firstday/first_day_sofa.sql). The deployed derived-table definition and individual measurement times were not inspected in this documentation audit. [Separate reanalysis options](ANALYSIS_TIMING_LIMITATIONS.md).
 
 ## Kaplan-Meier results
 
@@ -50,22 +68,26 @@ The two-group log-rank statistic was 8.207, p=0.00417. These are unadjusted surv
 | --- | --- | ---: |
 | Initial 04a: era entered as covariate | 0.724 (0.586–0.894) | 0.00272 |
 | Primary refined | 0.732 (0.592–0.904) | 0.00383 |
-| Extended core | 0.833 (0.673–1.030) | 0.09122 |
-| Core + L2 (0.1) | 0.886 (0.766–1.025) | 0.10376 |
-| ICU adjusted (rare types pooled) | 0.958 (0.772–1.187) | 0.69262 |
-| ICU pooled + L2 (0.01) | 0.910 (0.743–1.115) | 0.36324 |
+| Exploratory core (first-day SOFA) | 0.833 (0.673–1.030) | 0.09122 |
+| Exploratory core + L2 (0.1) | 0.886 (0.766–1.025) | 0.10376 |
+| Exploratory ICU adjusted | 0.958 (0.772–1.187) | 0.69262 |
+| Exploratory ICU + L2 (0.01) | 0.910 (0.743–1.115) | 0.36324 |
 | Core CHF/SOFA strata (exploratory) | 0.830 (0.666–1.034) | 0.09666 |
 | ICU CHF/SOFA/type strata (exploratory) | 1.127 (0.880–1.443) | 0.34395 |
 
-![Extended core Cox estimates](assets/cox_forest_plot.png)
+![Exploratory core Cox estimates using first-day SOFA](assets/cox_forest_plot.png)
 
 ![Current sensitivity comparison](assets/cox_model_sensitivity_comparison.svg)
 
+All SOFA-containing rows and plots are exploratory sensitivity analyses with possible post-start information; their differences do not isolate baseline confounding.
+
 ## Subclass comparison
 
-The monotherapy/neither analysis includes 11,951 admissions. Its global three-group log-rank statistic is 9.124, p=0.01044. Dual-exposure admissions are excluded. Each coefficient compares a subclass with neither exposure; this is not a formal ACEi-versus-ARB interaction test.
+The ACEi-only-order, ARB-only-order and neither-order analysis includes 11,951 admissions. Its global three-group log-rank statistic is 9.124, p=0.01044. Records with both class flags positive are excluded. Each coefficient compares a subclass with neither qualifying order.
 
-![Current ACEi/ARB estimates](assets/raas_subgroup_forest_plot.svg)
+ACEi-only and ARB-only prescription-order groups are each compared with neither qualifying order. Records with both class flags positive are excluded from this subclass analysis. The main analysis reports no direct ACEi-versus-ARB contrast or interaction test. Different point estimates, or one p-value below 0.05 and the other above it, do not establish a difference between the classes.
+
+![ACEi-only and ARB-only prescription orders, each versus neither](assets/raas_subgroup_forest_plot.svg)
 
 ## PH diagnostics and interpretation
 
@@ -83,7 +105,7 @@ The reproducible workflow covers authorized MIMIC source access, version-control
 
 ## Limitations
 
-These findings cannot establish causality. Confounding by indication, unmeasured severity, exposure misclassification and a single health system limit interpretation. Age is approximate, especially in the aggregated oldest group. Repeated admissions are not clustered; live discharge remains censoring; rare ICU pooling and PH-responsive strata are exploratory sensitivity choices.
+These findings cannot establish causality. Confounding by indication, unmeasured severity, exposure misclassification and a single health system limit interpretation. Age is approximate, especially in the aggregated oldest group. Repeated admissions are not clustered; live discharge remains censoring; rare ICU pooling and PH-responsive strata are exploratory sensitivity choices. First-day SOFA may include post-start information; these models do not isolate baseline confounding. No direct between-class contrast or verified medication-administration comparison is reported.
 
 ## Reproduction and sources
 
@@ -95,3 +117,4 @@ Run the upstream SQL, then `.venv/bin/python scripts/current_analysis.py`, `.ven
 - [Current aggregate model results](CURRENT_ANALYSIS.json)
 - [Original age/time correction audit](AGE_TIME_REVALIDATION.md)
 - [Reproducible scope](REPRODUCIBLE_SCOPE.md)
+- [Timing limitations and separate reanalysis options](ANALYSIS_TIMING_LIMITATIONS.md)

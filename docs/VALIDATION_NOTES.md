@@ -44,3 +44,9 @@ The script independently fits six unpenalized Cox specifications (40 coefficient
 See [the numerical record](INDEPENDENT_COX_CROSSCHECK.json) and [the scope and limitations](INDEPENDENT_REVALIDATION.md). The report only presents successful independent agreement when the recorded reference hash matches the exact current aggregate analysis JSON. After a model refresh, review a new successful comparison before replacing the published aggregate record.
 
 This checks an independent statistical implementation on shared corrected inputs. It does not independently re-extract source records or validate penalized models, PH tests, patient clustering, competing risks or causal interpretation.
+
+## Interpretation limits checked separately
+
+Successful numerical comparison does not validate covariate timing. SOFA-containing core/ICU models can use information through 24 hours after ICU follow-up begins and remain exploratory sensitivity analyses. Subclass estimates each use neither qualifying prescription order as reference; no direct ACEi-versus-ARB contrast is reported in the main analysis. [Timing limitations and separate reanalysis options](ANALYSIS_TIMING_LIMITATIONS.md).
+
+The [2026-11-18 documentation audit](GITHUB_AUDIT_20261118.md) records these offline corrections and the checks that did not require source-data access.

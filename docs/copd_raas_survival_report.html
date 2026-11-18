@@ -52,14 +52,16 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#executive-summary" id="toc-executive-summary" class="nav-link active" data-scroll-target="#executive-summary"><span class="header-section-number">1</span> Executive summary</a></li>
   <li><a href="#data-source-and-cohort" id="toc-data-source-and-cohort" class="nav-link" data-scroll-target="#data-source-and-cohort"><span class="header-section-number">2</span> Data source and cohort</a></li>
-  <li><a href="#exposure-outcome-and-methods" id="toc-exposure-outcome-and-methods" class="nav-link" data-scroll-target="#exposure-outcome-and-methods"><span class="header-section-number">3</span> Exposure, outcome, and methods</a></li>
-  <li><a href="#kaplan-meier-results" id="toc-kaplan-meier-results" class="nav-link" data-scroll-target="#kaplan-meier-results"><span class="header-section-number">4</span> Kaplan-Meier results</a></li>
-  <li><a href="#primary-and-extended-cox-results" id="toc-primary-and-extended-cox-results" class="nav-link" data-scroll-target="#primary-and-extended-cox-results"><span class="header-section-number">5</span> Primary and extended Cox results</a></li>
-  <li><a href="#subclass-comparison" id="toc-subclass-comparison" class="nav-link" data-scroll-target="#subclass-comparison"><span class="header-section-number">6</span> Subclass comparison</a></li>
-  <li><a href="#ph-diagnostics-and-interpretation" id="toc-ph-diagnostics-and-interpretation" class="nav-link" data-scroll-target="#ph-diagnostics-and-interpretation"><span class="header-section-number">7</span> PH diagnostics and interpretation</a></li>
-  <li><a href="#reproducibility-checks" id="toc-reproducibility-checks" class="nav-link" data-scroll-target="#reproducibility-checks"><span class="header-section-number">8</span> Reproducibility checks</a></li>
-  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations"><span class="header-section-number">9</span> Limitations</a></li>
-  <li><a href="#reproduction-and-sources" id="toc-reproduction-and-sources" class="nav-link" data-scroll-target="#reproduction-and-sources"><span class="header-section-number">10</span> Reproduction and sources</a></li>
+  <li><a href="#source-tables-to-analysis-dataset" id="toc-source-tables-to-analysis-dataset" class="nav-link" data-scroll-target="#source-tables-to-analysis-dataset"><span class="header-section-number">3</span> Source tables to analysis dataset</a></li>
+  <li><a href="#exposure-outcome-and-methods" id="toc-exposure-outcome-and-methods" class="nav-link" data-scroll-target="#exposure-outcome-and-methods"><span class="header-section-number">4</span> Exposure, outcome, and methods</a></li>
+  <li><a href="#timing-of-severity-information" id="toc-timing-of-severity-information" class="nav-link" data-scroll-target="#timing-of-severity-information"><span class="header-section-number">5</span> Timing of severity information</a></li>
+  <li><a href="#kaplan-meier-results" id="toc-kaplan-meier-results" class="nav-link" data-scroll-target="#kaplan-meier-results"><span class="header-section-number">6</span> Kaplan-Meier results</a></li>
+  <li><a href="#primary-and-extended-cox-results" id="toc-primary-and-extended-cox-results" class="nav-link" data-scroll-target="#primary-and-extended-cox-results"><span class="header-section-number">7</span> Primary and extended Cox results</a></li>
+  <li><a href="#subclass-comparison" id="toc-subclass-comparison" class="nav-link" data-scroll-target="#subclass-comparison"><span class="header-section-number">8</span> Subclass comparison</a></li>
+  <li><a href="#ph-diagnostics-and-interpretation" id="toc-ph-diagnostics-and-interpretation" class="nav-link" data-scroll-target="#ph-diagnostics-and-interpretation"><span class="header-section-number">9</span> PH diagnostics and interpretation</a></li>
+  <li><a href="#reproducibility-checks" id="toc-reproducibility-checks" class="nav-link" data-scroll-target="#reproducibility-checks"><span class="header-section-number">10</span> Reproducibility checks</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations"><span class="header-section-number">11</span> Limitations</a></li>
+  <li><a href="#reproduction-and-sources" id="toc-reproduction-and-sources" class="nav-link" data-scroll-target="#reproduction-and-sources"><span class="header-section-number">12</span> Reproduction and sources</a></li>
   </ul>
 </nav>
 </div>
@@ -93,7 +95,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Updated 2026-11-18 from analysis version <code>admission_age_elapsed_time_los_v2</code>. Generated from aggregate <a href="CURRENT_ANALYSIS.json">current results</a>.</p>
 <section id="executive-summary" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="executive-summary"><span class="header-section-number">1</span> Executive summary</h2>
-<p>In 11,964 COPD ICU admissions, pre-ICU RAAS exposure was associated with lower observed in-hospital mortality hazard in the refined age/sex-adjusted, era-stratified Cox model (HR 0.732 (0.592–0.904); p=0.00383). Extended core adjustment attenuated the association (HR 0.833 (0.673–1.030); p=0.09122). These estimates are observational associations and cannot establish a treatment effect.</p>
+<p>In 11,964 COPD ICU admissions, pre-ICU RAAS exposure was associated with lower observed in-hospital mortality hazard in the refined age/sex-adjusted, era-stratified Cox model (HR 0.732 (0.592–0.904); p=0.00383). The exploratory first-day-SOFA core specification had an attenuated estimate (HR 0.833 (0.673–1.030); p=0.09122). These estimates are observational associations and cannot establish a treatment effect.</p>
 </section>
 <section id="data-source-and-cohort" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="data-source-and-cohort"><span class="header-section-number">2</span> Data source and cohort</h2>
@@ -133,7 +135,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">540 (57.1%)</td>
 </tr>
 <tr class="even">
-<td>SOFA, median (IQR)</td>
+<td>First-day SOFA, median (IQR)</td>
 <td style="text-align: right;">4 (2–6)</td>
 <td style="text-align: right;">4 (2–7)</td>
 <td style="text-align: right;">4 (2–6)</td>
@@ -183,13 +185,54 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 </section>
-<section id="exposure-outcome-and-methods" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="exposure-outcome-and-methods"><span class="header-section-number">3</span> Exposure, outcome, and methods</h2>
-<p>Exposure is based on inpatient ACEi/ARB prescription orders before or at ICU admission. It does not directly measure outpatient chronic use or adherence. Follow-up begins at ICU admission and ends at recorded in-hospital death or live discharge. Discharge time is used for death only when death time is missing, with an explicit fallback flag. All intervals, including ICU and hospital LOS, are calculated from DATETIME microsecond differences divided by 86,400,000,000. Death/discharge timestamps, event values, positive follow-up, and downstream lineage are validated before analysis.</p>
+<section id="source-tables-to-analysis-dataset" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="source-tables-to-analysis-dataset"><span class="header-section-number">3</span> Source tables to analysis dataset</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>Input</th>
+<th>Output and downstream use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Outcome SQL 04</td>
+<td>cohort_copd_baseline and hospital admissions</td>
+<td>cohort_copd_outcomes; required by extended-outcome SQL</td>
+</tr>
+<tr class="even">
+<td>Extended-outcome SQL 04</td>
+<td>cohort_copd_outcomes, first_day_sofa, Charlson and ICU type</td>
+<td>cohort_copd_outcomes_extended; read by the shared loader for 04a–04d</td>
+</tr>
+<tr class="odd">
+<td>Shared model loader</td>
+<td>extended outcomes and cohort_copd_raas_detailed</td>
+<td>Explicit model columns; primary formula excludes SOFA, exploratory specifications use it</td>
+</tr>
+</tbody>
+</table>
+<p>Run both complete outcome SQL scripts in US, in this order, after phase 03 and before 04a. The notebooks refresh analyses, not these tables. <a href="METHODS_OVERVIEW.md#outcome-table-dependencies">Full dependency map</a>.</p>
+</section>
+<section id="exposure-outcome-and-methods" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="exposure-outcome-and-methods"><span class="header-section-number">4</span> Exposure, outcome, and methods</h2>
+<p>Exposure flags identify inpatient prescription records in the same hospital admission with <code>starttime &lt;= intime</code>. They do not verify actual administration, continued treatment at ICU entry, adherence or concurrent ACEi/ARB administration. Both positive class flags mean qualifying records for both classes; they do not establish simultaneous treatment. Neither means no qualifying prescription record for either class, not proven absence of all medication use.</p>
+<p>Follow-up begins at ICU admission and ends at recorded in-hospital death or live discharge. Discharge time is used for death only when death time is missing, with an explicit fallback flag. All intervals, including ICU and hospital LOS, are calculated from DATETIME microsecond differences divided by 86,400,000,000. Death/discharge timestamps, event values, positive follow-up, and downstream lineage are validated before analysis.</p>
 <p>There were 2 fallback deaths. Live discharge is censored; a competing-risk framework is not implemented. Cox models use admission-level records without patient clustering or frailty. Primary 04a adjusts for age and sex and stratifies by anchor year group. Core 04c additionally adjusts for SOFA, CHF, CKD and diabetes. ICU sensitivity models add pooled ICU types; penalties remain 0.1 for core and 0.01 for ICU. Original unpooled ICU estimates are retained in the archived age/time audit.</p>
 </section>
-<section id="kaplan-meier-results" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="kaplan-meier-results"><span class="header-section-number">4</span> Kaplan-Meier results</h2>
+<section id="timing-of-severity-information" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="timing-of-severity-information"><span class="header-section-number">5</span> Timing of severity information</h2>
+<p><code>sofa_score</code> comes from <code>mimiciv_3_1_derived.first_day_sofa</code>. Its published definition can use information through 24 hours after ICU entry, while follow-up starts at ICU entry. All SOFA-containing core, ICU-adjusted and CHF/SOFA-stratified models are therefore exploratory sensitivity analyses that can use post-start information, not baseline-only severity adjustment. Temporal leakage or adjustment for post-exposure information may affect interpretation; its impact has not been quantified here. The primary age/sex model with era strata is unchanged. Time-aligned severity adjustment or a separate landmark design would require reanalysis.</p>
+<p><a href="https://github.com/MIT-LCP/mimic-code/blob/main/mimic-iv/concepts/firstday/first_day_sofa.sql">Published first-day SOFA definition</a>. The deployed derived-table definition and individual measurement times were not inspected in this documentation audit. <a href="ANALYSIS_TIMING_LIMITATIONS.md">Separate reanalysis options</a>.</p>
+</section>
+<section id="kaplan-meier-results" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="kaplan-meier-results"><span class="header-section-number">6</span> Kaplan-Meier results</h2>
 <p>The two-group log-rank statistic was 8.207, p=0.00417. These are unadjusted survival estimates under live-discharge censoring, not competing-risk-adjusted hospital death probabilities.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -198,8 +241,8 @@ ul.task-list li input[type="checkbox"] {
 </figure>
 </div>
 </section>
-<section id="primary-and-extended-cox-results" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="primary-and-extended-cox-results"><span class="header-section-number">5</span> Primary and extended Cox results</h2>
+<section id="primary-and-extended-cox-results" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="primary-and-extended-cox-results"><span class="header-section-number">7</span> Primary and extended Cox results</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 30%">
@@ -225,22 +268,22 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">0.00383</td>
 </tr>
 <tr class="odd">
-<td>Extended core</td>
+<td>Exploratory core (first-day SOFA)</td>
 <td>0.833 (0.673–1.030)</td>
 <td style="text-align: right;">0.09122</td>
 </tr>
 <tr class="even">
-<td>Core + L2 (0.1)</td>
+<td>Exploratory core + L2 (0.1)</td>
 <td>0.886 (0.766–1.025)</td>
 <td style="text-align: right;">0.10376</td>
 </tr>
 <tr class="odd">
-<td>ICU adjusted (rare types pooled)</td>
+<td>Exploratory ICU adjusted</td>
 <td>0.958 (0.772–1.187)</td>
 <td style="text-align: right;">0.69262</td>
 </tr>
 <tr class="even">
-<td>ICU pooled + L2 (0.01)</td>
+<td>Exploratory ICU + L2 (0.01)</td>
 <td>0.910 (0.743–1.115)</td>
 <td style="text-align: right;">0.36324</td>
 </tr>
@@ -259,7 +302,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="assets/cox_forest_plot.png" class="img-fluid figure-img"></p>
-<figcaption>Extended core Cox estimates</figcaption>
+<figcaption>Exploratory core Cox estimates using first-day SOFA</figcaption>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
@@ -268,34 +311,36 @@ ul.task-list li input[type="checkbox"] {
 <figcaption>Current sensitivity comparison</figcaption>
 </figure>
 </div>
+<p>All SOFA-containing rows and plots are exploratory sensitivity analyses with possible post-start information; their differences do not isolate baseline confounding.</p>
 </section>
-<section id="subclass-comparison" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="subclass-comparison"><span class="header-section-number">6</span> Subclass comparison</h2>
-<p>The monotherapy/neither analysis includes 11,951 admissions. Its global three-group log-rank statistic is 9.124, p=0.01044. Dual-exposure admissions are excluded. Each coefficient compares a subclass with neither exposure; this is not a formal ACEi-versus-ARB interaction test.</p>
+<section id="subclass-comparison" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="subclass-comparison"><span class="header-section-number">8</span> Subclass comparison</h2>
+<p>The ACEi-only-order, ARB-only-order and neither-order analysis includes 11,951 admissions. Its global three-group log-rank statistic is 9.124, p=0.01044. Records with both class flags positive are excluded. Each coefficient compares a subclass with neither qualifying order.</p>
+<p>ACEi-only and ARB-only prescription-order groups are each compared with neither qualifying order. Records with both class flags positive are excluded from this subclass analysis. The main analysis reports no direct ACEi-versus-ARB contrast or interaction test. Different point estimates, or one p-value below 0.05 and the other above it, do not establish a difference between the classes.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="assets/raas_subgroup_forest_plot.svg" class="img-fluid figure-img"></p>
-<figcaption>Current ACEi/ARB estimates</figcaption>
+<figcaption>ACEi-only and ARB-only prescription orders, each versus neither</figcaption>
 </figure>
 </div>
 </section>
-<section id="ph-diagnostics-and-interpretation" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="ph-diagnostics-and-interpretation"><span class="header-section-number">7</span> PH diagnostics and interpretation</h2>
+<section id="ph-diagnostics-and-interpretation" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="ph-diagnostics-and-interpretation"><span class="header-section-number">9</span> PH diagnostics and interpretation</h2>
 <p>Primary refined rank PH p-values: age 0.79803, sex 0.32498, RAAS 0.72064. Core and ICU models still require diagnostic interpretation. The current results summary records every covariate-level PH test and warning. Exploratory CHF/SOFA-stratified models allow different baseline hazards; they supplement the primary model rather than redefine it.</p>
 <p>For full diagnostics, sparse-strata limitations and rare-category pooling, see <a href="RESULTS_SUMMARY.md">current results</a>. The approach follows <a href="https://lifelines.readthedocs.io/en/latest/jupyter_notebooks/Proportional%20hazard%20assumption.html#Stratification">lifelines documentation on stratification</a>. A non-significant diagnostic does not prove PH, and additional stratification changes the adjustment structure.</p>
 </section>
-<section id="reproducibility-checks" class="level2" data-number="8">
-<h2 data-number="8" class="anchored" data-anchor-id="reproducibility-checks"><span class="header-section-number">8</span> Reproducibility checks</h2>
+<section id="reproducibility-checks" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="reproducibility-checks"><span class="header-section-number">10</span> Reproducibility checks</h2>
 <p>Six unpenalized Cox specifications (40 coefficients) were independently recalculated with statsmodels PHReg using matched complete cases, era/additional strata and Efron ties. Coefficients, HRs, confidence-interval endpoints and p-values matched the lifelines reference within an absolute tolerance of 1e-4. The saved comparison is bound to this exact aggregate analysis snapshot by its reference hash. See <a href="INDEPENDENT_COX_CROSSCHECK.json">the calculation record</a> and <a href="INDEPENDENT_REVALIDATION.md">the scope and limitations</a>.</p>
 <p>This checks a separate statistical implementation on the same corrected model inputs. Source-SQL extraction is evaluated separately. Penalized fits, PH diagnostics, patient clustering, competing risks and causal validity are not established by this numerical comparison.</p>
 <p>The reproducible workflow covers authorized MIMIC source access, version-controlled BigQuery extraction and cohort construction, explicit model-column retrieval, Python modeling, independent numerical comparison, figure generation and Quarto reporting. Only aggregate results are published; no external analysis-service upload is part of this workflow. See <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/REPRODUCIBILITY.md">the full reproduction steps</a>.</p>
 </section>
-<section id="limitations" class="level2" data-number="9">
-<h2 data-number="9" class="anchored" data-anchor-id="limitations"><span class="header-section-number">9</span> Limitations</h2>
-<p>These findings cannot establish causality. Confounding by indication, unmeasured severity, exposure misclassification and a single health system limit interpretation. Age is approximate, especially in the aggregated oldest group. Repeated admissions are not clustered; live discharge remains censoring; rare ICU pooling and PH-responsive strata are exploratory sensitivity choices.</p>
+<section id="limitations" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="limitations"><span class="header-section-number">11</span> Limitations</h2>
+<p>These findings cannot establish causality. Confounding by indication, unmeasured severity, exposure misclassification and a single health system limit interpretation. Age is approximate, especially in the aggregated oldest group. Repeated admissions are not clustered; live discharge remains censoring; rare ICU pooling and PH-responsive strata are exploratory sensitivity choices. First-day SOFA may include post-start information; these models do not isolate baseline confounding. No direct between-class contrast or verified medication-administration comparison is reported.</p>
 </section>
-<section id="reproduction-and-sources" class="level2" data-number="10">
-<h2 data-number="10" class="anchored" data-anchor-id="reproduction-and-sources"><span class="header-section-number">10</span> Reproduction and sources</h2>
+<section id="reproduction-and-sources" class="level2" data-number="12">
+<h2 data-number="12" class="anchored" data-anchor-id="reproduction-and-sources"><span class="header-section-number">12</span> Reproduction and sources</h2>
 <p>Run the upstream SQL, then <code>.venv/bin/python scripts/current_analysis.py</code>, <code>.venv/bin/python scripts/render_current_report.py</code>, and <code>.venv/bin/python scripts/build_report.py</code> from the repository root. Notebooks 04a–04d use the same model/figure functions. Generated notebook outputs are stripped before commit. No patient records or identifiers are included in the aggregate outputs.</p>
 <ul>
 <li><a href="https://physionet.org/content/mimiciv/3.1/">MIMIC-IV v3.1</a></li>
@@ -304,6 +349,7 @@ ul.task-list li input[type="checkbox"] {
 <li><a href="CURRENT_ANALYSIS.json">Current aggregate model results</a></li>
 <li><a href="AGE_TIME_REVALIDATION.md">Original age/time correction audit</a></li>
 <li><a href="REPRODUCIBLE_SCOPE.md">Reproducible scope</a></li>
+<li><a href="ANALYSIS_TIMING_LIMITATIONS.md">Timing limitations and separate reanalysis options</a></li>
 </ul>
 </section>
 

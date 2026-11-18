@@ -67,7 +67,7 @@
   <rect class="analysis" x="472" y="286" width="170" height="104" rx="14" />
   <text class="label" x="506" y="320">Subgroup and</text>
   <text class="label" x="498" y="342">sensitivity analyses</text>
-  <text class="small" x="501" y="368">ACEi vs ARB, ICU type</text>
+  <text class="small" x="501" y="368">vs neither; ICU type</text>
 
   <path class="arrow" d="M472 338 H436" />
   <rect class="validation" x="248" y="286" width="188" height="104" rx="14" />

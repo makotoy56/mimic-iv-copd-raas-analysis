@@ -20,9 +20,9 @@ Comparative COPD research also suggests that ACE inhibitors and ARBs may have di
 
 ## Rationale for This Analysis
 
-This project addresses a focused evidence gap: whether pre-ICU RAAS inhibitor exposure is associated with in-hospital mortality among ICU-admitted COPD patients in MIMIC-IV, and whether ACE inhibitor and ARB subclasses show different observed associations.
+This project addresses a focused evidence gap: whether pre-ICU RAAS inhibitor exposure is associated with in-hospital mortality among ICU-admitted COPD patients in MIMIC-IV, and describes each prescription-order subclass against neither qualifying order without estimating a direct between-class contrast.
 
-COPD was defined using established ICD-9 and ICD-10 diagnosis codes recorded during hospitalization, consistent with prior administrative and EHR-based COPD research. This supports reproducible cohort construction and clear temporal ordering between chronic COPD status, pre-ICU medication exposure, and ICU outcomes.
+COPD was defined using established ICD-9 and ICD-10 diagnosis codes recorded during hospitalization, consistent with prior administrative and EHR-based COPD research. This supports reproducible identification of recorded COPD diagnoses. Diagnosis codes alone do not establish when COPD was clinically recognized.
 
 The analysis remains hypothesis-generating. It evaluates observational associations in EHR data and cannot establish causality.
 

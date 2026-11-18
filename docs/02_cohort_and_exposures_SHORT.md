@@ -22,7 +22,7 @@ These tables define the COPD ICU cohort and pre-ICU RAAS exposure indicators use
 ## Key Methods and Checks
 - Identifies ICU admissions associated with COPD diagnosis codes.
 - Defines binary pre-ICU RAAS inhibitor exposure using medication records before ICU admission.
-- Creates detailed ACE inhibitor, ARB, dual-exposure, and mutually exclusive exposure indicators.
+- Creates qualifying ACEi-order, ARB-order, both-class-order and neither-order indicators. These flags do not verify administration or simultaneous treatment.
 - Checks exposure distributions and verifies one row per ICU stay.
 
 ## Next Step

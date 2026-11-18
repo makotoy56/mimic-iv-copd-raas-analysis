@@ -50,7 +50,10 @@
   "report_generation": {
     "method": "Quarto_no_execute_from_saved_aggregate_results",
     "status": "passed",
-    "html_sha256": "9cef281edae56532221152d533fb31704e96a2c39be729146ab790c1f7fae106"
+    "html_sha256": "68b460d1d75820e35d9e69a1a655fc96e8fc7a6d4689ad5dd181beda1235b129",
+    "documentation_updated_at_utc": "2026-11-18T09:13:23.325078+00:00",
+    "publication_scope_aligned_at_utc": "2026-11-18T10:07:04.290625+00:00",
+    "scope_note": "The public main analysis reports subclass-versus-neither estimates; the later local post-hoc direct contrast remains unpublished."
   },
   "regression_checks": {
     "tests_passed": 4,
@@ -67,5 +70,13 @@
     "The source audit compares refined primary and extended core estimates with the current saved results; pooled ICU variants are covered by the separate implementation check on corrected model inputs.",
     "Report-only rendering reproduces presentation, not extraction or model execution.",
     "No new causal validation, patient clustering or competing-risk analysis was performed."
-  ]
+  ],
+  "documentation_update": {
+    "audit": "GITHUB_AUDIT_20261118.json",
+    "base_commit": "9f2655efec2e188eefcd35b77f3083dacd18b62a",
+    "new_clinical_data_access": false,
+    "source_extraction_and_independent_fit_records_retained_from_previous_execution": true,
+    "models_refit": false,
+    "SQL_files_unchanged": true
+  }
 }

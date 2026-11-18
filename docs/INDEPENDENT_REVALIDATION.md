@@ -32,3 +32,5 @@
 ```bash
 .venv/bin/python scripts/independent_cox_crosscheck.py --repo . --output /tmp/icu_copd_crosscheck_new.json
 ```
+
+この数値照合は、共通入力に対する推定計算の一致を確認するものです。first-day SOFA は追跡開始後24時間までの情報を含み得るため、対応する core/ICU モデルは探索的感度解析です。照合の成功は共変量の時点の妥当性や ACEi と ARB の直接比較を検証したことにはなりません。[時点の制約と別途必要な再解析](ANALYSIS_TIMING_LIMITATIONS.md)を参照してください。
