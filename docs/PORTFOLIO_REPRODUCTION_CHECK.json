@@ -50,11 +50,13 @@
   "report_generation": {
     "method": "Quarto_no_execute_from_saved_aggregate_results",
     "status": "passed",
-    "html_sha256": "2b3862f79885778c73f510c0c8ae6b23ef39bfc660cf713fdfd269b5fc7a8f42",
+    "html_sha256": "8da2d935123861654f086fb561a3dc2ec1d3b8c5dd29459affbdbc2d1bd4c55f",
     "documentation_updated_at_utc": "2026-11-18T10:35:22.888879+00:00",
     "publication_scope_aligned_at_utc": "2026-11-18T10:07:04.290625+00:00",
     "scope_note": "The public main analysis reports subclass-versus-neither estimates; the later local post-hoc direct contrast remains unpublished.",
-    "landing_page_sha256": "399a78d8b0a85f4d6fb94bd73659becc88dbae952bcb590de6a2be984944552a"
+    "landing_page_sha256": "399a78d8b0a85f4d6fb94bd73659becc88dbae952bcb590de6a2be984944552a",
+    "supplementary_results_sha256": "9186f2fe6163b8c03b270822f264948266a7098e5483cddc303d4a1012188a7e",
+    "supplementary_publication_updated_at_utc": "2026-11-18T12:19:12.991862+00:00"
   },
   "regression_checks": {
     "tests_passed": 4,
@@ -70,7 +72,7 @@
   "limitations": [
     "The source audit compares refined primary and extended core estimates with the current saved results; pooled ICU variants are covered by the separate implementation check on corrected model inputs.",
     "Report-only rendering reproduces presentation, not extraction or model execution.",
-    "No new causal validation, patient clustering or competing-risk analysis was performed."
+    "The original source-extraction audit did not perform causal validation, patient clustering or competing-risk analysis; separate supplementary results are documented in SURVIVAL_SUPPLEMENTS_VALIDATION.json."
   ],
   "documentation_update": {
     "audit": "GITHUB_AUDIT_20261118.json",

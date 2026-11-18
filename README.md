@@ -63,6 +63,16 @@ Exposure flags identify inpatient prescription records in the same hospital admi
 
 See [Results summary](docs/RESULTS_SUMMARY.md) and [Discussion and limitations](docs/DISCUSSION_AND_LIMITATIONS.md) for interpretation details.
 
+<!-- BEGIN SUPPLEMENTARY SENSITIVITY SUMMARY -->
+### Supplementary Sensitivity Analyses
+
+- Patient-cluster inference retained the primary HR of 0.732, with 95% CI 0.593–0.902.
+- Unadjusted day-28 in-hospital death cumulative incidence was 9.1% with qualifying RAAS orders and 13.9% without; live discharge was a competing event.
+- In the separate 24-hour landmark cohort (11,530 admissions), the exploratory SOFA-core HR was 0.854 (patient-cluster 95% CI 0.673–1.082).
+
+These post hoc analyses preserve the original main estimates. The landmark changes the population; SOFA component times remain independently unverified. These findings do not establish treatment effects. See the [full supplementary results](https://makotoy56.github.io/mimic-iv-copd-raas-analysis/copd_raas_survival_report.html#supplementary-sensitivity-analyses).
+<!-- END SUPPLEMENTARY SENSITIVITY SUMMARY -->
+
 ## Workflow Overview
 
 ![Analysis workflow](assets/workflow_diagram.svg)
@@ -157,7 +167,7 @@ Supporting documentation:
 
 ### Additional Survival Sensitivity Notebooks
 
-The companion notebooks default to synthetic demonstrations and preserve the published 04-series estimates. Their shared script can run the same analyses in an authorized local MIMIC environment; aggregate clinical outputs remain in the ignored local-supplement directory pending review.
+The companion notebooks default to synthetic demonstrations and preserve the published 04-series estimates. Their shared script can run the same analyses in an authorized local MIMIC environment; full local outputs remain in the ignored local-supplement directory. Selected verified aggregate results are reported in the supplementary section of the Quarto report.
 
 - [05a patient-cluster sensitivity](notebooks/05a_patient_cluster_sensitivity.ipynb): compare ordinary and patient-cluster confidence intervals for the primary and exploratory core models.
 - [05b competing risks](notebooks/05b_competing_risks.ipynb): death/discharge cumulative incidence with patient-bootstrap intervals and separate cause-specific Cox models.
@@ -175,10 +185,10 @@ Key limitations:
 - Inpatient prescription orders do not directly measure outpatient chronic medication use, adherence, dose, duration, or indication.
 - COPD status is identified using diagnosis codes recorded during hospitalization.
 - MIMIC-IV reflects ICU admissions from a specific health system and may not generalize to other settings.
-- Live discharge is treated as censoring in the primary Cox analysis; a competing-risk framework was not implemented.
+- Live discharge is censored in the original cause-specific Cox model; separate supplementary cumulative-incidence curves treat discharge as a competing event.
 - Each record represents a qualifying hospital admission anchored to its first ICU stay. Patients may contribute more than one admission. Published main-analysis Cox intervals do not account for patient clustering; the separate 05a supplement examines this dependence. No frailty model is fitted.
 - Each subclass is compared with neither qualifying prescription order; no direct ACEi-versus-ARB contrast supports a superiority claim.
-- `sofa_score` comes from `mimiciv_3_1_derived.first_day_sofa`. Its published definition can use information through 24 hours after ICU entry, while follow-up starts at ICU entry. All SOFA-containing core, ICU-adjusted and CHF/SOFA-stratified models are therefore exploratory sensitivity analyses that can use post-start information, not baseline-only severity adjustment. Temporal leakage or adjustment for post-exposure information may affect interpretation; its impact has not been quantified here. The primary age/sex model with era strata is unchanged. Time-aligned severity adjustment or a separate landmark design would require reanalysis.
+- `sofa_score` comes from `mimiciv_3_1_derived.first_day_sofa`. Its published definition can use information through 24 hours after ICU entry, while follow-up starts at ICU entry. All SOFA-containing core, ICU-adjusted and CHF/SOFA-stratified models in the original ICU-entry workflow are therefore exploratory sensitivity analyses that can use post-start information, not baseline-only severity adjustment. Temporal leakage or adjustment for post-exposure information may affect interpretation; its impact has not been quantified here. The primary age/sex model with era strata is unchanged. A separate exploratory 24-hour landmark analysis is reported in the supplementary results; pre-ICU severity reconstruction remains unperformed.
 - Differences across the exploratory SOFA/ICU specifications cannot be interpreted solely as correction of baseline confounding. See [timing limitations and separate reanalysis options](docs/ANALYSIS_TIMING_LIMITATIONS.md).
 
 ## Project Structure

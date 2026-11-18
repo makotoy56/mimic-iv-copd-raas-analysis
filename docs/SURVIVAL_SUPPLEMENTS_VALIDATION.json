@@ -28,7 +28,7 @@
     "admission_rows_and_keys_kept_in_memory": true,
     "only_aggregate_outputs_saved": true,
     "outputs_git_ignored": true,
-    "new_clinical_estimates_published": false,
+    "new_clinical_estimates_published": true,
     "final_run_SELECT_jobs": 1,
     "second_run_reason": "Canonical patient/admission order for row-order-independent bootstrap reproducibility.",
     "final_aggregate_record_sha256": "69663a99b032b3b1bde16fee641e9cb35cc6e40663c3bbb67a64d55fbe7ced94"
@@ -45,5 +45,13 @@
     "Pre-ICU severity reconstruction.",
     "Causal interpretation, diagnosis-code timing, frailty, recurrent-event or Fine-Gray models."
   ],
-  "row_order_invariance_regression_passed": true
+  "row_order_invariance_regression_passed": true,
+  "report_publication": {
+    "results_record": "SURVIVAL_SENSITIVITY_RESULTS.json",
+    "results_sha256": "9186f2fe6163b8c03b270822f264948266a7098e5483cddc303d4a1012188a7e",
+    "selected_aggregate_results_only": true,
+    "main_estimates_replaced": false,
+    "prepared_at_utc": "2026-11-18T12:16:16.928516+00:00",
+    "report_regression_tests_passed": 31
+  }
 }

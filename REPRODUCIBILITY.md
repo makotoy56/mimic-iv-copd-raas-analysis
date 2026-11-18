@@ -28,7 +28,7 @@ The workflow is organized as a stepwise clinical analysis pipeline:
    - `sql/03_merge_exposures.sql`
    - `notebooks/03a_baseline.ipynb`
    - `notebooks/03b_merge_exposures.ipynb`
-4. **Outcome construction**: for in-hospital deaths, follow-up runs from ICU admission to `admissions.deathtime`, with `admissions.dischtime` used as a flagged fallback only when death time is unavailable. For live discharges, follow-up runs from ICU admission to discharge and is censored at discharge. A competing-risk framework is not implemented.
+4. **Outcome construction**: for in-hospital deaths, follow-up runs from ICU admission to `admissions.deathtime`, with `admissions.dischtime` used as a flagged fallback only when death time is unavailable. For live discharges, follow-up runs from ICU admission to discharge and is censored at discharge. This is the original cause-specific main analysis; supplementary cumulative-incidence analyses treat live discharge as a competing event.
    - `sql/04_build_outcomes.sql`
    - `sql/04_build_outcomes_extended.sql`
 5. **Primary statistical analysis**: Kaplan-Meier survival curves and Cox proportional hazards models are run in Python.
@@ -184,3 +184,5 @@ See [the reproducible scope and evidence](docs/REPRODUCIBLE_SCOPE.md) for what e
 The 05a–05c companions use `scripts/survival_sensitivity.py` and do not call `refresh()` or overwrite main-analysis results. Default notebook runs are wholly synthetic. Use the [supplement guide](docs/SURVIVAL_SENSITIVITY_SUPPLEMENTS.md) for patient-cluster inference, competing-risk cumulative incidence, and the separate 24-hour landmark design. It includes the explicit authorized local-data command and no-query review of a saved aggregate run.
 
 Pseudonymous patient/admission/stay keys are requested only by the supplementary loader option, after the same US dry run and 200 MB cap, and stay in memory. Run output is aggregate-only under ignored `reports/local_supplements/`. Tracked notebooks keep stripped outputs; execute and retain clinical notebook copies only inside that ignored directory. R `survival` is an optional independent synthetic checker; normal analysis remains Python. New clinical estimates are not automatically promoted into README or Quarto.
+
+The Quarto supplementary section and the short README summary are generated from `docs/SURVIVAL_SENSITIVITY_RESULTS.json`, validated against `docs/SURVIVAL_SUPPLEMENTS_VALIDATION.json`. The selected public record contains aggregate counts, RAAS estimates and a fixed daily CIF grid; full local results and covariance matrices remain ignored. `scripts/report_survival_supplement.py` prepares this record from an explicitly supplied, hash-verified local aggregate run. Normal report builds require only the public aggregate records and tracked figures. See the [publication/rebuild procedure](docs/SURVIVAL_SENSITIVITY_SUPPLEMENTS.md#prepare-and-rebuild-the-public-supplementary-section).

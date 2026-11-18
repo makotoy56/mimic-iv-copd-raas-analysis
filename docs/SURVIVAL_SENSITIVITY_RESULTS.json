@@ -1,0 +1,918 @@
+{
+  "schema_version": 1,
+  "analysis_role": "post_hoc_exploratory_sensitivity_analyses",
+  "supplement_version": "patient_cluster_competing_landmark_v1",
+  "generated_at_utc": "2026-11-18T11:27:39.698900+00:00",
+  "publication_prepared_at_utc": "2026-11-18T12:16:16.928516+00:00",
+  "source_run_sha256": "69663a99b032b3b1bde16fee641e9cb35cc6e40663c3bbb67a64d55fbe7ced94",
+  "source_script_sha256": "e562cfa774813b0e6e33e4da78f426488df55e4588c06e8e580393f9a513ba4e",
+  "main_reference_sha256": "554bda76eb780ff1a39c509076c97691b5661140c65cdfee60b071cba9a4537b",
+  "validation_record": "SURVIVAL_SUPPLEMENTS_VALIDATION.json",
+  "cohort": {
+    "n": 11964,
+    "events": 1692,
+    "patients": 9157,
+    "patients_with_multiple_admissions": 1656,
+    "admissions_from_repeat_patients": 4463
+  },
+  "cluster": {
+    "inference": "patient_cluster_HC0_Efron_sandwich_normal_Wald",
+    "models": {
+      "primary_refined": {
+        "n": 11964,
+        "events": 1692,
+        "patients": 9157,
+        "hr": 0.7316475106406797,
+        "ordinary": {
+          "lower_95": 0.5920045312973535,
+          "upper_95": 0.9042297001571896,
+          "p": 0.003832447802687259
+        },
+        "patient_cluster": {
+          "lower_95": 0.5933957911015484,
+          "upper_95": 0.9021096675340181,
+          "p": 0.0034551785392677586
+        }
+      },
+      "core": {
+        "n": 11964,
+        "events": 1692,
+        "patients": 9157,
+        "hr": 0.8326505262503873,
+        "ordinary": {
+          "lower_95": 0.6732318285281228,
+          "upper_95": 1.029818956095427,
+          "p": 0.09122234090633834
+        },
+        "patient_cluster": {
+          "lower_95": 0.6650732717749231,
+          "upper_95": 1.0424519046071041,
+          "p": 0.1101888064131195
+        }
+      }
+    }
+  },
+  "competing": {
+    "estimand": "unadjusted_admission_level_cumulative_incidence",
+    "intervals": "pointwise_patient_cluster_bootstrap_percentile_95",
+    "bootstrap_replicates": 1000,
+    "bootstrap_seed": 20261118,
+    "groups": [
+      {
+        "raas_order_group": 0,
+        "admissions": 11018,
+        "curve": [
+          {
+            "day": 0,
+            "death_cif": 0.0,
+            "discharge_cif": 0.0,
+            "still_hospitalized": 1.0,
+            "death_lower_95": 0.0,
+            "death_upper_95": 0.0,
+            "discharge_lower_95": 0.0,
+            "discharge_upper_95": 0.0
+          },
+          {
+            "day": 1,
+            "death_cif": 0.022054819386458473,
+            "discharge_cif": 0.014612452350698914,
+            "still_hospitalized": 0.9633327282628433,
+            "death_lower_95": 0.019434378030507456,
+            "death_upper_95": 0.024782838206658137,
+            "discharge_lower_95": 0.012269626804041596,
+            "discharge_upper_95": 0.017166635567712227
+          },
+          {
+            "day": 2,
+            "death_cif": 0.038754764930114094,
+            "discharge_cif": 0.05055363949900124,
+            "still_hospitalized": 0.9106915955708876,
+            "death_lower_95": 0.0351982474119859,
+            "death_upper_95": 0.04254006894237509,
+            "discharge_lower_95": 0.04647674773103404,
+            "discharge_upper_95": 0.05475683405383397
+          },
+          {
+            "day": 3,
+            "death_cif": 0.050825921219821685,
+            "discharge_cif": 0.11363223815574391,
+            "still_hospitalized": 0.8355418406244383,
+            "death_lower_95": 0.04693748246390584,
+            "death_upper_95": 0.054871561239916405,
+            "discharge_lower_95": 0.10768025878392337,
+            "discharge_upper_95": 0.11950676309121863
+          },
+          {
+            "day": 4,
+            "death_cif": 0.06208023234706786,
+            "discharge_cif": 0.18778362679251911,
+            "still_hospitalized": 0.7501361408604211,
+            "death_lower_95": 0.05776596609530009,
+            "death_upper_95": 0.06671568599972338,
+            "discharge_lower_95": 0.18024585174909902,
+            "discharge_upper_95": 0.19588411199484787
+          },
+          {
+            "day": 5,
+            "death_cif": 0.07215465601742532,
+            "discharge_cif": 0.2779996369577095,
+            "still_hospitalized": 0.6498457070248878,
+            "death_lower_95": 0.06741943447316422,
+            "death_upper_95": 0.0771152939457405,
+            "discharge_lower_95": 0.2693181818181874,
+            "discharge_upper_95": 0.28665737708978084
+          },
+          {
+            "day": 6,
+            "death_cif": 0.08095843165728725,
+            "discharge_cif": 0.36195316754404433,
+            "still_hospitalized": 0.557088400798722,
+            "death_lower_95": 0.07619872282838543,
+            "death_upper_95": 0.08620910434376622,
+            "discharge_lower_95": 0.3523521325245491,
+            "discharge_upper_95": 0.37117381722092635
+          },
+          {
+            "day": 7,
+            "death_cif": 0.08903612270829522,
+            "discharge_cif": 0.4361953167544468,
+            "still_hospitalized": 0.47476856053733524,
+            "death_lower_95": 0.08413612664906456,
+            "death_upper_95": 0.09427438663801137,
+            "discharge_lower_95": 0.42663399197961216,
+            "discharge_upper_95": 0.4459023105139546
+          },
+          {
+            "day": 8,
+            "death_cif": 0.09439099655109866,
+            "discharge_cif": 0.49936467598481454,
+            "still_hospitalized": 0.4062443274641761,
+            "death_lower_95": 0.08917691603848071,
+            "death_upper_95": 0.09969153507891504,
+            "discharge_lower_95": 0.4898786877256507,
+            "discharge_upper_95": 0.5090536060331384
+          },
+          {
+            "day": 9,
+            "death_cif": 0.09974587039390181,
+            "discharge_cif": 0.5490107097477352,
+            "still_hospitalized": 0.3512434198584345,
+            "death_lower_95": 0.09425520486227414,
+            "death_upper_95": 0.1052113455942597,
+            "discharge_lower_95": 0.5393159032515514,
+            "discharge_upper_95": 0.5580961062301025
+          },
+          {
+            "day": 10,
+            "death_cif": 0.10446542022145666,
+            "discharge_cif": 0.5925757850789994,
+            "still_hospitalized": 0.3029587946995974,
+            "death_lower_95": 0.09884215239212486,
+            "death_upper_95": 0.11011478980427931,
+            "discharge_lower_95": 0.5830788504819867,
+            "discharge_upper_95": 0.602314339787672
+          },
+          {
+            "day": 11,
+            "death_cif": 0.10845888546015692,
+            "discharge_cif": 0.624160464694165,
+            "still_hospitalized": 0.26738064984571785,
+            "death_lower_95": 0.10300861084315845,
+            "death_upper_95": 0.1139041712767565,
+            "discharge_lower_95": 0.6148027245777482,
+            "discharge_upper_95": 0.6336848631743126
+          },
+          {
+            "day": 12,
+            "death_cif": 0.1117262661100026,
+            "discharge_cif": 0.6496641858776755,
+            "still_hospitalized": 0.23860954801235282,
+            "death_lower_95": 0.10591855747231635,
+            "death_upper_95": 0.11749618869650011,
+            "discharge_lower_95": 0.6402576505695601,
+            "discharge_upper_95": 0.6590605554674576
+          },
+          {
+            "day": 13,
+            "death_cif": 0.11490288618624143,
+            "discharge_cif": 0.672808132147409,
+            "still_hospitalized": 0.21228898166637256,
+            "death_lower_95": 0.10914146870031034,
+            "death_upper_95": 0.12066662948744433,
+            "discharge_lower_95": 0.6638108643521671,
+            "discharge_upper_95": 0.6821836339514301
+          },
+          {
+            "day": 14,
+            "death_cif": 0.11835178798330075,
+            "discharge_cif": 0.6954982755491084,
+            "still_hospitalized": 0.18614993646760658,
+            "death_lower_95": 0.11259377053965006,
+            "death_upper_95": 0.12424117867919834,
+            "discharge_lower_95": 0.6867663024117965,
+            "discharge_upper_95": 0.7047751820624604
+          },
+          {
+            "day": 15,
+            "death_cif": 0.12189145035396688,
+            "discharge_cif": 0.7137411508440749,
+            "still_hospitalized": 0.1643673988019685,
+            "death_lower_95": 0.11606605776532006,
+            "death_upper_95": 0.12797993310089764,
+            "discharge_lower_95": 0.7056549659742821,
+            "discharge_upper_95": 0.72240565091095
+          },
+          {
+            "day": 16,
+            "death_cif": 0.12443274641495795,
+            "discharge_cif": 0.7261753494282059,
+            "still_hospitalized": 0.1493919041568424,
+            "death_lower_95": 0.11807879514651996,
+            "death_upper_95": 0.13045656319037388,
+            "discharge_lower_95": 0.717876825561308,
+            "discharge_upper_95": 0.7344724498527064
+          },
+          {
+            "day": 17,
+            "death_cif": 0.1260664367398808,
+            "discharge_cif": 0.7391541114539779,
+            "still_hospitalized": 0.13477945180614356,
+            "death_lower_95": 0.11984938028950289,
+            "death_upper_95": 0.13218194048638499,
+            "discharge_lower_95": 0.7311393915534559,
+            "discharge_upper_95": 0.7469437610956746
+          },
+          {
+            "day": 18,
+            "death_cif": 0.12842621165365822,
+            "discharge_cif": 0.7514067888908954,
+            "still_hospitalized": 0.12016699945544454,
+            "death_lower_95": 0.12236860415829566,
+            "death_upper_95": 0.13465545852884914,
+            "discharge_lower_95": 0.7432810129468993,
+            "discharge_upper_95": 0.7592116279383044
+          },
+          {
+            "day": 19,
+            "death_cif": 0.130604465420222,
+            "discharge_cif": 0.7593029587946867,
+            "still_hospitalized": 0.11009257578508626,
+            "death_lower_95": 0.12454446826952367,
+            "death_upper_95": 0.13666326068179285,
+            "discharge_lower_95": 0.7512050259765961,
+            "discharge_upper_95": 0.7672055778436759
+          },
+          {
+            "day": 20,
+            "death_cif": 0.13196587402432436,
+            "discharge_cif": 0.7684697767289731,
+            "still_hospitalized": 0.0995643492466939,
+            "death_lower_95": 0.12592899327510568,
+            "death_upper_95": 0.13814888784974494,
+            "discharge_lower_95": 0.7605851673520403,
+            "discharge_upper_95": 0.7763769630790911
+          },
+          {
+            "day": 21,
+            "death_cif": 0.1332365220548199,
+            "discharge_cif": 0.7773643129424391,
+            "still_hospitalized": 0.08939916500272871,
+            "death_lower_95": 0.12692674791256647,
+            "death_upper_95": 0.13929525089134118,
+            "discharge_lower_95": 0.7695063222333252,
+            "discharge_upper_95": 0.7849998782180693
+          },
+          {
+            "day": 22,
+            "death_cif": 0.13432564893810178,
+            "discharge_cif": 0.7856235251406576,
+            "still_hospitalized": 0.08005082592122514,
+            "death_lower_95": 0.12794699792806516,
+            "death_upper_95": 0.14046738706984832,
+            "discharge_lower_95": 0.7779087633962523,
+            "discharge_upper_95": 0.7931518643650741
+          },
+          {
+            "day": 23,
+            "death_cif": 0.13505173352695637,
+            "discharge_cif": 0.7931566527500217,
+            "still_hospitalized": 0.07179161372300347,
+            "death_lower_95": 0.128580377957861,
+            "death_upper_95": 0.1413114733499589,
+            "discharge_lower_95": 0.7853160607686135,
+            "discharge_upper_95": 0.8006350074914104
+          },
+          {
+            "day": 24,
+            "death_cif": 0.13605009983663144,
+            "discharge_cif": 0.7984207660192159,
+            "still_hospitalized": 0.06552913414413215,
+            "death_lower_95": 0.12957870230264432,
+            "death_upper_95": 0.14224905621120756,
+            "discharge_lower_95": 0.7908882972170199,
+            "discharge_upper_95": 0.8058734084343282
+          },
+          {
+            "day": 25,
+            "death_cif": 0.1370484661463065,
+            "discharge_cif": 0.8027772735523421,
+            "still_hospitalized": 0.06017426030132908,
+            "death_lower_95": 0.13052410374488577,
+            "death_upper_95": 0.14326167968572734,
+            "discharge_lower_95": 0.7952458150447648,
+            "discharge_upper_95": 0.810335713851685
+          },
+          {
+            "day": 26,
+            "death_cif": 0.13750226901434062,
+            "discharge_cif": 0.8076783445271091,
+            "still_hospitalized": 0.05481938645852605,
+            "death_lower_95": 0.13114854196456205,
+            "death_upper_95": 0.14377370114083413,
+            "discharge_lower_95": 0.800127683371962,
+            "discharge_upper_95": 0.8151396124552779
+          },
+          {
+            "day": 27,
+            "death_cif": 0.13840987475040886,
+            "discharge_cif": 0.8123071337810557,
+            "still_hospitalized": 0.04928299146850936,
+            "death_lower_95": 0.13201500688336243,
+            "death_upper_95": 0.14478946766426526,
+            "discharge_lower_95": 0.805074609059678,
+            "discharge_upper_95": 0.819687508655491
+          },
+          {
+            "day": 28,
+            "death_cif": 0.13904519876565663,
+            "discharge_cif": 0.8167544018877887,
+            "still_hospitalized": 0.04420039934652683,
+            "death_lower_95": 0.13282822632705799,
+            "death_upper_95": 0.14542043685331357,
+            "discharge_lower_95": 0.8095179394258187,
+            "discharge_upper_95": 0.8240203795588645
+          }
+        ]
+      },
+      {
+        "raas_order_group": 1,
+        "admissions": 946,
+        "curve": [
+          {
+            "day": 0,
+            "death_cif": 0.0,
+            "discharge_cif": 0.0,
+            "still_hospitalized": 1.0,
+            "death_lower_95": 0.0,
+            "death_upper_95": 0.0,
+            "discharge_lower_95": 0.0,
+            "discharge_upper_95": 0.0
+          },
+          {
+            "day": 1,
+            "death_cif": 0.011627906976744186,
+            "discharge_cif": 0.017970401691331926,
+            "still_hospitalized": 0.970401691331924,
+            "death_lower_95": 0.005080022819845905,
+            "death_upper_95": 0.019189765458422173,
+            "discharge_lower_95": 0.009977791669408438,
+            "discharge_upper_95": 0.02714642631785392
+          },
+          {
+            "day": 2,
+            "death_cif": 0.025369978858350965,
+            "discharge_cif": 0.05391120507399575,
+            "still_hospitalized": 0.9207188160676533,
+            "death_lower_95": 0.015999786780383794,
+            "death_upper_95": 0.03552861977151401,
+            "discharge_lower_95": 0.040123548046462516,
+            "discharge_upper_95": 0.06851398365816905
+          },
+          {
+            "day": 3,
+            "death_cif": 0.0317124735729387,
+            "discharge_cif": 0.1194503171247356,
+            "still_hospitalized": 0.8488372093023253,
+            "death_lower_95": 0.02118562581486311,
+            "death_upper_95": 0.04287287784979642,
+            "discharge_lower_95": 0.09881714869183546,
+            "discharge_upper_95": 0.14060745358036947
+          },
+          {
+            "day": 4,
+            "death_cif": 0.04228329809725158,
+            "discharge_cif": 0.19767441860465182,
+            "still_hospitalized": 0.7600422832980961,
+            "death_lower_95": 0.029634521602994374,
+            "death_upper_95": 0.056605683293866005,
+            "discharge_lower_95": 0.17232490480468932,
+            "discharge_upper_95": 0.22529792367305135
+          },
+          {
+            "day": 5,
+            "death_cif": 0.05073995771670188,
+            "discharge_cif": 0.2928118393234681,
+            "still_hospitalized": 0.6564482029598285,
+            "death_lower_95": 0.036958817317845824,
+            "death_upper_95": 0.06526609127319906,
+            "discharge_lower_95": 0.26414782987732716,
+            "discharge_upper_95": 0.32534197262291925
+          },
+          {
+            "day": 6,
+            "death_cif": 0.052854122621564456,
+            "discharge_cif": 0.4048625792811861,
+            "still_hospitalized": 0.542283298097248,
+            "death_lower_95": 0.038747192119590594,
+            "death_upper_95": 0.06818620326751526,
+            "discharge_lower_95": 0.3752631543471869,
+            "discharge_upper_95": 0.43880237324157384
+          },
+          {
+            "day": 7,
+            "death_cif": 0.0560253699788583,
+            "discharge_cif": 0.495771670190278,
+            "still_hospitalized": 0.4482029598308631,
+            "death_lower_95": 0.041488114573423995,
+            "death_upper_95": 0.07151343786857546,
+            "discharge_lower_95": 0.4633600906755054,
+            "discharge_upper_95": 0.5282912670196925
+          },
+          {
+            "day": 8,
+            "death_cif": 0.06025369978858342,
+            "discharge_cif": 0.5718816067653317,
+            "still_hospitalized": 0.3678646934460857,
+            "death_lower_95": 0.045229496665923,
+            "death_upper_95": 0.07586416292974597,
+            "discharge_lower_95": 0.5405397906230346,
+            "discharge_upper_95": 0.6047778814760845
+          },
+          {
+            "day": 9,
+            "death_cif": 0.06659619450317109,
+            "discharge_cif": 0.6321353065539159,
+            "still_hospitalized": 0.30126849894291446,
+            "death_lower_95": 0.04947521787372485,
+            "death_upper_95": 0.08360903761990461,
+            "discharge_lower_95": 0.6028920203582641,
+            "discharge_upper_95": 0.6644961546867034
+          },
+          {
+            "day": 10,
+            "death_cif": 0.06871035940803363,
+            "discharge_cif": 0.6807610993657558,
+            "still_hospitalized": 0.2505285412262128,
+            "death_lower_95": 0.05170041517123911,
+            "death_upper_95": 0.0855437783223639,
+            "discharge_lower_95": 0.652121582679257,
+            "discharge_upper_95": 0.7113065703248531
+          },
+          {
+            "day": 11,
+            "death_cif": 0.07610993657505255,
+            "discharge_cif": 0.7050739957716757,
+            "still_hospitalized": 0.21881606765327455,
+            "death_lower_95": 0.05811968931915746,
+            "death_upper_95": 0.09414457876035605,
+            "discharge_lower_95": 0.6749689422400524,
+            "discharge_upper_95": 0.7354519218155586
+          },
+          {
+            "day": 12,
+            "death_cif": 0.0782241014799151,
+            "discharge_cif": 0.7325581395348896,
+            "still_hospitalized": 0.18921775898519885,
+            "death_lower_95": 0.05975116402231895,
+            "death_upper_95": 0.09701513107011794,
+            "discharge_lower_95": 0.7017539102637274,
+            "discharge_upper_95": 0.7611865879652396
+          },
+          {
+            "day": 13,
+            "death_cif": 0.0782241014799151,
+            "discharge_cif": 0.7589852008456721,
+            "still_hospitalized": 0.16279069767441692,
+            "death_lower_95": 0.05975116402231895,
+            "death_upper_95": 0.09701513107011794,
+            "discharge_lower_95": 0.7293063095797913,
+            "discharge_upper_95": 0.7864831359745411
+          },
+          {
+            "day": 14,
+            "death_cif": 0.08033826638477765,
+            "discharge_cif": 0.7769556025370042,
+            "still_hospitalized": 0.14270613107822272,
+            "death_lower_95": 0.062110195456267885,
+            "death_upper_95": 0.09926361268573271,
+            "discharge_lower_95": 0.7472822863667437,
+            "discharge_upper_95": 0.8039468791156088
+          },
+          {
+            "day": 15,
+            "death_cif": 0.08456659619450274,
+            "discharge_cif": 0.8023255813953555,
+            "still_hospitalized": 0.113107822410147,
+            "death_lower_95": 0.06517253689471504,
+            "death_upper_95": 0.10348760494434876,
+            "discharge_lower_95": 0.7763430143250142,
+            "discharge_upper_95": 0.8271554024116562
+          },
+          {
+            "day": 16,
+            "death_cif": 0.08562367864693401,
+            "discharge_cif": 0.8192389006342563,
+            "still_hospitalized": 0.09513742071881527,
+            "death_lower_95": 0.06617647058823543,
+            "death_upper_95": 0.1044477124183006,
+            "discharge_lower_95": 0.7943240521845706,
+            "discharge_upper_95": 0.8434897462221114
+          },
+          {
+            "day": 17,
+            "death_cif": 0.08879492600422785,
+            "discharge_cif": 0.8319238900634319,
+            "still_hospitalized": 0.07928118393234607,
+            "death_lower_95": 0.06920772788620815,
+            "death_upper_95": 0.10757347565928413,
+            "discharge_lower_95": 0.8079357440401059,
+            "discharge_upper_95": 0.8554102989347173
+          },
+          {
+            "day": 18,
+            "death_cif": 0.09090909090909043,
+            "discharge_cif": 0.8350951374207258,
+            "still_hospitalized": 0.07399577167018968,
+            "death_lower_95": 0.07087094583432761,
+            "death_upper_95": 0.11076499822506214,
+            "discharge_lower_95": 0.8105680628920663,
+            "discharge_upper_95": 0.8584552002866714
+          },
+          {
+            "day": 19,
+            "death_cif": 0.09090909090909043,
+            "discharge_cif": 0.8446088794926075,
+            "still_hospitalized": 0.06448202959830819,
+            "death_lower_95": 0.07087094583432761,
+            "death_upper_95": 0.11076499822506214,
+            "discharge_lower_95": 0.8200756181883405,
+            "discharge_upper_95": 0.8672952230902927
+          },
+          {
+            "day": 20,
+            "death_cif": 0.09090909090909043,
+            "discharge_cif": 0.849894291754764,
+            "still_hospitalized": 0.059196617336151766,
+            "death_lower_95": 0.07087094583432761,
+            "death_upper_95": 0.11076499822506214,
+            "discharge_lower_95": 0.8268862221328402,
+            "discharge_upper_95": 0.8711752504818759
+          },
+          {
+            "day": 21,
+            "death_cif": 0.09090909090909043,
+            "discharge_cif": 0.8572938689217832,
+            "still_hospitalized": 0.051797040169132794,
+            "death_lower_95": 0.07087094583432761,
+            "death_upper_95": 0.11076499822506214,
+            "discharge_lower_95": 0.8343526913958533,
+            "discharge_upper_95": 0.878688994194914
+          },
+          {
+            "day": 22,
+            "death_cif": 0.09090909090909043,
+            "discharge_cif": 0.8583509513742145,
+            "still_hospitalized": 0.05073995771670151,
+            "death_lower_95": 0.07087094583432761,
+            "death_upper_95": 0.11076499822506214,
+            "discharge_lower_95": 0.8352011736576801,
+            "discharge_upper_95": 0.8801019376131094
+          },
+          {
+            "day": 23,
+            "death_cif": 0.09090909090909043,
+            "discharge_cif": 0.8615221987315084,
+            "still_hospitalized": 0.04756871035940767,
+            "death_lower_95": 0.07087094583432761,
+            "death_upper_95": 0.11076499822506214,
+            "discharge_lower_95": 0.8389372258771962,
+            "discharge_upper_95": 0.8831338481957361
+          },
+          {
+            "day": 24,
+            "death_cif": 0.09090909090909043,
+            "discharge_cif": 0.863636363636371,
+            "still_hospitalized": 0.04545454545454511,
+            "death_lower_95": 0.07087094583432761,
+            "death_upper_95": 0.11076499822506214,
+            "discharge_lower_95": 0.8407070369751922,
+            "discharge_upper_95": 0.88549733284282
+          },
+          {
+            "day": 25,
+            "death_cif": 0.09090909090909043,
+            "discharge_cif": 0.8710359408033901,
+            "still_hospitalized": 0.03805496828752614,
+            "death_lower_95": 0.07087094583432761,
+            "death_upper_95": 0.11076499822506214,
+            "discharge_lower_95": 0.8474882214599939,
+            "discharge_upper_95": 0.8926594250398068
+          },
+          {
+            "day": 26,
+            "death_cif": 0.09090909090909043,
+            "discharge_cif": 0.8731501057082527,
+            "still_hospitalized": 0.03594080338266358,
+            "death_lower_95": 0.07087094583432761,
+            "death_upper_95": 0.11076499822506214,
+            "discharge_lower_95": 0.8500928027616194,
+            "discharge_upper_95": 0.8947907157732087
+          },
+          {
+            "day": 27,
+            "death_cif": 0.09090909090909043,
+            "discharge_cif": 0.8763213530655466,
+            "still_hospitalized": 0.03276955602536974,
+            "death_lower_95": 0.07087094583432761,
+            "death_upper_95": 0.11076499822506214,
+            "discharge_lower_95": 0.8531690593715282,
+            "discharge_upper_95": 0.8968704011099218
+          },
+          {
+            "day": 28,
+            "death_cif": 0.09090909090909043,
+            "discharge_cif": 0.8794926004228405,
+            "still_hospitalized": 0.029598308668075897,
+            "death_lower_95": 0.07087094583432761,
+            "death_upper_95": 0.11076499822506214,
+            "discharge_lower_95": 0.8575613294050461,
+            "discharge_upper_95": 0.9006027182500529
+          }
+        ]
+      }
+    ],
+    "death_cif_difference_raas_minus_no_raas": [
+      {
+        "day": 0,
+        "difference": 0.0,
+        "lower_95": 0.0,
+        "upper_95": 0.0
+      },
+      {
+        "day": 1,
+        "difference": -0.010426912409714287,
+        "lower_95": -0.01753543440667023,
+        "upper_95": -0.002542844854128963
+      },
+      {
+        "day": 2,
+        "difference": -0.01338478607176313,
+        "lower_95": -0.023573176532887787,
+        "upper_95": -0.0023720956991786415
+      },
+      {
+        "day": 3,
+        "difference": -0.019113447646882983,
+        "lower_95": -0.03036371113363346,
+        "upper_95": -0.0074111256250315154
+      },
+      {
+        "day": 4,
+        "difference": -0.01979693424981628,
+        "lower_95": -0.03274901405436657,
+        "upper_95": -0.005028220382090286
+      },
+      {
+        "day": 5,
+        "difference": -0.021414698300723442,
+        "lower_95": -0.03547911246155119,
+        "upper_95": -0.005367841400655721
+      },
+      {
+        "day": 6,
+        "difference": -0.028104309035722794,
+        "lower_95": -0.04250049040797298,
+        "upper_95": -0.012071255896113383
+      },
+      {
+        "day": 7,
+        "difference": -0.033010752729436925,
+        "lower_95": -0.04769898239371629,
+        "upper_95": -0.01668686102693549
+      },
+      {
+        "day": 8,
+        "difference": -0.034137296762515236,
+        "lower_95": -0.0497835067244706,
+        "upper_95": -0.01760945541114865
+      },
+      {
+        "day": 9,
+        "difference": -0.03314967589073073,
+        "lower_95": -0.05012768293034808,
+        "upper_95": -0.015444894977201222
+      },
+      {
+        "day": 10,
+        "difference": -0.03575506081342303,
+        "lower_95": -0.05311301524681102,
+        "upper_95": -0.01742763487310038
+      },
+      {
+        "day": 11,
+        "difference": -0.03234894888510437,
+        "lower_95": -0.05136814326958024,
+        "upper_95": -0.013743770040529098
+      },
+      {
+        "day": 12,
+        "difference": -0.0335021646300875,
+        "lower_95": -0.052605475167970345,
+        "upper_95": -0.013713692306530937
+      },
+      {
+        "day": 13,
+        "difference": -0.03667878470632634,
+        "lower_95": -0.055305617715080045,
+        "upper_95": -0.016970717823374566
+      },
+      {
+        "day": 14,
+        "difference": -0.0380135215985231,
+        "lower_95": -0.05665697944756372,
+        "upper_95": -0.017870863785728608
+      },
+      {
+        "day": 15,
+        "difference": -0.03732485415946414,
+        "lower_95": -0.05691575425189967,
+        "upper_95": -0.01703437713761518
+      },
+      {
+        "day": 16,
+        "difference": -0.03880906776802394,
+        "lower_95": -0.05851338724334202,
+        "upper_95": -0.018407711604676583
+      },
+      {
+        "day": 17,
+        "difference": -0.03727151073565295,
+        "lower_95": -0.0568906202200351,
+        "upper_95": -0.017195064176578543
+      },
+      {
+        "day": 18,
+        "difference": -0.0375171207445678,
+        "lower_95": -0.05806072938853008,
+        "upper_95": -0.016001949041614446
+      },
+      {
+        "day": 19,
+        "difference": -0.03969537451113157,
+        "lower_95": -0.06010431979510731,
+        "upper_95": -0.01847411218832435
+      },
+      {
+        "day": 20,
+        "difference": -0.04105678311523393,
+        "lower_95": -0.061383048440050846,
+        "upper_95": -0.01994627020598115
+      },
+      {
+        "day": 21,
+        "difference": -0.04232743114572947,
+        "lower_95": -0.06251059900798706,
+        "upper_95": -0.020986133095412904
+      },
+      {
+        "day": 22,
+        "difference": -0.04341655802901136,
+        "lower_95": -0.06353515159372752,
+        "upper_95": -0.022064673271461555
+      },
+      {
+        "day": 23,
+        "difference": -0.04414264261786595,
+        "lower_95": -0.06443165172982988,
+        "upper_95": -0.02270293549562632
+      },
+      {
+        "day": 24,
+        "difference": -0.04514100892754101,
+        "lower_95": -0.06536920781770189,
+        "upper_95": -0.023746712008921568
+      },
+      {
+        "day": 25,
+        "difference": -0.046139375237216076,
+        "lower_95": -0.06633137852921063,
+        "upper_95": -0.024751021455913583
+      },
+      {
+        "day": 26,
+        "difference": -0.046593178105250196,
+        "lower_95": -0.06687547065167172,
+        "upper_95": -0.025214291882743198
+      },
+      {
+        "day": 27,
+        "difference": -0.047500783841318436,
+        "lower_95": -0.06763477583459586,
+        "upper_95": -0.026154653481152777
+      },
+      {
+        "day": 28,
+        "difference": -0.048136107856566204,
+        "lower_95": -0.06820921723598897,
+        "upper_95": -0.026606721541368505
+      }
+    ],
+    "cause_specific_cox": {
+      "death": {
+        "n": 11964,
+        "events": 1692,
+        "patients": 9157,
+        "hr": 0.7316475106406797,
+        "ordinary": {
+          "lower_95": 0.5920045312973535,
+          "upper_95": 0.9042297001571896,
+          "p": 0.003832447802687259
+        },
+        "patient_cluster": {
+          "lower_95": 0.5933957911015484,
+          "upper_95": 0.9021096675340181,
+          "p": 0.0034551785392677586
+        }
+      },
+      "discharge": {
+        "n": 11964,
+        "events": 10272,
+        "patients": 9157,
+        "hr": 1.1675743456283982,
+        "ordinary": {
+          "lower_95": 1.0882969173432981,
+          "upper_95": 1.2526267701809155,
+          "p": 1.5707871673490943e-05
+        },
+        "patient_cluster": {
+          "lower_95": 1.0871604400232548,
+          "upper_95": 1.2539362198834445,
+          "p": 2.0877816457176115e-05
+        }
+      }
+    }
+  },
+  "landmark": {
+    "eligibility": {
+      "original_admissions": 11964,
+      "landmark_days": 1.0,
+      "deaths_at_or_before_landmark": 254,
+      "discharges_at_or_before_landmark": 178,
+      "additional_fallback_deaths_excluded": 2,
+      "eligible_alive_and_hospitalized": 11530,
+      "eligible_missing_core_covariates": 0
+    },
+    "models": {
+      "landmark_age_sex": {
+        "n": 11530,
+        "events": 1436,
+        "patients": 8854,
+        "hr": 0.7713712349167934,
+        "ordinary": {
+          "lower_95": 0.6152434138104975,
+          "upper_95": 0.9671189787662323,
+          "p": 0.024466693172557737
+        },
+        "patient_cluster": {
+          "lower_95": 0.6165654937656824,
+          "upper_95": 0.9650452191591279,
+          "p": 0.023130104118954158
+        }
+      },
+      "landmark_first_day_sofa_core": {
+        "n": 11530,
+        "events": 1436,
+        "patients": 8854,
+        "hr": 0.8535254885249449,
+        "ordinary": {
+          "lower_95": 0.6802758632392203,
+          "upper_95": 1.0708975563132181,
+          "p": 0.17124158440630965
+        },
+        "patient_cluster": {
+          "lower_95": 0.6730428339182912,
+          "upper_95": 1.0824062345639476,
+          "p": 0.19132778754030544
+        }
+      }
+    },
+    "individual_measurement_times_independently_verified": false,
+    "pre_ICU_severity_reconstructed": false
+  },
+  "limitations": [
+    "Observational prescription-order associations; no causal treatment interpretation.",
+    "CIF curves are unadjusted and distinct from adjusted cause-specific HRs.",
+    "Landmark selection changes the population and time origin; first-day severity is post-exposure.",
+    "Individual SOFA component windows, pre-ICU severity and comorbidity-code timing remain unverified."
+  ]
+}

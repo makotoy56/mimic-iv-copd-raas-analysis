@@ -22,7 +22,7 @@ To run all supplements once in an already authorized local MIMIC/BigQuery enviro
 
 Use a new output directory for every run. The existing loader performs a US dry run and enforces the existing 200 MB billing cap. Its supplementary projection adds `subject_id`, `hadm_id` and `stay_id` to the existing explicit columns. These pseudonymous keys and admission-level model rows remain in memory: never display them, save a row export, or upload them to an external analysis service. Missing keys, duplicated admissions/stays, invalid flags and nonpositive follow-up fail before fitting. Counts, duration/age sums and ordinary model estimates must match the saved current reference.
 
-Only aggregate JSON and figures are written, under the Git-ignored `reports/local_supplements/` directory. Existing tables, `CURRENT_ANALYSIS.json`, primary figures and report estimates are not updated. Clinical results remain local pending review. Tracked notebooks retain stripped outputs; executed copies also belong under the ignored directory.
+Only aggregate JSON and figures are written, under the Git-ignored `reports/local_supplements/` directory. Existing tables, `CURRENT_ANALYSIS.json`, primary figures and report estimates are not updated. Full local results remain excluded from Git. Selected, verified aggregate results are published in [SURVIVAL_SENSITIVITY_RESULTS.json](SURVIVAL_SENSITIVITY_RESULTS.json) and the [Quarto supplementary section](https://makotoy56.github.io/mimic-iv-copd-raas-analysis/copd_raas_survival_report.html#supplementary-sensitivity-analyses). Tracked notebooks retain stripped outputs; executed copies also belong under the ignored directory.
 
 For a no-query notebook review of a completed run, set `DATA_MODE = "local"` and `LOCAL_RESULT` to its `aggregate_results.json`. The reader checks the supplement version, source-script hash and current reference hash. `DATA_MODE = "current"` explicitly runs that notebook's analysis through the same bounded loader.
 
@@ -54,11 +54,11 @@ This targets admissions alive and still hospitalized beyond 24 hours, rather tha
 
 ## Validation status and publication scope
 
-The [execution and validation record](SURVIVAL_SUPPLEMENTS_VALIDATION.json) records the checked source/reference hashes, 25 regression tests, notebook execution modes and retained limitations, without publishing new clinical estimates.
+The [execution and validation record](SURVIVAL_SUPPLEMENTS_VALIDATION.json) records the checked source/reference hashes, the original 25 analytical regression tests and the expanded 31-test report suite, notebook execution modes and retained limitations, including the separate selected-aggregate publication record.
 
-The versioned synthetic record covers Efron coefficients and both covariance matrices against R `survival`, plus tied two-cause Aalen-Johansen estimates. Synthetic validation establishes numerical behavior, not clinical validity. See the local execution record for any current-data result; no new clinical estimates are included in this guide or promoted into the main report.
+The versioned synthetic record covers Efron coefficients and both covariance matrices against R `survival`, plus tied two-cause Aalen-Johansen estimates. Synthetic validation establishes numerical behavior, not clinical validity. See the local execution record for any current-data result; the selected aggregate estimates are reported in the separate Quarto supplementary section without replacing original main estimates.
 
-On 2026-11-18 all three supplements were executed locally against the existing corrected cohort using one bounded, read-only SELECT. Ordinary reference estimates matched before the new results were saved. Each notebook also completed top-to-bottom on synthetic inputs and, separately, on the verified local aggregate result without another query. Numerical outputs and executed clinical copies remain under ignored `reports/local_supplements/`; published source notebooks retain synthetic defaults and stripped outputs. The independent component-time validation and pre-ICU severity reconstruction described above remain unperformed.
+On 2026-11-18 all three supplements were executed locally against the existing corrected cohort using one bounded, read-only SELECT. Ordinary reference estimates matched before the new results were saved. Each notebook also completed top-to-bottom on synthetic inputs and, separately, on the verified local aggregate result without another query. Full numerical outputs and executed clinical copies remain under ignored `reports/local_supplements/`; selected aggregate estimates are included in the public report; published source notebooks retain synthetic defaults and stripped outputs. The independent component-time validation and pre-ICU severity reconstruction described above remain unperformed.
 
 ## Method references
 
@@ -67,3 +67,21 @@ On 2026-11-18 all three supplements were executed locally against the existing c
 - [Austin, Lee and Fine: competing-risk methods and interpretation](https://pmc.ncbi.nlm.nih.gov/articles/PMC4741409/)
 - [Giobbie-Hurder et al.: conditional landmark analysis](https://pmc.ncbi.nlm.nih.gov/articles/PMC3732313/)
 - [Published MIMIC first-day SOFA definition](https://github.com/MIT-LCP/mimic-code/blob/main/mimic-iv/concepts/firstday/first_day_sofa.sql)
+
+## Prepare and rebuild the public supplementary section
+
+The report reads the selected aggregate record and its validation hashes, never the ignored full run. Rebuild from a fresh checkout without clinical access using:
+
+```bash
+.venv/bin/python scripts/build_report.py
+```
+
+To prepare the selected record from the exact locally verified run:
+
+```bash
+.venv/bin/python scripts/report_survival_supplement.py \
+  --input reports/local_supplements/sensitivity_run02/aggregate_results.json
+.venv/bin/python scripts/build_report.py
+```
+
+The preparation command verifies the local run, analysis-source and main-reference hashes, selects only counts, RAAS estimates and the fixed daily CIF grid, and creates the public figure. It does not query BigQuery or refit models. A new analytical run needs its validation record reviewed and rebound before publication. The renderer rejects stale or modified records. README values and Quarto tables share this same selected record. Full local output and covariance matrices are not copied into the public record.
