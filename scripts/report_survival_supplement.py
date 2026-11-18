@@ -198,7 +198,10 @@ def export_figure(repo, data):
     from matplotlib.ticker import PercentFormatter
     plt.rcParams.update({"svg.fonttype": "none", "svg.hashsalt": "survival_supplement_report_v1", "font.size": 10})
     fig, axes = plt.subplots(1, 2, figsize=(10, 4.2), sharex=True)
-    for group, color in zip(data["competing"]["groups"], ["#1f77b4", "#d95f02"]):
+    # Match the main Kaplan-Meier figure by exposure value, independent of row order.
+    exposure_colors = {0: "#ff7f0e", 1: "#1f77b4"}
+    for group in data["competing"]["groups"]:
+        color = exposure_colors[group["raas_order_group"]]
         label = "Qualifying RAAS orders" if group["raas_order_group"] else "No qualifying RAAS orders"
         rows = group["curve"]; days = [r["day"] for r in rows]
         for ax, cause in zip(axes, ["death", "discharge"]):

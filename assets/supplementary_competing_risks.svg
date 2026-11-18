@@ -38,7 +38,7 @@ z
    </g>
    <g id="FillBetweenPolyCollection_1">
     <defs>
-     <path id="m5a788e9cfe" d="M 63.47 -41.96
+     <path id="m41ecbb3dcf" d="M 63.47 -41.96
 L 63.47 -41.96
 L 73.92375 -41.96
 L 73.92375 -64.655467
@@ -155,15 +155,15 @@ L 73.92375 -70.901398
 L 73.92375 -41.96
 L 63.47 -41.96
 z
-" style="stroke: #1f77b4; stroke-opacity: 0.16"/>
+" style="stroke: #ff7f0e; stroke-opacity: 0.16"/>
     </defs>
     <g clip-path="url(#pf2e6de2888)">
-     <use xlink:href="#m5a788e9cfe" x="0" y="302.4" style="fill: #1f77b4; fill-opacity: 0.16; stroke: #1f77b4; stroke-opacity: 0.16"/>
+     <use xlink:href="#m41ecbb3dcf" x="0" y="302.4" style="fill: #ff7f0e; fill-opacity: 0.16; stroke: #ff7f0e; stroke-opacity: 0.16"/>
     </g>
    </g>
    <g id="FillBetweenPolyCollection_2">
     <defs>
-     <path id="m087cee5cbc" d="M 63.47 -41.96
+     <path id="m35595c0b0d" d="M 63.47 -41.96
 L 63.47 -41.96
 L 73.92375 -41.96
 L 73.92375 -47.892451
@@ -280,10 +280,10 @@ L 73.92375 -64.369808
 L 73.92375 -41.96
 L 63.47 -41.96
 z
-" style="stroke: #d95f02; stroke-opacity: 0.16"/>
+" style="stroke: #1f77b4; stroke-opacity: 0.16"/>
     </defs>
     <g clip-path="url(#pf2e6de2888)">
-     <use xlink:href="#m087cee5cbc" x="0" y="302.4" style="fill: #d95f02; fill-opacity: 0.16; stroke: #d95f02; stroke-opacity: 0.16"/>
+     <use xlink:href="#m35595c0b0d" x="0" y="302.4" style="fill: #1f77b4; fill-opacity: 0.16; stroke: #1f77b4; stroke-opacity: 0.16"/>
     </g>
    </g>
    <g id="matplotlib.axis_1">
@@ -514,7 +514,7 @@ L 345.72125 99.86485
 L 345.72125 98.804948
 L 356.175 98.804948
 L 356.175 98.063017
-" clip-path="url(#pf2e6de2888)" style="fill: none; stroke: #1f77b4; stroke-width: 1.5; stroke-linecap: square"/>
+" clip-path="url(#pf2e6de2888)" style="fill: none; stroke: #ff7f0e; stroke-width: 1.5; stroke-linecap: square"/>
    </g>
    <g id="line2d_17">
     <path d="M 63.47 260.44
@@ -574,7 +574,7 @@ L 345.72125 154.276364
 L 345.72125 154.276364
 L 356.175 154.276364
 L 356.175 154.276364
-" clip-path="url(#pf2e6de2888)" style="fill: none; stroke: #d95f02; stroke-width: 1.5; stroke-linecap: square"/>
+" clip-path="url(#pf2e6de2888)" style="fill: none; stroke: #1f77b4; stroke-width: 1.5; stroke-linecap: square"/>
    </g>
    <g id="patch_3">
     <path d="M 63.47 260.44
@@ -619,7 +619,7 @@ L 78.67 37.35875
 L 78.67 37.35875
 L 86.67 37.35875
 L 86.67 37.35875
-" style="fill: none; stroke: #1f77b4; stroke-width: 1.5; stroke-linecap: square"/>
+" style="fill: none; stroke: #ff7f0e; stroke-width: 1.5; stroke-linecap: square"/>
     </g>
     <g id="text_19">
      <text style="font-size: 8px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="93.07" y="40.15875" transform="rotate(-0 93.07 40.15875)">No qualifying RAAS orders</text>
@@ -630,7 +630,7 @@ L 78.67 49.10125
 L 78.67 49.10125
 L 86.67 49.10125
 L 86.67 49.10125
-" style="fill: none; stroke: #d95f02; stroke-width: 1.5; stroke-linecap: square"/>
+" style="fill: none; stroke: #1f77b4; stroke-width: 1.5; stroke-linecap: square"/>
     </g>
     <g id="text_20">
      <text style="font-size: 8px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="93.07" y="51.90125" transform="rotate(-0 93.07 51.90125)">Qualifying RAAS orders</text>
@@ -648,7 +648,7 @@ z
    </g>
    <g id="FillBetweenPolyCollection_3">
     <defs>
-     <path id="m2c89f51f29" d="M 416.495 -41.96
+     <path id="m4cc947a5e3" d="M 416.495 -41.96
 L 416.495 -41.96
 L 426.94875 -41.96
 L 426.94875 -44.825694
@@ -765,15 +765,15 @@ L 426.94875 -45.969439
 L 426.94875 -41.96
 L 416.495 -41.96
 z
-" style="stroke: #1f77b4; stroke-opacity: 0.16"/>
+" style="stroke: #ff7f0e; stroke-opacity: 0.16"/>
     </defs>
     <g clip-path="url(#p920552a369)">
-     <use xlink:href="#m2c89f51f29" x="0" y="302.4" style="fill: #1f77b4; fill-opacity: 0.16; stroke: #1f77b4; stroke-opacity: 0.16"/>
+     <use xlink:href="#m4cc947a5e3" x="0" y="302.4" style="fill: #ff7f0e; fill-opacity: 0.16; stroke: #ff7f0e; stroke-opacity: 0.16"/>
     </g>
    </g>
    <g id="FillBetweenPolyCollection_4">
     <defs>
-     <path id="me1882ba0a2" d="M 416.495 -41.96
+     <path id="m7d5d24bf4b" d="M 416.495 -41.96
 L 416.495 -41.96
 L 426.94875 -41.96
 L 426.94875 -44.290413
@@ -890,10 +890,10 @@ L 426.94875 -48.300319
 L 426.94875 -41.96
 L 416.495 -41.96
 z
-" style="stroke: #d95f02; stroke-opacity: 0.16"/>
+" style="stroke: #1f77b4; stroke-opacity: 0.16"/>
     </defs>
     <g clip-path="url(#p920552a369)">
-     <use xlink:href="#me1882ba0a2" x="0" y="302.4" style="fill: #d95f02; fill-opacity: 0.16; stroke: #d95f02; stroke-opacity: 0.16"/>
+     <use xlink:href="#m7d5d24bf4b" x="0" y="302.4" style="fill: #1f77b4; fill-opacity: 0.16; stroke: #1f77b4; stroke-opacity: 0.16"/>
     </g>
    </g>
    <g id="matplotlib.axis_3">
@@ -1084,7 +1084,7 @@ L 698.74625 71.798646
 L 698.74625 70.717546
 L 709.2 70.717546
 L 709.2 69.678842
-" clip-path="url(#p920552a369)" style="fill: none; stroke: #1f77b4; stroke-width: 1.5; stroke-linecap: square"/>
+" clip-path="url(#p920552a369)" style="fill: none; stroke: #ff7f0e; stroke-width: 1.5; stroke-linecap: square"/>
    </g>
    <g id="line2d_33">
     <path d="M 416.495 260.44
@@ -1144,7 +1144,7 @@ L 698.74625 56.507061
 L 698.74625 55.766385
 L 709.2 55.766385
 L 709.2 55.025708
-" clip-path="url(#p920552a369)" style="fill: none; stroke: #d95f02; stroke-width: 1.5; stroke-linecap: square"/>
+" clip-path="url(#p920552a369)" style="fill: none; stroke: #1f77b4; stroke-width: 1.5; stroke-linecap: square"/>
    </g>
    <g id="patch_9">
     <path d="M 416.495 260.44
@@ -1189,7 +1189,7 @@ L 431.695 37.35875
 L 431.695 37.35875
 L 439.695 37.35875
 L 439.695 37.35875
-" style="fill: none; stroke: #1f77b4; stroke-width: 1.5; stroke-linecap: square"/>
+" style="fill: none; stroke: #ff7f0e; stroke-width: 1.5; stroke-linecap: square"/>
     </g>
     <g id="text_36">
      <text style="font-size: 8px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="446.095" y="40.15875" transform="rotate(-0 446.095 40.15875)">No qualifying RAAS orders</text>
@@ -1200,7 +1200,7 @@ L 431.695 49.10125
 L 431.695 49.10125
 L 439.695 49.10125
 L 439.695 49.10125
-" style="fill: none; stroke: #d95f02; stroke-width: 1.5; stroke-linecap: square"/>
+" style="fill: none; stroke: #1f77b4; stroke-width: 1.5; stroke-linecap: square"/>
     </g>
     <g id="text_37">
      <text style="font-size: 8px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: start" x="446.095" y="51.90125" transform="rotate(-0 446.095 51.90125)">Qualifying RAAS orders</text>
