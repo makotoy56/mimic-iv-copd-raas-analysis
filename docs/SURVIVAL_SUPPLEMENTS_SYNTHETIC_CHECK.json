@@ -1,0 +1,2934 @@
+{
+  "data_origin": "fully_synthetic_not_MIMIC",
+  "status": "passed",
+  "absolute_tolerance": 1e-06,
+  "covers": [
+    "Efron coefficients",
+    "ordinary covariance",
+    "patient-cluster covariance",
+    "tied two-cause Aalen-Johansen CIF"
+  ],
+  "clinical_analysis_validated": false,
+  "cases": [
+    {
+      "tied_times": false,
+      "software": "R=4.6.0;survival=3.8.6",
+      "maximum_absolute_difference": 1.3459799941273332e-10,
+      "passed": true,
+      "R_reference_values": [
+        {
+          "block": "primary_refined/beta",
+          "row": "raas_pre_icu",
+          "column": "value",
+          "value": -0.108945553977492
+        },
+        {
+          "block": "primary_refined/ordinary",
+          "row": "raas_pre_icu",
+          "column": "raas_pre_icu",
+          "value": 0.0222652390382632
+        },
+        {
+          "block": "primary_refined/cluster",
+          "row": "raas_pre_icu",
+          "column": "raas_pre_icu",
+          "value": 0.0217711857205969
+        },
+        {
+          "block": "primary_refined/ordinary",
+          "row": "raas_pre_icu",
+          "column": "age",
+          "value": -0.0001017604896761
+        },
+        {
+          "block": "primary_refined/cluster",
+          "row": "raas_pre_icu",
+          "column": "age",
+          "value": -1.60108734808316e-05
+        },
+        {
+          "block": "primary_refined/ordinary",
+          "row": "raas_pre_icu",
+          "column": "gender_M",
+          "value": 0.0004950311152774
+        },
+        {
+          "block": "primary_refined/cluster",
+          "row": "raas_pre_icu",
+          "column": "gender_M",
+          "value": 0.0023876144361033
+        },
+        {
+          "block": "primary_refined/beta",
+          "row": "age",
+          "column": "value",
+          "value": 0.0058325742863229
+        },
+        {
+          "block": "primary_refined/ordinary",
+          "row": "age",
+          "column": "raas_pre_icu",
+          "value": -0.0001017604896761
+        },
+        {
+          "block": "primary_refined/cluster",
+          "row": "age",
+          "column": "raas_pre_icu",
+          "value": -1.60108734808316e-05
+        },
+        {
+          "block": "primary_refined/ordinary",
+          "row": "age",
+          "column": "age",
+          "value": 2.65542794172293e-05
+        },
+        {
+          "block": "primary_refined/cluster",
+          "row": "age",
+          "column": "age",
+          "value": 3.55064539649033e-05
+        },
+        {
+          "block": "primary_refined/ordinary",
+          "row": "age",
+          "column": "gender_M",
+          "value": -4.38440143194207e-05
+        },
+        {
+          "block": "primary_refined/cluster",
+          "row": "age",
+          "column": "gender_M",
+          "value": 3.10245331685296e-05
+        },
+        {
+          "block": "primary_refined/beta",
+          "row": "gender_M",
+          "column": "value",
+          "value": 0.34339189611582
+        },
+        {
+          "block": "primary_refined/ordinary",
+          "row": "gender_M",
+          "column": "raas_pre_icu",
+          "value": 0.0004950311152774
+        },
+        {
+          "block": "primary_refined/cluster",
+          "row": "gender_M",
+          "column": "raas_pre_icu",
+          "value": 0.0023876144361033
+        },
+        {
+          "block": "primary_refined/ordinary",
+          "row": "gender_M",
+          "column": "age",
+          "value": -4.38440143194207e-05
+        },
+        {
+          "block": "primary_refined/cluster",
+          "row": "gender_M",
+          "column": "age",
+          "value": 3.10245331685296e-05
+        },
+        {
+          "block": "primary_refined/ordinary",
+          "row": "gender_M",
+          "column": "gender_M",
+          "value": 0.020149352237654
+        },
+        {
+          "block": "primary_refined/cluster",
+          "row": "gender_M",
+          "column": "gender_M",
+          "value": 0.0258032581866481
+        },
+        {
+          "block": "core/beta",
+          "row": "raas_pre_icu",
+          "column": "value",
+          "value": -0.112117556538664
+        },
+        {
+          "block": "core/ordinary",
+          "row": "raas_pre_icu",
+          "column": "raas_pre_icu",
+          "value": 0.0230658146614785
+        },
+        {
+          "block": "core/cluster",
+          "row": "raas_pre_icu",
+          "column": "raas_pre_icu",
+          "value": 0.0220892440761845
+        },
+        {
+          "block": "core/ordinary",
+          "row": "raas_pre_icu",
+          "column": "age",
+          "value": -9.0021780325893e-05
+        },
+        {
+          "block": "core/cluster",
+          "row": "raas_pre_icu",
+          "column": "age",
+          "value": 1.43793313942791e-05
+        },
+        {
+          "block": "core/ordinary",
+          "row": "raas_pre_icu",
+          "column": "gender_M",
+          "value": 0.0005169202642072
+        },
+        {
+          "block": "core/cluster",
+          "row": "raas_pre_icu",
+          "column": "gender_M",
+          "value": 0.0022200140171402
+        },
+        {
+          "block": "core/ordinary",
+          "row": "raas_pre_icu",
+          "column": "sofa_score",
+          "value": -0.0002234264604298
+        },
+        {
+          "block": "core/cluster",
+          "row": "raas_pre_icu",
+          "column": "sofa_score",
+          "value": -0.0001909793754068
+        },
+        {
+          "block": "core/ordinary",
+          "row": "raas_pre_icu",
+          "column": "chf",
+          "value": -0.0006132253165693
+        },
+        {
+          "block": "core/cluster",
+          "row": "raas_pre_icu",
+          "column": "chf",
+          "value": -0.0009950638351841
+        },
+        {
+          "block": "core/ordinary",
+          "row": "raas_pre_icu",
+          "column": "ckd",
+          "value": -0.0040676032371503
+        },
+        {
+          "block": "core/cluster",
+          "row": "raas_pre_icu",
+          "column": "ckd",
+          "value": -0.0040785075392175
+        },
+        {
+          "block": "core/ordinary",
+          "row": "raas_pre_icu",
+          "column": "diabetes",
+          "value": 0.0005722885973897
+        },
+        {
+          "block": "core/cluster",
+          "row": "raas_pre_icu",
+          "column": "diabetes",
+          "value": 0.0015579284530637
+        },
+        {
+          "block": "core/beta",
+          "row": "age",
+          "column": "value",
+          "value": 0.0080792030316448
+        },
+        {
+          "block": "core/ordinary",
+          "row": "age",
+          "column": "raas_pre_icu",
+          "value": -9.0021780325893e-05
+        },
+        {
+          "block": "core/cluster",
+          "row": "age",
+          "column": "raas_pre_icu",
+          "value": 1.43793313942791e-05
+        },
+        {
+          "block": "core/ordinary",
+          "row": "age",
+          "column": "age",
+          "value": 2.72170495421839e-05
+        },
+        {
+          "block": "core/cluster",
+          "row": "age",
+          "column": "age",
+          "value": 3.70841477971022e-05
+        },
+        {
+          "block": "core/ordinary",
+          "row": "age",
+          "column": "gender_M",
+          "value": -5.65460412606717e-05
+        },
+        {
+          "block": "core/cluster",
+          "row": "age",
+          "column": "gender_M",
+          "value": 2.80330460967376e-05
+        },
+        {
+          "block": "core/ordinary",
+          "row": "age",
+          "column": "sofa_score",
+          "value": 1.61303645973498e-05
+        },
+        {
+          "block": "core/cluster",
+          "row": "age",
+          "column": "sofa_score",
+          "value": 3.74479429324279e-05
+        },
+        {
+          "block": "core/ordinary",
+          "row": "age",
+          "column": "chf",
+          "value": 8.00783395289741e-06
+        },
+        {
+          "block": "core/cluster",
+          "row": "age",
+          "column": "chf",
+          "value": -1.48187549699058e-05
+        },
+        {
+          "block": "core/ordinary",
+          "row": "age",
+          "column": "ckd",
+          "value": -8.61339921131446e-05
+        },
+        {
+          "block": "core/cluster",
+          "row": "age",
+          "column": "ckd",
+          "value": -0.0001517992423614
+        },
+        {
+          "block": "core/ordinary",
+          "row": "age",
+          "column": "diabetes",
+          "value": 1.26088233890597e-05
+        },
+        {
+          "block": "core/cluster",
+          "row": "age",
+          "column": "diabetes",
+          "value": 4.33578933156755e-05
+        },
+        {
+          "block": "core/beta",
+          "row": "gender_M",
+          "column": "value",
+          "value": 0.373798711354828
+        },
+        {
+          "block": "core/ordinary",
+          "row": "gender_M",
+          "column": "raas_pre_icu",
+          "value": 0.0005169202642072
+        },
+        {
+          "block": "core/cluster",
+          "row": "gender_M",
+          "column": "raas_pre_icu",
+          "value": 0.0022200140171402
+        },
+        {
+          "block": "core/ordinary",
+          "row": "gender_M",
+          "column": "age",
+          "value": -5.65460412606717e-05
+        },
+        {
+          "block": "core/cluster",
+          "row": "gender_M",
+          "column": "age",
+          "value": 2.80330460967376e-05
+        },
+        {
+          "block": "core/ordinary",
+          "row": "gender_M",
+          "column": "gender_M",
+          "value": 0.0207012682037093
+        },
+        {
+          "block": "core/cluster",
+          "row": "gender_M",
+          "column": "gender_M",
+          "value": 0.0264032456071515
+        },
+        {
+          "block": "core/ordinary",
+          "row": "gender_M",
+          "column": "sofa_score",
+          "value": 0.0001560110833809
+        },
+        {
+          "block": "core/cluster",
+          "row": "gender_M",
+          "column": "sofa_score",
+          "value": 4.22524863010876e-06
+        },
+        {
+          "block": "core/ordinary",
+          "row": "gender_M",
+          "column": "chf",
+          "value": -0.0025612710667934
+        },
+        {
+          "block": "core/cluster",
+          "row": "gender_M",
+          "column": "chf",
+          "value": -0.0031717832083396
+        },
+        {
+          "block": "core/ordinary",
+          "row": "gender_M",
+          "column": "ckd",
+          "value": 0.0015175828345974
+        },
+        {
+          "block": "core/cluster",
+          "row": "gender_M",
+          "column": "ckd",
+          "value": 0.0042716154030862
+        },
+        {
+          "block": "core/ordinary",
+          "row": "gender_M",
+          "column": "diabetes",
+          "value": -0.0014147784110976
+        },
+        {
+          "block": "core/cluster",
+          "row": "gender_M",
+          "column": "diabetes",
+          "value": -0.0026710034227737
+        },
+        {
+          "block": "core/beta",
+          "row": "sofa_score",
+          "column": "value",
+          "value": 0.0719467260952362
+        },
+        {
+          "block": "core/ordinary",
+          "row": "sofa_score",
+          "column": "raas_pre_icu",
+          "value": -0.0002234264604298
+        },
+        {
+          "block": "core/cluster",
+          "row": "sofa_score",
+          "column": "raas_pre_icu",
+          "value": -0.0001909793754068
+        },
+        {
+          "block": "core/ordinary",
+          "row": "sofa_score",
+          "column": "age",
+          "value": 1.61303645973498e-05
+        },
+        {
+          "block": "core/cluster",
+          "row": "sofa_score",
+          "column": "age",
+          "value": 3.74479429324279e-05
+        },
+        {
+          "block": "core/ordinary",
+          "row": "sofa_score",
+          "column": "gender_M",
+          "value": 0.0001560110833809
+        },
+        {
+          "block": "core/cluster",
+          "row": "sofa_score",
+          "column": "gender_M",
+          "value": 4.22524863010876e-06
+        },
+        {
+          "block": "core/ordinary",
+          "row": "sofa_score",
+          "column": "sofa_score",
+          "value": 0.0006550783280781
+        },
+        {
+          "block": "core/cluster",
+          "row": "sofa_score",
+          "column": "sofa_score",
+          "value": 0.0007440676669735
+        },
+        {
+          "block": "core/ordinary",
+          "row": "sofa_score",
+          "column": "chf",
+          "value": -0.0005280529189151
+        },
+        {
+          "block": "core/cluster",
+          "row": "sofa_score",
+          "column": "chf",
+          "value": -2.72310457743223e-05
+        },
+        {
+          "block": "core/ordinary",
+          "row": "sofa_score",
+          "column": "ckd",
+          "value": 3.0519851466176e-06
+        },
+        {
+          "block": "core/cluster",
+          "row": "sofa_score",
+          "column": "ckd",
+          "value": -0.000157289472717
+        },
+        {
+          "block": "core/ordinary",
+          "row": "sofa_score",
+          "column": "diabetes",
+          "value": 0.0005455737630109
+        },
+        {
+          "block": "core/cluster",
+          "row": "sofa_score",
+          "column": "diabetes",
+          "value": 0.0009227726057835
+        },
+        {
+          "block": "core/beta",
+          "row": "chf",
+          "column": "value",
+          "value": -0.234704985245618
+        },
+        {
+          "block": "core/ordinary",
+          "row": "chf",
+          "column": "raas_pre_icu",
+          "value": -0.0006132253165693
+        },
+        {
+          "block": "core/cluster",
+          "row": "chf",
+          "column": "raas_pre_icu",
+          "value": -0.0009950638351841
+        },
+        {
+          "block": "core/ordinary",
+          "row": "chf",
+          "column": "age",
+          "value": 8.00783395289741e-06
+        },
+        {
+          "block": "core/cluster",
+          "row": "chf",
+          "column": "age",
+          "value": -1.48187549699058e-05
+        },
+        {
+          "block": "core/ordinary",
+          "row": "chf",
+          "column": "gender_M",
+          "value": -0.0025612710667934
+        },
+        {
+          "block": "core/cluster",
+          "row": "chf",
+          "column": "gender_M",
+          "value": -0.0031717832083396
+        },
+        {
+          "block": "core/ordinary",
+          "row": "chf",
+          "column": "sofa_score",
+          "value": -0.0005280529189151
+        },
+        {
+          "block": "core/cluster",
+          "row": "chf",
+          "column": "sofa_score",
+          "value": -2.72310457743223e-05
+        },
+        {
+          "block": "core/ordinary",
+          "row": "chf",
+          "column": "chf",
+          "value": 0.0262851699557719
+        },
+        {
+          "block": "core/cluster",
+          "row": "chf",
+          "column": "chf",
+          "value": 0.0261927867499188
+        },
+        {
+          "block": "core/ordinary",
+          "row": "chf",
+          "column": "ckd",
+          "value": -0.0011354970994066
+        },
+        {
+          "block": "core/cluster",
+          "row": "chf",
+          "column": "ckd",
+          "value": -0.0033939622119521
+        },
+        {
+          "block": "core/ordinary",
+          "row": "chf",
+          "column": "diabetes",
+          "value": -0.0030659040145934
+        },
+        {
+          "block": "core/cluster",
+          "row": "chf",
+          "column": "diabetes",
+          "value": -0.0017221596137725
+        },
+        {
+          "block": "core/beta",
+          "row": "ckd",
+          "column": "value",
+          "value": -0.139811655205883
+        },
+        {
+          "block": "core/ordinary",
+          "row": "ckd",
+          "column": "raas_pre_icu",
+          "value": -0.0040676032371503
+        },
+        {
+          "block": "core/cluster",
+          "row": "ckd",
+          "column": "raas_pre_icu",
+          "value": -0.0040785075392175
+        },
+        {
+          "block": "core/ordinary",
+          "row": "ckd",
+          "column": "age",
+          "value": -8.61339921131446e-05
+        },
+        {
+          "block": "core/cluster",
+          "row": "ckd",
+          "column": "age",
+          "value": -0.0001517992423614
+        },
+        {
+          "block": "core/ordinary",
+          "row": "ckd",
+          "column": "gender_M",
+          "value": 0.0015175828345974
+        },
+        {
+          "block": "core/cluster",
+          "row": "ckd",
+          "column": "gender_M",
+          "value": 0.0042716154030862
+        },
+        {
+          "block": "core/ordinary",
+          "row": "ckd",
+          "column": "sofa_score",
+          "value": 3.0519851466176e-06
+        },
+        {
+          "block": "core/cluster",
+          "row": "ckd",
+          "column": "sofa_score",
+          "value": -0.000157289472717
+        },
+        {
+          "block": "core/ordinary",
+          "row": "ckd",
+          "column": "chf",
+          "value": -0.0011354970994066
+        },
+        {
+          "block": "core/cluster",
+          "row": "ckd",
+          "column": "chf",
+          "value": -0.0033939622119521
+        },
+        {
+          "block": "core/ordinary",
+          "row": "ckd",
+          "column": "ckd",
+          "value": 0.0256297642196579
+        },
+        {
+          "block": "core/cluster",
+          "row": "ckd",
+          "column": "ckd",
+          "value": 0.0239510156049091
+        },
+        {
+          "block": "core/ordinary",
+          "row": "ckd",
+          "column": "diabetes",
+          "value": 3.31243421874065e-06
+        },
+        {
+          "block": "core/cluster",
+          "row": "ckd",
+          "column": "diabetes",
+          "value": 0.0009937853480162
+        },
+        {
+          "block": "core/beta",
+          "row": "diabetes",
+          "column": "value",
+          "value": 0.037002120190995
+        },
+        {
+          "block": "core/ordinary",
+          "row": "diabetes",
+          "column": "raas_pre_icu",
+          "value": 0.0005722885973897
+        },
+        {
+          "block": "core/cluster",
+          "row": "diabetes",
+          "column": "raas_pre_icu",
+          "value": 0.0015579284530637
+        },
+        {
+          "block": "core/ordinary",
+          "row": "diabetes",
+          "column": "age",
+          "value": 1.26088233890597e-05
+        },
+        {
+          "block": "core/cluster",
+          "row": "diabetes",
+          "column": "age",
+          "value": 4.33578933156755e-05
+        },
+        {
+          "block": "core/ordinary",
+          "row": "diabetes",
+          "column": "gender_M",
+          "value": -0.0014147784110976
+        },
+        {
+          "block": "core/cluster",
+          "row": "diabetes",
+          "column": "gender_M",
+          "value": -0.0026710034227737
+        },
+        {
+          "block": "core/ordinary",
+          "row": "diabetes",
+          "column": "sofa_score",
+          "value": 0.0005455737630109
+        },
+        {
+          "block": "core/cluster",
+          "row": "diabetes",
+          "column": "sofa_score",
+          "value": 0.0009227726057835
+        },
+        {
+          "block": "core/ordinary",
+          "row": "diabetes",
+          "column": "chf",
+          "value": -0.0030659040145934
+        },
+        {
+          "block": "core/cluster",
+          "row": "diabetes",
+          "column": "chf",
+          "value": -0.0017221596137725
+        },
+        {
+          "block": "core/ordinary",
+          "row": "diabetes",
+          "column": "ckd",
+          "value": 3.31243421874065e-06
+        },
+        {
+          "block": "core/cluster",
+          "row": "diabetes",
+          "column": "ckd",
+          "value": 0.0009937853480162
+        },
+        {
+          "block": "core/ordinary",
+          "row": "diabetes",
+          "column": "diabetes",
+          "value": 0.0233993037297344
+        },
+        {
+          "block": "core/cluster",
+          "row": "diabetes",
+          "column": "diabetes",
+          "value": 0.0256768295377633
+        },
+        {
+          "block": "AJ/0",
+          "row": "0",
+          "column": "1",
+          "value": 0.0
+        },
+        {
+          "block": "AJ/0",
+          "row": "0",
+          "column": "2",
+          "value": 0.0
+        },
+        {
+          "block": "AJ/0",
+          "row": "1",
+          "column": "1",
+          "value": 0.0755813953488372
+        },
+        {
+          "block": "AJ/0",
+          "row": "1",
+          "column": "2",
+          "value": 0.113372093023256
+        },
+        {
+          "block": "AJ/0",
+          "row": "2",
+          "column": "1",
+          "value": 0.159883720930233
+        },
+        {
+          "block": "AJ/0",
+          "row": "2",
+          "column": "2",
+          "value": 0.209302325581396
+        },
+        {
+          "block": "AJ/0",
+          "row": "3",
+          "column": "1",
+          "value": 0.203488372093023
+        },
+        {
+          "block": "AJ/0",
+          "row": "3",
+          "column": "2",
+          "value": 0.255813953488372
+        },
+        {
+          "block": "AJ/0",
+          "row": "4",
+          "column": "1",
+          "value": 0.229651162790698
+        },
+        {
+          "block": "AJ/0",
+          "row": "4",
+          "column": "2",
+          "value": 0.316860465116279
+        },
+        {
+          "block": "AJ/0",
+          "row": "5",
+          "column": "1",
+          "value": 0.261627906976744
+        },
+        {
+          "block": "AJ/0",
+          "row": "5",
+          "column": "2",
+          "value": 0.366279069767442
+        },
+        {
+          "block": "AJ/0",
+          "row": "6",
+          "column": "1",
+          "value": 0.287790697674419
+        },
+        {
+          "block": "AJ/0",
+          "row": "6",
+          "column": "2",
+          "value": 0.398255813953489
+        },
+        {
+          "block": "AJ/0",
+          "row": "7",
+          "column": "1",
+          "value": 0.308139534883721
+        },
+        {
+          "block": "AJ/0",
+          "row": "7",
+          "column": "2",
+          "value": 0.430232558139535
+        },
+        {
+          "block": "AJ/0",
+          "row": "8",
+          "column": "1",
+          "value": 0.325581395348838
+        },
+        {
+          "block": "AJ/0",
+          "row": "8",
+          "column": "2",
+          "value": 0.468023255813954
+        },
+        {
+          "block": "AJ/0",
+          "row": "9",
+          "column": "1",
+          "value": 0.328488372093024
+        },
+        {
+          "block": "AJ/0",
+          "row": "9",
+          "column": "2",
+          "value": 0.476744186046512
+        },
+        {
+          "block": "AJ/0",
+          "row": "10",
+          "column": "1",
+          "value": 0.340116279069768
+        },
+        {
+          "block": "AJ/0",
+          "row": "10",
+          "column": "2",
+          "value": 0.488372093023257
+        },
+        {
+          "block": "AJ/0",
+          "row": "11",
+          "column": "1",
+          "value": 0.343023255813954
+        },
+        {
+          "block": "AJ/0",
+          "row": "11",
+          "column": "2",
+          "value": 0.505813953488373
+        },
+        {
+          "block": "AJ/0",
+          "row": "12",
+          "column": "1",
+          "value": 0.354651162790698
+        },
+        {
+          "block": "AJ/0",
+          "row": "12",
+          "column": "2",
+          "value": 0.520348837209303
+        },
+        {
+          "block": "AJ/0",
+          "row": "13",
+          "column": "1",
+          "value": 0.357558139534884
+        },
+        {
+          "block": "AJ/0",
+          "row": "13",
+          "column": "2",
+          "value": 0.531976744186047
+        },
+        {
+          "block": "AJ/0",
+          "row": "14",
+          "column": "1",
+          "value": 0.36046511627907
+        },
+        {
+          "block": "AJ/0",
+          "row": "14",
+          "column": "2",
+          "value": 0.534883720930233
+        },
+        {
+          "block": "AJ/0",
+          "row": "15",
+          "column": "1",
+          "value": 0.36046511627907
+        },
+        {
+          "block": "AJ/0",
+          "row": "15",
+          "column": "2",
+          "value": 0.543604651162791
+        },
+        {
+          "block": "AJ/0",
+          "row": "16",
+          "column": "1",
+          "value": 0.363372093023256
+        },
+        {
+          "block": "AJ/0",
+          "row": "16",
+          "column": "2",
+          "value": 0.555232558139536
+        },
+        {
+          "block": "AJ/0",
+          "row": "17",
+          "column": "1",
+          "value": 0.369186046511628
+        },
+        {
+          "block": "AJ/0",
+          "row": "17",
+          "column": "2",
+          "value": 0.561046511627908
+        },
+        {
+          "block": "AJ/0",
+          "row": "18",
+          "column": "1",
+          "value": 0.369186046511628
+        },
+        {
+          "block": "AJ/0",
+          "row": "18",
+          "column": "2",
+          "value": 0.563953488372094
+        },
+        {
+          "block": "AJ/0",
+          "row": "19",
+          "column": "1",
+          "value": 0.372093023255814
+        },
+        {
+          "block": "AJ/0",
+          "row": "19",
+          "column": "2",
+          "value": 0.569767441860466
+        },
+        {
+          "block": "AJ/0",
+          "row": "20",
+          "column": "1",
+          "value": 0.372093023255814
+        },
+        {
+          "block": "AJ/0",
+          "row": "20",
+          "column": "2",
+          "value": 0.575581395348838
+        },
+        {
+          "block": "AJ/0",
+          "row": "21",
+          "column": "1",
+          "value": 0.372093023255814
+        },
+        {
+          "block": "AJ/0",
+          "row": "21",
+          "column": "2",
+          "value": 0.58139534883721
+        },
+        {
+          "block": "AJ/0",
+          "row": "22",
+          "column": "1",
+          "value": 0.372093023255814
+        },
+        {
+          "block": "AJ/0",
+          "row": "22",
+          "column": "2",
+          "value": 0.590116279069768
+        },
+        {
+          "block": "AJ/0",
+          "row": "23",
+          "column": "1",
+          "value": 0.375
+        },
+        {
+          "block": "AJ/0",
+          "row": "23",
+          "column": "2",
+          "value": 0.59593023255814
+        },
+        {
+          "block": "AJ/0",
+          "row": "24",
+          "column": "1",
+          "value": 0.377906976744186
+        },
+        {
+          "block": "AJ/0",
+          "row": "24",
+          "column": "2",
+          "value": 0.598837209302326
+        },
+        {
+          "block": "AJ/0",
+          "row": "25",
+          "column": "1",
+          "value": 0.380813953488373
+        },
+        {
+          "block": "AJ/0",
+          "row": "25",
+          "column": "2",
+          "value": 0.601744186046512
+        },
+        {
+          "block": "AJ/0",
+          "row": "26",
+          "column": "1",
+          "value": 0.380813953488373
+        },
+        {
+          "block": "AJ/0",
+          "row": "26",
+          "column": "2",
+          "value": 0.604651162790699
+        },
+        {
+          "block": "AJ/0",
+          "row": "27",
+          "column": "1",
+          "value": 0.383720930232559
+        },
+        {
+          "block": "AJ/0",
+          "row": "27",
+          "column": "2",
+          "value": 0.604651162790699
+        },
+        {
+          "block": "AJ/0",
+          "row": "28",
+          "column": "1",
+          "value": 0.383720930232559
+        },
+        {
+          "block": "AJ/0",
+          "row": "28",
+          "column": "2",
+          "value": 0.607558139534885
+        },
+        {
+          "block": "AJ/1",
+          "row": "0",
+          "column": "1",
+          "value": 0.0
+        },
+        {
+          "block": "AJ/1",
+          "row": "0",
+          "column": "2",
+          "value": 0.0
+        },
+        {
+          "block": "AJ/1",
+          "row": "1",
+          "column": "1",
+          "value": 0.0648648648648649
+        },
+        {
+          "block": "AJ/1",
+          "row": "1",
+          "column": "2",
+          "value": 0.102702702702703
+        },
+        {
+          "block": "AJ/1",
+          "row": "2",
+          "column": "1",
+          "value": 0.124324324324324
+        },
+        {
+          "block": "AJ/1",
+          "row": "2",
+          "column": "2",
+          "value": 0.189189189189189
+        },
+        {
+          "block": "AJ/1",
+          "row": "3",
+          "column": "1",
+          "value": 0.172972972972973
+        },
+        {
+          "block": "AJ/1",
+          "row": "3",
+          "column": "2",
+          "value": 0.264864864864865
+        },
+        {
+          "block": "AJ/1",
+          "row": "4",
+          "column": "1",
+          "value": 0.189189189189189
+        },
+        {
+          "block": "AJ/1",
+          "row": "4",
+          "column": "2",
+          "value": 0.286486486486487
+        },
+        {
+          "block": "AJ/1",
+          "row": "5",
+          "column": "1",
+          "value": 0.210810810810811
+        },
+        {
+          "block": "AJ/1",
+          "row": "5",
+          "column": "2",
+          "value": 0.308108108108108
+        },
+        {
+          "block": "AJ/1",
+          "row": "6",
+          "column": "1",
+          "value": 0.248648648648649
+        },
+        {
+          "block": "AJ/1",
+          "row": "6",
+          "column": "2",
+          "value": 0.345945945945946
+        },
+        {
+          "block": "AJ/1",
+          "row": "7",
+          "column": "1",
+          "value": 0.259459459459459
+        },
+        {
+          "block": "AJ/1",
+          "row": "7",
+          "column": "2",
+          "value": 0.389189189189189
+        },
+        {
+          "block": "AJ/1",
+          "row": "8",
+          "column": "1",
+          "value": 0.275675675675676
+        },
+        {
+          "block": "AJ/1",
+          "row": "8",
+          "column": "2",
+          "value": 0.443243243243243
+        },
+        {
+          "block": "AJ/1",
+          "row": "9",
+          "column": "1",
+          "value": 0.291891891891892
+        },
+        {
+          "block": "AJ/1",
+          "row": "9",
+          "column": "2",
+          "value": 0.491891891891892
+        },
+        {
+          "block": "AJ/1",
+          "row": "10",
+          "column": "1",
+          "value": 0.291891891891892
+        },
+        {
+          "block": "AJ/1",
+          "row": "10",
+          "column": "2",
+          "value": 0.497297297297297
+        },
+        {
+          "block": "AJ/1",
+          "row": "11",
+          "column": "1",
+          "value": 0.308108108108108
+        },
+        {
+          "block": "AJ/1",
+          "row": "11",
+          "column": "2",
+          "value": 0.518918918918919
+        },
+        {
+          "block": "AJ/1",
+          "row": "12",
+          "column": "1",
+          "value": 0.308108108108108
+        },
+        {
+          "block": "AJ/1",
+          "row": "12",
+          "column": "2",
+          "value": 0.535135135135136
+        },
+        {
+          "block": "AJ/1",
+          "row": "13",
+          "column": "1",
+          "value": 0.313513513513514
+        },
+        {
+          "block": "AJ/1",
+          "row": "13",
+          "column": "2",
+          "value": 0.545945945945946
+        },
+        {
+          "block": "AJ/1",
+          "row": "14",
+          "column": "1",
+          "value": 0.32972972972973
+        },
+        {
+          "block": "AJ/1",
+          "row": "14",
+          "column": "2",
+          "value": 0.562162162162163
+        },
+        {
+          "block": "AJ/1",
+          "row": "15",
+          "column": "1",
+          "value": 0.32972972972973
+        },
+        {
+          "block": "AJ/1",
+          "row": "15",
+          "column": "2",
+          "value": 0.583783783783785
+        },
+        {
+          "block": "AJ/1",
+          "row": "16",
+          "column": "1",
+          "value": 0.335135135135135
+        },
+        {
+          "block": "AJ/1",
+          "row": "16",
+          "column": "2",
+          "value": 0.594594594594596
+        },
+        {
+          "block": "AJ/1",
+          "row": "17",
+          "column": "1",
+          "value": 0.340540540540541
+        },
+        {
+          "block": "AJ/1",
+          "row": "17",
+          "column": "2",
+          "value": 0.600000000000001
+        },
+        {
+          "block": "AJ/1",
+          "row": "18",
+          "column": "1",
+          "value": 0.340540540540541
+        },
+        {
+          "block": "AJ/1",
+          "row": "18",
+          "column": "2",
+          "value": 0.600000000000001
+        },
+        {
+          "block": "AJ/1",
+          "row": "19",
+          "column": "1",
+          "value": 0.351351351351351
+        },
+        {
+          "block": "AJ/1",
+          "row": "19",
+          "column": "2",
+          "value": 0.600000000000001
+        },
+        {
+          "block": "AJ/1",
+          "row": "20",
+          "column": "1",
+          "value": 0.356756756756757
+        },
+        {
+          "block": "AJ/1",
+          "row": "20",
+          "column": "2",
+          "value": 0.605405405405407
+        },
+        {
+          "block": "AJ/1",
+          "row": "21",
+          "column": "1",
+          "value": 0.362162162162162
+        },
+        {
+          "block": "AJ/1",
+          "row": "21",
+          "column": "2",
+          "value": 0.605405405405407
+        },
+        {
+          "block": "AJ/1",
+          "row": "22",
+          "column": "1",
+          "value": 0.378378378378378
+        },
+        {
+          "block": "AJ/1",
+          "row": "22",
+          "column": "2",
+          "value": 0.605405405405407
+        },
+        {
+          "block": "AJ/1",
+          "row": "23",
+          "column": "1",
+          "value": 0.378378378378378
+        },
+        {
+          "block": "AJ/1",
+          "row": "23",
+          "column": "2",
+          "value": 0.605405405405407
+        },
+        {
+          "block": "AJ/1",
+          "row": "24",
+          "column": "1",
+          "value": 0.383783783783784
+        },
+        {
+          "block": "AJ/1",
+          "row": "24",
+          "column": "2",
+          "value": 0.605405405405407
+        },
+        {
+          "block": "AJ/1",
+          "row": "25",
+          "column": "1",
+          "value": 0.383783783783784
+        },
+        {
+          "block": "AJ/1",
+          "row": "25",
+          "column": "2",
+          "value": 0.605405405405407
+        },
+        {
+          "block": "AJ/1",
+          "row": "26",
+          "column": "1",
+          "value": 0.383783783783784
+        },
+        {
+          "block": "AJ/1",
+          "row": "26",
+          "column": "2",
+          "value": 0.610810810810812
+        },
+        {
+          "block": "AJ/1",
+          "row": "27",
+          "column": "1",
+          "value": 0.383783783783784
+        },
+        {
+          "block": "AJ/1",
+          "row": "27",
+          "column": "2",
+          "value": 0.610810810810812
+        },
+        {
+          "block": "AJ/1",
+          "row": "28",
+          "column": "1",
+          "value": 0.383783783783784
+        },
+        {
+          "block": "AJ/1",
+          "row": "28",
+          "column": "2",
+          "value": 0.610810810810812
+        }
+      ]
+    },
+    {
+      "tied_times": true,
+      "software": "R=4.6.0;survival=3.8.6",
+      "maximum_absolute_difference": 1.2014603201215834e-10,
+      "passed": true,
+      "R_reference_values": [
+        {
+          "block": "primary_refined/beta",
+          "row": "raas_pre_icu",
+          "column": "value",
+          "value": -0.110356303998504
+        },
+        {
+          "block": "primary_refined/ordinary",
+          "row": "raas_pre_icu",
+          "column": "raas_pre_icu",
+          "value": 0.0222608542035981
+        },
+        {
+          "block": "primary_refined/cluster",
+          "row": "raas_pre_icu",
+          "column": "raas_pre_icu",
+          "value": 0.0219452047896774
+        },
+        {
+          "block": "primary_refined/ordinary",
+          "row": "raas_pre_icu",
+          "column": "age",
+          "value": -0.0001010470130344
+        },
+        {
+          "block": "primary_refined/cluster",
+          "row": "raas_pre_icu",
+          "column": "age",
+          "value": -2.30808678110222e-05
+        },
+        {
+          "block": "primary_refined/ordinary",
+          "row": "raas_pre_icu",
+          "column": "gender_M",
+          "value": 0.00049047373635
+        },
+        {
+          "block": "primary_refined/cluster",
+          "row": "raas_pre_icu",
+          "column": "gender_M",
+          "value": 0.0024248895554452
+        },
+        {
+          "block": "primary_refined/beta",
+          "row": "age",
+          "column": "value",
+          "value": 0.0058801919656296
+        },
+        {
+          "block": "primary_refined/ordinary",
+          "row": "age",
+          "column": "raas_pre_icu",
+          "value": -0.0001010470130344
+        },
+        {
+          "block": "primary_refined/cluster",
+          "row": "age",
+          "column": "raas_pre_icu",
+          "value": -2.30808678110222e-05
+        },
+        {
+          "block": "primary_refined/ordinary",
+          "row": "age",
+          "column": "age",
+          "value": 2.64916237403206e-05
+        },
+        {
+          "block": "primary_refined/cluster",
+          "row": "age",
+          "column": "age",
+          "value": 3.53260769328857e-05
+        },
+        {
+          "block": "primary_refined/ordinary",
+          "row": "age",
+          "column": "gender_M",
+          "value": -4.20667634871797e-05
+        },
+        {
+          "block": "primary_refined/cluster",
+          "row": "age",
+          "column": "gender_M",
+          "value": 3.90088775054286e-05
+        },
+        {
+          "block": "primary_refined/beta",
+          "row": "gender_M",
+          "column": "value",
+          "value": 0.343824373523801
+        },
+        {
+          "block": "primary_refined/ordinary",
+          "row": "gender_M",
+          "column": "raas_pre_icu",
+          "value": 0.00049047373635
+        },
+        {
+          "block": "primary_refined/cluster",
+          "row": "gender_M",
+          "column": "raas_pre_icu",
+          "value": 0.0024248895554452
+        },
+        {
+          "block": "primary_refined/ordinary",
+          "row": "gender_M",
+          "column": "age",
+          "value": -4.20667634871797e-05
+        },
+        {
+          "block": "primary_refined/cluster",
+          "row": "gender_M",
+          "column": "age",
+          "value": 3.90088775054286e-05
+        },
+        {
+          "block": "primary_refined/ordinary",
+          "row": "gender_M",
+          "column": "gender_M",
+          "value": 0.0201492611973402
+        },
+        {
+          "block": "primary_refined/cluster",
+          "row": "gender_M",
+          "column": "gender_M",
+          "value": 0.025794224814801
+        },
+        {
+          "block": "core/beta",
+          "row": "raas_pre_icu",
+          "column": "value",
+          "value": -0.114748622646688
+        },
+        {
+          "block": "core/ordinary",
+          "row": "raas_pre_icu",
+          "column": "raas_pre_icu",
+          "value": 0.0230608742721846
+        },
+        {
+          "block": "core/cluster",
+          "row": "raas_pre_icu",
+          "column": "raas_pre_icu",
+          "value": 0.0222274384901594
+        },
+        {
+          "block": "core/ordinary",
+          "row": "raas_pre_icu",
+          "column": "age",
+          "value": -9.04184221049169e-05
+        },
+        {
+          "block": "core/cluster",
+          "row": "raas_pre_icu",
+          "column": "age",
+          "value": 4.56275054479376e-06
+        },
+        {
+          "block": "core/ordinary",
+          "row": "raas_pre_icu",
+          "column": "gender_M",
+          "value": 0.000524899307352
+        },
+        {
+          "block": "core/cluster",
+          "row": "raas_pre_icu",
+          "column": "gender_M",
+          "value": 0.0022588144073268
+        },
+        {
+          "block": "core/ordinary",
+          "row": "raas_pre_icu",
+          "column": "sofa_score",
+          "value": -0.0002356505272723
+        },
+        {
+          "block": "core/cluster",
+          "row": "raas_pre_icu",
+          "column": "sofa_score",
+          "value": -0.0002315275614697
+        },
+        {
+          "block": "core/ordinary",
+          "row": "raas_pre_icu",
+          "column": "chf",
+          "value": -0.0006234807011642
+        },
+        {
+          "block": "core/cluster",
+          "row": "raas_pre_icu",
+          "column": "chf",
+          "value": -0.0009945744813634
+        },
+        {
+          "block": "core/ordinary",
+          "row": "raas_pre_icu",
+          "column": "ckd",
+          "value": -0.0040312385073897
+        },
+        {
+          "block": "core/cluster",
+          "row": "raas_pre_icu",
+          "column": "ckd",
+          "value": -0.0039835558657905
+        },
+        {
+          "block": "core/ordinary",
+          "row": "raas_pre_icu",
+          "column": "diabetes",
+          "value": 0.0005881068833741
+        },
+        {
+          "block": "core/cluster",
+          "row": "raas_pre_icu",
+          "column": "diabetes",
+          "value": 0.0016112305433555
+        },
+        {
+          "block": "core/beta",
+          "row": "age",
+          "column": "value",
+          "value": 0.0081445074624353
+        },
+        {
+          "block": "core/ordinary",
+          "row": "age",
+          "column": "raas_pre_icu",
+          "value": -9.04184221049169e-05
+        },
+        {
+          "block": "core/cluster",
+          "row": "age",
+          "column": "raas_pre_icu",
+          "value": 4.56275054479376e-06
+        },
+        {
+          "block": "core/ordinary",
+          "row": "age",
+          "column": "age",
+          "value": 2.71596470796133e-05
+        },
+        {
+          "block": "core/cluster",
+          "row": "age",
+          "column": "age",
+          "value": 3.68881349633804e-05
+        },
+        {
+          "block": "core/ordinary",
+          "row": "age",
+          "column": "gender_M",
+          "value": -5.38186177889377e-05
+        },
+        {
+          "block": "core/cluster",
+          "row": "age",
+          "column": "gender_M",
+          "value": 3.57080139634602e-05
+        },
+        {
+          "block": "core/ordinary",
+          "row": "age",
+          "column": "sofa_score",
+          "value": 1.63444174331189e-05
+        },
+        {
+          "block": "core/cluster",
+          "row": "age",
+          "column": "sofa_score",
+          "value": 3.84209561529803e-05
+        },
+        {
+          "block": "core/ordinary",
+          "row": "age",
+          "column": "chf",
+          "value": 5.9649513749715e-06
+        },
+        {
+          "block": "core/cluster",
+          "row": "age",
+          "column": "chf",
+          "value": -1.63673712296804e-05
+        },
+        {
+          "block": "core/ordinary",
+          "row": "age",
+          "column": "ckd",
+          "value": -8.40362254117152e-05
+        },
+        {
+          "block": "core/cluster",
+          "row": "age",
+          "column": "ckd",
+          "value": -0.0001481995251107
+        },
+        {
+          "block": "core/ordinary",
+          "row": "age",
+          "column": "diabetes",
+          "value": 1.28118298581343e-05
+        },
+        {
+          "block": "core/cluster",
+          "row": "age",
+          "column": "diabetes",
+          "value": 4.07706948571209e-05
+        },
+        {
+          "block": "core/beta",
+          "row": "gender_M",
+          "column": "value",
+          "value": 0.373199549010567
+        },
+        {
+          "block": "core/ordinary",
+          "row": "gender_M",
+          "column": "raas_pre_icu",
+          "value": 0.000524899307352
+        },
+        {
+          "block": "core/cluster",
+          "row": "gender_M",
+          "column": "raas_pre_icu",
+          "value": 0.0022588144073268
+        },
+        {
+          "block": "core/ordinary",
+          "row": "gender_M",
+          "column": "age",
+          "value": -5.38186177889377e-05
+        },
+        {
+          "block": "core/cluster",
+          "row": "gender_M",
+          "column": "age",
+          "value": 3.57080139634602e-05
+        },
+        {
+          "block": "core/ordinary",
+          "row": "gender_M",
+          "column": "gender_M",
+          "value": 0.0206840565625281
+        },
+        {
+          "block": "core/cluster",
+          "row": "gender_M",
+          "column": "gender_M",
+          "value": 0.0263558185943439
+        },
+        {
+          "block": "core/ordinary",
+          "row": "gender_M",
+          "column": "sofa_score",
+          "value": 0.000149495297758
+        },
+        {
+          "block": "core/cluster",
+          "row": "gender_M",
+          "column": "sofa_score",
+          "value": -7.7077156891608e-06
+        },
+        {
+          "block": "core/ordinary",
+          "row": "gender_M",
+          "column": "chf",
+          "value": -0.002530450711031
+        },
+        {
+          "block": "core/cluster",
+          "row": "gender_M",
+          "column": "chf",
+          "value": -0.0031422243960952
+        },
+        {
+          "block": "core/ordinary",
+          "row": "gender_M",
+          "column": "ckd",
+          "value": 0.0014743227507454
+        },
+        {
+          "block": "core/cluster",
+          "row": "gender_M",
+          "column": "ckd",
+          "value": 0.0042406296588587
+        },
+        {
+          "block": "core/ordinary",
+          "row": "gender_M",
+          "column": "diabetes",
+          "value": -0.001398931350862
+        },
+        {
+          "block": "core/cluster",
+          "row": "gender_M",
+          "column": "diabetes",
+          "value": -0.0025544426293789
+        },
+        {
+          "block": "core/beta",
+          "row": "sofa_score",
+          "column": "value",
+          "value": 0.0714876286202403
+        },
+        {
+          "block": "core/ordinary",
+          "row": "sofa_score",
+          "column": "raas_pre_icu",
+          "value": -0.0002356505272723
+        },
+        {
+          "block": "core/cluster",
+          "row": "sofa_score",
+          "column": "raas_pre_icu",
+          "value": -0.0002315275614697
+        },
+        {
+          "block": "core/ordinary",
+          "row": "sofa_score",
+          "column": "age",
+          "value": 1.63444174331189e-05
+        },
+        {
+          "block": "core/cluster",
+          "row": "sofa_score",
+          "column": "age",
+          "value": 3.84209561529803e-05
+        },
+        {
+          "block": "core/ordinary",
+          "row": "sofa_score",
+          "column": "gender_M",
+          "value": 0.000149495297758
+        },
+        {
+          "block": "core/cluster",
+          "row": "sofa_score",
+          "column": "gender_M",
+          "value": -7.7077156891608e-06
+        },
+        {
+          "block": "core/ordinary",
+          "row": "sofa_score",
+          "column": "sofa_score",
+          "value": 0.0006543890037311
+        },
+        {
+          "block": "core/cluster",
+          "row": "sofa_score",
+          "column": "sofa_score",
+          "value": 0.0007457978475142
+        },
+        {
+          "block": "core/ordinary",
+          "row": "sofa_score",
+          "column": "chf",
+          "value": -0.0005285024857343
+        },
+        {
+          "block": "core/cluster",
+          "row": "sofa_score",
+          "column": "chf",
+          "value": -2.53008442946067e-05
+        },
+        {
+          "block": "core/ordinary",
+          "row": "sofa_score",
+          "column": "ckd",
+          "value": 7.04367513151955e-06
+        },
+        {
+          "block": "core/cluster",
+          "row": "sofa_score",
+          "column": "ckd",
+          "value": -0.0001499967555513
+        },
+        {
+          "block": "core/ordinary",
+          "row": "sofa_score",
+          "column": "diabetes",
+          "value": 0.0005483142481162
+        },
+        {
+          "block": "core/cluster",
+          "row": "sofa_score",
+          "column": "diabetes",
+          "value": 0.000958284949463
+        },
+        {
+          "block": "core/beta",
+          "row": "chf",
+          "column": "value",
+          "value": -0.231103454541138
+        },
+        {
+          "block": "core/ordinary",
+          "row": "chf",
+          "column": "raas_pre_icu",
+          "value": -0.0006234807011642
+        },
+        {
+          "block": "core/cluster",
+          "row": "chf",
+          "column": "raas_pre_icu",
+          "value": -0.0009945744813634
+        },
+        {
+          "block": "core/ordinary",
+          "row": "chf",
+          "column": "age",
+          "value": 5.9649513749715e-06
+        },
+        {
+          "block": "core/cluster",
+          "row": "chf",
+          "column": "age",
+          "value": -1.63673712296804e-05
+        },
+        {
+          "block": "core/ordinary",
+          "row": "chf",
+          "column": "gender_M",
+          "value": -0.002530450711031
+        },
+        {
+          "block": "core/cluster",
+          "row": "chf",
+          "column": "gender_M",
+          "value": -0.0031422243960952
+        },
+        {
+          "block": "core/ordinary",
+          "row": "chf",
+          "column": "sofa_score",
+          "value": -0.0005285024857343
+        },
+        {
+          "block": "core/cluster",
+          "row": "chf",
+          "column": "sofa_score",
+          "value": -2.53008442946067e-05
+        },
+        {
+          "block": "core/ordinary",
+          "row": "chf",
+          "column": "chf",
+          "value": 0.0262669527420168
+        },
+        {
+          "block": "core/cluster",
+          "row": "chf",
+          "column": "chf",
+          "value": 0.0260007529555469
+        },
+        {
+          "block": "core/ordinary",
+          "row": "chf",
+          "column": "ckd",
+          "value": -0.001104410847751
+        },
+        {
+          "block": "core/cluster",
+          "row": "chf",
+          "column": "ckd",
+          "value": -0.0033508889025776
+        },
+        {
+          "block": "core/ordinary",
+          "row": "chf",
+          "column": "diabetes",
+          "value": -0.0030019916642089
+        },
+        {
+          "block": "core/cluster",
+          "row": "chf",
+          "column": "diabetes",
+          "value": -0.0018129885630714
+        },
+        {
+          "block": "core/beta",
+          "row": "ckd",
+          "column": "value",
+          "value": -0.13974937420066
+        },
+        {
+          "block": "core/ordinary",
+          "row": "ckd",
+          "column": "raas_pre_icu",
+          "value": -0.0040312385073897
+        },
+        {
+          "block": "core/cluster",
+          "row": "ckd",
+          "column": "raas_pre_icu",
+          "value": -0.0039835558657905
+        },
+        {
+          "block": "core/ordinary",
+          "row": "ckd",
+          "column": "age",
+          "value": -8.40362254117152e-05
+        },
+        {
+          "block": "core/cluster",
+          "row": "ckd",
+          "column": "age",
+          "value": -0.0001481995251107
+        },
+        {
+          "block": "core/ordinary",
+          "row": "ckd",
+          "column": "gender_M",
+          "value": 0.0014743227507454
+        },
+        {
+          "block": "core/cluster",
+          "row": "ckd",
+          "column": "gender_M",
+          "value": 0.0042406296588587
+        },
+        {
+          "block": "core/ordinary",
+          "row": "ckd",
+          "column": "sofa_score",
+          "value": 7.04367513151955e-06
+        },
+        {
+          "block": "core/cluster",
+          "row": "ckd",
+          "column": "sofa_score",
+          "value": -0.0001499967555513
+        },
+        {
+          "block": "core/ordinary",
+          "row": "ckd",
+          "column": "chf",
+          "value": -0.001104410847751
+        },
+        {
+          "block": "core/cluster",
+          "row": "ckd",
+          "column": "chf",
+          "value": -0.0033508889025776
+        },
+        {
+          "block": "core/ordinary",
+          "row": "ckd",
+          "column": "ckd",
+          "value": 0.0255889106738028
+        },
+        {
+          "block": "core/cluster",
+          "row": "ckd",
+          "column": "ckd",
+          "value": 0.0240788413591411
+        },
+        {
+          "block": "core/ordinary",
+          "row": "ckd",
+          "column": "diabetes",
+          "value": -7.48306448398059e-05
+        },
+        {
+          "block": "core/cluster",
+          "row": "ckd",
+          "column": "diabetes",
+          "value": 0.0009766286636987
+        },
+        {
+          "block": "core/beta",
+          "row": "diabetes",
+          "column": "value",
+          "value": 0.0371547726337793
+        },
+        {
+          "block": "core/ordinary",
+          "row": "diabetes",
+          "column": "raas_pre_icu",
+          "value": 0.0005881068833741
+        },
+        {
+          "block": "core/cluster",
+          "row": "diabetes",
+          "column": "raas_pre_icu",
+          "value": 0.0016112305433555
+        },
+        {
+          "block": "core/ordinary",
+          "row": "diabetes",
+          "column": "age",
+          "value": 1.28118298581343e-05
+        },
+        {
+          "block": "core/cluster",
+          "row": "diabetes",
+          "column": "age",
+          "value": 4.07706948571209e-05
+        },
+        {
+          "block": "core/ordinary",
+          "row": "diabetes",
+          "column": "gender_M",
+          "value": -0.001398931350862
+        },
+        {
+          "block": "core/cluster",
+          "row": "diabetes",
+          "column": "gender_M",
+          "value": -0.0025544426293789
+        },
+        {
+          "block": "core/ordinary",
+          "row": "diabetes",
+          "column": "sofa_score",
+          "value": 0.0005483142481162
+        },
+        {
+          "block": "core/cluster",
+          "row": "diabetes",
+          "column": "sofa_score",
+          "value": 0.000958284949463
+        },
+        {
+          "block": "core/ordinary",
+          "row": "diabetes",
+          "column": "chf",
+          "value": -0.0030019916642089
+        },
+        {
+          "block": "core/cluster",
+          "row": "diabetes",
+          "column": "chf",
+          "value": -0.0018129885630714
+        },
+        {
+          "block": "core/ordinary",
+          "row": "diabetes",
+          "column": "ckd",
+          "value": -7.48306448398059e-05
+        },
+        {
+          "block": "core/cluster",
+          "row": "diabetes",
+          "column": "ckd",
+          "value": 0.0009766286636987
+        },
+        {
+          "block": "core/ordinary",
+          "row": "diabetes",
+          "column": "diabetes",
+          "value": 0.0233759877813165
+        },
+        {
+          "block": "core/cluster",
+          "row": "diabetes",
+          "column": "diabetes",
+          "value": 0.0257903682435274
+        },
+        {
+          "block": "AJ/0",
+          "row": "0",
+          "column": "1",
+          "value": 0.0
+        },
+        {
+          "block": "AJ/0",
+          "row": "0",
+          "column": "2",
+          "value": 0.0
+        },
+        {
+          "block": "AJ/0",
+          "row": "1",
+          "column": "1",
+          "value": 0.0755813953488372
+        },
+        {
+          "block": "AJ/0",
+          "row": "1",
+          "column": "2",
+          "value": 0.113372093023256
+        },
+        {
+          "block": "AJ/0",
+          "row": "2",
+          "column": "1",
+          "value": 0.159883720930233
+        },
+        {
+          "block": "AJ/0",
+          "row": "2",
+          "column": "2",
+          "value": 0.209302325581395
+        },
+        {
+          "block": "AJ/0",
+          "row": "3",
+          "column": "1",
+          "value": 0.203488372093023
+        },
+        {
+          "block": "AJ/0",
+          "row": "3",
+          "column": "2",
+          "value": 0.255813953488372
+        },
+        {
+          "block": "AJ/0",
+          "row": "4",
+          "column": "1",
+          "value": 0.229651162790698
+        },
+        {
+          "block": "AJ/0",
+          "row": "4",
+          "column": "2",
+          "value": 0.316860465116279
+        },
+        {
+          "block": "AJ/0",
+          "row": "5",
+          "column": "1",
+          "value": 0.261627906976744
+        },
+        {
+          "block": "AJ/0",
+          "row": "5",
+          "column": "2",
+          "value": 0.366279069767442
+        },
+        {
+          "block": "AJ/0",
+          "row": "6",
+          "column": "1",
+          "value": 0.287790697674419
+        },
+        {
+          "block": "AJ/0",
+          "row": "6",
+          "column": "2",
+          "value": 0.398255813953488
+        },
+        {
+          "block": "AJ/0",
+          "row": "7",
+          "column": "1",
+          "value": 0.308139534883721
+        },
+        {
+          "block": "AJ/0",
+          "row": "7",
+          "column": "2",
+          "value": 0.430232558139535
+        },
+        {
+          "block": "AJ/0",
+          "row": "8",
+          "column": "1",
+          "value": 0.325581395348837
+        },
+        {
+          "block": "AJ/0",
+          "row": "8",
+          "column": "2",
+          "value": 0.468023255813953
+        },
+        {
+          "block": "AJ/0",
+          "row": "9",
+          "column": "1",
+          "value": 0.328488372093023
+        },
+        {
+          "block": "AJ/0",
+          "row": "9",
+          "column": "2",
+          "value": 0.476744186046511
+        },
+        {
+          "block": "AJ/0",
+          "row": "10",
+          "column": "1",
+          "value": 0.340116279069767
+        },
+        {
+          "block": "AJ/0",
+          "row": "10",
+          "column": "2",
+          "value": 0.488372093023256
+        },
+        {
+          "block": "AJ/0",
+          "row": "11",
+          "column": "1",
+          "value": 0.343023255813954
+        },
+        {
+          "block": "AJ/0",
+          "row": "11",
+          "column": "2",
+          "value": 0.505813953488372
+        },
+        {
+          "block": "AJ/0",
+          "row": "12",
+          "column": "1",
+          "value": 0.354651162790698
+        },
+        {
+          "block": "AJ/0",
+          "row": "12",
+          "column": "2",
+          "value": 0.520348837209302
+        },
+        {
+          "block": "AJ/0",
+          "row": "13",
+          "column": "1",
+          "value": 0.357558139534884
+        },
+        {
+          "block": "AJ/0",
+          "row": "13",
+          "column": "2",
+          "value": 0.531976744186046
+        },
+        {
+          "block": "AJ/0",
+          "row": "14",
+          "column": "1",
+          "value": 0.36046511627907
+        },
+        {
+          "block": "AJ/0",
+          "row": "14",
+          "column": "2",
+          "value": 0.534883720930232
+        },
+        {
+          "block": "AJ/0",
+          "row": "15",
+          "column": "1",
+          "value": 0.36046511627907
+        },
+        {
+          "block": "AJ/0",
+          "row": "15",
+          "column": "2",
+          "value": 0.543604651162791
+        },
+        {
+          "block": "AJ/0",
+          "row": "16",
+          "column": "1",
+          "value": 0.363372093023256
+        },
+        {
+          "block": "AJ/0",
+          "row": "16",
+          "column": "2",
+          "value": 0.555232558139535
+        },
+        {
+          "block": "AJ/0",
+          "row": "17",
+          "column": "1",
+          "value": 0.369186046511628
+        },
+        {
+          "block": "AJ/0",
+          "row": "17",
+          "column": "2",
+          "value": 0.561046511627907
+        },
+        {
+          "block": "AJ/0",
+          "row": "18",
+          "column": "1",
+          "value": 0.369186046511628
+        },
+        {
+          "block": "AJ/0",
+          "row": "18",
+          "column": "2",
+          "value": 0.563953488372093
+        },
+        {
+          "block": "AJ/0",
+          "row": "19",
+          "column": "1",
+          "value": 0.372093023255814
+        },
+        {
+          "block": "AJ/0",
+          "row": "19",
+          "column": "2",
+          "value": 0.569767441860465
+        },
+        {
+          "block": "AJ/0",
+          "row": "20",
+          "column": "1",
+          "value": 0.372093023255814
+        },
+        {
+          "block": "AJ/0",
+          "row": "20",
+          "column": "2",
+          "value": 0.575581395348837
+        },
+        {
+          "block": "AJ/0",
+          "row": "21",
+          "column": "1",
+          "value": 0.372093023255814
+        },
+        {
+          "block": "AJ/0",
+          "row": "21",
+          "column": "2",
+          "value": 0.581395348837209
+        },
+        {
+          "block": "AJ/0",
+          "row": "22",
+          "column": "1",
+          "value": 0.372093023255814
+        },
+        {
+          "block": "AJ/0",
+          "row": "22",
+          "column": "2",
+          "value": 0.590116279069767
+        },
+        {
+          "block": "AJ/0",
+          "row": "23",
+          "column": "1",
+          "value": 0.375
+        },
+        {
+          "block": "AJ/0",
+          "row": "23",
+          "column": "2",
+          "value": 0.59593023255814
+        },
+        {
+          "block": "AJ/0",
+          "row": "24",
+          "column": "1",
+          "value": 0.377906976744186
+        },
+        {
+          "block": "AJ/0",
+          "row": "24",
+          "column": "2",
+          "value": 0.598837209302326
+        },
+        {
+          "block": "AJ/0",
+          "row": "25",
+          "column": "1",
+          "value": 0.380813953488372
+        },
+        {
+          "block": "AJ/0",
+          "row": "25",
+          "column": "2",
+          "value": 0.601744186046512
+        },
+        {
+          "block": "AJ/0",
+          "row": "26",
+          "column": "1",
+          "value": 0.380813953488372
+        },
+        {
+          "block": "AJ/0",
+          "row": "26",
+          "column": "2",
+          "value": 0.604651162790698
+        },
+        {
+          "block": "AJ/0",
+          "row": "27",
+          "column": "1",
+          "value": 0.383720930232558
+        },
+        {
+          "block": "AJ/0",
+          "row": "27",
+          "column": "2",
+          "value": 0.604651162790698
+        },
+        {
+          "block": "AJ/0",
+          "row": "28",
+          "column": "1",
+          "value": 0.383720930232558
+        },
+        {
+          "block": "AJ/0",
+          "row": "28",
+          "column": "2",
+          "value": 0.607558139534884
+        },
+        {
+          "block": "AJ/1",
+          "row": "0",
+          "column": "1",
+          "value": 0.0
+        },
+        {
+          "block": "AJ/1",
+          "row": "0",
+          "column": "2",
+          "value": 0.0
+        },
+        {
+          "block": "AJ/1",
+          "row": "1",
+          "column": "1",
+          "value": 0.0648648648648649
+        },
+        {
+          "block": "AJ/1",
+          "row": "1",
+          "column": "2",
+          "value": 0.102702702702703
+        },
+        {
+          "block": "AJ/1",
+          "row": "2",
+          "column": "1",
+          "value": 0.124324324324324
+        },
+        {
+          "block": "AJ/1",
+          "row": "2",
+          "column": "2",
+          "value": 0.189189189189189
+        },
+        {
+          "block": "AJ/1",
+          "row": "3",
+          "column": "1",
+          "value": 0.172972972972973
+        },
+        {
+          "block": "AJ/1",
+          "row": "3",
+          "column": "2",
+          "value": 0.264864864864865
+        },
+        {
+          "block": "AJ/1",
+          "row": "4",
+          "column": "1",
+          "value": 0.189189189189189
+        },
+        {
+          "block": "AJ/1",
+          "row": "4",
+          "column": "2",
+          "value": 0.286486486486487
+        },
+        {
+          "block": "AJ/1",
+          "row": "5",
+          "column": "1",
+          "value": 0.210810810810811
+        },
+        {
+          "block": "AJ/1",
+          "row": "5",
+          "column": "2",
+          "value": 0.308108108108108
+        },
+        {
+          "block": "AJ/1",
+          "row": "6",
+          "column": "1",
+          "value": 0.248648648648649
+        },
+        {
+          "block": "AJ/1",
+          "row": "6",
+          "column": "2",
+          "value": 0.345945945945946
+        },
+        {
+          "block": "AJ/1",
+          "row": "7",
+          "column": "1",
+          "value": 0.259459459459459
+        },
+        {
+          "block": "AJ/1",
+          "row": "7",
+          "column": "2",
+          "value": 0.389189189189189
+        },
+        {
+          "block": "AJ/1",
+          "row": "8",
+          "column": "1",
+          "value": 0.275675675675676
+        },
+        {
+          "block": "AJ/1",
+          "row": "8",
+          "column": "2",
+          "value": 0.443243243243243
+        },
+        {
+          "block": "AJ/1",
+          "row": "9",
+          "column": "1",
+          "value": 0.291891891891892
+        },
+        {
+          "block": "AJ/1",
+          "row": "9",
+          "column": "2",
+          "value": 0.491891891891892
+        },
+        {
+          "block": "AJ/1",
+          "row": "10",
+          "column": "1",
+          "value": 0.291891891891892
+        },
+        {
+          "block": "AJ/1",
+          "row": "10",
+          "column": "2",
+          "value": 0.497297297297297
+        },
+        {
+          "block": "AJ/1",
+          "row": "11",
+          "column": "1",
+          "value": 0.308108108108108
+        },
+        {
+          "block": "AJ/1",
+          "row": "11",
+          "column": "2",
+          "value": 0.518918918918919
+        },
+        {
+          "block": "AJ/1",
+          "row": "12",
+          "column": "1",
+          "value": 0.308108108108108
+        },
+        {
+          "block": "AJ/1",
+          "row": "12",
+          "column": "2",
+          "value": 0.535135135135135
+        },
+        {
+          "block": "AJ/1",
+          "row": "13",
+          "column": "1",
+          "value": 0.313513513513514
+        },
+        {
+          "block": "AJ/1",
+          "row": "13",
+          "column": "2",
+          "value": 0.545945945945946
+        },
+        {
+          "block": "AJ/1",
+          "row": "14",
+          "column": "1",
+          "value": 0.32972972972973
+        },
+        {
+          "block": "AJ/1",
+          "row": "14",
+          "column": "2",
+          "value": 0.562162162162163
+        },
+        {
+          "block": "AJ/1",
+          "row": "15",
+          "column": "1",
+          "value": 0.32972972972973
+        },
+        {
+          "block": "AJ/1",
+          "row": "15",
+          "column": "2",
+          "value": 0.583783783783784
+        },
+        {
+          "block": "AJ/1",
+          "row": "16",
+          "column": "1",
+          "value": 0.335135135135135
+        },
+        {
+          "block": "AJ/1",
+          "row": "16",
+          "column": "2",
+          "value": 0.594594594594595
+        },
+        {
+          "block": "AJ/1",
+          "row": "17",
+          "column": "1",
+          "value": 0.340540540540541
+        },
+        {
+          "block": "AJ/1",
+          "row": "17",
+          "column": "2",
+          "value": 0.600000000000001
+        },
+        {
+          "block": "AJ/1",
+          "row": "18",
+          "column": "1",
+          "value": 0.340540540540541
+        },
+        {
+          "block": "AJ/1",
+          "row": "18",
+          "column": "2",
+          "value": 0.600000000000001
+        },
+        {
+          "block": "AJ/1",
+          "row": "19",
+          "column": "1",
+          "value": 0.351351351351351
+        },
+        {
+          "block": "AJ/1",
+          "row": "19",
+          "column": "2",
+          "value": 0.600000000000001
+        },
+        {
+          "block": "AJ/1",
+          "row": "20",
+          "column": "1",
+          "value": 0.356756756756757
+        },
+        {
+          "block": "AJ/1",
+          "row": "20",
+          "column": "2",
+          "value": 0.605405405405406
+        },
+        {
+          "block": "AJ/1",
+          "row": "21",
+          "column": "1",
+          "value": 0.362162162162162
+        },
+        {
+          "block": "AJ/1",
+          "row": "21",
+          "column": "2",
+          "value": 0.605405405405406
+        },
+        {
+          "block": "AJ/1",
+          "row": "22",
+          "column": "1",
+          "value": 0.378378378378378
+        },
+        {
+          "block": "AJ/1",
+          "row": "22",
+          "column": "2",
+          "value": 0.605405405405406
+        },
+        {
+          "block": "AJ/1",
+          "row": "23",
+          "column": "1",
+          "value": 0.378378378378378
+        },
+        {
+          "block": "AJ/1",
+          "row": "23",
+          "column": "2",
+          "value": 0.605405405405406
+        },
+        {
+          "block": "AJ/1",
+          "row": "24",
+          "column": "1",
+          "value": 0.383783783783784
+        },
+        {
+          "block": "AJ/1",
+          "row": "24",
+          "column": "2",
+          "value": 0.605405405405406
+        },
+        {
+          "block": "AJ/1",
+          "row": "25",
+          "column": "1",
+          "value": 0.383783783783784
+        },
+        {
+          "block": "AJ/1",
+          "row": "25",
+          "column": "2",
+          "value": 0.605405405405406
+        },
+        {
+          "block": "AJ/1",
+          "row": "26",
+          "column": "1",
+          "value": 0.383783783783784
+        },
+        {
+          "block": "AJ/1",
+          "row": "26",
+          "column": "2",
+          "value": 0.610810810810812
+        },
+        {
+          "block": "AJ/1",
+          "row": "27",
+          "column": "1",
+          "value": 0.383783783783784
+        },
+        {
+          "block": "AJ/1",
+          "row": "27",
+          "column": "2",
+          "value": 0.610810810810812
+        },
+        {
+          "block": "AJ/1",
+          "row": "28",
+          "column": "1",
+          "value": 0.383783783783784
+        },
+        {
+          "block": "AJ/1",
+          "row": "28",
+          "column": "2",
+          "value": 0.610810810810812
+        }
+      ]
+    }
+  ]
+}

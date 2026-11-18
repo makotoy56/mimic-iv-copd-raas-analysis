@@ -20,3 +20,5 @@ The [published first-day SOFA SQL](https://github.com/MIT-LCP/mimic-code/blob/ma
 None of these analyses was implemented or run in this audit. They may require new extraction, model fitting and diagnostics in an authorized environment. Current primary age/sex/era estimates, existing subgroup/core/ICU numbers, cohort construction and all SQL statements are unchanged.
 
 A later local post-hoc direct contrast is documented in the [local supplement workflow](ACEI_ARB_SUPPLEMENT_LOCAL.md). Its numerical output is excluded from the public report; it does not implement time-aligned severity or a landmark analysis.
+
+The subsequent [05a–05c sensitivity companions](SURVIVAL_SENSITIVITY_SUPPLEMENTS.md) add patient-cluster inference, competing-event cumulative incidence and an exploratory 24-hour landmark analysis. The landmark changes eligibility and follow-up origin and relies on the published first-day-SOFA window; individual component times and pre-ICU severity have not been reconstructed. These local supplements preserve the main-report estimates and do not establish a causal effect.

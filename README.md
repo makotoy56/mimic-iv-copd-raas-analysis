@@ -155,6 +155,16 @@ Supporting documentation:
 - [PACE](docs/PACE.md): project planning and execution context
 - [Quarto report source](reports/copd_raas_survival_report.qmd)
 
+### Additional Survival Sensitivity Notebooks
+
+The companion notebooks default to synthetic demonstrations and preserve the published 04-series estimates. Their shared script can run the same analyses in an authorized local MIMIC environment; aggregate clinical outputs remain in the ignored local-supplement directory pending review.
+
+- [05a patient-cluster sensitivity](notebooks/05a_patient_cluster_sensitivity.ipynb): compare ordinary and patient-cluster confidence intervals for the primary and exploratory core models.
+- [05b competing risks](notebooks/05b_competing_risks.ipynb): death/discharge cumulative incidence with patient-bootstrap intervals and separate cause-specific Cox models.
+- [05c 24-hour severity landmark](notebooks/05c_time_aligned_severity.ipynb): matched age/sex and SOFA-core models among admissions alive and still hospitalized beyond 24 hours; a different population and estimand.
+
+See the [supplement methods, execution and validation guide](docs/SURVIVAL_SENSITIVITY_SUPPLEMENTS.md). Synthetic numerical checks include comparison with R `survival`; R is optional for validation, not required for the Python analyses.
+
 ## Limitations And Observational Scope
 
 This analysis is a retrospective observational study. It cannot establish that RAAS inhibitor exposure caused lower mortality.
@@ -166,7 +176,7 @@ Key limitations:
 - COPD status is identified using diagnosis codes recorded during hospitalization.
 - MIMIC-IV reflects ICU admissions from a specific health system and may not generalize to other settings.
 - Live discharge is treated as censoring in the primary Cox analysis; a competing-risk framework was not implemented.
-- Each record represents a qualifying hospital admission anchored to its first ICU stay. Patients may contribute more than one admission, and the Cox models do not include a patient-level clustering or frailty term.
+- Each record represents a qualifying hospital admission anchored to its first ICU stay. Patients may contribute more than one admission. Published main-analysis Cox intervals do not account for patient clustering; the separate 05a supplement examines this dependence. No frailty model is fitted.
 - Each subclass is compared with neither qualifying prescription order; no direct ACEi-versus-ARB contrast supports a superiority claim.
 - `sofa_score` comes from `mimiciv_3_1_derived.first_day_sofa`. Its published definition can use information through 24 hours after ICU entry, while follow-up starts at ICU entry. All SOFA-containing core, ICU-adjusted and CHF/SOFA-stratified models are therefore exploratory sensitivity analyses that can use post-start information, not baseline-only severity adjustment. Temporal leakage or adjustment for post-exposure information may affect interpretation; its impact has not been quantified here. The primary age/sex model with era strata is unchanged. Time-aligned severity adjustment or a separate landmark design would require reanalysis.
 - Differences across the exploratory SOFA/ICU specifications cannot be interpreted solely as correction of baseline confounding. See [timing limitations and separate reanalysis options](docs/ANALYSIS_TIMING_LIMITATIONS.md).
@@ -177,7 +187,7 @@ Key limitations:
 mimic-iv-copd-raas-analysis/
 |-- assets/           # Portfolio visuals generated from notebooks
 |-- docs/             # Study background, methods, results, limitations, validation notes, and Pages HTML
-|-- notebooks/        # 01-04d executable Python analysis notebooks
+|-- notebooks/        # 01-04d main workflow and 05a-05c sensitivity companions
 |-- reports/          # Quarto report source and render configuration
 |-- scripts/          # Validation utilities
 |-- sql/              # BigQuery SQL for cohort, exposure, baseline, and outcome construction

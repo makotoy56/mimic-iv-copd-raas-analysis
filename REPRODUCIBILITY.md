@@ -175,4 +175,12 @@ No `requirements.txt` or `environment.yml` file is required for the current uv-m
 
    This report-only step reads the saved aggregate JSON and figures. It does not query BigQuery, transfer clinical data, or rerun the models.
 
+   The GitHub Pages root uses the static landing page `docs/index.html`, which links to the report. Supporting Markdown documents in the generated report link to their rendered GitHub pages, preserving heading anchors. The PH diagnostic summary lists rank tests with p<0.05 and model warnings; complete covariate-level rank PH p-values are in each model's `ph_rank_p` field in `docs/CURRENT_ANALYSIS.json`.
+
 See [the reproducible scope and evidence](docs/REPRODUCIBLE_SCOPE.md) for what each step establishes and the remaining scientific limitations.
+
+## Additional survival sensitivity notebooks
+
+The 05a–05c companions use `scripts/survival_sensitivity.py` and do not call `refresh()` or overwrite main-analysis results. Default notebook runs are wholly synthetic. Use the [supplement guide](docs/SURVIVAL_SENSITIVITY_SUPPLEMENTS.md) for patient-cluster inference, competing-risk cumulative incidence, and the separate 24-hour landmark design. It includes the explicit authorized local-data command and no-query review of a saved aggregate run.
+
+Pseudonymous patient/admission/stay keys are requested only by the supplementary loader option, after the same US dry run and 200 MB cap, and stay in memory. Run output is aggregate-only under ignored `reports/local_supplements/`. Tracked notebooks keep stripped outputs; execute and retain clinical notebook copies only inside that ignored directory. R `survival` is an optional independent synthetic checker; normal analysis remains Python. New clinical estimates are not automatically promoted into README or Quarto.

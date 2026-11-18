@@ -50,10 +50,11 @@
   "report_generation": {
     "method": "Quarto_no_execute_from_saved_aggregate_results",
     "status": "passed",
-    "html_sha256": "68b460d1d75820e35d9e69a1a655fc96e8fc7a6d4689ad5dd181beda1235b129",
-    "documentation_updated_at_utc": "2026-11-18T09:13:23.325078+00:00",
+    "html_sha256": "2b3862f79885778c73f510c0c8ae6b23ef39bfc660cf713fdfd269b5fc7a8f42",
+    "documentation_updated_at_utc": "2026-11-18T10:35:22.888879+00:00",
     "publication_scope_aligned_at_utc": "2026-11-18T10:07:04.290625+00:00",
-    "scope_note": "The public main analysis reports subclass-versus-neither estimates; the later local post-hoc direct contrast remains unpublished."
+    "scope_note": "The public main analysis reports subclass-versus-neither estimates; the later local post-hoc direct contrast remains unpublished.",
+    "landing_page_sha256": "399a78d8b0a85f4d6fb94bd73659becc88dbae952bcb590de6a2be984944552a"
   },
   "regression_checks": {
     "tests_passed": 4,

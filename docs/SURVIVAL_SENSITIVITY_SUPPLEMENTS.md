@@ -1,0 +1,69 @@
+# Additional survival sensitivity notebooks
+
+These companion analyses preserve the current 04a–04d workflow and its saved estimates. They examine patient dependence, competing hospital endpoints and a later severity landmark. They do not establish causal treatment effects or automatically replace the published primary model.
+
+| Notebook | Scope |
+| --- | --- |
+| [05a patient-cluster sensitivity](../notebooks/05a_patient_cluster_sensitivity.ipynb) | Refined primary and exploratory SOFA-core models; same admissions and coefficients, ordinary versus patient-cluster uncertainty |
+| [05b competing risks](../notebooks/05b_competing_risks.ipynb) | Unadjusted death/discharge cumulative incidence, patient-bootstrap intervals, and age/sex/era cause-specific Cox models |
+| [05c severity landmark](../notebooks/05c_time_aligned_severity.ipynb) | Exploratory 24-hour landmark using matched complete cases and patient-cluster inference |
+
+## Execution and data handling
+
+Run `uv sync --locked`. The notebooks default to fully synthetic data and require no BigQuery access in that mode. Do not interpret synthetic estimates as MIMIC findings. Calculations and plotting are shared in [survival_sensitivity.py](../scripts/survival_sensitivity.py).
+
+To run all supplements once in an already authorized local MIMIC/BigQuery environment:
+
+```bash
+.venv/bin/python scripts/survival_sensitivity.py \
+  --current-data --analysis all --bootstrap-replicates 1000 \
+  --output reports/local_supplements/sensitivity_run02
+```
+
+Use a new output directory for every run. The existing loader performs a US dry run and enforces the existing 200 MB billing cap. Its supplementary projection adds `subject_id`, `hadm_id` and `stay_id` to the existing explicit columns. These pseudonymous keys and admission-level model rows remain in memory: never display them, save a row export, or upload them to an external analysis service. Missing keys, duplicated admissions/stays, invalid flags and nonpositive follow-up fail before fitting. Counts, duration/age sums and ordinary model estimates must match the saved current reference.
+
+Only aggregate JSON and figures are written, under the Git-ignored `reports/local_supplements/` directory. Existing tables, `CURRENT_ANALYSIS.json`, primary figures and report estimates are not updated. Clinical results remain local pending review. Tracked notebooks retain stripped outputs; executed copies also belong under the ignored directory.
+
+For a no-query notebook review of a completed run, set `DATA_MODE = "local"` and `LOCAL_RESULT` to its `aggregate_results.json`. The reader checks the supplement version, source-script hash and current reference hash. `DATA_MODE = "current"` explicitly runs that notebook's analysis through the same bounded loader.
+
+For the wholly synthetic CLI demonstration, omit `--current-data` and choose a fresh ignored directory. The Python supplement calculations do not require R. The optional independent validation command requires R and its `survival` package:
+
+```bash
+.venv/bin/python scripts/validate_survival_sensitivity_r.py \
+  --output /tmp/survival_synthetic_reference.json
+.venv/bin/python -m unittest discover -s scripts -p 'test_*.py'
+```
+
+## 05a: Patient dependence
+
+Fit unpenalized Efron Cox models with unchanged age, sex and era strata; the core additionally retains first-day SOFA, CHF, CKD and diabetes. Complete cases are fixed before comparing covariance methods. Sum Efron score residuals across all admissions of a patient, including across era strata, and form an HC0 sandwich covariance. Use normal Wald 95% intervals and two-sided p-values, with no finite-cluster correction. This handles within-patient dependence for inference, but does not model frailty or a recurrent-event process.
+
+Ties are not jittered or rounded. The installed statsmodels implementation's ordinary likelihood/Hessian is used for point estimates, while tie-aware score residuals are computed explicitly for the cluster covariance. [Synthetic reference checks](SURVIVAL_SUPPLEMENTS_SYNTHETIC_CHECK.json) compare coefficients, ordinary and cluster covariance with R `survival::coxph`, for tied and untied artificial times. An additional score-gradient identity is checked at each fit. This avoids assuming that a generic robust option handles Efron ties correctly.
+
+## 05b: Competing hospital endpoints
+
+Death is event 1 and live discharge is event 2. The two-cause Aalen-Johansen product integral handles ties from both causes together, using the risk set just before the shared time. No jitter is applied. Export a fixed daily grid through day 28; no individual event times are serialized. The current complete hospital-episode data contain one of these two endpoints for each admission. Death-time fallbacks retain the original discharge-time proxy, so exact death timing remains uncertain for those admissions.
+
+Uncertainty uses 1,000 patient-cluster bootstrap samples with fixed seed 20261118. Resample patients globally in a fixed patient-key order and carry all their admissions, so patients contributing to both exposure groups remain linked. Intervals are pointwise 95% percentile intervals, including for RAAS-minus-no-RAAS death-CIF differences. These are unadjusted curves and associations. Age/sex/era cause-specific Cox models for death and discharge are provided separately with patient-cluster inference. Cause-specific HRs and cumulative incidence answer different questions; neither is a causal treatment comparison. A Fine–Gray model is not implemented.
+
+## 05c: A separate 24-hour landmark
+
+Eligibility requires a recorded endpoint strictly later than 24 hours after original ICU entry. Endpoints at or before 24 hours are excluded. Remaining fallback deaths with unknown death timestamps are also excluded because survival to the landmark is not known. Subtract one day from eligible durations and retain the original prescription-order exposure window at or before ICU entry. Use the same core-complete admissions for both the age/sex and the first-day-SOFA core landmark model, with era strata and patient-cluster inference. Report early endpoints, fallback exclusions and missing core covariates.
+
+This targets admissions alive and still hospitalized beyond 24 hours, rather than the original ICU-entry population. The published first-day-SOFA definition can use measurements through ICU entry plus one day, but the deployed component windows and individual measurement timestamps have not been independently reconstructed. The result is an exploratory landmark sensitivity under that definition, not verified pre-ICU severity adjustment. SOFA follows exposure and may mediate associations or induce selection/collider bias. Comorbidity-code timing is unchanged and remains a limitation. This analysis does not resolve residual confounding, selection bias, or causality. Reconstructing pre-ICU severity remains a separate design.
+
+## Validation status and publication scope
+
+The [execution and validation record](SURVIVAL_SUPPLEMENTS_VALIDATION.json) records the checked source/reference hashes, 25 regression tests, notebook execution modes and retained limitations, without publishing new clinical estimates.
+
+The versioned synthetic record covers Efron coefficients and both covariance matrices against R `survival`, plus tied two-cause Aalen-Johansen estimates. Synthetic validation establishes numerical behavior, not clinical validity. See the local execution record for any current-data result; no new clinical estimates are included in this guide or promoted into the main report.
+
+On 2026-11-18 all three supplements were executed locally against the existing corrected cohort using one bounded, read-only SELECT. Ordinary reference estimates matched before the new results were saved. Each notebook also completed top-to-bottom on synthetic inputs and, separately, on the verified local aggregate result without another query. Numerical outputs and executed clinical copies remain under ignored `reports/local_supplements/`; published source notebooks retain synthetic defaults and stripped outputs. The independent component-time validation and pre-ICU severity reconstruction described above remain unperformed.
+
+## Method references
+
+- [R survival Cox documentation](https://stat.ethz.ch/R-manual/R-devel/library/survival/html/coxph.html)
+- [R survival competing-risks and multistate vignette](https://cran.r-project.org/web/packages/survival/vignettes/compete.pdf)
+- [Austin, Lee and Fine: competing-risk methods and interpretation](https://pmc.ncbi.nlm.nih.gov/articles/PMC4741409/)
+- [Giobbie-Hurder et al.: conditional landmark analysis](https://pmc.ncbi.nlm.nih.gov/articles/PMC3732313/)
+- [Published MIMIC first-day SOFA definition](https://github.com/MIT-LCP/mimic-code/blob/main/mimic-iv/concepts/firstday/first_day_sofa.sql)

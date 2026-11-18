@@ -218,7 +218,7 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-<p>Run both complete outcome SQL scripts in US, in this order, after phase 03 and before 04a. The notebooks refresh analyses, not these tables. <a href="METHODS_OVERVIEW.md#outcome-table-dependencies">Full dependency map</a>.</p>
+<p>Run both complete outcome SQL scripts in US, in this order, after phase 03 and before 04a. The notebooks refresh analyses, not these tables. <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/METHODS_OVERVIEW.md#outcome-table-dependencies">Full dependency map</a>.</p>
 </section>
 <section id="exposure-outcome-and-methods" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="exposure-outcome-and-methods"><span class="header-section-number">4</span> Exposure, outcome, and methods</h2>
@@ -229,7 +229,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="timing-of-severity-information" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="timing-of-severity-information"><span class="header-section-number">5</span> Timing of severity information</h2>
 <p><code>sofa_score</code> comes from <code>mimiciv_3_1_derived.first_day_sofa</code>. Its published definition can use information through 24 hours after ICU entry, while follow-up starts at ICU entry. All SOFA-containing core, ICU-adjusted and CHF/SOFA-stratified models are therefore exploratory sensitivity analyses that can use post-start information, not baseline-only severity adjustment. Temporal leakage or adjustment for post-exposure information may affect interpretation; its impact has not been quantified here. The primary age/sex model with era strata is unchanged. Time-aligned severity adjustment or a separate landmark design would require reanalysis.</p>
-<p><a href="https://github.com/MIT-LCP/mimic-code/blob/main/mimic-iv/concepts/firstday/first_day_sofa.sql">Published first-day SOFA definition</a>. The deployed derived-table definition and individual measurement times were not inspected in this documentation audit. <a href="ANALYSIS_TIMING_LIMITATIONS.md">Separate reanalysis options</a>.</p>
+<p><a href="https://github.com/MIT-LCP/mimic-code/blob/main/mimic-iv/concepts/firstday/first_day_sofa.sql">Published first-day SOFA definition</a>. The deployed derived-table definition and individual measurement times were not inspected in this documentation audit. <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/ANALYSIS_TIMING_LIMITATIONS.md">Separate reanalysis options</a>.</p>
 </section>
 <section id="kaplan-meier-results" class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="kaplan-meier-results"><span class="header-section-number">6</span> Kaplan-Meier results</h2>
@@ -326,12 +326,12 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="ph-diagnostics-and-interpretation" class="level2" data-number="9">
 <h2 data-number="9" class="anchored" data-anchor-id="ph-diagnostics-and-interpretation"><span class="header-section-number">9</span> PH diagnostics and interpretation</h2>
-<p>Primary refined rank PH p-values: age 0.79803, sex 0.32498, RAAS 0.72064. Core and ICU models still require diagnostic interpretation. The current results summary records every covariate-level PH test and warning. Exploratory CHF/SOFA-stratified models allow different baseline hazards; they supplement the primary model rather than redefine it.</p>
-<p>For full diagnostics, sparse-strata limitations and rare-category pooling, see <a href="RESULTS_SUMMARY.md">current results</a>. The approach follows <a href="https://lifelines.readthedocs.io/en/latest/jupyter_notebooks/Proportional%20hazard%20assumption.html#Stratification">lifelines documentation on stratification</a>. A non-significant diagnostic does not prove PH, and additional stratification changes the adjustment structure.</p>
+<p>Primary refined rank PH p-values: age 0.79803, sex 0.32498, RAAS 0.72064. Core and ICU models still require diagnostic interpretation. The current results summary lists rank PH tests with p&lt;0.05 and model warnings. Complete covariate-level rank PH p-values are saved in CURRENT_ANALYSIS.json. Exploratory CHF/SOFA-stratified models allow different baseline hazards; they supplement the primary model rather than redefine it.</p>
+<p>See the <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/RESULTS_SUMMARY.md#diagnostics-and-interpretation">diagnostic summary and limitations</a> for flagged tests, model warnings, sparse-strata limitations and rare-category pooling. Complete covariate-level rank PH p-values are available in <a href="CURRENT_ANALYSIS.json">the aggregate analysis record</a>, under each model’s <code>ph_rank_p</code> field. The approach follows <a href="https://lifelines.readthedocs.io/en/latest/jupyter_notebooks/Proportional%20hazard%20assumption.html#Stratification">lifelines documentation on stratification</a>. A non-significant diagnostic does not prove PH, and additional stratification changes the adjustment structure.</p>
 </section>
 <section id="reproducibility-checks" class="level2" data-number="10">
 <h2 data-number="10" class="anchored" data-anchor-id="reproducibility-checks"><span class="header-section-number">10</span> Reproducibility checks</h2>
-<p>Six unpenalized Cox specifications (40 coefficients) were independently recalculated with statsmodels PHReg using matched complete cases, era/additional strata and Efron ties. Coefficients, HRs, confidence-interval endpoints and p-values matched the lifelines reference within an absolute tolerance of 1e-4. The saved comparison is bound to this exact aggregate analysis snapshot by its reference hash. See <a href="INDEPENDENT_COX_CROSSCHECK.json">the calculation record</a> and <a href="INDEPENDENT_REVALIDATION.md">the scope and limitations</a>.</p>
+<p>Six unpenalized Cox specifications (40 coefficients) were independently recalculated with statsmodels PHReg using matched complete cases, era/additional strata and Efron ties. Coefficients, HRs, confidence-interval endpoints and p-values matched the lifelines reference within an absolute tolerance of 1e-4. The saved comparison is bound to this exact aggregate analysis snapshot by its reference hash. See <a href="INDEPENDENT_COX_CROSSCHECK.json">the calculation record</a> and <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/INDEPENDENT_REVALIDATION.md">the scope and limitations</a>.</p>
 <p>This checks a separate statistical implementation on the same corrected model inputs. Source-SQL extraction is evaluated separately. Penalized fits, PH diagnostics, patient clustering, competing risks and causal validity are not established by this numerical comparison.</p>
 <p>The reproducible workflow covers authorized MIMIC source access, version-controlled BigQuery extraction and cohort construction, explicit model-column retrieval, Python modeling, independent numerical comparison, figure generation and Quarto reporting. Only aggregate results are published; no external analysis-service upload is part of this workflow. See <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/REPRODUCIBILITY.md">the full reproduction steps</a>.</p>
 </section>
@@ -344,12 +344,13 @@ ul.task-list li input[type="checkbox"] {
 <p>Run the upstream SQL, then <code>.venv/bin/python scripts/current_analysis.py</code>, <code>.venv/bin/python scripts/render_current_report.py</code>, and <code>.venv/bin/python scripts/build_report.py</code> from the repository root. Notebooks 04a–04d use the same model/figure functions. Generated notebook outputs are stripped before commit. No patient records or identifiers are included in the aggregate outputs.</p>
 <ul>
 <li><a href="https://physionet.org/content/mimiciv/3.1/">MIMIC-IV v3.1</a></li>
-<li><a href="METHODS_OVERVIEW.md">Methods overview</a></li>
-<li><a href="VALIDATION_NOTES.md">Validation notes</a></li>
+<li><a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/METHODS_OVERVIEW.md">Methods overview</a></li>
+<li><a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/VALIDATION_NOTES.md">Validation notes</a></li>
 <li><a href="CURRENT_ANALYSIS.json">Current aggregate model results</a></li>
-<li><a href="AGE_TIME_REVALIDATION.md">Original age/time correction audit</a></li>
-<li><a href="REPRODUCIBLE_SCOPE.md">Reproducible scope</a></li>
-<li><a href="ANALYSIS_TIMING_LIMITATIONS.md">Timing limitations and separate reanalysis options</a></li>
+<li><a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/AGE_TIME_REVALIDATION.md">Original age/time correction audit</a></li>
+<li><a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/REPRODUCIBLE_SCOPE.md">Reproducible scope</a></li>
+<li><a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/ANALYSIS_TIMING_LIMITATIONS.md">Timing limitations and separate reanalysis options</a></li>
+<li><a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/SURVIVAL_SENSITIVITY_SUPPLEMENTS.md">Additional survival sensitivity notebooks</a></li>
 </ul>
 </section>
 

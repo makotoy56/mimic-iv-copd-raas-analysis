@@ -1,0 +1,49 @@
+{
+  "checked_at_utc": "2026-11-18T11:30:05.266521+00:00",
+  "supplement_version": "patient_cluster_competing_landmark_v1",
+  "status": "passed",
+  "source_script_sha256": "e562cfa774813b0e6e33e4da78f426488df55e4588c06e8e580393f9a513ba4e",
+  "main_analysis_reference_sha256": "554bda76eb780ff1a39c509076c97691b5661140c65cdfee60b071cba9a4537b",
+  "synthetic_independent_check": {
+    "record": "SURVIVAL_SUPPLEMENTS_SYNTHETIC_CHECK.json",
+    "record_sha256": "8cce3fb77144ff35af4dac73774dd2765df0f21994ed241984e1c5aa2d465278",
+    "absolute_tolerance": 1e-06,
+    "maximum_absolute_difference": 1.3459799941273332e-10,
+    "clinical_numeric_independence_not_claimed": true
+  },
+  "regression_tests_passed": 25,
+  "notebooks": {
+    "synthetic_top_to_bottom": 3,
+    "verified_local_aggregate_top_to_bottom": 3,
+    "HTML_layout_and_figures_reviewed": true,
+    "tracked_outputs_stripped": true
+  },
+  "local_clinical_execution": {
+    "completed": true,
+    "read_only_SELECT_jobs": 2,
+    "US_dry_run_before_execution": true,
+    "maximum_bytes_billed": 200000000,
+    "bootstrap_replicates": 1000,
+    "ordinary_reference_estimates_matched": true,
+    "admission_rows_and_keys_kept_in_memory": true,
+    "only_aggregate_outputs_saved": true,
+    "outputs_git_ignored": true,
+    "new_clinical_estimates_published": false,
+    "final_run_SELECT_jobs": 1,
+    "second_run_reason": "Canonical patient/admission order for row-order-independent bootstrap reproducibility.",
+    "final_aggregate_record_sha256": "69663a99b032b3b1bde16fee641e9cb35cc6e40663c3bbb67a64d55fbe7ced94"
+  },
+  "scope": {
+    "main_estimates_unchanged": true,
+    "tables_recreated": false,
+    "external_analysis_service_upload": false,
+    "SAS_used": false,
+    "Non_ICU_touched": false
+  },
+  "not_validated": [
+    "Individual SOFA component measurement times and deployed materialization windows.",
+    "Pre-ICU severity reconstruction.",
+    "Causal interpretation, diagnosis-code timing, frailty, recurrent-event or Fine-Gray models."
+  ],
+  "row_order_invariance_regression_passed": true
+}

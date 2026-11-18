@@ -25,7 +25,7 @@ LEFT JOIN `mimic-iv-portfolio.copd_raas.cohort_copd_raas_detailed` r USING(subje
 """
 
 
-def load_current_data():
+def load_current_data(*, include_cluster_keys=False):
     import google.auth
     from google.auth.transport.requests import Request
     from google.cloud import bigquery
@@ -36,10 +36,13 @@ def load_current_data():
     creds, _ = google.auth.default()
     creds.refresh(BoundedRequest())
     client = bigquery.Client(project="mimic-iv-portfolio", credentials=creds)
-    dry = client.query(QUERY, location="US", job_config=bigquery.QueryJobConfig(dry_run=True, use_query_cache=False), timeout=30, retry=None)
+    # Supplementary analyses use pseudonymous keys in memory for validation and
+    # patient clustering. The ordinary projection and its saved hash stay fixed.
+    query = QUERY.replace("SELECT e.age", "SELECT e.subject_id,e.hadm_id,e.stay_id,e.age", 1) if include_cluster_keys else QUERY
+    dry = client.query(query, location="US", job_config=bigquery.QueryJobConfig(dry_run=True, use_query_cache=False), timeout=30, retry=None)
     if dry.total_bytes_processed > 200_000_000:
         raise ValueError("Current analysis SELECT exceeds the 200 MB limit")
-    job = client.query(QUERY, location="US", job_config=bigquery.QueryJobConfig(maximum_bytes_billed=200_000_000, use_query_cache=False), timeout=30, retry=None, job_retry=None)
+    job = client.query(query, location="US", job_config=bigquery.QueryJobConfig(maximum_bytes_billed=200_000_000, use_query_cache=False), timeout=30, retry=None, job_retry=None)
     df = job.result(timeout=90, retry=None).to_dataframe(create_bqstorage_client=False)
     if df.time_to_event_days.isna().any() or (df.time_to_event_days <= 0).any():
         raise ValueError("Invalid follow-up in current analysis table")
