@@ -169,9 +169,9 @@ Supporting documentation:
 
 The companion notebooks default to synthetic demonstrations and preserve the published 04-series estimates. Their shared script can run the same analyses in an authorized local MIMIC environment; full local outputs remain in the ignored local-supplement directory. Selected verified aggregate results are reported in the supplementary section of the Quarto report.
 
-- [05a patient-cluster sensitivity](notebooks/05a_patient_cluster_sensitivity.ipynb): compare ordinary and patient-cluster confidence intervals for the primary and exploratory core models.
-- [05b competing risks](notebooks/05b_competing_risks.ipynb): death/discharge cumulative incidence with patient-bootstrap intervals and separate cause-specific Cox models.
-- [05c 24-hour severity landmark](notebooks/05c_time_aligned_severity.ipynb): matched age/sex and SOFA-core models among admissions alive and still hospitalized beyond 24 hours; a different population and estimand.
+- [05a patient-cluster sensitivity](notebooks/05a_patient_cluster_sensitivity.ipynb) and [short notes](docs/05a_patient_cluster_sensitivity_SHORT.md): compare ordinary and patient-cluster confidence intervals for the primary and exploratory core models.
+- [05b competing risks](notebooks/05b_competing_risks.ipynb) and [short notes](docs/05b_competing_risks_SHORT.md): death/discharge cumulative incidence with patient-bootstrap intervals and separate cause-specific Cox models.
+- [05c 24-hour severity landmark](notebooks/05c_time_aligned_severity.ipynb) and [short notes](docs/05c_time_aligned_severity_SHORT.md): matched age/sex and SOFA-core models among admissions alive and still hospitalized beyond 24 hours; a different population and estimand.
 
 See the [supplement methods, execution and validation guide](docs/SURVIVAL_SENSITIVITY_SUPPLEMENTS.md). Synthetic numerical checks include comparison with R `survival`; R is optional for validation, not required for the Python analyses.
 

@@ -5,10 +5,12 @@ import subprocess
 import tempfile
 
 from render_current_report import generate
+from render_short_notes import generate as generate_short_notes
 
 
 def build(repo):
     generate(repo)
+    generate_short_notes(repo)
     with tempfile.TemporaryDirectory(prefix="copd-quarto-") as temp:
         project = Path(temp)
         (project / "_quarto.yml").write_text("project:\n  type: default\n  output-dir: _site\n")
