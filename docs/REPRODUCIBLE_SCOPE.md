@@ -1,0 +1,22 @@
+# Reproducible portfolio scope
+
+Analysis version: `admission_age_elapsed_time_los_v2`.
+
+The latest [reproduction check](PORTFOLIO_REPRODUCTION_CHECK.json) records source extraction, primary/core agreement, the six-model independent comparison, report generation and regression checks for this snapshot.
+
+Reproducibility includes obtaining authorized source access, extracting the required data, any transfer required by the analysis, executing the analysis and checking the results. Existing code, old outputs, report rendering or synthetic tests alone do not establish that the complete clinical workflow has been reproduced.
+
+The current portfolio includes the following BigQuery/Python workflow. It has no external analysis-service upload step. An extraction/upload/execution route that has not been reproduced is excluded from the published workflow and validation claims.
+
+| Step | Implementation and evidence | Limits |
+| --- | --- | --- |
+| Authorized source access and extraction | PhysioNet/MIMIC access and BigQuery; version-controlled `sql/01`–`sql/04` definitions | Each reproducer needs their own authorized access; no credentials or patient rows are published |
+| Cohort, exposure, baseline and outcome construction | Eight project tables; source-SELECT audit and table QA records linked from [validation notes](VALIDATION_NOTES.md) | Rebuilding the tables writes to the configured BigQuery dataset; source audits can run read-only |
+| Retrieval for modeling | Explicit analysis columns in `scripts/current_analysis.py`, with a dry run and 200 MB billed-byte cap | Individual model rows are handled in memory; only aggregate results are saved |
+| Clinical models and figures | `current_analysis.py` and notebooks 04a–04c; `CURRENT_ANALYSIS.json` and four model figures | Observational estimates retain the documented PH, confounding, clustering and competing-risk limitations |
+| Independent numerical comparison | `independent_cox_crosscheck.py`; six PHReg specifications, 40 coefficients, tolerance 1e-4 | Shared corrected inputs; excludes penalized-model and PH-test validation and independent source re-extraction |
+| Report generation | `scripts/build_report.py` rebuilds the Quarto source and HTML from saved aggregate JSON and figures | This offline step reproduces presentation only; it is not evidence that clinical models were rerun |
+
+The optional 04d notebook produces a secondary Python logistic parameter export; it does not define a new primary clinical analysis or establish independent clinical validation.
+
+[Full environment and execution steps](../REPRODUCIBILITY.md) · [Validation details](VALIDATION_NOTES.md) · [Independent calculation record](INDEPENDENT_REVALIDATION.md)

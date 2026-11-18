@@ -73,13 +73,17 @@ Primary refined rank PH p-values: age 0.79803, sex 0.32498, RAAS 0.72064. Core a
 
 For full diagnostics, sparse-strata limitations and rare-category pooling, see [current results](RESULTS_SUMMARY.md). The approach follows [lifelines documentation on stratification](https://lifelines.readthedocs.io/en/latest/jupyter_notebooks/Proportional%20hazard%20assumption.html#Stratification). A non-significant diagnostic does not prove PH, and additional stratification changes the adjustment structure.
 
-## SAS-Python reproducibility status
+## Reproducibility checks
 
-Python secondary logistic coefficients have been refreshed. Independent SAS rerun and current cross-platform validation are **pending** because no local SAS runtime is available. Historical SAS outputs are not used to claim agreement for this analysis. Both outputs must have matching current cohort/model provenance and exact parameter keys before notebook 05 compares them. SAS code now distinguishes primary 04a and extended core 04c and omits all patient previews.
+Six unpenalized Cox specifications (40 coefficients) were independently recalculated with statsmodels PHReg using matched complete cases, era/additional strata and Efron ties. Coefficients, HRs, confidence-interval endpoints and p-values matched the lifelines reference within an absolute tolerance of 1e-4. The saved comparison is bound to this exact aggregate analysis snapshot by its reference hash. See [the calculation record](INDEPENDENT_COX_CROSSCHECK.json) and [the scope and limitations](INDEPENDENT_REVALIDATION.md).
+
+This checks a separate statistical implementation on the same corrected model inputs. Source-SQL extraction is evaluated separately. Penalized fits, PH diagnostics, patient clustering, competing risks and causal validity are not established by this numerical comparison.
+
+The reproducible workflow covers authorized MIMIC source access, version-controlled BigQuery extraction and cohort construction, explicit model-column retrieval, Python modeling, independent numerical comparison, figure generation and Quarto reporting. Only aggregate results are published; no external analysis-service upload is part of this workflow. See [the full reproduction steps](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/REPRODUCIBILITY.md).
 
 ## Limitations
 
-These findings cannot establish causality. Confounding by indication, unmeasured severity, exposure misclassification and a single health system limit interpretation. Age is approximate, especially in the aggregated oldest group. Repeated admissions are not clustered; live discharge remains censoring; rare ICU pooling and PH-responsive strata are exploratory sensitivity choices. SAS validation is pending and must not be presented as completed.
+These findings cannot establish causality. Confounding by indication, unmeasured severity, exposure misclassification and a single health system limit interpretation. Age is approximate, especially in the aggregated oldest group. Repeated admissions are not clustered; live discharge remains censoring; rare ICU pooling and PH-responsive strata are exploratory sensitivity choices.
 
 ## Reproduction and sources
 
@@ -90,4 +94,4 @@ Run the upstream SQL, then `.venv/bin/python scripts/current_analysis.py`, `.ven
 - [Validation notes](VALIDATION_NOTES.md)
 - [Current aggregate model results](CURRENT_ANALYSIS.json)
 - [Original age/time correction audit](AGE_TIME_REVALIDATION.md)
-- [SAS workflow](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/sas/README.md)
+- [Reproducible scope](REPRODUCIBLE_SCOPE.md)

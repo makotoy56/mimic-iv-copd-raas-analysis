@@ -72,12 +72,8 @@ venv/
 # --- Jupyter notebooks ---
 00*.ipynb
 
-# --- SAS ---
-sas/inputs/
-sas/outputs/
-sas/logs/
-sas/data/
-sas/docs/results.md
+# --- Private historical analysis artifacts (outside portfolio scope) ---
+sas/
 *.pdf
 *.log
 *.lst

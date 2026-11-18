@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1440" height="560" viewBox="0 0 1440 560" role="img" aria-labelledby="title desc">
   <title id="title">End-to-end MIMIC-IV COPD RAAS analysis workflow</title>
-  <desc id="desc">Workflow from MIMIC-IV data through BigQuery cohort construction, exposure definition, covariate and outcome assembly, Kaplan-Meier analysis, Cox modeling, subgroup and sensitivity analysis, SAS-Python validation, and cautious observational interpretation.</desc>
+  <desc id="desc">Workflow from MIMIC-IV data through BigQuery cohort construction, exposure definition, covariate and outcome assembly, Kaplan-Meier analysis, Cox modeling, subgroup and sensitivity analysis, independent lifelines and PHReg calculations, and cautious observational interpretation.</desc>
   <defs>
     <style>
       .bg { fill: #f8fafc; }
@@ -21,7 +21,7 @@
 
   <rect class="bg" x="0" y="0" width="1440" height="560" />
   <text class="title" x="52" y="52">RAAS Blockers and ICU COPD Outcomes</text>
-  <text class="subtitle" x="52" y="80">Reproducible EHR-based real-world evidence workflow using MIMIC-IV, Python, BigQuery SQL, and SAS</text>
+  <text class="subtitle" x="52" y="80">Reproducible EHR-based real-world evidence workflow using MIMIC-IV, BigQuery SQL, Python, and Quarto</text>
 
   <rect class="step" x="52" y="126" width="160" height="104" rx="14" />
   <text class="label" x="91" y="166">MIMIC-IV</text>
@@ -71,9 +71,9 @@
 
   <path class="arrow" d="M472 338 H436" />
   <rect class="validation" x="248" y="286" width="188" height="104" rx="14" />
-  <text class="label" x="291" y="320">SAS-Python</text>
+  <text class="label" x="267" y="320">lifelines / PHReg</text>
   <text class="label" x="299" y="342">validation</text>
-  <text class="small" x="279" y="368">cross-platform checks</text>
+  <text class="small" x="267" y="368">independent estimates</text>
 
   <path class="arrow" d="M248 338 H212" />
   <rect class="interpretation" x="52" y="286" width="160" height="104" rx="14" />
@@ -81,6 +81,6 @@
   <text class="label" x="64" y="340">observational</text>
   <text class="label" x="76" y="362">interpretation</text>
 
-  <text class="subtitle" x="52" y="450">Primary clinical model: Cox proportional hazards survival analysis. Validation notebooks compare selected outputs; they do not define a new clinical analysis.</text>
+  <text class="subtitle" x="52" y="450">Primary clinical model: Cox proportional hazards survival analysis. Independent calculations compare selected Cox estimates; source extraction is checked separately.</text>
   <text class="subtitle" x="52" y="480">Interpretation remains hypothesis-generating: observational associations cannot establish causality, and residual confounding may remain.</text>
 </svg>

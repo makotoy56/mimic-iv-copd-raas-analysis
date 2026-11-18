@@ -95,36 +95,12 @@ def fit_secondary_logistic(df):
     params = pd.DataFrame([{"Variable": names.get(c, c), "Python_Estimate": float(v), "Python_OR": float(np.exp(v)),
                             "Python_pvalue": float(model.pvalues[c]), "Python_CI_Lower": float(np.exp(ci.loc[c, 0])),
                             "Python_CI_Upper": float(np.exp(ci.loc[c, 1]))} for c, v in model.params.items()])
-    # Aggregate provenance must accompany independent SAS results before comparison.
+    # Retain aggregate cohort provenance with the optional secondary Python fit.
     manifest = {"analysis_version": ANALYSIS_VERSION, "model_spec": LOGISTIC_SPEC, "n": len(data),
                 "events": int(data.death_event.sum()), "age_sum": float(data.age.sum()),
                 "duration_sum": float(df.loc[data.index, "time_to_event_days"].sum())}
     return params, manifest
 
-
-def validate_sas_comparison(sas_path: Path, python_path: Path):
-    sas_meta = sas_path.with_suffix(".manifest.csv")
-    python_meta = python_path.with_suffix(".manifest.json")
-    if not sas_meta.exists() or not python_meta.exists():
-        raise ValueError("SAS validation pending: fresh cohort/model provenance is required for both outputs")
-    smeta = pd.read_csv(sas_meta).iloc[0].to_dict()
-    pmeta = json.loads(python_meta.read_text())
-    for k in ["analysis_version", "model_spec", "n", "events"]:
-        if smeta.get(k) != pmeta.get(k):
-            raise ValueError(f"SAS/Python provenance mismatch: {k}")
-    if pmeta["analysis_version"] != ANALYSIS_VERSION:
-        raise ValueError("SAS/Python outputs predate the current analysis version")
-    for k in ["age_sum", "duration_sum"]:
-        if not np.isclose(float(smeta[k]), float(pmeta[k]), rtol=1e-10, atol=1e-5):
-            raise ValueError(f"SAS/Python cohort aggregate mismatch: {k}")
-    sas = pd.read_csv(sas_path)[["Variable", "Estimate"]]
-    py = pd.read_csv(python_path)[["Variable", "Python_Estimate"]]
-    if sas.Variable.duplicated().any() or py.Variable.duplicated().any() or set(sas.Variable) != set(py.Variable):
-        raise ValueError("SAS/Python parameter keys must match exactly and be unique")
-    result = sas.merge(py, on="Variable", validate="one_to_one").rename(columns={"Estimate": "SAS_Estimate"})
-    result["Absolute difference"] = (result.Python_Estimate - result.SAS_Estimate).abs()
-    result["Relative difference (%)"] = np.where(result.SAS_Estimate != 0, result["Absolute difference"] / result.SAS_Estimate.abs() * 100, np.nan)
-    return result.sort_values("Variable").reset_index(drop=True)
 
 
 def compute_current(df):

@@ -1,6 +1,6 @@
 # 04b - Class-Specific Effects of ACE Inhibitors vs ARBs on In-Hospital Mortality in ICU COPD Patients (SHORT)
 
-Current estimates below use the 2026-11-18 admission-age and continuous follow-up corrections; see [the validation report](AGE_TIME_REVALIDATION.md). Figures and the local rendered report are refreshed through the shared current-analysis workflow; independent SAS validation remains pending.
+Current estimates below use the 2026-11-18 admission-age and continuous follow-up corrections; see [the validation report](AGE_TIME_REVALIDATION.md). Figures and the local rendered report are refreshed through the shared current-analysis workflow; independent Cox calculation records are linked from [validation notes](VALIDATION_NOTES.md).
 
 Full notebook:
 [04b - Class-Specific Effects of ACE Inhibitors vs ARBs on In-Hospital Mortality in ICU COPD Patients](../notebooks/04b_outcomes_and_modeling_raas_subgroups.ipynb)

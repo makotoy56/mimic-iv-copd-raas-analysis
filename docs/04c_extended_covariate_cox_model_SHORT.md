@@ -1,6 +1,6 @@
 # 04c - Extended Covariate Cox Models for Pre-ICU RAAS Exposure in ICU COPD Patients (SHORT)
 
-Current estimates below use the 2026-11-18 admission-age and continuous follow-up corrections; see [the validation report](AGE_TIME_REVALIDATION.md). Figures and the local rendered report are refreshed through the shared current-analysis workflow; independent SAS validation remains pending.
+Current estimates below use the 2026-11-18 admission-age and continuous follow-up corrections; see [the validation report](AGE_TIME_REVALIDATION.md). Figures and the local rendered report are refreshed through the shared current-analysis workflow; independent Cox calculation records are linked from [validation notes](VALIDATION_NOTES.md).
 
 Full notebook:
 [04c - Extended Covariate Cox Models for Pre-ICU RAAS Exposure in ICU COPD Patients](../notebooks/04c_extended_covariate_cox_model.ipynb)
@@ -15,7 +15,7 @@ Evaluate whether the association between pre-ICU RAAS exposure and in-hospital m
 - `mimic-iv-portfolio.copd_raas.cohort_copd_outcomes_extended`
 
 ## Downstream Usage
-The extended outcome table supports adjusted Cox models with SOFA score, comorbidities, and ICU type. It is also exported for the SAS/Python logistic validation workflow.
+The extended outcome table supports adjusted Cox models with SOFA score, comorbidities, and ICU type.
 
 ## Key Methods
 - Adds first-day SOFA score, Charlson-derived comorbidity indicators, and ICU type.

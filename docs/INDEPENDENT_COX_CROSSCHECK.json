@@ -1,0 +1,762 @@
+{
+  "analysis_version": "admission_age_elapsed_time_los_v2",
+  "validation": "statsmodels_PHReg_vs_saved_lifelines_unpenalized_Efron_Cox",
+  "status": "passed",
+  "generated_at_utc": "2026-11-18T05:22:54.920547+00:00",
+  "data_handling": "approved_BigQuery_read_in_memory_aggregate_output_only",
+  "script_sha256": "d4656af408e53a1fff8c22d3ca8d8b8e4d1a0f7e256a2ba7290bd604b79f0664",
+  "statsmodels_version": "0.14.6",
+  "cohort": {
+    "n": 11964,
+    "events": 1692,
+    "age_sum": 853097.0,
+    "duration_sum": 113625.48267361111
+  },
+  "query_execution": {
+    "job_id": "cf654963-fd46-4aa6-bf5a-9a29d76429f1",
+    "dry_run_bytes": 2736972,
+    "processed_bytes": 2736972,
+    "billed_bytes": 20971520
+  },
+  "query_sha256": "46240e0dee821664c52b06257b6187e9af66e9277313f1513249fc6ee3a94b54",
+  "reference_sha256": "554bda76eb780ff1a39c509076c97691b5661140c65cdfee60b071cba9a4537b",
+  "absolute_tolerance": 0.0001,
+  "excluded": [
+    "penalized models",
+    "PH diagnostic tests",
+    "secondary logistic",
+    "source SQL revalidation"
+  ],
+  "limitations": [
+    "Shared corrected BigQuery inputs; independent statistical implementation only.",
+    "Existing admission-level design and ordinary model-based standard errors retained.",
+    "No new patient clustering, competing-risk model or causal validation."
+  ],
+  "models": {
+    "primary_refined": {
+      "n": 11964,
+      "events": 1692,
+      "strata": [
+        "anchor_year_group"
+      ],
+      "strata_count": 5,
+      "parameter_count": 3,
+      "score_per_admission": 8.314609077767806e-16,
+      "max_absolute_differences": {
+        "log_coefficient": 1.4168791855895257e-06,
+        "hr": 1.0366568634623263e-06,
+        "lower_95": 9.174016477597746e-07,
+        "upper_95": 1.1611279698842125e-06,
+        "p": 1.5896514529156747e-06
+      },
+      "passed": true,
+      "estimates": {
+        "raas_pre_icu": {
+          "log_coefficient": -0.3124564238404147,
+          "standard_error": 0.108055335577101,
+          "hr": 0.7316475106406797,
+          "lower_95": 0.5920045312973535,
+          "upper_95": 0.9042297001571896,
+          "p": 0.003832447802687259,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 1.4168791855895257e-06,
+            "hr": 1.0366568634623263e-06,
+            "lower_95": 9.174016477597746e-07,
+            "upper_95": 1.1611279698842125e-06,
+            "p": 1.3782504520087543e-07
+          }
+        },
+        "age": {
+          "log_coefficient": 0.03503671491233393,
+          "standard_error": 0.002350426418818153,
+          "hr": 1.0356577321844516,
+          "lower_95": 1.0308976873464157,
+          "upper_95": 1.0404397559512775,
+          "p": 2.9886209424038115e-50,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 6.099931754155463e-08,
+            "hr": 6.31744130341616e-08,
+            "lower_95": 6.236402261272644e-08,
+            "upper_95": 6.399095742182226e-08,
+            "p": 1.088493378342514e-53
+          }
+        },
+        "gender_M": {
+          "log_coefficient": 0.01932850681635514,
+          "standard_error": 0.049026341415892356,
+          "hr": 1.0195165117354799,
+          "lower_95": 0.926110837427633,
+          "upper_95": 1.1223428942785711,
+          "p": 0.6933984058305551,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 1.056532327840809e-07,
+            "hr": 1.0771520964070191e-07,
+            "lower_95": 9.74656724217482e-08,
+            "upper_95": 1.1904078900393245e-07,
+            "p": 1.5896514529156747e-06
+          }
+        }
+      }
+    },
+    "subgroups": {
+      "n": 11951,
+      "events": 1690,
+      "strata": [
+        "anchor_year_group"
+      ],
+      "strata_count": 5,
+      "parameter_count": 4,
+      "score_per_admission": 3.5351745517777223e-15,
+      "max_absolute_differences": {
+        "log_coefficient": 1.0041684104566961e-05,
+        "hr": 6.8539853075311186e-06,
+        "lower_95": 5.888097905359935e-06,
+        "upper_95": 7.853778017818946e-06,
+        "p": 1.6095271916372056e-06
+      },
+      "passed": true,
+      "estimates": {
+        "acei_pre_icu": {
+          "log_coefficient": -0.3819195807280215,
+          "standard_error": 0.13756715682245058,
+          "hr": 0.6825499411676932,
+          "lower_95": 0.5212391853806159,
+          "upper_95": 0.8937824232225243,
+          "p": 0.005499142978724464,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 1.0041684104566961e-05,
+            "hr": 6.8539853075311186e-06,
+            "lower_95": 5.888097905359935e-06,
+            "upper_95": 7.853778017818946e-06,
+            "p": 1.0162926216807436e-06
+          }
+        },
+        "arb_pre_icu": {
+          "log_coefficient": -0.2169695453177508,
+          "standard_error": 0.17352237010683944,
+          "hr": 0.8049544835647346,
+          "lower_95": 0.5728867984326582,
+          "upper_95": 1.131029240652216,
+          "p": 0.2111594115112838,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 4.3742180072525727e-07,
+            "hr": 3.521045627286057e-07,
+            "lower_95": 3.288176616544902e-07,
+            "upper_95": 3.403008954627751e-07,
+            "p": 7.37118531712877e-07
+          }
+        },
+        "age": {
+          "log_coefficient": 0.035033048033053994,
+          "standard_error": 0.0023520344288338927,
+          "hr": 1.035653934559535,
+          "lower_95": 1.0308906581728525,
+          "upper_95": 1.0404392198777719,
+          "p": 3.5632695829813304e-50,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 6.097238505753388e-08,
+            "hr": 6.31462886424572e-08,
+            "lower_95": 6.242727734750986e-08,
+            "upper_95": 6.387061146639894e-08,
+            "p": 1.3106295616465051e-53
+          }
+        },
+        "gender_M": {
+          "log_coefficient": 0.020803643643851417,
+          "standard_error": 0.049064533277834006,
+          "hr": 1.021021547882388,
+          "lower_95": 0.9274085622839585,
+          "upper_95": 1.124083865122818,
+          "p": 0.6715616285833864,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 1.0824562307262808e-07,
+            "hr": 1.1052110759912637e-07,
+            "lower_95": 1.0055281141063688e-07,
+            "upper_95": 1.2147728245537337e-07,
+            "p": 1.6095271916372056e-06
+          }
+        }
+      }
+    },
+    "core": {
+      "n": 11964,
+      "events": 1692,
+      "strata": [
+        "anchor_year_group"
+      ],
+      "strata_count": 5,
+      "parameter_count": 7,
+      "score_per_admission": 3.0882833717423277e-16,
+      "max_absolute_differences": {
+        "log_coefficient": 5.22054857676757e-10,
+        "hr": 4.653157859024759e-10,
+        "lower_95": 4.229512295950144e-10,
+        "upper_95": 5.118319101882207e-10,
+        "p": 1.1051105586190602e-09
+      },
+      "passed": true,
+      "estimates": {
+        "raas_pre_icu": {
+          "log_coefficient": -0.1831412611593365,
+          "standard_error": 0.10843274613544554,
+          "hr": 0.8326505262503875,
+          "lower_95": 0.6732318285281229,
+          "upper_95": 1.0298189560954272,
+          "p": 0.09122234090633867,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 6.52432829983951e-11,
+            "hr": 5.432487792944585e-11,
+            "lower_95": 6.842149069541392e-11,
+            "upper_95": 2.9715563343302165e-11,
+            "p": 5.988955165125986e-11
+          }
+        },
+        "age": {
+          "log_coefficient": 0.03990602226641499,
+          "standard_error": 0.002433333392916184,
+          "hr": 1.0407129657507186,
+          "lower_95": 1.0357613668785273,
+          "upper_95": 1.0456882364185331,
+          "p": 1.9207476182199673e-60,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 4.5517610514078655e-11,
+            "hr": 4.7370773970101254e-11,
+            "lower_95": 4.6633363837145225e-11,
+            "upper_95": 4.811417930739026e-11,
+            "p": 5.376595848132999e-67
+          }
+        },
+        "gender_M": {
+          "log_coefficient": -0.08370240535053323,
+          "standard_error": 0.04945949631275049,
+          "hr": 0.91970491463513,
+          "lower_95": 0.834734777088006,
+          "upper_95": 1.0133244153967162,
+          "p": 0.09058069768580955,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 1.5077468440427566e-10,
+            "hr": 1.386681880433116e-10,
+            "lower_95": 1.261920568040864e-10,
+            "upper_95": 1.5237677786217318e-10,
+            "p": 5.795673801989309e-10
+          }
+        },
+        "sofa_score": {
+          "log_coefficient": 0.18625024268382748,
+          "standard_error": 0.006124642369254061,
+          "hr": 1.2047236959509786,
+          "lower_95": 1.1903485509824951,
+          "upper_95": 1.2192724411583957,
+          "p": 4.054135712778413e-203,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 3.1558802793263396e-10,
+            "hr": 3.801963188720947e-10,
+            "lower_95": 3.81193521192813e-10,
+            "upper_95": 3.791194025382083e-10,
+            "p": 7.813036825813972e-209
+          }
+        },
+        "chf": {
+          "log_coefficient": -0.043342568216780654,
+          "standard_error": 0.05225916835497621,
+          "hr": 0.9575832962707634,
+          "lower_95": 0.8643576439638417,
+          "upper_95": 1.0608638399860553,
+          "p": 0.406890939456104,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 1.0293082358669992e-10,
+            "hr": 9.856482297010416e-11,
+            "lower_95": 9.06800190492163e-11,
+            "upper_95": 1.0709544362441648e-10,
+            "p": 1.1051105586190602e-09
+          }
+        },
+        "ckd": {
+          "log_coefficient": -0.11505643162661479,
+          "standard_error": 0.05548504395147311,
+          "hr": 0.8913158440846851,
+          "lower_95": 0.7994709205200287,
+          "upper_95": 0.9937121082523375,
+          "p": 0.03811204534061775,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 5.22054857676757e-10,
+            "hr": 4.653157859024759e-10,
+            "lower_95": 4.229512295950144e-10,
+            "upper_95": 5.118319101882207e-10,
+            "p": 8.620905447842553e-10
+          }
+        },
+        "diabetes": {
+          "log_coefficient": -0.08180192797299453,
+          "standard_error": 0.0537578898596655,
+          "hr": 0.9214544549737381,
+          "lower_95": 0.8293065113094827,
+          "upper_95": 1.023841367470088,
+          "p": 0.12809104342097782,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 2.3146054517475534e-10,
+            "hr": 2.1328039334633786e-10,
+            "lower_95": 1.954577610874253e-10,
+            "upper_95": 2.326503434346705e-10,
+            "p": 1.0640698600017373e-09
+          }
+        }
+      }
+    },
+    "icu_pooled": {
+      "n": 11964,
+      "events": 1692,
+      "strata": [
+        "anchor_year_group"
+      ],
+      "strata_count": 5,
+      "parameter_count": 16,
+      "score_per_admission": 4.329535726923379e-15,
+      "max_absolute_differences": {
+        "log_coefficient": 3.2848770251892034e-05,
+        "hr": 2.3052605236273394e-05,
+        "lower_95": 1.569134490114754e-05,
+        "upper_95": 3.1322060067839885e-05,
+        "p": 3.751956877218188e-05
+      },
+      "passed": true,
+      "estimates": {
+        "raas_pre_icu": {
+          "log_coefficient": -0.04337997779039286,
+          "standard_error": 0.10973950120387163,
+          "hr": 0.9575474741580009,
+          "lower_95": 0.7722357130067995,
+          "upper_95": 1.1873281043896688,
+          "p": 0.6926218156898567,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 1.6433029381701658e-09,
+            "hr": 1.5735405201056096e-09,
+            "lower_95": 2.955850675334659e-09,
+            "upper_95": 6.424010212668918e-10,
+            "p": 8.087600589234967e-09
+          }
+        },
+        "age": {
+          "log_coefficient": 0.0407454226079653,
+          "standard_error": 0.0024310910645539484,
+          "hr": 1.0415869073117336,
+          "lower_95": 1.0366357062032951,
+          "upper_95": 1.046561756450304,
+          "p": 4.775116700856473e-63,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 4.608221443325178e-11,
+            "hr": 4.799871611282924e-11,
+            "lower_95": 1.4956702543145184e-11,
+            "upper_95": 1.1155565360354558e-10,
+            "p": 1.5571922162398596e-68
+          }
+        },
+        "gender_M": {
+          "log_coefficient": -0.075027205509616,
+          "standard_error": 0.049511029899081065,
+          "hr": 0.9277182469375412,
+          "lower_95": 0.84192272797753,
+          "upper_95": 1.0222566954194812,
+          "p": 0.12968038591697814,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 4.070600106986788e-10,
+            "hr": 3.776370327557288e-10,
+            "lower_95": 2.369384688449827e-10,
+            "upper_95": 5.445501827239241e-10,
+            "p": 2.577484059518298e-09
+          }
+        },
+        "sofa_score": {
+          "log_coefficient": 0.18435235563981542,
+          "standard_error": 0.006222268916727946,
+          "hr": 1.2024394347773164,
+          "lower_95": 1.1878642332823175,
+          "upper_95": 1.2171934753118856,
+          "p": 6.546846094649261e-193,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 3.2666436222683615e-10,
+            "hr": 3.9279401953251636e-10,
+            "lower_95": 1.475957578378484e-09,
+            "upper_95": 7.171725435739518e-10,
+            "p": 4.422859910434132e-197
+          }
+        },
+        "chf": {
+          "log_coefficient": -0.13447347250899033,
+          "standard_error": 0.05401033611976486,
+          "hr": 0.8741760682667844,
+          "lower_95": 0.7863669121710295,
+          "upper_95": 0.9717903773705179,
+          "p": 0.012782473449038857,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 5.133643232735352e-10,
+            "hr": 4.48770798300302e-10,
+            "lower_95": 4.873816905615058e-10,
+            "upper_95": 1.600070076435145e-09,
+            "p": 1.300282971572475e-09
+          }
+        },
+        "ckd": {
+          "log_coefficient": -0.14416831107550365,
+          "standard_error": 0.05573594454296163,
+          "hr": 0.8657420218250773,
+          "lower_95": 0.7761505615335939,
+          "upper_95": 0.9656750706626036,
+          "p": 0.009691937629316078,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 9.685303947737367e-10,
+            "hr": 8.38497493660384e-10,
+            "lower_95": 2.150629119235248e-09,
+            "upper_95": 4.546352294632072e-09,
+            "p": 2.978938228037631e-09
+          }
+        },
+        "diabetes": {
+          "log_coefficient": -0.0870235682480752,
+          "standard_error": 0.053861976550645896,
+          "hr": 0.9166554914145454,
+          "lower_95": 0.8248191717551622,
+          "upper_95": 1.0187169730214056,
+          "p": 0.10616411982963742,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 6.359822113388702e-10,
+            "hr": 5.829765559184352e-10,
+            "lower_95": 5.103810707396406e-10,
+            "upper_95": 1.9261328088049368e-09,
+            "p": 6.708367347729727e-09
+          }
+        },
+        "icu_group_Coronary Care Unit (CCU)": {
+          "log_coefficient": 1.1690451632907088,
+          "standard_error": 0.11669454651491662,
+          "hr": 3.218917629979316,
+          "lower_95": 2.5608213706200242,
+          "upper_95": 4.046135676415008,
+          "p": 1.2705662779289156e-23,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 1.3116485675368494e-10,
+            "hr": 4.222084903915402e-10,
+            "lower_95": 7.035210503048006e-08,
+            "upper_95": 1.1009594835797998e-07,
+            "p": 1.5406854329357858e-28
+          }
+        },
+        "icu_group_Medical Intensive Care Unit (MICU)": {
+          "log_coefficient": 0.8586088371823514,
+          "standard_error": 0.10912332302575539,
+          "hr": 2.359875438109138,
+          "lower_95": 1.9054744909502532,
+          "upper_95": 2.922637962271302,
+          "p": 3.59656094536548e-15,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 9.48736866845934e-10,
+            "hr": 2.238901064544052e-09,
+            "lower_95": 5.032072603050608e-08,
+            "upper_95": 7.163686222000365e-08,
+            "p": 2.717052278190764e-20
+          }
+        },
+        "icu_group_Medical/Surgical Intensive Care Unit (MICU/SICU)": {
+          "log_coefficient": 0.9721592384835488,
+          "standard_error": 0.11178835966609743,
+          "hr": 2.643646564435203,
+          "lower_95": 2.123483880309367,
+          "upper_95": 3.291226847755423,
+          "p": 3.424997408005113e-18,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 3.7959668741649466e-10,
+            "hr": 1.0035194897284327e-09,
+            "lower_95": 5.44791474155204e-08,
+            "upper_95": 8.693691544436888e-08,
+            "p": 3.107375486992637e-23
+          }
+        },
+        "icu_group_Neuro Intermediate": {
+          "log_coefficient": -0.35415194491632007,
+          "standard_error": 0.31987531342329245,
+          "hr": 0.7017683291239858,
+          "lower_95": 0.37489996868491765,
+          "upper_95": 1.313627177641542,
+          "p": 0.26822638943417865,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 3.2848770251892034e-05,
+            "hr": 2.3052605236273394e-05,
+            "lower_95": 1.569134490114754e-05,
+            "upper_95": 3.1322060067839885e-05,
+            "p": 3.751956877218188e-05
+          }
+        },
+        "icu_group_Neuro Stepdown": {
+          "log_coefficient": -0.11912958238372932,
+          "standard_error": 0.5877437693670601,
+          "hr": 0.887692763964366,
+          "lower_95": 0.28052674738170386,
+          "upper_95": 2.8089957572654964,
+          "p": 0.8393776087398583,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 1.1103323245789665e-05,
+            "hr": 9.856394420526549e-06,
+            "lower_95": 4.80472546221522e-06,
+            "upper_95": 1.4267713174476171e-05,
+            "p": 1.3938295284510183e-05
+          }
+        },
+        "icu_group_Neuro Surgical Intensive Care Unit (Neuro SICU)": {
+          "log_coefficient": 1.4371494406082506,
+          "standard_error": 0.18861724528260188,
+          "hr": 4.208681604643935,
+          "lower_95": 2.9080025396154383,
+          "upper_95": 6.091122895515306,
+          "p": 2.548659148404196e-14,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 3.997062680838326e-09,
+            "hr": 1.6822363946289443e-08,
+            "lower_95": 1.8107572730130528e-07,
+            "upper_95": 4.2797573751585105e-07,
+            "p": 2.654619311625883e-19
+          }
+        },
+        "icu_group_Other (rare ICU types)": {
+          "log_coefficient": 0.5933306186285326,
+          "standard_error": 0.3083212537828742,
+          "hr": 1.8100068297778305,
+          "lower_95": 0.9890919940415823,
+          "upper_95": 3.312254819145428,
+          "p": 0.054305602784850034,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 1.0425189600482554e-08,
+            "hr": 1.8869664497600525e-08,
+            "lower_95": 1.1289332768615878e-07,
+            "upper_95": 4.4711711888467676e-07,
+            "p": 4.544880530948925e-08
+          }
+        },
+        "icu_group_Surgical Intensive Care Unit (SICU)": {
+          "log_coefficient": 0.69243036572989,
+          "standard_error": 0.12724638097400093,
+          "hr": 1.9985668840406399,
+          "lower_95": 1.557422236244106,
+          "upper_95": 2.5646671127648277,
+          "p": 5.2789090313881266e-08,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 1.1854695003421512e-10,
+            "hr": 2.369240359456626e-10,
+            "lower_95": 4.6510803652921595e-08,
+            "upper_95": 7.598306472900163e-08,
+            "p": 1.9264234486301131e-13
+          }
+        },
+        "icu_group_Trauma SICU (TSICU)": {
+          "log_coefficient": 0.5495442780349761,
+          "standard_error": 0.13127244611225228,
+          "hr": 1.7324633163520395,
+          "lower_95": 1.3394445478436279,
+          "upper_95": 2.2408013436147907,
+          "p": 2.8355340966080405e-05,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 2.033328727613082e-09,
+            "hr": 3.5226674910404654e-09,
+            "lower_95": 4.1500560543639153e-08,
+            "upper_95": 7.854024230979917e-08,
+            "p": 6.514315967892908e-11
+          }
+        }
+      }
+    },
+    "core_ph_stratified": {
+      "n": 11964,
+      "events": 1692,
+      "strata": [
+        "anchor_year_group",
+        "chf",
+        "sofa_score"
+      ],
+      "strata_count": 191,
+      "parameter_count": 5,
+      "score_per_admission": 2.862601125345773e-16,
+      "max_absolute_differences": {
+        "log_coefficient": 3.5508082532609286e-07,
+        "hr": 3.318387188366856e-07,
+        "lower_95": 2.958628924076834e-07,
+        "upper_95": 3.7218259119065067e-07,
+        "p": 2.450776893869744e-06
+      },
+      "passed": true,
+      "estimates": {
+        "raas_pre_icu": {
+          "log_coefficient": -0.1863708806949126,
+          "standard_error": 0.11218512643631631,
+          "hr": 0.8299657196300996,
+          "lower_95": 0.6661438184662749,
+          "upper_95": 1.034075640523238,
+          "p": 0.09665727167132648,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 2.2162393273350567e-07,
+            "hr": 1.8394024647871987e-07,
+            "lower_95": 1.5632722938363486e-07,
+            "upper_95": 2.1568017860573718e-07,
+            "p": 3.7678168920973754e-07
+          }
+        },
+        "age": {
+          "log_coefficient": 0.03974258800137865,
+          "standard_error": 0.0025728719428860154,
+          "hr": 1.0405428914904067,
+          "lower_95": 1.0353089159038389,
+          "upper_95": 1.045803327295775,
+          "p": 7.930706035838107e-54,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 1.208909411395953e-07,
+            "hr": 1.2579220176611727e-07,
+            "lower_95": 1.2373289348666106e-07,
+            "upper_95": 1.2786916947504778e-07,
+            "p": 5.26251355793997e-57
+          }
+        },
+        "gender_M": {
+          "log_coefficient": -0.0631478069624733,
+          "standard_error": 0.051520941865415025,
+          "hr": 0.9388047015623491,
+          "lower_95": 0.8486342406363322,
+          "upper_95": 1.0385561004640875,
+          "p": 0.22032190381044658,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 1.0636864403168467e-08,
+            "hr": 9.985938298484598e-09,
+            "lower_95": 6.433217181189832e-09,
+            "upper_95": 1.422100814885141e-08,
+            "p": 9.168929288039251e-08
+          }
+        },
+        "ckd": {
+          "log_coefficient": -0.136242332018222,
+          "standard_error": 0.05827758609536796,
+          "hr": 0.8726311403986856,
+          "lower_95": 0.7784392683431067,
+          "upper_95": 0.9782203161645703,
+          "p": 0.01939674287914495,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 7.146589606210618e-08,
+            "hr": 6.236336413945054e-08,
+            "lower_95": 5.844270278831942e-08,
+            "upper_95": 6.637716010171602e-08,
+            "p": 5.98063735687826e-08
+          }
+        },
+        "diabetes": {
+          "log_coefficient": -0.06769619875032343,
+          "standard_error": 0.05641500220764314,
+          "hr": 0.9345443461948544,
+          "lower_95": 0.8367185117032556,
+          "upper_95": 1.0438075921457703,
+          "p": 0.23015175908057772,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 3.5508082532609286e-07,
+            "hr": 3.318387188366856e-07,
+            "lower_95": 2.958628924076834e-07,
+            "upper_95": 3.7218259119065067e-07,
+            "p": 2.450776893869744e-06
+          }
+        }
+      }
+    },
+    "icu_ph_stratified": {
+      "n": 11964,
+      "events": 1692,
+      "strata": [
+        "anchor_year_group",
+        "chf",
+        "sofa_score",
+        "icu_type_group"
+      ],
+      "strata_count": 1118,
+      "parameter_count": 5,
+      "score_per_admission": 3.800964149836711e-17,
+      "max_absolute_differences": {
+        "log_coefficient": 4.616795216128011e-07,
+        "hr": 5.202368205114993e-07,
+        "lower_95": 4.120649577110669e-07,
+        "upper_95": 6.566707118071946e-07,
+        "p": 1.8784456317089138e-06
+      },
+      "passed": true,
+      "estimates": {
+        "raas_pre_icu": {
+          "log_coefficient": 0.11941338854825123,
+          "standard_error": 0.1261777631817075,
+          "hr": 1.1268356429696607,
+          "lower_95": 0.8799497433786329,
+          "upper_95": 1.4429898705254638,
+          "p": 0.34394964236068737,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 4.616795216128011e-07,
+            "hr": 5.202368205114993e-07,
+            "lower_95": 4.120649577110669e-07,
+            "upper_95": 6.566707118071946e-07,
+            "p": 1.8784456317089138e-06
+          }
+        },
+        "age": {
+          "log_coefficient": 0.039515096519566056,
+          "standard_error": 0.002895617797820004,
+          "hr": 1.040306203769373,
+          "lower_95": 1.034418869125223,
+          "upper_95": 1.0462270458351748,
+          "p": 2.1176145502368423e-42,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 1.5118294285909606e-07,
+            "hr": 1.5727654156805215e-07,
+            "lower_95": 1.5395690300401554e-07,
+            "upper_95": 1.6062897989499447e-07,
+            "p": 1.3531699395757452e-45
+          }
+        },
+        "gender_M": {
+          "log_coefficient": -0.060787484351385666,
+          "standard_error": 0.059847704281325985,
+          "hr": 0.9410232006837006,
+          "lower_95": 0.8368697555187389,
+          "upper_95": 1.058139164888446,
+          "p": 0.3097709061026286,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 1.641638730717765e-07,
+            "hr": 1.5448202594914306e-07,
+            "lower_95": 1.466553044560115e-07,
+            "upper_95": 1.6198532559741352e-07,
+            "p": 1.2609264819496424e-06
+          }
+        },
+        "ckd": {
+          "log_coefficient": -0.1435907153282638,
+          "standard_error": 0.06829998582225814,
+          "hr": 0.8662422151759603,
+          "lower_95": 0.757708730542715,
+          "upper_95": 0.9903219338854552,
+          "p": 0.035522319906867855,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 1.4241082757493473e-08,
+            "hr": 1.2336226928866267e-08,
+            "lower_95": 7.981059479966746e-09,
+            "upper_95": 1.7775303673417397e-08,
+            "p": 2.3348685401769487e-08
+          }
+        },
+        "diabetes": {
+          "log_coefficient": -0.16114760095951605,
+          "standard_error": 0.06498004897729205,
+          "hr": 0.8511664288533141,
+          "lower_95": 0.7493821914354499,
+          "upper_95": 0.966775428995912,
+          "p": 0.013139894421100211,
+          "absolute_differences_from_lifelines": {
+            "log_coefficient": 1.9482530314030022e-07,
+            "hr": 1.658287414052495e-07,
+            "lower_95": 1.3796311137959094e-07,
+            "upper_95": 1.987188522623029e-07,
+            "p": 1.181809243626375e-07
+          }
+        }
+      }
+    }
+  }
+}

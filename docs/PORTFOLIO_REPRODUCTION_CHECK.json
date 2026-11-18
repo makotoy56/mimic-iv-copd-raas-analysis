@@ -1,0 +1,71 @@
+{
+  "analysis_version": "admission_age_elapsed_time_los_v2",
+  "checked_at_utc": "2026-11-18T05:29:02.873638+00:00",
+  "status": "passed",
+  "source_extraction": {
+    "method": "read_only_SELECT_reconstruction_from_versioned_source_SQL",
+    "n": 11964,
+    "deaths": 1692,
+    "dry_run_bytes": 1099633273,
+    "maximum_bytes_billed": 2000000000,
+    "execution": {
+      "executed_at_utc": "2026-11-18T05:25:51.674908+00:00",
+      "project": "mimic-iv-portfolio",
+      "job_id": "6e5b6502-b10e-44c6-b1f6-50e67d2639d6",
+      "processed_bytes": 1099633273,
+      "billed_bytes": 1099956224,
+      "query_sha256": "3ee43695e96c91bd53c354c5b4aee05c653272ec95f65907bace80ffa768bfd6",
+      "pipeline_sha256": {
+        "01_extract_base.sql": "2a55ea3cde20723324ddc833dfe17627e1b41d994cf7f219d4b833fde4d060a8",
+        "02_build_cohort_copd.sql": "0eb4f1c39c0e5d76c7e3040f05f8fccd95efe35526072c0bb6d4bdd4838ea0a6",
+        "02_exposure_raas.sql": "bf64d8672fe68f791b81bcf7e6c8584cb7e46f2b8fc1f19f19a8bdca0f8964d5",
+        "02_exposure_raas_detailed.sql": "7c904ea70a9a0b6043c8c612e80902f2aa6c52e3df7712fb6a529e372883ad36",
+        "03_build_baseline.sql": "6faae9e205d316ac8d6260728c970778080309fc43cc427a820ab8b9d00ae06f",
+        "04_build_outcomes.sql": "cad8bebdf56175fc953f808b9c07a11cdfb8f6da2804f12ba78704f1aad87d40",
+        "04_build_outcomes_extended.sql": "d2753309a1a7ceba47c179d01f7ecd8041341d94a619a0d67a4b3b5fe2e54b25"
+      }
+    },
+    "current_model_comparisons": {
+      "primary_refined": {
+        "parameters_compared": 3,
+        "max_absolute_difference": 1.1102230246251565e-16,
+        "passed": true
+      },
+      "core": {
+        "parameters_compared": 7,
+        "max_absolute_difference": 4.718447854656915e-16,
+        "passed": true
+      }
+    },
+    "full_aggregate_result_sha256": "dda05dd886afb012ac4e2737c947de3bb7ed0eaf4725e7cb1c6e3e465a2d68d7"
+  },
+  "independent_Cox": {
+    "models": 6,
+    "coefficients": 40,
+    "status": "passed",
+    "absolute_tolerance": 0.0001,
+    "record": "INDEPENDENT_COX_CROSSCHECK.json",
+    "record_sha256": "c8aace1a31d0c46ff40191b5f365724c732701296e8ea4e3013873c6ea877219"
+  },
+  "report_generation": {
+    "method": "Quarto_no_execute_from_saved_aggregate_results",
+    "status": "passed",
+    "html_sha256": "9cef281edae56532221152d533fb31704e96a2c39be729146ab790c1f7fae106"
+  },
+  "regression_checks": {
+    "tests_passed": 4,
+    "includes": "rare_category_handling,numeric_multiple_strata,matching_and_stale_report_provenance"
+  },
+  "scope": {
+    "source_query_was_read_only": true,
+    "tables_recreated_in_this_check": false,
+    "individual_records_saved_or_uploaded": false,
+    "external_analysis_service_required": false,
+    "Non_ICU_touched": false
+  },
+  "limitations": [
+    "The source audit compares refined primary and extended core estimates with the current saved results; pooled ICU variants are covered by the separate implementation check on corrected model inputs.",
+    "Report-only rendering reproduces presentation, not extraction or model execution.",
+    "No new causal validation, patient clustering or competing-risk analysis was performed."
+  ]
+}

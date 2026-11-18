@@ -41,11 +41,13 @@ Rare ICU labels with fewer than 50 admissions are pooled using admission counts 
 
 This observational admission-level analysis retains discharge censoring and does not account for within-patient correlation or implement competing risks. Year-based age remains approximate, especially for the anchor-age 91 group. Residual confounding remains possible.
 
-## Independent SAS validation status
+## Reproducibility checks
 
-Python secondary logistic parameters have been regenerated from the current BigQuery table. Current cross-platform agreement is **pending an independent SAS rerun**. Historical SAS parameters are rejected by the provenance and exact-parameter-key guards; historical numerical agreement is not evidence for the corrected dataset.
+Six unpenalized Cox specifications (40 coefficients) were independently recalculated with statsmodels PHReg using matched complete cases, era/additional strata and Efron ties. Coefficients, HRs, confidence-interval endpoints and p-values matched the lifelines reference within an absolute tolerance of 1e-4. The saved comparison is bound to this exact aggregate analysis snapshot by its reference hash. See [the calculation record](INDEPENDENT_COX_CROSSCHECK.json) and [the scope and limitations](INDEPENDENT_REVALIDATION.md).
 
-SAS 07 now exports distinct era-stratified primary 04a and extended core 04c models. SAS 01 no longer prints patient records. The versioned private input query is `sql/06_export_sas_validation.sql`; no individual SAS input was exported during this refresh.
+This checks a separate statistical implementation on the same corrected model inputs. Source-SQL extraction is evaluated separately. Penalized fits, PH diagnostics, patient clustering, competing risks and causal validity are not established by this numerical comparison.
+
+The reproducible workflow covers authorized MIMIC source access, version-controlled BigQuery extraction and cohort construction, explicit model-column retrieval, Python modeling, independent numerical comparison, figure generation and Quarto reporting. Only aggregate results are published; no external analysis-service upload is part of this workflow. See [the full reproduction steps](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/REPRODUCIBILITY.md).
 
 The refreshed figures contain aggregate results only. Full estimates and PH p-values are in [CURRENT_ANALYSIS.json](CURRENT_ANALYSIS.json). The earlier age/time comparison remains an archived validation snapshot in [AGE_TIME_REVALIDATION.md](AGE_TIME_REVALIDATION.md).
 

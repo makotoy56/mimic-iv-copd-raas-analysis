@@ -1,6 +1,6 @@
 # Discussion and Limitations
 
-Current estimates below use the 2026-11-18 admission-age and continuous follow-up corrections; see [the validation report](AGE_TIME_REVALIDATION.md). Current figures and the local report have been regenerated. SAS validation is pending an independent rerun.
+Current estimates below use the 2026-11-18 admission-age and continuous follow-up corrections; see [the validation report](AGE_TIME_REVALIDATION.md). Current figures and the local report have been regenerated. Independent Cox calculation records are linked from [validation notes](VALIDATION_NOTES.md).
 
 This document contains the extended interpretation and limitation discussion for the README. The findings should be read as observational, hypothesis-generating associations rather than causal estimates.
 
@@ -44,7 +44,7 @@ Subclass comparisons between ACE inhibitors and ARBs are especially hypothesis-g
 
 ## Bottom Line
 
-The project demonstrates a transparent clinical data analysis workflow using MIMIC-IV, BigQuery SQL, Python, Jupyter, and SAS. The clinical finding is best summarized as an observational association: pre-ICU RAAS inhibitor exposure was associated with lower observed in-hospital mortality among ICU-admitted COPD patients, with a more pronounced observed association for ACE inhibitors than for ARBs.
+The project demonstrates a transparent clinical data analysis workflow using MIMIC-IV, BigQuery SQL, Python, Jupyter, and Quarto. The clinical finding is best summarized as an observational association: pre-ICU RAAS inhibitor exposure was associated with lower observed in-hospital mortality among ICU-admitted COPD patients, with a more pronounced observed association for ACE inhibitors than for ARBs.
 
 These findings are hypothesis-generating and cannot establish causality. Prospective, quasi-experimental, or externally validated analyses would be needed before making clinical conclusions about RAAS inhibitor treatment effects in ICU COPD populations.
 

@@ -57,7 +57,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#primary-and-extended-cox-results" id="toc-primary-and-extended-cox-results" class="nav-link" data-scroll-target="#primary-and-extended-cox-results"><span class="header-section-number">5</span> Primary and extended Cox results</a></li>
   <li><a href="#subclass-comparison" id="toc-subclass-comparison" class="nav-link" data-scroll-target="#subclass-comparison"><span class="header-section-number">6</span> Subclass comparison</a></li>
   <li><a href="#ph-diagnostics-and-interpretation" id="toc-ph-diagnostics-and-interpretation" class="nav-link" data-scroll-target="#ph-diagnostics-and-interpretation"><span class="header-section-number">7</span> PH diagnostics and interpretation</a></li>
-  <li><a href="#sas-python-reproducibility-status" id="toc-sas-python-reproducibility-status" class="nav-link" data-scroll-target="#sas-python-reproducibility-status"><span class="header-section-number">8</span> SAS-Python reproducibility status</a></li>
+  <li><a href="#reproducibility-checks" id="toc-reproducibility-checks" class="nav-link" data-scroll-target="#reproducibility-checks"><span class="header-section-number">8</span> Reproducibility checks</a></li>
   <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations"><span class="header-section-number">9</span> Limitations</a></li>
   <li><a href="#reproduction-and-sources" id="toc-reproduction-and-sources" class="nav-link" data-scroll-target="#reproduction-and-sources"><span class="header-section-number">10</span> Reproduction and sources</a></li>
   </ul>
@@ -284,13 +284,15 @@ ul.task-list li input[type="checkbox"] {
 <p>Primary refined rank PH p-values: age 0.79803, sex 0.32498, RAAS 0.72064. Core and ICU models still require diagnostic interpretation. The current results summary records every covariate-level PH test and warning. Exploratory CHF/SOFA-stratified models allow different baseline hazards; they supplement the primary model rather than redefine it.</p>
 <p>For full diagnostics, sparse-strata limitations and rare-category pooling, see <a href="RESULTS_SUMMARY.md">current results</a>. The approach follows <a href="https://lifelines.readthedocs.io/en/latest/jupyter_notebooks/Proportional%20hazard%20assumption.html#Stratification">lifelines documentation on stratification</a>. A non-significant diagnostic does not prove PH, and additional stratification changes the adjustment structure.</p>
 </section>
-<section id="sas-python-reproducibility-status" class="level2" data-number="8">
-<h2 data-number="8" class="anchored" data-anchor-id="sas-python-reproducibility-status"><span class="header-section-number">8</span> SAS-Python reproducibility status</h2>
-<p>Python secondary logistic coefficients have been refreshed. Independent SAS rerun and current cross-platform validation are <strong>pending</strong> because no local SAS runtime is available. Historical SAS outputs are not used to claim agreement for this analysis. Both outputs must have matching current cohort/model provenance and exact parameter keys before notebook 05 compares them. SAS code now distinguishes primary 04a and extended core 04c and omits all patient previews.</p>
+<section id="reproducibility-checks" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="reproducibility-checks"><span class="header-section-number">8</span> Reproducibility checks</h2>
+<p>Six unpenalized Cox specifications (40 coefficients) were independently recalculated with statsmodels PHReg using matched complete cases, era/additional strata and Efron ties. Coefficients, HRs, confidence-interval endpoints and p-values matched the lifelines reference within an absolute tolerance of 1e-4. The saved comparison is bound to this exact aggregate analysis snapshot by its reference hash. See <a href="INDEPENDENT_COX_CROSSCHECK.json">the calculation record</a> and <a href="INDEPENDENT_REVALIDATION.md">the scope and limitations</a>.</p>
+<p>This checks a separate statistical implementation on the same corrected model inputs. Source-SQL extraction is evaluated separately. Penalized fits, PH diagnostics, patient clustering, competing risks and causal validity are not established by this numerical comparison.</p>
+<p>The reproducible workflow covers authorized MIMIC source access, version-controlled BigQuery extraction and cohort construction, explicit model-column retrieval, Python modeling, independent numerical comparison, figure generation and Quarto reporting. Only aggregate results are published; no external analysis-service upload is part of this workflow. See <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/REPRODUCIBILITY.md">the full reproduction steps</a>.</p>
 </section>
 <section id="limitations" class="level2" data-number="9">
 <h2 data-number="9" class="anchored" data-anchor-id="limitations"><span class="header-section-number">9</span> Limitations</h2>
-<p>These findings cannot establish causality. Confounding by indication, unmeasured severity, exposure misclassification and a single health system limit interpretation. Age is approximate, especially in the aggregated oldest group. Repeated admissions are not clustered; live discharge remains censoring; rare ICU pooling and PH-responsive strata are exploratory sensitivity choices. SAS validation is pending and must not be presented as completed.</p>
+<p>These findings cannot establish causality. Confounding by indication, unmeasured severity, exposure misclassification and a single health system limit interpretation. Age is approximate, especially in the aggregated oldest group. Repeated admissions are not clustered; live discharge remains censoring; rare ICU pooling and PH-responsive strata are exploratory sensitivity choices.</p>
 </section>
 <section id="reproduction-and-sources" class="level2" data-number="10">
 <h2 data-number="10" class="anchored" data-anchor-id="reproduction-and-sources"><span class="header-section-number">10</span> Reproduction and sources</h2>
@@ -301,7 +303,7 @@ ul.task-list li input[type="checkbox"] {
 <li><a href="VALIDATION_NOTES.md">Validation notes</a></li>
 <li><a href="CURRENT_ANALYSIS.json">Current aggregate model results</a></li>
 <li><a href="AGE_TIME_REVALIDATION.md">Original age/time correction audit</a></li>
-<li><a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/sas/README.md">SAS workflow</a></li>
+<li><a href="REPRODUCIBLE_SCOPE.md">Reproducible scope</a></li>
 </ul>
 </section>
 

@@ -22,4 +22,4 @@ The COPD table-lineage SVG contains no patient-level data. It documents table pr
 
 ## Data Protection
 
-The figure files contain only aggregate, presentation-level, or schematic workflow content. No patient-level records, local analysis extracts, credentials, SAS input files, or protected health information are stored in `assets/`.
+The figure files contain only aggregate, presentation-level, or schematic workflow content. No patient-level records, local analysis extracts, credentials, individual model-input files, or protected health information are stored in `assets/`.

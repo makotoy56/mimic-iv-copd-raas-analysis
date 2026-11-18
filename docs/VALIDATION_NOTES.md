@@ -1,67 +1,27 @@
 # Validation Notes
 
-This document summarizes reproducibility and validation scope for the repository.
+The current portfolio covers BigQuery source extraction, cohort construction, Python modeling, independent Cox calculations, aggregate figures and Quarto reporting. [The reproducible scope](REPRODUCIBLE_SCOPE.md) defines the complete workflow and evidence.
 
-## Primary Analysis Versus Validation
+## Source extraction and cohort definitions
 
-The primary clinical analysis is Cox proportional hazards survival modeling in the 04-series notebooks.
-
-The `04d_python_logistic_model.ipynb` notebook is a secondary Python logistic validation model. It exists to generate parameter estimates for comparison with SAS output and should not be interpreted as the primary clinical analysis.
-
-The `05_sas_python_validation.ipynb` notebook compares precomputed SAS and Python secondary logistic validation outputs. It does not refit the primary Cox models and is not a new clinical analysis.
-
-## SAS Workflow
-
-SAS programs are stored in `sas/programs/`:
-
-- `01_import_cohort.sas`
-- `02_baseline_characteristics.sas`
-- `03_univariate_analysis.sas`
-- `04_cox_regression.sas`
-- `05_cox_diagnostics.sas`
-- `06_sensitivity_analysis.sas`
-- `07_export_validation_tables.sas`
-
-SAS OnDemand-style paths may require local adjustment before execution.
-
-## Python Validation Output
-
-`04d_python_logistic_model.ipynb` generates `python/outputs/python_logistic_parameters.csv`. Generated Python CSV outputs are ignored by Git and can be reproduced locally.
-
-## BigQuery Checklist
-
-`scripts/validation_checklist.py` performs lightweight BigQuery `INFORMATION_SCHEMA` table-existence checks. It does not perform data quality validation and does not validate table contents.
-
-Run after configuring Google Cloud Application Default Credentials:
-
-```text
-gcloud auth application-default login
-python scripts/validation_checklist.py
-```
-
-## Admission-age and follow-up correction validation
-
-`scripts/revalidate_age_time.py` extracts the SELECT bodies from the version-controlled cohort, exposure, baseline, outcome, and extended SQL into a single read-only query. It does not execute their CREATE/REPLACE statements. Adult selection is deferred in this audit query so both age definitions can be compared from the population before filtering.
+`scripts/revalidate_age_time.py` extracts the SELECT bodies from version-controlled cohort, exposure, baseline and outcome SQL into a read-only source query. It does not execute CREATE/REPLACE statements. Adult selection is deferred for the age-boundary audit.
 
 ```bash
-# Compile the source query and inspect its dry-run estimate (default).
+# Source-query compilation and dry-run estimate; no source query is executed.
 .venv/bin/python scripts/revalidate_age_time.py
 
-# Test the actual SQL and outcome QA on 12 artificial edge cases; reads 0 source bytes.
+# Actual BigQuery SQL on artificial edge cases; reads zero source-table bytes.
 .venv/bin/python scripts/revalidate_age_time.py --synthetic --execute
 
-# Explicitly execute the source SELECT and fit comparison models in memory.
-# Choose a new aggregate output path; the script refuses to overwrite an existing file.
-.venv/bin/python scripts/revalidate_age_time.py --execute --output docs/AGE_TIME_REVALIDATION.json
+# Source extraction and model comparison; choose a new aggregate output path.
+.venv/bin/python scripts/revalidate_age_time.py --execute --output /tmp/icu_copd_source_revalidation_new.json
 ```
 
-The per-query billed-byte limit defaults to 2 GB. The script first performs a dry run and stops if that estimate exceeds the limit. It projects no patient identifiers or individual dates into the model inputs, retains model rows only in memory, and writes only aggregate counts, estimates, PH diagnostics, fixed-day Kaplan-Meier estimates, and query/SQL provenance.
+The source-query billed-byte limit defaults to 2 GB and is checked by a dry run. Model rows stay in memory; only aggregate results and query/SQL provenance are written. This audit compares legacy, time-only, age-only and fully corrected definitions. Existing admission-level design, discharge censoring and lack of patient clustering are retained. See [the source validation report](AGE_TIME_REVALIDATION.md).
 
-The comparisons are legacy definitions, time correction only, age correction only, and both corrections. Refined 04a, monotherapy/neither 04b, and all four core/ICU 04c specifications use the notebook covariates, era strata, penalties, and complete-case rules. Rank-transformed Schoenfeld tests are reported per covariate. A supplemental corrected 04a model excludes the anchor-age topcoded group. These analyses retain the existing admission-level design and do not add patient clustering or competing risks.
+Table content and lineage QA are recorded in `AGE_TIME_TABLE_QUALITY.json` and `LOS_TABLE_QUALITY.json`. `scripts/validation_checklist.py` checks table existence only.
 
-This comparison validates source SQL and model effects without requiring saved analysis tables. It does not refresh notebook outputs, local SAS exports, curated figures, or the rendered report. See [the correction report](AGE_TIME_REVALIDATION.md) for results and scope.
-
-## Current figure/report refresh and independent SAS guard
+## Current models, figures and report
 
 ```bash
 .venv/bin/python -m unittest discover -s scripts -p test_current_analysis.py
@@ -69,8 +29,18 @@ This comparison validates source SQL and model effects without requiring saved a
 .venv/bin/python scripts/build_report.py
 ```
 
-The shared refresh reads only explicit model columns from corrected BigQuery tables (200 MB job cap after dry run), creates CURRENT_ANALYSIS.json, regenerates all four statistical figures and their docs/assets copies, refreshes the Quarto source and RESULTS_SUMMARY.md, and writes current aggregate Python logistic coefficients plus their manifest. Notebooks 04a/b/c call that same workflow; 04d uses the same current-data loader and logistic function. Notebook outputs remain stripped.
+The model refresh reads explicit columns from corrected BigQuery tables after a capped dry run (200 MB per query). It generates `CURRENT_ANALYSIS.json`, four statistical figures and their `docs/assets/` copies, and optional secondary Python logistic coefficients with aggregate provenance. Notebooks 04a–04c call the shared workflow; 04d is an optional Python parameter export. Saved notebook outputs remain stripped.
 
-Notebook 05 requires matching analysis version, model specification, sample/event counts, age/duration sums and exact unique parameter keys. Missing or historical SAS provenance stops comparison instead of silently joining a subset of old parameters. A relative difference against a zero SAS coefficient is undefined. SAS 07 exports independent primary 04a and extended-core 04c results with the correct era strata. SAS 01 omits patient previews. The versioned private input query is sql/06_export_sas_validation.sql; no private SAS input export or SAS execution was performed here because a local SAS runtime is unavailable.
+`build_report.py` reads saved aggregate JSON and figures and renders the Quarto source and HTML without executing notebook or model code. This report-only step needs no clinical data transfer or BigQuery connection. It does not independently reproduce extraction or modeling.
 
-Independent cross-platform validation is pending. Historical SAS PDFs/CSVs are retained locally but are not current validation evidence. Fresh SAS input and an independent SAS rerun are required before notebook 05 can pass.
+## Independent Cox calculation
+
+```bash
+.venv/bin/python scripts/independent_cox_crosscheck.py --repo . --output /tmp/icu_copd_crosscheck_new.json
+```
+
+The script independently fits six unpenalized Cox specifications (40 coefficients) with statsmodels PHReg. It checks cohort aggregates, complete cases, strata, parameter keys, convergence, coefficients, HRs, confidence-interval endpoints and p-values against the saved lifelines reference with an absolute tolerance of `1e-4`. A dry run and 200 MB billed-byte cap precede data retrieval. No tables are created and no individual rows are saved or uploaded.
+
+See [the numerical record](INDEPENDENT_COX_CROSSCHECK.json) and [the scope and limitations](INDEPENDENT_REVALIDATION.md). The report only presents successful independent agreement when the recorded reference hash matches the exact current aggregate analysis JSON. After a model refresh, review a new successful comparison before replacing the published aggregate record.
+
+This checks an independent statistical implementation on shared corrected inputs. It does not independently re-extract source records or validate penalized models, PH tests, patient clustering, competing risks or causal interpretation.

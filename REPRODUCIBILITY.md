@@ -4,7 +4,7 @@
 
 This project is a retrospective observational MIMIC-IV clinical analytics workflow evaluating whether pre-ICU renin-angiotensin-aldosterone system (RAAS) inhibitor exposure is associated with time-to-in-hospital mortality among adult ICU patients with chronic obstructive pulmonary disease (COPD).
 
-The primary analytical purpose is to demonstrate reproducible cohort construction, exposure definition, time-to-event modeling, sensitivity analysis, SAS/Python validation, and clinical reporting for an ICU real-world evidence question. The findings are hypothesis-generating associations and are not causal treatment-effect estimates.
+The primary analytical purpose is to demonstrate reproducible cohort construction, exposure definition, time-to-event modeling, sensitivity analysis, independent Cox calculations, and clinical reporting for an ICU real-world evidence question. The findings are hypothesis-generating associations and are not causal treatment-effect estimates.
 
 ## Data Source
 
@@ -37,16 +37,11 @@ The workflow is organized as a stepwise clinical analysis pipeline:
    - `notebooks/04b_outcomes_and_modeling_raas_subgroups.ipynb`
 7. **Sensitivity analysis**: extended covariate, ICU-type, and penalized Cox specifications are evaluated.
    - `notebooks/04c_extended_covariate_cox_model.ipynb`
-8. **Validation**: a secondary logistic model is used only to support SAS/Python reproducibility comparison; Cox survival modeling remains the primary clinical analysis.
-   - `notebooks/04d_python_logistic_model.ipynb`
-   - `notebooks/05_sas_python_validation.ipynb`
-   - `sas/programs/01_import_cohort.sas`
-   - `sas/programs/02_baseline_characteristics.sas`
-   - `sas/programs/03_univariate_analysis.sas`
-   - `sas/programs/04_cox_regression.sas`
-   - `sas/programs/05_cox_diagnostics.sas`
-   - `sas/programs/06_sensitivity_analysis.sas`
-   - `sas/programs/07_export_validation_tables.sas`
+8. **Independent calculation**: statsmodels PHReg independently fits six unpenalized Cox specifications and compares 40 coefficients, HRs, confidence intervals and p-values with the current lifelines reference.
+   - `scripts/independent_cox_crosscheck.py`
+   - `docs/INDEPENDENT_COX_CROSSCHECK.json`
+   - `docs/INDEPENDENT_REVALIDATION.md`
+   - `notebooks/04d_python_logistic_model.ipynb` is an optional secondary Python parameter export, not the primary clinical model or evidence of independent clinical validation.
 9. **Reporting**: the narrative clinical report is authored in Quarto and rendered to `docs/`.
    - `reports/copd_raas_survival_report.qmd`
    - `reports/_quarto.yml`
@@ -55,9 +50,8 @@ The workflow is organized as a stepwise clinical analysis pipeline:
 ## Environment Summary
 
 - **Python environment**: Analyses were developed and executed in a local Python virtual environment. The project now targets Python 3.12 through `pyproject.toml` and `.python-version`. Project dependencies are documented in `pyproject.toml` and locked in `uv.lock`; they include pandas, NumPy, statsmodels, lifelines, matplotlib, and Google BigQuery client libraries.
-- **SAS environment**: SAS® OnDemand for Academics was used for SAS validation workflows. The exact SAS maintenance release was not pinned in the repository.
 - **Quarto version**: 1.9.38 detected locally with `quarto --version`. The report source and render configuration are stored under `reports/`.
-- **Version control**: Git/GitHub are used for code, documentation, SQL definitions, notebooks, SAS programs, curated figures, and rendered portfolio materials.
+- **Version control**: Git/GitHub are used for code, documentation, SQL definitions, notebooks, Python validation scripts, curated figures, and rendered portfolio materials.
 
 ## Notebook Output Policy
 
@@ -133,8 +127,14 @@ No `requirements.txt` or `environment.yml` file is required for the current uv-m
    source .venv/bin/activate
    ```
 
-4. Run the notebooks in workflow order:
-   - `notebooks/00_setup.ipynb`
+4. Initialize a BigQuery client with your existing Application Default Credentials before running the SQL-building notebook cells:
+
+   ```python
+   from google.cloud import bigquery
+   client = bigquery.Client(project="mimic-iv-portfolio")
+   ```
+
+   The SQL currently targets `mimic-iv-portfolio.copd_raas` in US. A reproducer using a different authorized project must update the project/dataset references in the SQL and Python loaders. No private setup notebook or key file is required. Run the notebooks in workflow order:
    - `notebooks/01_icu_cohort.ipynb`
    - `notebooks/02_cohort_and_exposures.ipynb`
    - `notebooks/03a_baseline.ipynb`
@@ -143,13 +143,26 @@ No `requirements.txt` or `environment.yml` file is required for the current uv-m
    - `notebooks/04b_outcomes_and_modeling_raas_subgroups.ipynb`
    - `notebooks/04c_extended_covariate_cox_model.ipynb`
    - `notebooks/04d_python_logistic_model.ipynb`
-   - `notebooks/05_sas_python_validation.ipynb`
-5. If SAS validation is being reproduced, run the SAS programs in SAS® OnDemand for Academics or another compatible SAS environment, updating library paths as needed.
-6. Build the current report from the repository root:
+5. Refresh the current models and figures from the corrected BigQuery tables:
 
    ```bash
-    .venv/bin/python scripts/current_analysis.py
+   .venv/bin/python scripts/current_analysis.py
+   ```
+
+6. Independently refit the six unpenalized Cox specifications using a new aggregate output path. The script checks the dry-run estimate, caps billed bytes at 200 MB, and refuses to overwrite an existing result:
+
+   ```bash
+   .venv/bin/python scripts/independent_cox_crosscheck.py --repo . --output /tmp/icu_copd_crosscheck_new.json
+   ```
+
+   Review the result before replacing `docs/INDEPENDENT_COX_CROSSCHECK.json` with a newly generated aggregate record. The renderer displays a successful independent comparison only when the recorded analysis-reference hash matches `docs/CURRENT_ANALYSIS.json`.
+
+7. Rebuild and review `docs/copd_raas_survival_report.html`:
+
+   ```bash
    .venv/bin/python scripts/build_report.py
    ```
 
-7. Review the rendered report at `docs/copd_raas_survival_report.html`.
+   This report-only step reads the saved aggregate JSON and figures. It does not query BigQuery, transfer clinical data, or rerun the models.
+
+See [the reproducible scope and evidence](docs/REPRODUCIBLE_SCOPE.md) for what each step establishes and the remaining scientific limitations.

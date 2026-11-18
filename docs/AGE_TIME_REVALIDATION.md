@@ -87,7 +87,7 @@ ICU拡張モデルでは `icu_type_Medicine` の低分散警告が修正前後�
 
 - [再検証スクリプト](../scripts/revalidate_age_time.py)：既定はドライラン。`--synthetic --execute` で合成検証、`--execute` で実データの比較を実行する。
 - [モデル集計結果](AGE_TIME_REVALIDATION.json)、[合成検証結果](AGE_TIME_SYNTHETIC_VALIDATION.json)、[再生成記録](AGE_TIME_TABLE_REBUILD.json)、[テーブル整合性検証](AGE_TIME_TABLE_QUALITY.json)。
-- 主解析・拡張解析のソース SQL、方法・結果の要約文書を更新した。既存のノートブック保存出力、図、レンダリング済み Quarto HTML、ローカル SAS 入力・出力は今回再生成していない。これらの旧出力と新推定値は混用しない。
+- 主解析・拡張解析のソース SQL、方法・結果の要約文書を更新した。既存のノートブック保存出力、図、レンダリング済み Quarto HTML、ローカルの個票入力・旧解析出力は今回再生成していない。これらの旧出力と新推定値は混用しない。
 - `icu_los`・`hosp_los` の既存計算は今回の修正対象に含めていない。これらは04a・04cの Cox 共変量には使用されていない。
 - コミット・Push は行わず、Non-ICU版には触れていない。
 
@@ -99,4 +99,4 @@ ICU拡張モデルでは `icu_type_Medicine` の低分散警告が修正前後�
 
 ## 後続の修正
 
-この文書と AGE_TIME_* JSON は年齢・追跡時間の修正時点の履歴です。その後、LOS 精度、図・HTML・ノートブックの同期、ICU 少数カテゴリと PH 感度分析、SAS 検証の鮮度チェックを修正しました。現在の成果物は [FOLLOWUP_FIXES.md](FOLLOWUP_FIXES.md) と [CURRENT_ANALYSIS.json](CURRENT_ANALYSIS.json) を参照してください。
+この文書と AGE_TIME_* JSON は年齢・追跡時間の修正時点の履歴です。その後、LOS 精度、図・HTML・ノートブックの同期、ICU 少数カテゴリと PH 感度分析、独立した Cox 計算を修正しました。現在の成果物は [FOLLOWUP_FIXES.md](FOLLOWUP_FIXES.md) と [CURRENT_ANALYSIS.json](CURRENT_ANALYSIS.json) を参照してください。

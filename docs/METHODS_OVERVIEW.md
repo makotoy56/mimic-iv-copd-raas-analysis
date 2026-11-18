@@ -41,11 +41,11 @@ The primary clinical analysis uses Kaplan-Meier survival curves and Cox proporti
 
 Live discharge is treated as censoring in the primary Cox analysis. A competing-risk framework was not implemented. The Cox models analyze admission-level records and do not include a patient-level clustering or frailty term for patients with more than one qualifying admission.
 
-The `04d_python_logistic_model.ipynb` notebook is secondary validation only. It fits a logistic model to generate parameters for SAS-Python reproducibility comparison and does not replace the Cox survival analysis.
+The `04d_python_logistic_model.ipynb` notebook optionally fits and exports a secondary Python logistic model with aggregate cohort provenance. It is not the primary clinical model or evidence of independent clinical validation.
 
 ## Reproducibility
 
-Data extraction uses version-controlled SQL and notebooks. SAS programs reproduce selected outputs and export validation tables. The `05_sas_python_validation.ipynb` notebook compares precomputed SAS and Python secondary logistic validation outputs; it is not a new clinical analysis.
+Data extraction uses version-controlled BigQuery SQL and notebooks. Source-SQL and downstream-table QA are documented separately. The independent Python script fits six unpenalized Cox specifications with statsmodels PHReg and compares 40 coefficients with lifelines. It uses the same corrected model inputs, so it checks the statistical implementation rather than independently reconstructing the source data. See [validation notes](VALIDATION_NOTES.md).
 
 ## Follow-up implementation corrections
 
