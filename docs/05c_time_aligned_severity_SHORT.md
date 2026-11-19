@@ -16,7 +16,7 @@ Explore first-day severity among admissions alive and still hospitalized beyond 
 ## Output and downstream use
 
 - Aggregate tables and figures in the notebook; no BigQuery table or main estimate is overwritten.
-- The explicit CLI `--output` option saves aggregate JSON and figures under ignored `reports/local_supplements/`. Tracked notebook outputs remain stripped.
+- The explicit CLI `--output` option saves aggregate JSON and figures under ignored `reports/local_supplements/`. Tracked notebooks retain only the reviewed aggregate outputs bound in `NOTEBOOK_EXECUTION_VALIDATION.json`.
 - Selected clinical aggregates are published separately in [the results record](SURVIVAL_SENSITIVITY_RESULTS.json) and [Quarto](https://makotoy56.github.io/mimic-iv-copd-raas-analysis/copd_raas_survival_report.html#supplementary-sensitivity-analyses).
 - The published clinical tables and forest plot are visible in the notebook and this SHORT guide without execution; they are regenerated from the verified public aggregate record.
 

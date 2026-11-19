@@ -55,22 +55,23 @@ The workflow is organized as a stepwise clinical analysis pipeline:
 
 ## Notebook Output Policy
 
-Jupyter notebooks may be rerun locally during development, but notebook outputs, execution counts, generated cell IDs, and volatile notebook metadata are stripped before commit.
+The 11 public notebooks retain the aggregate-only outputs from the verified 2026-11-19 clinical rerun, including execution counts, model tables and runtime figures. [The execution record](docs/NOTEBOOK_EXECUTION_VALIDATION.json) binds the reviewed source and output hashes, records all executed cells and checks the new statistical results against the existing published aggregates. No patient rows, pseudonymous identifier values or credentials are published.
 
-The repository uses `nbstripout` as a uv development dependency and a Git clean filter for `*.ipynb` files. After cloning or recreating the environment, install the local Git filter from the repository root:
-
-```bash
-uv sync
-uv run nbstripout --install --attributes .gitattributes
-git config filter.nbstripout.extrakeys 'metadata.kernelspec metadata.language_info.version cell.metadata.execution cell.metadata.vscode cell.metadata.notebookRunGroups'
-uv run nbstripout --status
-```
-
-To verify notebooks are clean before committing:
+The Git clean filter retains outputs only when both hashes match that record. New or modified outputs are stripped until separately reviewed. Machine-specific kernel paths, VS Code state and volatile metadata are always removed from Git; the full local notebook remains on SSD. Install the repository-local filter after cloning:
 
 ```bash
-uv run nbstripout --verify notebooks/*.ipynb
+uv sync --locked
+uv run python scripts/notebook_publication.py --install
+uv run python scripts/notebook_publication.py --check
 ```
+
+The 05-series source still defaults to synthetic inputs. The committed runtime outputs were instead produced with `COPD_NOTEBOOK_DATA_MODE=current` in the authorized local environment. For an authorized clinical notebook session, set that environment variable **before starting Jupyter**, and optionally set `COPD_NOTEBOOK_RUN_DIR` to a fresh ignored folder for execution audit files. Rerunning without that setting produces clearly labeled synthetic outputs; these do not match the reviewed clinical output hashes and will be stripped by the filter.
+
+All 11 notebooks were executed in order. The original eight construction SQL scripts were executed, including `04_build_outcomes.sql` and `04_build_outcomes_extended.sql` after 03b and before 04a. Construction SELECTs were dry-run before execution with a 20 GB per-script billing guard; validation SELECTs use a 200 MB cap. These are per-job guards, not billing-setting changes. Existing analysis definitions were preserved.
+
+The main `refresh()` now compares freshly calculated statistical content with `CURRENT_ANALYSIS.json` before regenerating figures. If it matches (relative tolerance 1e-10, absolute tolerance 1e-12; integer counts exact), the published reference bytes remain unchanged and the new execution evidence is saved separately under ignored `reports/local_supplements/`. A mismatch stops publication instead of silently invalidating the reference-bound validation records. Execution timestamps and query job metadata are excluded from this numerical comparison.
+
+The checked local runtime used Python 3.12.13, consistent with the declared Python 3.12 project target. See the execution record for the actual library versions.
 
 ## Major Analytical Libraries
 
@@ -183,7 +184,7 @@ See [the reproducible scope and evidence](docs/REPRODUCIBLE_SCOPE.md) for what e
 
 The 05a–05c companions use `scripts/survival_sensitivity.py` and do not call `refresh()` or overwrite main-analysis results. Default notebook runs are wholly synthetic. Use the [supplement guide](docs/SURVIVAL_SENSITIVITY_SUPPLEMENTS.md) for patient-cluster inference, competing-risk cumulative incidence, and the separate 24-hour landmark design. It includes the explicit authorized local-data command and no-query review of a saved aggregate run.
 
-Pseudonymous patient/admission/stay keys are requested only by the supplementary loader option, after the same US dry run and 200 MB cap, and stay in memory. Run output is aggregate-only under ignored `reports/local_supplements/`. Tracked notebooks keep stripped outputs; execute and retain clinical notebook copies only inside that ignored directory. R `survival` is an optional independent synthetic checker; normal analysis remains Python. New clinical estimates are not automatically promoted into README or Quarto.
+Pseudonymous patient/admission/stay keys are requested only by the supplementary loader option, after the same US dry run and 200 MB cap, and stay in memory. Run output is aggregate-only under ignored `reports/local_supplements/`. Tracked notebooks retain only the reviewed aggregate outputs bound in `NOTEBOOK_EXECUTION_VALIDATION.json`; full local run bundles and unreviewed outputs remain in that ignored directory. R `survival` is an optional independent synthetic checker; normal analysis remains Python. New clinical estimates are not automatically promoted into README or Quarto.
 
 The Quarto supplementary section and the short README summary are generated from `docs/SURVIVAL_SENSITIVITY_RESULTS.json`, validated against `docs/SURVIVAL_SUPPLEMENTS_VALIDATION.json`. The selected public record contains aggregate counts, RAAS estimates and a fixed daily CIF grid; full local results and covariance matrices remain ignored. `scripts/report_survival_supplement.py` prepares this record from an explicitly supplied, hash-verified local aggregate run. Normal report builds require only the public aggregate records and tracked figures. See the [publication/rebuild procedure](docs/SURVIVAL_SENSITIVITY_SUPPLEMENTS.md#prepare-and-rebuild-the-public-supplementary-section).
 

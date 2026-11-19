@@ -29,7 +29,7 @@ Table content and lineage QA are recorded in `AGE_TIME_TABLE_QUALITY.json` and `
 .venv/bin/python scripts/build_report.py
 ```
 
-The model refresh reads explicit columns from corrected BigQuery tables after a capped dry run (200 MB per query). It generates `CURRENT_ANALYSIS.json`, four statistical figures and their `docs/assets/` copies, and optional secondary Python logistic coefficients with aggregate provenance. Notebooks 04a–04c call the shared workflow; 04d is an optional Python parameter export. Saved notebook outputs remain stripped.
+The model refresh reads explicit columns from corrected BigQuery tables after a capped dry run (200 MB per query). It generates `CURRENT_ANALYSIS.json`, four statistical figures and their `docs/assets/` copies, and optional secondary Python logistic coefficients with aggregate provenance. Notebooks 04a–04c call the shared workflow; 04d is an optional Python parameter export. Saved notebooks retain the reviewed aggregate outputs bound in [NOTEBOOK_EXECUTION_VALIDATION.json](NOTEBOOK_EXECUTION_VALIDATION.json). The published main reference stays unchanged when a fresh statistical result matches; execution evidence is recorded separately.
 
 `build_report.py` reads saved aggregate JSON and figures and renders the Quarto source and HTML without executing notebook or model code. This report-only step needs no clinical data transfer or BigQuery connection. It does not independently reproduce extraction or modeling.
 

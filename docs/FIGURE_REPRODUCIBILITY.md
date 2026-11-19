@@ -55,13 +55,13 @@ PY
 
 The [05a notebook](../notebooks/05a_patient_cluster_sensitivity.ipynb) and [SHORT guide](05a_patient_cluster_sensitivity_SHORT.md) show the saved admission/patient counts, ordinary and patient-cluster intervals, and [supplementary_cluster_forest.png](../assets/supplementary_cluster_forest.png). The [05b notebook](../notebooks/05b_competing_risks.ipynb) and [SHORT guide](05b_competing_risks_SHORT.md) reuse the published competing-event figure above and display its fixed-day tables; the notebook also shows the saved cause-specific Cox table.
 
-[scripts/render_supplement_notebook_summaries.py](../scripts/render_supplement_notebook_summaries.py) rebuilds the marked Markdown and cluster figure from the verified public aggregate record. These are displays of the saved clinical execution, separate from synthetic runtime outputs. The generator preserves existing code, outputs and notebook metadata. `scripts/build_report.py` refreshes these summaries together with 05c and the SHORT guides; it does not rerun clinical models.
+[scripts/render_supplement_notebook_summaries.py](../scripts/render_supplement_notebook_summaries.py) rebuilds the marked Markdown and cluster figure from the verified public aggregate record. These are displays of the saved clinical execution, separate from selected runtime outputs (synthetic by default; current clinical data in the verified 2026-11-19 rerun). The generator preserves existing code, outputs and notebook metadata. `scripts/build_report.py` refreshes these summaries together with 05c and the SHORT guides; it does not rerun clinical models.
 
 ## 05c Landmark Notebook Preview
 
 The [05c notebook](../notebooks/05c_time_aligned_severity.ipynb) and [its SHORT guide](05c_time_aligned_severity_SHORT.md) contain the published eligibility and model tables and [supplementary_landmark_forest.png](../assets/supplementary_landmark_forest.png). The forest plot compares the two matched landmark models using patient-cluster 95% intervals; it does not depict the original ICU-entry models or a formal difference between model estimates.
 
-[scripts/render_landmark_summary.py](../scripts/render_landmark_summary.py) regenerates the notebook's marked Markdown cells and figure from the same hash-checked public aggregate record. Code-cell outputs remain stripped; the clinical preview is visible without executing the default synthetic demonstration. The SHORT guide uses the same summary function.
+[scripts/render_landmark_summary.py](../scripts/render_landmark_summary.py) regenerates the notebook's marked Markdown cells and figure from the same hash-checked public aggregate record. Reviewed aggregate code-cell outputs are retained;  the clinical preview is visible without executing the default synthetic demonstration. The SHORT guide uses the same summary function.
 
 ```bash
 .venv/bin/python scripts/build_report.py

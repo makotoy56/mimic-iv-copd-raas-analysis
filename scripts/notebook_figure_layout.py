@@ -40,8 +40,13 @@ def normalize_runtime(book, kind, guide):
               "landmark": "Ordinary and patient-cluster inference"}
     for cell in book.cells:
         if cell.cell_type=='markdown' and cell.source.startswith(('## Runtime results', '## Runtime execution')):
-            _,separator,body=cell.source.partition('\n')
-            cell.source='## Runtime execution'+separator+body
+            cell.source = ("## Runtime execution\n\n"
+                           "The data-origin label above controls these execution outputs. "
+                           "The committed outputs were generated with current clinical data in the "
+                           "[verified full rerun](../docs/NOTEBOOK_EXECUTION_VALIDATION.json). "
+                           "A new execution defaults to synthetic inputs unless current mode is selected. "
+                           "Synthetic outputs validate software execution only. "
+                           "Figure 1 above remains the fixed published aggregate snapshot.")
     indices = [i for i,c in enumerate(book.cells) if c.cell_type == "code" and "display(figure)" in c.source]
     if len(indices) != 1:
         raise ValueError("Expected one runtime figure in the supplement notebook")

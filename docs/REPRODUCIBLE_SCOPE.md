@@ -22,3 +22,7 @@ The optional 04d notebook produces a secondary Python logistic parameter export;
 [Full environment and execution steps](../REPRODUCIBILITY.md) · [Validation details](VALIDATION_NOTES.md) · [Independent calculation record](INDEPENDENT_REVALIDATION.md)
 
 The core/ICU specifications using first-day SOFA are exploratory sensitivity analyses that can include information through 24 hours after ICU entry, rather than baseline-only severity adjustment. Numerical reproduction does not validate covariate timing or establish a direct ACEi-versus-ARB contrast. See [timing limitations](ANALYSIS_TIMING_LIMITATIONS.md).
+
+## Saved notebook execution outputs
+
+The [2026-11-19 full notebook execution record](NOTEBOOK_EXECUTION_VALIDATION.json) covers all 11 public ICU-COPD notebooks, zero execution errors, and agreement of freshly recalculated main and supplementary statistics with the existing published aggregates. The notebooks retain reviewed aggregate tables and figures so that they can be inspected without execution. The 05-series saved runtime outputs used current clinical data; the source defaults to synthetic inputs for new executions. See the [output policy and execution settings](../REPRODUCIBILITY.md#notebook-output-policy). This execution check does not independently resolve the stated scientific limitations.

@@ -18,7 +18,7 @@ The findings are observational and hypothesis-generating. They should not be int
 
 Admission-age and continuous follow-up definitions have been corrected, all eight ICU-COPD BigQuery analysis tables regenerated, and 04a/b/c models re-estimated. Current results, the separated age/time comparison, PH diagnostics, and table QA are in [the correction validation report](docs/AGE_TIME_REVALIDATION.md).
 
-The local figures and Quarto report have been refreshed from the corrected tables. Notebooks share the same model/figure functions and retain stripped outputs. Six unpenalized Cox specifications (40 coefficients) were independently recalculated with statsmodels PHReg and matched the lifelines reference within an absolute tolerance of 1e-4. See [the independent calculation record](docs/INDEPENDENT_REVALIDATION.md) and [the reproducible scope](docs/REPRODUCIBLE_SCOPE.md).
+The local figures and Quarto report have been refreshed from the corrected tables. Notebooks share the same model/figure functions and retain reviewed aggregate execution outputs. Six unpenalized Cox specifications (40 coefficients) were independently recalculated with statsmodels PHReg and matched the lifelines reference within an absolute tolerance of 1e-4. See [the independent calculation record](docs/INDEPENDENT_REVALIDATION.md) and [the reproducible scope](docs/REPRODUCIBLE_SCOPE.md).
 
 ## Full Analysis Report
 
@@ -235,3 +235,7 @@ This project uses MIMIC-IV v3.1, maintained by the MIT Laboratory for Computatio
 Johnson A., Bulgarelli L., Pollard T., Gow B., Moody B., Horng S., Celi L.A., & Mark R. (2024). *MIMIC-IV (version 3.1)*. PhysioNet. RRID:SCR_007345. https://doi.org/10.13026/kpb9-mt58.
 
 Access was granted after required training and approval under the PhysioNet data use agreement. This repository contains no patient-level data.
+
+### Verified notebook execution
+
+All 11 public notebooks were rerun against the authorized clinical BigQuery environment on 2026-11-19, with zero execution errors and matching main/supplementary aggregate results. Reviewed tables and figures are saved in the notebooks; [the execution record](docs/NOTEBOOK_EXECUTION_VALIDATION.json) binds their sources and outputs. The 05-series source defaults to synthetic inputs for new runs; its committed runtime outputs used current data. See the [notebook output policy](REPRODUCIBILITY.md#notebook-output-policy).

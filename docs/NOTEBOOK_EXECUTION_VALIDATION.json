@@ -1,0 +1,356 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "executed_at_utc": "2026-11-19T03:17:03.749351+00:00",
+  "scope": "all_11_public_ICU_COPD_notebooks; legacy untracked setup excluded",
+  "clinical_data_origin": "authorized_existing_BigQuery_project_US",
+  "patient_rows_or_identifiers_published": false,
+  "errors": 0,
+  "execution_order": [
+    "01_icu_cohort.ipynb",
+    "02_cohort_and_exposures.ipynb",
+    "03a_baseline.ipynb",
+    "03b_merge_exposures.ipynb",
+    "04a_outcomes_and_modeling.ipynb",
+    "04b_outcomes_and_modeling_raas_subgroups.ipynb",
+    "04c_extended_covariate_cox_model.ipynb",
+    "04d_python_logistic_model.ipynb",
+    "05a_patient_cluster_sensitivity.ipynb",
+    "05b_competing_risks.ipynb",
+    "05c_time_aligned_severity.ipynb"
+  ],
+  "intermediate_sql_before_04a": [
+    "04_build_outcomes.sql",
+    "04_build_outcomes_extended.sql"
+  ],
+  "construction_scripts": [
+    {
+      "script": "01_extract_base.sql",
+      "sql_sha256": "2a55ea3cde20723324ddc833dfe17627e1b41d994cf7f219d4b833fde4d060a8",
+      "dry_run_select_bytes": 31467960,
+      "processed_bytes": 31467960,
+      "billed_bytes": 32505856,
+      "status": "passed"
+    },
+    {
+      "script": "02_build_cohort_copd.sql",
+      "sql_sha256": "0eb4f1c39c0e5d76c7e3040f05f8fccd95efe35526072c0bb6d4bdd4838ea0a6",
+      "dry_run_select_bytes": 202876718,
+      "processed_bytes": 202876718,
+      "billed_bytes": 203423744,
+      "status": "passed"
+    },
+    {
+      "script": "02_exposure_raas.sql",
+      "sql_sha256": "bf64d8672fe68f791b81bcf7e6c8584cb7e46f2b8fc1f19f19a8bdca0f8964d5",
+      "dry_run_select_bytes": 839017578,
+      "processed_bytes": 839017578,
+      "billed_bytes": 839909376,
+      "status": "passed"
+    },
+    {
+      "script": "02_exposure_raas_detailed.sql",
+      "sql_sha256": "7c904ea70a9a0b6043c8c612e80902f2aa6c52e3df7712fb6a529e372883ad36",
+      "dry_run_select_bytes": 839017578,
+      "processed_bytes": 839017578,
+      "billed_bytes": 839909376,
+      "status": "passed"
+    },
+    {
+      "script": "03_build_baseline.sql",
+      "sql_sha256": "6faae9e205d316ac8d6260728c970778080309fc43cc427a820ab8b9d00ae06f",
+      "dry_run_select_bytes": 26323368,
+      "processed_bytes": 26323368,
+      "billed_bytes": 41943040,
+      "status": "passed"
+    },
+    {
+      "script": "03_merge_exposures.sql",
+      "sql_sha256": "30f4a659460c10e7277f1572978dc5abaf2739e890fb2dc598645b1f7f2568c9",
+      "dry_run_select_bytes": 2132556,
+      "processed_bytes": 2132556,
+      "billed_bytes": 20971520,
+      "status": "passed"
+    },
+    {
+      "script": "04_build_outcomes.sql",
+      "sql_sha256": "cad8bebdf56175fc953f808b9c07a11cdfb8f6da2804f12ba78704f1aad87d40",
+      "dry_run_select_bytes": 18958456,
+      "processed_bytes": 22618672,
+      "billed_bytes": 115343360,
+      "status": "passed"
+    },
+    {
+      "script": "04_build_outcomes_extended.sql",
+      "sql_sha256": "d2753309a1a7ceba47c179d01f7ecd8041341d94a619a0d67a4b3b5fe2e54b25",
+      "dry_run_select_bytes": 38137089,
+      "processed_bytes": 38137089,
+      "billed_bytes": 41943040,
+      "status": "passed"
+    }
+  ],
+  "main_reference_checks": [
+    {
+      "notebook": "04a_outcomes_and_modeling.ipynb",
+      "passed": true,
+      "different_fields": [],
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12,
+      "execution_metadata_compared": false
+    },
+    {
+      "notebook": "04b_outcomes_and_modeling_raas_subgroups.ipynb",
+      "passed": true,
+      "different_fields": [],
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12,
+      "execution_metadata_compared": false
+    },
+    {
+      "notebook": "04c_extended_covariate_cox_model.ipynb",
+      "passed": true,
+      "different_fields": [],
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12,
+      "execution_metadata_compared": false
+    }
+  ],
+  "supplement_reference_checks": [
+    {
+      "analysis": "cluster",
+      "status": "passed",
+      "compared_to": "SURVIVAL_SENSITIVITY_RESULTS.json",
+      "data_mode": "current",
+      "bootstrap_replicates": null,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "analysis": "competing",
+      "status": "passed",
+      "compared_to": "SURVIVAL_SENSITIVITY_RESULTS.json",
+      "data_mode": "current",
+      "bootstrap_replicates": 1000,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    },
+    {
+      "analysis": "landmark",
+      "status": "passed",
+      "compared_to": "SURVIVAL_SENSITIVITY_RESULTS.json",
+      "data_mode": "current",
+      "bootstrap_replicates": null,
+      "relative_tolerance": 1e-10,
+      "absolute_tolerance": 1e-12
+    }
+  ],
+  "python": "3.12.13",
+  "software": {
+    "nbclient": "0.11.0",
+    "nbconvert": "7.17.1",
+    "ipykernel": "7.3.0",
+    "pandas": "2.3.3",
+    "numpy": "2.2.6",
+    "lifelines": "0.30.3",
+    "statsmodels": "0.14.6"
+  },
+  "browser_display_check": {
+    "status": "passed",
+    "public_notebooks": 11,
+    "loaded_figure_images": 10,
+    "broken_figure_images": 0,
+    "rendered_tables_including_markdown": 29
+  },
+  "notebooks": [
+    {
+      "notebook": "01_icu_cohort.ipynb",
+      "status": "passed",
+      "seconds": 26.34,
+      "code_cells": 3,
+      "executed_code_cells": 3,
+      "outputs": 3,
+      "html_table_outputs": 0,
+      "png_outputs": 0,
+      "error_outputs": 0,
+      "source_sha256": "239a8b3a1d35029280cd760173f3bf9257d6c292f54e83496186590a15a5bf88",
+      "output_sha256": "79d0f46def21943563410ce6d05c48177d3172b25a74f17455244767ece81ac3",
+      "code_sha256": "31b8ee447814cc24d99ce0fb777ff48cd877cace2714e07dfd6e81d991975a0a",
+      "data_mode": "current",
+      "output_review": "aggregate_schema_counts_model_estimates_and_figures_only"
+    },
+    {
+      "notebook": "02_cohort_and_exposures.ipynb",
+      "status": "passed",
+      "seconds": 17.3,
+      "code_cells": 7,
+      "executed_code_cells": 7,
+      "outputs": 7,
+      "html_table_outputs": 3,
+      "png_outputs": 0,
+      "error_outputs": 0,
+      "source_sha256": "7a6e285f27d7291acad50afc26030a6e3cd90d28d893d96aca2c27fc173e7d85",
+      "output_sha256": "6270410a98e2ab2428b3463208ba93b17af6e4d3ddb64b64e7a250ae1e451e36",
+      "code_sha256": "f077eba5acbe5887cae05851a52b5d478fc0662a3186ba2ecc500b1c8245d0d9",
+      "data_mode": "current",
+      "output_review": "aggregate_schema_counts_model_estimates_and_figures_only"
+    },
+    {
+      "notebook": "03a_baseline.ipynb",
+      "status": "passed",
+      "seconds": 9.82,
+      "code_cells": 4,
+      "executed_code_cells": 4,
+      "outputs": 5,
+      "html_table_outputs": 1,
+      "png_outputs": 0,
+      "error_outputs": 0,
+      "source_sha256": "246fcc91b0a7c5d00a7f744a18c2155f7b07d50c170225d28a14ac3b34df1949",
+      "output_sha256": "04be90aafd984de2dd7fe6392c7cf2b292f9e9f3b0ad67ae1546ad55b3edce8e",
+      "code_sha256": "29aaf1ae0412ab51de09538ec14126ca3b13e42a48994d43105b15261c81cb0f",
+      "data_mode": "current",
+      "output_review": "aggregate_schema_counts_model_estimates_and_figures_only"
+    },
+    {
+      "notebook": "03b_merge_exposures.ipynb",
+      "status": "passed",
+      "seconds": 12.44,
+      "code_cells": 6,
+      "executed_code_cells": 6,
+      "outputs": 6,
+      "html_table_outputs": 4,
+      "png_outputs": 0,
+      "error_outputs": 0,
+      "source_sha256": "2fffc35d6d79e39e62628165868cc650f50c4149a96076cd65ff14c25771a1a2",
+      "output_sha256": "bacc7be2822384753078e577281371c22ef75bfcc508204cc891834f653ea0fc",
+      "code_sha256": "bf291f36b611966d7d6033f88df5aec8b0ffdedff4fb995248419dd66159f03d",
+      "data_mode": "current",
+      "output_review": "aggregate_schema_counts_model_estimates_and_figures_only"
+    },
+    {
+      "notebook": "04a_outcomes_and_modeling.ipynb",
+      "status": "passed",
+      "seconds": 60.57,
+      "code_cells": 5,
+      "executed_code_cells": 5,
+      "outputs": 5,
+      "html_table_outputs": 2,
+      "png_outputs": 0,
+      "error_outputs": 0,
+      "source_sha256": "b362a3af37b706fd1a3fe14a8bd5b3b52dab9744149092118c13ee477d9ed503",
+      "output_sha256": "f7bdf315bbbc313216001fde7c7842a6a9d970c87882bd3f26e4dfdb9e09e26a",
+      "code_sha256": "be26e88d180b7541f595558c5091cec8f221494dcc3801a1bbf382085e333e00",
+      "data_mode": "current",
+      "output_review": "aggregate_schema_counts_model_estimates_and_figures_only"
+    },
+    {
+      "notebook": "04b_outcomes_and_modeling_raas_subgroups.ipynb",
+      "status": "passed",
+      "seconds": 49.65,
+      "code_cells": 5,
+      "executed_code_cells": 5,
+      "outputs": 4,
+      "html_table_outputs": 2,
+      "png_outputs": 0,
+      "error_outputs": 0,
+      "source_sha256": "80786e9cd46c7efb31dc06e5177c103c82916deeac84164f5f5ae4318fc2ef43",
+      "output_sha256": "4df6c171cc79bdab59283521310a003a91cb01ca2c181cee4779ecff239055af",
+      "code_sha256": "32a47209da8508b8aa33db64d18fa3ac2204b74c150034cccbb824d8b5cd361c",
+      "data_mode": "current",
+      "output_review": "aggregate_schema_counts_model_estimates_and_figures_only"
+    },
+    {
+      "notebook": "04c_extended_covariate_cox_model.ipynb",
+      "status": "passed",
+      "seconds": 43.72,
+      "code_cells": 5,
+      "executed_code_cells": 5,
+      "outputs": 6,
+      "html_table_outputs": 4,
+      "png_outputs": 0,
+      "error_outputs": 0,
+      "source_sha256": "0c6f463888823bd40d53a2214d421122810683325d43f886a7d4d6c033b7711e",
+      "output_sha256": "36fc851b7dc0e6ad4dafd2309bbca15497add5fbdae9152841d8d3c21f6447e8",
+      "code_sha256": "3934413bc9e329d0a958825ead195f5fdbb7809ba4bdf17fc49a0a2f8d849070",
+      "data_mode": "current",
+      "output_review": "aggregate_schema_counts_model_estimates_and_figures_only"
+    },
+    {
+      "notebook": "04d_python_logistic_model.ipynb",
+      "status": "passed",
+      "seconds": 7.43,
+      "code_cells": 2,
+      "executed_code_cells": 2,
+      "outputs": 1,
+      "html_table_outputs": 1,
+      "png_outputs": 0,
+      "error_outputs": 0,
+      "source_sha256": "87fa4ffe79e6d7641e52be52c26b28fb33e01b162aee1e6391855e4503fb51da",
+      "output_sha256": "c8c6f07ebb99b19e7253340bd19ed37e4e023cefa47fb5f209865789bbc2d159",
+      "code_sha256": "ce85d223ae1dad75a0e84c33188517decee47b162a78b6ecb92ad8dfe6f64f8d",
+      "data_mode": "current",
+      "output_review": "aggregate_schema_counts_model_estimates_and_figures_only"
+    },
+    {
+      "notebook": "05a_patient_cluster_sensitivity.ipynb",
+      "status": "passed",
+      "seconds": 9.01,
+      "code_cells": 5,
+      "executed_code_cells": 5,
+      "outputs": 4,
+      "html_table_outputs": 2,
+      "png_outputs": 1,
+      "error_outputs": 0,
+      "source_sha256": "08b6047cdefa542942956176b4cb742722847e10ba5c75abd9172c048639c65e",
+      "output_sha256": "bf282b5ebcf9e85b4d242dae66bbd135c6f26c417c77a73a43947050b1b1ef8d",
+      "code_sha256": "df60866c730b7b4ad48227408973c8a231f048e88e35bd5a6be47aad8b7c6592",
+      "data_mode": "current",
+      "output_review": "aggregate_schema_counts_model_estimates_and_figures_only"
+    },
+    {
+      "notebook": "05b_competing_risks.ipynb",
+      "status": "passed",
+      "seconds": 12.09,
+      "code_cells": 5,
+      "executed_code_cells": 5,
+      "outputs": 4,
+      "html_table_outputs": 2,
+      "png_outputs": 1,
+      "error_outputs": 0,
+      "source_sha256": "69c82e9bf1fb7cbbb1055f18d807207ec5e04c1ea9249ba4b39f99230f4ad7d6",
+      "output_sha256": "53c4f8356145b9755c840f3c2eff27290b1b7ce8522be8cd3b7524c7213a067f",
+      "code_sha256": "ea0c83130a49e8a798493be3fa80dbcb2e73a63ab8b70ab60d57ba696231e5b3",
+      "data_mode": "current",
+      "output_review": "aggregate_schema_counts_model_estimates_and_figures_only"
+    },
+    {
+      "notebook": "05c_time_aligned_severity.ipynb",
+      "status": "passed",
+      "seconds": 9.39,
+      "code_cells": 5,
+      "executed_code_cells": 5,
+      "outputs": 4,
+      "html_table_outputs": 2,
+      "png_outputs": 1,
+      "error_outputs": 0,
+      "source_sha256": "7ccbfe711ea8ee688764f44bd06217d8663edad63539541d6cf7fe2bea469919",
+      "output_sha256": "3b2d4f8a9ff7d8d0a527449aae3680481a8c29ac27ccdea3766dd115f48a74bc",
+      "code_sha256": "3e40c85e339e8cdee3bf03d464b05497d5bb96c45e06d515308c2272c2d86882",
+      "data_mode": "current",
+      "output_review": "aggregate_schema_counts_model_estimates_and_figures_only"
+    }
+  ],
+  "publication_policy": "Only source-and-output hashes reviewed in this record retain outputs; all other outputs are stripped by the Git clean filter.",
+  "limitations": [
+    "The notebooks rerun the existing definitions; this does not resolve observational confounding or independently verify SOFA component measurement times.",
+    "The 05-series default remains synthetic; these saved runtime outputs were generated with COPD_NOTEBOOK_DATA_MODE=current."
+  ],
+  "regression_tests": {
+    "status": "passed",
+    "tests": 42
+  },
+  "local_link_target_check": {
+    "status": "passed",
+    "checked": 179,
+    "missing": 0
+  }
+}

@@ -22,7 +22,7 @@ To run all supplements once in an already authorized local MIMIC/BigQuery enviro
 
 Use a new output directory for every run. The existing loader performs a US dry run and enforces the existing 200 MB billing cap. Its supplementary projection adds `subject_id`, `hadm_id` and `stay_id` to the existing explicit columns. These pseudonymous keys and admission-level model rows remain in memory: never display them, save a row export, or upload them to an external analysis service. Missing keys, duplicated admissions/stays, invalid flags and nonpositive follow-up fail before fitting. Counts, duration/age sums and ordinary model estimates must match the saved current reference.
 
-Only aggregate JSON and figures are written, under the Git-ignored `reports/local_supplements/` directory. Existing tables, `CURRENT_ANALYSIS.json`, primary figures and report estimates are not updated. Full local results remain excluded from Git. Selected, verified aggregate results are published in [SURVIVAL_SENSITIVITY_RESULTS.json](SURVIVAL_SENSITIVITY_RESULTS.json) and the [Quarto supplementary section](https://makotoy56.github.io/mimic-iv-copd-raas-analysis/copd_raas_survival_report.html#supplementary-sensitivity-analyses). Tracked notebooks retain stripped outputs; executed copies also belong under the ignored directory.
+Only aggregate JSON and figures are written, under the Git-ignored `reports/local_supplements/` directory. Existing tables, `CURRENT_ANALYSIS.json`, primary figures and report estimates are not updated. Full local results remain excluded from Git. Selected, verified aggregate results are published in [SURVIVAL_SENSITIVITY_RESULTS.json](SURVIVAL_SENSITIVITY_RESULTS.json) and the [Quarto supplementary section](https://makotoy56.github.io/mimic-iv-copd-raas-analysis/copd_raas_survival_report.html#supplementary-sensitivity-analyses). Tracked notebooks retain only reviewed aggregate execution outputs bound in [NOTEBOOK_EXECUTION_VALIDATION.json](NOTEBOOK_EXECUTION_VALIDATION.json); full local bundles remain under the ignored directory.
 
 For a no-query notebook review of a completed run, set `DATA_MODE = "local"` and `LOCAL_RESULT` to its `aggregate_results.json`. The reader checks the supplement version, source-script hash and current reference hash. `DATA_MODE = "current"` explicitly runs that notebook's analysis through the same bounded loader.
 
@@ -36,7 +36,7 @@ For the wholly synthetic CLI demonstration, omit `--current-data` and choose a f
 
 ## 05a: Patient dependence
 
-The notebook and SHORT guide display saved clinical counts, interval comparisons and a forest plot from the verified public aggregate record. Their marked clinical summary is separate from the synthetic runtime results. See [the figure reproduction steps](FIGURE_REPRODUCIBILITY.md#saved-05a-and-05b-clinical-results).
+The notebook and SHORT guide display saved clinical counts, interval comparisons and a forest plot from the verified public aggregate record. Their marked clinical summary is separate from the selected runtime results (synthetic by default; current clinical data in the verified 2026-11-19 rerun). See [the figure reproduction steps](FIGURE_REPRODUCIBILITY.md#saved-05a-and-05b-clinical-results).
 
 Fit unpenalized Efron Cox models with unchanged age, sex and era strata; the core additionally retains first-day SOFA, CHF, CKD and diabetes. Complete cases are fixed before comparing covariance methods. Sum Efron score residuals across all admissions of a patient, including across era strata, and form an HC0 sandwich covariance. Use normal Wald 95% intervals and two-sided p-values, with no finite-cluster correction. This handles within-patient dependence for inference, but does not model frailty or a recurrent-event process.
 
@@ -44,7 +44,7 @@ Ties are not jittered or rounded. The installed statsmodels implementation's ord
 
 ## 05b: Competing hospital endpoints
 
-The notebook displays the saved clinical day-7/14/28 CIF table, the published competing-event figure and the separate cause-specific Cox table. The SHORT guide includes the saved CIF table and figure. These displays do not re-execute a clinical bootstrap or fit and are labeled separately from synthetic runtime outputs.
+The notebook displays the saved clinical day-7/14/28 CIF table, the published competing-event figure and the separate cause-specific Cox table. The SHORT guide includes the saved CIF table and figure. These displays do not re-execute a clinical bootstrap or fit and are labeled separately from the selected runtime outputs.
 
 Death is event 1 and live discharge is event 2. The two-cause Aalen-Johansen product integral handles ties from both causes together, using the risk set just before the shared time. No jitter is applied. Export a fixed daily grid through day 28; no individual event times are serialized. The current complete hospital-episode data contain one of these two endpoints for each admission. Death-time fallbacks retain the original discharge-time proxy, so exact death timing remains uncertain for those admissions.
 
@@ -52,7 +52,7 @@ Uncertainty uses 1,000 patient-cluster bootstrap samples with fixed seed 2026111
 
 ## 05c: A separate 24-hour landmark
 
-The [05c notebook](../notebooks/05c_time_aligned_severity.ipynb) and [its SHORT guide](05c_time_aligned_severity_SHORT.md) show published clinical results without execution: a sequential eligibility table, a matched-model table and a forest plot with patient-cluster 95% intervals. These are generated from the hash-checked public aggregate record, separately from the default synthetic runtime outputs. Rebuild them with `scripts/build_report.py`; see [the figure reproduction steps](FIGURE_REPRODUCIBILITY.md#05c-landmark-notebook-preview).
+The [05c notebook](../notebooks/05c_time_aligned_severity.ipynb) and [its SHORT guide](05c_time_aligned_severity_SHORT.md) show published clinical results without execution: a sequential eligibility table, a matched-model table and a forest plot with patient-cluster 95% intervals. These are generated from the hash-checked public aggregate record, separately from the selected runtime outputs (synthetic by default; current clinical data in the verified 2026-11-19 rerun). Rebuild them with `scripts/build_report.py`; see [the figure reproduction steps](FIGURE_REPRODUCIBILITY.md#05c-landmark-notebook-preview).
 
 Eligibility requires a recorded endpoint strictly later than 24 hours after original ICU entry. Endpoints at or before 24 hours are excluded. Remaining fallback deaths with unknown death timestamps are also excluded because survival to the landmark is not known. Subtract one day from eligible durations and retain the original prescription-order exposure window at or before ICU entry. Use the same core-complete admissions for both the age/sex and the first-day-SOFA core landmark model, with era strata and patient-cluster inference. Report early endpoints, fallback exclusions and missing core covariates.
 
@@ -64,7 +64,13 @@ The [execution and validation record](SURVIVAL_SUPPLEMENTS_VALIDATION.json) reco
 
 The versioned synthetic record covers Efron coefficients and both covariance matrices against R `survival`, plus tied two-cause Aalen-Johansen estimates. Synthetic validation establishes numerical behavior, not clinical validity. See the local execution record for any current-data result; the selected aggregate estimates are reported in the separate Quarto supplementary section without replacing original main estimates.
 
-On 2026-11-18 all three supplements were executed locally against the existing corrected cohort using one bounded, read-only SELECT. Ordinary reference estimates matched before the new results were saved. Each notebook also completed top-to-bottom on synthetic inputs and, separately, on the verified local aggregate result without another query. Full numerical outputs and executed clinical copies remain under ignored `reports/local_supplements/`; selected aggregate estimates are included in the public report; published source notebooks retain synthetic defaults and stripped outputs. The independent component-time validation and pre-ICU severity reconstruction described above remain unperformed.
+On 2026-11-18 all three supplements were executed locally against the existing corrected cohort using one bounded, read-only SELECT. Ordinary reference estimates matched before the new results were saved. Each notebook also completed top-to-bottom on synthetic inputs and, separately, on the verified local aggregate result without another query. Full numerical outputs and executed clinical copies remain under ignored `reports/local_supplements/`; selected aggregate estimates are included in the public report; published source notebooks retain synthetic defaults. The later 2026-11-19 rerun retains reviewed clinical aggregate outputs as described below. The independent component-time validation and pre-ICU severity reconstruction described above remain unperformed.
+
+## Full notebook rerun on 2026-11-19
+
+All 11 public notebooks were executed top-to-bottom against the existing authorized BigQuery environment, including 05a–05c in `current` mode. The new main-model statistics and selected supplementary results matched the existing public records; the clinical competing-risk bootstrap used 1,000 replicates with the existing fixed seed. [The execution record](NOTEBOOK_EXECUTION_VALIDATION.json) binds the saved notebook sources and outputs. The existing main/supplement JSON records and analysis definitions were not replaced.
+
+To select current data in an authorized notebook session, set `COPD_NOTEBOOK_DATA_MODE=current` before launching Jupyter. The default remains `synthetic`; always read `data_origin` and the plot title. Figure 1 displays the fixed published aggregate snapshot; Figure 2 and the runtime tables display the selected execution. The committed runtime outputs are clinical; a new default execution is synthetic. The Git filter retains only the explicitly reviewed source/output hashes and removes other runtime outputs.
 
 ## Method references
 

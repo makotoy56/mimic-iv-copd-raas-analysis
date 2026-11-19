@@ -200,15 +200,59 @@ def export_figures(result, models, kms, assets: Path):
     forest([(label, result["models"][key]["estimates"]["raas_pre_icu"]) for label, key in keys], "RAAS estimates across model specifications", assets / "cox_model_sensitivity_comparison.svg")
 
 
+def compare_saved_results(reference, actual):
+    """Compare statistical content while allowing a new execution timestamp/job."""
+    import math
+    differences = []
+    def walk(a, b, path=""):
+        if isinstance(a, dict) and isinstance(b, dict):
+            keys_a = set(a) - ({"execution"} if not path else set())
+            keys_b = set(b) - ({"execution"} if not path else set())
+            if keys_a != keys_b:
+                differences.append(path + "/fields")
+                return
+            for key in sorted(keys_a): walk(a[key], b[key], path + "/" + key)
+        elif isinstance(a, list) and isinstance(b, list):
+            if len(a) != len(b): differences.append(path + "/length")
+            else:
+                for i, (x,y) in enumerate(zip(a,b)): walk(x,y,path+"/"+str(i))
+        elif isinstance(a, bool) or isinstance(b, bool):
+            if a != b: differences.append(path)
+        elif isinstance(a, (int,float)) and isinstance(b, (int,float)):
+            if isinstance(a,int) and isinstance(b,int):
+                same = a == b
+            else: same = math.isclose(a,b,rel_tol=1e-10,abs_tol=1e-12)
+            if not same: differences.append(path)
+        elif a != b: differences.append(path)
+    walk(reference,actual)
+    return {"passed": not differences, "different_fields": differences,
+            "relative_tolerance":1e-10, "absolute_tolerance":1e-12,
+            "execution_metadata_compared":False}
+
+
 def refresh(repo: Path):
     import shutil
+    import os
     df, provenance = load_current_data()
     result, models, kms, params = compute_current(df)
     result["execution"] = {**provenance, "generated_at_utc": datetime.now(timezone.utc).isoformat(), "query_sha256": hashlib.sha256(QUERY.encode()).hexdigest()}
+    # Keep a validated publication snapshot stable when only execution metadata changes.
+    # Save the freshly computed run separately; do not silently invalidate its bound
+    # independent and supplementary validation records.
+    root = Path(os.environ.get("COPD_NOTEBOOK_RUN_DIR", str(repo / "reports/local_supplements" / ("main_refresh_" + datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")))))
+    root.mkdir(parents=True, exist_ok=True)
+    (root / "fresh_main_results.json").write_text(json.dumps(result, indent=2, allow_nan=False) + "\n")
+    reference_path = repo / "docs/CURRENT_ANALYSIS.json"
+    reference = json.loads(reference_path.read_text()) if reference_path.exists() else None
+    comparison = compare_saved_results(reference, result) if reference is not None else {"passed": True, "first_reference": True}
+    (root / "main_reference_check.json").write_text(json.dumps(comparison, indent=2) + "\n")
+    if not comparison["passed"]:
+        raise ValueError("Fresh results differ from the saved publication; review the local reference check before updating published estimates")
     export_figures(result, models, kms, repo / "assets")
     for name in ["kaplan_meier_curve.png", "cox_forest_plot.png", "raas_subgroup_forest_plot.svg", "cox_model_sensitivity_comparison.svg"]:
         shutil.copy2(repo / "assets" / name, repo / "docs/assets" / name)
-    (repo / "docs/CURRENT_ANALYSIS.json").write_text(json.dumps(result, indent=2, allow_nan=False) + "\n")
+    if reference is None:
+        reference_path.write_text(json.dumps(result, indent=2, allow_nan=False) + "\n")
     out = repo / "python/outputs/python_logistic_parameters.csv"
     params.to_csv(out, index=False)
     out.with_suffix(".manifest.json").write_text(json.dumps(result["secondary_python_logistic"]["manifest"], indent=2) + "\n")
