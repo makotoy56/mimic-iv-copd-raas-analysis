@@ -6,11 +6,17 @@ import tempfile
 
 from render_current_report import generate
 from render_short_notes import generate as generate_short_notes
+from render_landmark_summary import generate as generate_landmark_summary
+from render_supplement_notebook_summaries import generate as generate_supplement_summaries
+from render_main_figure_guides import generate as generate_main_figure_guides
 
 
 def build(repo):
     generate(repo)
     generate_short_notes(repo)
+    generate_landmark_summary(repo)
+    generate_supplement_summaries(repo)
+    generate_main_figure_guides(repo)
     with tempfile.TemporaryDirectory(prefix="copd-quarto-") as temp:
         project = Path(temp)
         (project / "_quarto.yml").write_text("project:\n  type: default\n  output-dir: _site\n")

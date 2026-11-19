@@ -37,6 +37,25 @@ Published clinical results, not the default synthetic notebook output. Source: [
 
 11,964 admissions represent 9,157 patients; 1,656 patients contributed 4,463 admissions across repeated hospitalizations.
 
+### Figure 1 — Ordinary and patient-cluster inference
+
+**Data source:** Saved clinical execution results; [aggregate record](SURVIVAL_SENSITIVITY_RESULTS.json).
+
+![Figure 1 — Ordinary and patient-cluster inference](../assets/supplementary_cluster_forest.png)
+
+**How to read**
+
+- Gray circles show ordinary admission-level 95% intervals; blue squares show patient-cluster 95% intervals. Colors distinguish inference methods, not exposure groups. Each pair shares one fitted RAAS HR and the same complete cases; its vertical offset is only for readability.
+- The dashed HR=1 line represents equal hazards. Patient clustering allows dependence among repeated admissions from one patient when estimating uncertainty; it does not fit a frailty model, remove confounding or change the exposure definition. A cluster interval can be wider or narrower.
+
+**What the results show**
+
+- The primary HR remains 0.732, with patient-cluster CI 0.593–0.902. The exploratory SOFA-core HR remains 0.833, with cluster CI 0.665–1.042, which includes 1. The core result does not establish equal hazards or equivalence.
+
+**Interpretation limits**
+
+- Compare uncertainty methods within a model. The two covariate specifications are not a formal between-model test or evidence of causal treatment benefit; the SOFA timing limitation remains.
+
 ## Related analyses
 
 [Full published supplementary section](https://makotoy56.github.io/mimic-iv-copd-raas-analysis/copd_raas_survival_report.html#supplementary-sensitivity-analyses) and [methods/validation guide](SURVIVAL_SENSITIVITY_SUPPLEMENTS.md).

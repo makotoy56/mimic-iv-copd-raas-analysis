@@ -41,6 +41,25 @@ Published clinical results, not the default synthetic output; CIFs are unadjuste
 
 Day-28 death-CIF difference, RAAS minus no RAAS: -4.81 percentage points (95% CI -6.82 to -2.66). This is an unadjusted association, not a treatment effect.
 
+### Figure 1 — Death and live discharge cumulative incidence
+
+**Data source:** Saved clinical execution results; [aggregate record](SURVIVAL_SENSITIVITY_RESULTS.json).
+
+![Figure 1 — Death and live discharge cumulative incidence](../assets/supplementary_competing_risks.svg)
+
+**How to read**
+
+- The horizontal axis is days since ICU entry. The left panel is the unadjusted cumulative incidence of hospital death and the right panel is live discharge, treating the other endpoint as competing. Blue denotes qualifying RAAS orders; orange denotes no qualifying orders. Each curve's height is an absolute cumulative probability, not a hazard ratio.
+- Shading shows pointwise patient-bootstrap 95% intervals on the saved daily grid. These are not simultaneous confidence bands. The published death panel spans 0–20%, while the discharge panel spans 0–100%; compare the printed percentages rather than line heights between panels.
+
+**What the results show**
+
+- At day 28, death CIF is 9.09% with qualifying orders and 13.90% without. Live-discharge CIF is 87.95% and 81.68%, respectively. The saved estimates indicate different observed endpoint patterns between the groups.
+
+**Interpretation limits**
+
+- These curves are unadjusted associations and do not establish a treatment effect. They answer a different question from the adjusted cause-specific HRs and from Kaplan–Meier curves that censor discharge. No Fine–Gray model is shown.
+
 ## Related analyses
 
 The [Quarto section](https://makotoy56.github.io/mimic-iv-copd-raas-analysis/copd_raas_survival_report.html#supplementary-sensitivity-analyses) includes the curves and adjusted cause-specific results. See [the selected aggregate record](SURVIVAL_SENSITIVITY_RESULTS.json).

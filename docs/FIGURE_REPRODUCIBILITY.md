@@ -1,6 +1,6 @@
 # Figure Reproducibility
 
-The README displays two result figures and one workflow diagram. The Quarto report displays the four main result figures and the supplementary competing-event figure listed below. Result images are stored under `assets/`, with matching copies under `docs/assets/` for the published report.
+The README displays two result figures and one workflow diagram. The Quarto report displays the four main result figures and the supplementary competing-event figure listed below. The 05c notebook and its SHORT guide also display a landmark forest plot. Result images are stored under `assets/`; images used in the Quarto report have matching copies under `docs/assets/`.
 
 ## Main Result Figures
 
@@ -51,6 +51,24 @@ PY
 
 `load_public` checks the selected record against its validation, source and main-reference hashes before plotting. `export_figure` writes both asset copies. `build_report.py` renders the Quarto source and HTML using the saved assets; it does not regenerate the supplementary image itself. Preparing a new selected record from a verified local run is a separate step documented in [the supplement guide](SURVIVAL_SENSITIVITY_SUPPLEMENTS.md#prepare-and-rebuild-the-public-supplementary-section).
 
+## Saved 05a and 05b Clinical Results
+
+The [05a notebook](../notebooks/05a_patient_cluster_sensitivity.ipynb) and [SHORT guide](05a_patient_cluster_sensitivity_SHORT.md) show the saved admission/patient counts, ordinary and patient-cluster intervals, and [supplementary_cluster_forest.png](../assets/supplementary_cluster_forest.png). The [05b notebook](../notebooks/05b_competing_risks.ipynb) and [SHORT guide](05b_competing_risks_SHORT.md) reuse the published competing-event figure above and display its fixed-day tables; the notebook also shows the saved cause-specific Cox table.
+
+[scripts/render_supplement_notebook_summaries.py](../scripts/render_supplement_notebook_summaries.py) rebuilds the marked Markdown and cluster figure from the verified public aggregate record. These are displays of the saved clinical execution, separate from synthetic runtime outputs. The generator preserves existing code, outputs and notebook metadata. `scripts/build_report.py` refreshes these summaries together with 05c and the SHORT guides; it does not rerun clinical models.
+
+## 05c Landmark Notebook Preview
+
+The [05c notebook](../notebooks/05c_time_aligned_severity.ipynb) and [its SHORT guide](05c_time_aligned_severity_SHORT.md) contain the published eligibility and model tables and [supplementary_landmark_forest.png](../assets/supplementary_landmark_forest.png). The forest plot compares the two matched landmark models using patient-cluster 95% intervals; it does not depict the original ICU-entry models or a formal difference between model estimates.
+
+[scripts/render_landmark_summary.py](../scripts/render_landmark_summary.py) regenerates the notebook's marked Markdown cells and figure from the same hash-checked public aggregate record. Code-cell outputs remain stripped; the clinical preview is visible without executing the default synthetic demonstration. The SHORT guide uses the same summary function.
+
+```bash
+.venv/bin/python scripts/build_report.py
+```
+
+This offline build refreshes the 05c preview, its image and SHORT guide alongside the report. To refresh only the notebook preview and image, run `.venv/bin/python scripts/render_landmark_summary.py`. Neither command queries clinical data or changes model estimates.
+
 ## Manually Curated Architecture and Lineage Figures
 
 - [workflow_diagram.svg](../assets/workflow_diagram.svg): the workflow overview currently displayed in the README; it is not embedded in the Quarto report.
@@ -59,6 +77,23 @@ PY
 These diagrams document the workflow rather than statistical estimates. Update them manually if the SQL table structure or report architecture changes.
 
 ## Reading the Figures
+
+### Notebook layout and figure numbering
+
+All figure-bearing notebooks use the same order: `Figure N — title`, a data-source label, the image (or its execution cell/output), then **How to read**, **What the results show**, and **Interpretation limits**. Numbering restarts at 1 in each notebook and continues across saved clinical figures and runtime figures. Tables do not consume figure numbers. Figure-free notebooks receive no placeholder figures.
+
+| Notebook | Figure 1 | Figure 2 |
+| --- | --- | --- |
+| 04a | Kaplan–Meier survival | — |
+| 04b | ACEi-only and ARB-only orders versus neither | — |
+| 04c | Exploratory SOFA-core Cox model | Model sensitivity comparison |
+| 05a | Saved ordinary/patient-cluster comparison | Selected-execution comparison |
+| 05b | Saved competing-event curves | Selected-execution curves |
+| 05c | Saved landmark Cox models | Selected-execution uncertainty comparison |
+
+[scripts/notebook_figure_layout.py](../scripts/notebook_figure_layout.py) defines the layout and validates consecutive numbering and caption placement. The generators preserve existing code/output cells, metadata and cell IDs. SHORT guides use the matching saved-figure numbers. README and Quarto retain their own document structure and share the same three explanation headings; notebook-local numbers are not treated as global report references.
+
+Detailed figure explanations are generated by [scripts/figure_interpretation.py](../scripts/figure_interpretation.py). They explain axes, units, symbols, intervals, saved estimates and interpretation limits alongside the figures in 04a–04c, 05a/05b, their SHORT guides, the README and the report. [scripts/render_main_figure_guides.py](../scripts/render_main_figure_guides.py) reuses the saved main images in 04a–04c without model execution. Both modules are included in the offline report build. Runtime 05a/05b plots carry separate notes identifying synthetic execution and any differences in legends or axis scales.
 
 The Kaplan-Meier and supplementary cumulative-incidence figures use the same exposure colors: qualifying RAAS orders are blue (`#1f77b4`), and no qualifying RAAS orders are orange (`#ff7f0e`). Kaplan-Meier estimates censor live discharge; the supplementary figure treats live discharge as a competing event. Their curves represent different quantities.
 

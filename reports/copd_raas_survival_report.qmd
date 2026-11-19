@@ -62,6 +62,19 @@ The two-group log-rank statistic was 8.207, p=0.00417. These are unadjusted surv
 
 ![Current Kaplan-Meier estimates](assets/kaplan_meier_curve.png)
 
+**How to read**
+
+- The horizontal axis is elapsed days since ICU entry; the vertical axis is the unadjusted Kaplan–Meier survival estimate. Blue represents qualifying pre-ICU RAAS orders and orange represents no qualifying orders. Shading shows pointwise 95% confidence intervals.
+- Live discharge is censored. Consequently, one minus this curve is not the observed cumulative probability of hospital death when discharge is a competing event; use the separate CIF figure for that question.
+
+**What the results show**
+
+- The overall two-group log-rank p-value is 0.00417. It compares the unadjusted survival experience over follow-up, rather than testing every plotted day or controlling for age, severity and other confounding.
+
+**Interpretation limits**
+
+- Wider intervals in the late tail indicate less precise estimates. Visual separation is an observational association and does not establish a medication benefit. The curve is not an adjusted Cox prediction.
+
 ## Primary and extended Cox results
 
 | Specification | RAAS HR (95% CI) | p |
@@ -77,7 +90,33 @@ The two-group log-rank statistic was 8.207, p=0.00417. These are unadjusted surv
 
 ![Exploratory core Cox estimates using first-day SOFA](assets/cox_forest_plot.png)
 
+**How to read**
+
+- Each dot is an adjusted hazard ratio; its horizontal bar is an ordinary admission-level 95% confidence interval. Colors distinguish covariate rows, not statistical significance. The dashed line at HR=1 represents equal hazards under the fitted model. The horizontal scale is linear.
+- Read the unit of each row: age is per year, SOFA is per point, male sex is relative to female sex, and the binary RAAS/CHF/CKD/diabetes rows compare flag 1 with flag 0. Different units mean that distance from 1 cannot be used to rank clinical importance across rows.
+
+**What the results show**
+
+- The RAAS row is HR 0.833 (95% CI 0.673–1.030) in the era-stratified, unpenalized SOFA-core model. Its interval includes 1, so it does not establish a clear association in this specification; it does not prove equal hazards or no association.
+
+**Interpretation limits**
+
+- This is the exploratory 04c model, not the refined primary 04a model or the separate patient-cluster analysis. First-day SOFA may include post-start information. The estimates are conditional associations and cannot establish treatment effects.
+
 ![Current sensitivity comparison](assets/cox_model_sensitivity_comparison.svg)
+
+**How to read**
+
+- Every row estimates the same qualifying-RAAS-orders versus no-qualifying-orders contrast under a different Cox specification. Dots are HRs and horizontal bars are that specification's original 95% intervals on a linear scale. Colors separate model rows for readability; these are not different medication groups.
+
+**What the results show**
+
+- The primary estimate is 0.732 (95% CI 0.592–0.904); the exploratory SOFA-core estimate is 0.833 (95% CI 0.673–1.030). The results depend on the specification, and several intervals include HR=1. These plotted intervals use the original inference, not the later patient-cluster intervals or 24-hour landmark population.
+
+**Interpretation limits**
+
+- L2 rows use penalization; the ICU and PH-stratified rows change covariates or baseline-hazard strata. Their differences cannot isolate a single confounder, and one interval crossing 1 while another does not is not a test of the difference between estimates.
+- SOFA-containing rows are exploratory and can use post-start information. The set of models is a sensitivity analysis of an observational association, not independent replications of a causal treatment effect.
 
 All SOFA-containing rows and plots are exploratory sensitivity analyses with possible post-start information; their differences do not isolate baseline confounding.
 
@@ -88,6 +127,19 @@ The ACEi-only-order, ARB-only-order and neither-order analysis includes 11,951 a
 ACEi-only and ARB-only prescription-order groups are each compared with neither qualifying order. Records with both class flags positive are excluded from this subclass analysis. The main analysis reports no direct ACEi-versus-ARB contrast or interaction test. Different point estimates, or one p-value below 0.05 and the other above it, do not establish a difference between the classes.
 
 ![ACEi-only and ARB-only prescription orders, each versus neither](assets/raas_subgroup_forest_plot.svg)
+
+**How to read**
+
+- Both rows use neither qualifying order as the reference. The blue dot is ACEi-only and the orange dot is ARB-only. Each is an age/sex-adjusted, era-stratified HR with an ordinary admission-level 95% interval on a linear scale. HR=1 is the reference line; records with both class flags positive are excluded.
+
+**What the results show**
+
+- ACEi-only orders: 0.683 (95% CI 0.521–0.894); ARB-only orders: 0.805 (95% CI 0.573–1.131). The ACEi interval lies below 1, whereas the ARB interval includes 1.
+
+**Interpretation limits**
+
+- Different point estimates or p-value thresholds do not establish a difference between classes. This plot contains no direct ACEi-versus-ARB contrast and does not establish superiority or equivalence.
+- The flags describe prescription orders, not verified administration or adherence. These associations do not estimate causal drug effects.
 
 ## PH diagnostics and interpretation
 
@@ -126,6 +178,19 @@ A two-cause Aalen-Johansen estimate treats recorded in-hospital death and live d
 At day 28, the unadjusted death-CIF difference (qualifying RAAS orders minus no qualifying orders) was -4.81 percentage points (95% CI -6.82 to -2.66). This is an unadjusted association, not a treatment effect.
 
 ![Unadjusted death and live-discharge cumulative incidence; shaded areas are pointwise patient-bootstrap 95% intervals. Panels use different vertical scales.](assets/supplementary_competing_risks.svg){fig-alt="Two panels show unadjusted cumulative incidence of death and live discharge through day 28, by qualifying RAAS prescription orders, with pointwise bootstrap intervals."}
+
+**How to read**
+
+- The horizontal axis is days since ICU entry. The left panel is the unadjusted cumulative incidence of hospital death and the right panel is live discharge, treating the other endpoint as competing. Blue denotes qualifying RAAS orders; orange denotes no qualifying orders. Each curve's height is an absolute cumulative probability, not a hazard ratio.
+- Shading shows pointwise patient-bootstrap 95% intervals on the saved daily grid. These are not simultaneous confidence bands. The published death panel spans 0–20%, while the discharge panel spans 0–100%; compare the printed percentages rather than line heights between panels.
+
+**What the results show**
+
+- At day 28, death CIF is 9.09% with qualifying orders and 13.90% without. Live-discharge CIF is 87.95% and 81.68%, respectively. The saved estimates indicate different observed endpoint patterns between the groups.
+
+**Interpretation limits**
+
+- These curves are unadjusted associations and do not establish a treatment effect. They answer a different question from the adjusted cause-specific HRs and from Kaplan–Meier curves that censor discharge. No Fine–Gray model is shown.
 
 Separate age/sex/era cause-specific Cox models describe rates among admissions still alive and hospitalized. The death HR equals the clustered primary estimate above. The live-discharge HR was 1.168 (patient-cluster 95% CI 1.087–1.254; p=0.00002). These adjusted hazard ratios and the unadjusted CIFs answer different questions. No Fine–Gray model is reported.
 

@@ -12,6 +12,7 @@ import hashlib
 import json
 import math
 from pathlib import Path
+from figure_interpretation import supplement_notes
 
 RESULT_FILE = "SURVIVAL_SENSITIVITY_RESULTS.json"
 VALIDATION_FILE = "SURVIVAL_SUPPLEMENTS_VALIDATION.json"
@@ -163,6 +164,7 @@ def report_section(repo):
     discharge = data["competing"]["cause_specific_cox"]["discharge"]
     lines += ["", f"At day 28, the unadjusted death-CIF difference (qualifying RAAS orders minus no qualifying orders) was {100*difference['difference']:.2f} percentage points (95% CI {100*difference['lower_95']:.2f} to {100*difference['upper_95']:.2f}). This is an unadjusted association, not a treatment effect.", "",
               '![Unadjusted death and live-discharge cumulative incidence; shaded areas are pointwise patient-bootstrap 95% intervals. Panels use different vertical scales.](assets/supplementary_competing_risks.svg){fig-alt="Two panels show unadjusted cumulative incidence of death and live discharge through day 28, by qualifying RAAS prescription orders, with pointwise bootstrap intervals."}', "",
+              supplement_notes(data)["competing"], "",
               f"Separate age/sex/era cause-specific Cox models describe rates among admissions still alive and hospitalized. The death HR equals the clustered primary estimate above. The live-discharge HR was {discharge['hr']:.3f} (patient-cluster 95% CI {interval(discharge['patient_cluster'])}; p={discharge['patient_cluster']['p']:.5f}). These adjusted hazard ratios and the unadjusted CIFs answer different questions. No Fine–Gray model is reported.", "",
               "### A separate 24-hour severity landmark", ""]
     flow = data["landmark"]["eligibility"]

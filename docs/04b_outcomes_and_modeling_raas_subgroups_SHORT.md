@@ -31,6 +31,25 @@ Estimate each prescription-order class association against the shared neither-or
 
 The saved subclass model includes 11,951 admissions and 1,690 deaths. ACEi-only versus neither: HR 0.683 (95% CI 0.521–0.894); p=0.00550. ARB-only versus neither: HR 0.805 (95% CI 0.573–1.131); p=0.21116. Source: [CURRENT_ANALYSIS.json](CURRENT_ANALYSIS.json).
 
+### Figure 1 — ACEi-only and ARB-only order estimates versus neither
+
+**Data source:** Saved clinical execution results; [aggregate record](CURRENT_ANALYSIS.json).
+
+![Figure 1 — ACEi-only and ARB-only order estimates versus neither](../assets/raas_subgroup_forest_plot.svg)
+
+**How to read**
+
+- Both rows use neither qualifying order as the reference. The blue dot is ACEi-only and the orange dot is ARB-only. Each is an age/sex-adjusted, era-stratified HR with an ordinary admission-level 95% interval on a linear scale. HR=1 is the reference line; records with both class flags positive are excluded.
+
+**What the results show**
+
+- ACEi-only orders: 0.683 (95% CI 0.521–0.894); ARB-only orders: 0.805 (95% CI 0.573–1.131). The ACEi interval lies below 1, whereas the ARB interval includes 1.
+
+**Interpretation limits**
+
+- Different point estimates or p-value thresholds do not establish a difference between classes. This plot contains no direct ACEi-versus-ARB contrast and does not establish superiority or equivalence.
+- The flags describe prescription orders, not verified administration or adherence. These associations do not estimate causal drug effects.
+
 ## Related analyses
 
 The published [05a–05c supplements](SURVIVAL_SENSITIVITY_SUPPLEMENTS.md) use the binary RAAS grouping, not new class-specific or direct ACEi/ARB analyses. The separate [local contrast workflow](ACEI_ARB_SUPPLEMENT_LOCAL.md) remains outside the public main results.

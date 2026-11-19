@@ -31,6 +31,25 @@ Assess qualifying pre-ICU RAAS prescription orders and in-hospital mortality fro
 
 The saved main cohort has 11,964 admissions and 1,692 deaths. The refined primary estimate is HR 0.732 (95% CI 0.592–0.904); p=0.00383. These are observational associations. Numerical source: [CURRENT_ANALYSIS.json](CURRENT_ANALYSIS.json).
 
+### Figure 1 — Kaplan–Meier estimates
+
+**Data source:** Saved clinical execution results; [aggregate record](CURRENT_ANALYSIS.json).
+
+![Figure 1 — Kaplan–Meier estimates](../assets/kaplan_meier_curve.png)
+
+**How to read**
+
+- The horizontal axis is elapsed days since ICU entry; the vertical axis is the unadjusted Kaplan–Meier survival estimate. Blue represents qualifying pre-ICU RAAS orders and orange represents no qualifying orders. Shading shows pointwise 95% confidence intervals.
+- Live discharge is censored. Consequently, one minus this curve is not the observed cumulative probability of hospital death when discharge is a competing event; use the separate CIF figure for that question.
+
+**What the results show**
+
+- The overall two-group log-rank p-value is 0.00417. It compares the unadjusted survival experience over follow-up, rather than testing every plotted day or controlling for age, severity and other confounding.
+
+**Interpretation limits**
+
+- Wider intervals in the late tail indicate less precise estimates. Visual separation is an observational association and does not establish a medication benefit. The curve is not an adjusted Cox prediction.
+
 ## Related analyses
 
 [05a](05a_patient_cluster_sensitivity_SHORT.md) separately evaluates patient-cluster inference; [05b](05b_competing_risks_SHORT.md) reports death/discharge cumulative incidence. These preserve the original main estimates.

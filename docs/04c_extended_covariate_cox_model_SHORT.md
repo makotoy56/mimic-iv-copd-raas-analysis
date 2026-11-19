@@ -41,6 +41,44 @@
 
 All rows are exploratory ICU-entry specifications. Their differences do not isolate pre-ICU confounding. Source: [CURRENT_ANALYSIS.json](CURRENT_ANALYSIS.json).
 
+### Figure 1 — Exploratory SOFA-core Cox estimates
+
+**Data source:** Saved clinical execution results; [aggregate record](CURRENT_ANALYSIS.json).
+
+![Figure 1 — Exploratory SOFA-core Cox estimates](../assets/cox_forest_plot.png)
+
+**How to read**
+
+- Each dot is an adjusted hazard ratio; its horizontal bar is an ordinary admission-level 95% confidence interval. Colors distinguish covariate rows, not statistical significance. The dashed line at HR=1 represents equal hazards under the fitted model. The horizontal scale is linear.
+- Read the unit of each row: age is per year, SOFA is per point, male sex is relative to female sex, and the binary RAAS/CHF/CKD/diabetes rows compare flag 1 with flag 0. Different units mean that distance from 1 cannot be used to rank clinical importance across rows.
+
+**What the results show**
+
+- The RAAS row is HR 0.833 (95% CI 0.673–1.030) in the era-stratified, unpenalized SOFA-core model. Its interval includes 1, so it does not establish a clear association in this specification; it does not prove equal hazards or no association.
+
+**Interpretation limits**
+
+- This is the exploratory 04c model, not the refined primary 04a model or the separate patient-cluster analysis. First-day SOFA may include post-start information. The estimates are conditional associations and cannot establish treatment effects.
+
+### Figure 2 — Model sensitivity comparison
+
+**Data source:** Saved clinical execution results; [aggregate record](CURRENT_ANALYSIS.json).
+
+![Figure 2 — Model sensitivity comparison](../assets/cox_model_sensitivity_comparison.svg)
+
+**How to read**
+
+- Every row estimates the same qualifying-RAAS-orders versus no-qualifying-orders contrast under a different Cox specification. Dots are HRs and horizontal bars are that specification's original 95% intervals on a linear scale. Colors separate model rows for readability; these are not different medication groups.
+
+**What the results show**
+
+- The primary estimate is 0.732 (95% CI 0.592–0.904); the exploratory SOFA-core estimate is 0.833 (95% CI 0.673–1.030). The results depend on the specification, and several intervals include HR=1. These plotted intervals use the original inference, not the later patient-cluster intervals or 24-hour landmark population.
+
+**Interpretation limits**
+
+- L2 rows use penalization; the ICU and PH-stratified rows change covariates or baseline-hazard strata. Their differences cannot isolate a single confounder, and one interval crossing 1 while another does not is not a test of the difference between estimates.
+- SOFA-containing rows are exploratory and can use post-start information. The set of models is a sensitivity analysis of an observational association, not independent replications of a causal treatment effect.
+
 ## Related analyses
 
 [05a](05a_patient_cluster_sensitivity_SHORT.md) separately reports cluster intervals for the core model. [05c](05c_time_aligned_severity_SHORT.md) implements the distinct 24-hour landmark; it does not reconstruct pre-ICU severity or independently verify component times.

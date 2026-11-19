@@ -36,17 +36,23 @@ For the wholly synthetic CLI demonstration, omit `--current-data` and choose a f
 
 ## 05a: Patient dependence
 
+The notebook and SHORT guide display saved clinical counts, interval comparisons and a forest plot from the verified public aggregate record. Their marked clinical summary is separate from the synthetic runtime results. See [the figure reproduction steps](FIGURE_REPRODUCIBILITY.md#saved-05a-and-05b-clinical-results).
+
 Fit unpenalized Efron Cox models with unchanged age, sex and era strata; the core additionally retains first-day SOFA, CHF, CKD and diabetes. Complete cases are fixed before comparing covariance methods. Sum Efron score residuals across all admissions of a patient, including across era strata, and form an HC0 sandwich covariance. Use normal Wald 95% intervals and two-sided p-values, with no finite-cluster correction. This handles within-patient dependence for inference, but does not model frailty or a recurrent-event process.
 
 Ties are not jittered or rounded. The installed statsmodels implementation's ordinary likelihood/Hessian is used for point estimates, while tie-aware score residuals are computed explicitly for the cluster covariance. [Synthetic reference checks](SURVIVAL_SUPPLEMENTS_SYNTHETIC_CHECK.json) compare coefficients, ordinary and cluster covariance with R `survival::coxph`, for tied and untied artificial times. An additional score-gradient identity is checked at each fit. This avoids assuming that a generic robust option handles Efron ties correctly.
 
 ## 05b: Competing hospital endpoints
 
+The notebook displays the saved clinical day-7/14/28 CIF table, the published competing-event figure and the separate cause-specific Cox table. The SHORT guide includes the saved CIF table and figure. These displays do not re-execute a clinical bootstrap or fit and are labeled separately from synthetic runtime outputs.
+
 Death is event 1 and live discharge is event 2. The two-cause Aalen-Johansen product integral handles ties from both causes together, using the risk set just before the shared time. No jitter is applied. Export a fixed daily grid through day 28; no individual event times are serialized. The current complete hospital-episode data contain one of these two endpoints for each admission. Death-time fallbacks retain the original discharge-time proxy, so exact death timing remains uncertain for those admissions.
 
 Uncertainty uses 1,000 patient-cluster bootstrap samples with fixed seed 20261118. Resample patients globally in a fixed patient-key order and carry all their admissions, so patients contributing to both exposure groups remain linked. Intervals are pointwise 95% percentile intervals, including for RAAS-minus-no-RAAS death-CIF differences. These are unadjusted curves and associations. Age/sex/era cause-specific Cox models for death and discharge are provided separately with patient-cluster inference. Cause-specific HRs and cumulative incidence answer different questions; neither is a causal treatment comparison. A Fine–Gray model is not implemented.
 
 ## 05c: A separate 24-hour landmark
+
+The [05c notebook](../notebooks/05c_time_aligned_severity.ipynb) and [its SHORT guide](05c_time_aligned_severity_SHORT.md) show published clinical results without execution: a sequential eligibility table, a matched-model table and a forest plot with patient-cluster 95% intervals. These are generated from the hash-checked public aggregate record, separately from the default synthetic runtime outputs. Rebuild them with `scripts/build_report.py`; see [the figure reproduction steps](FIGURE_REPRODUCIBILITY.md#05c-landmark-notebook-preview).
 
 Eligibility requires a recorded endpoint strictly later than 24 hours after original ICU entry. Endpoints at or before 24 hours are excluded. Remaining fallback deaths with unknown death timestamps are also excluded because survival to the landmark is not known. Subtract one day from eligible durations and retain the original prescription-order exposure window at or before ICU entry. Use the same core-complete admissions for both the age/sex and the first-day-SOFA core landmark model, with era strata and patient-cluster inference. Report early endpoints, fallback exclusions and missing core covariates.
 
