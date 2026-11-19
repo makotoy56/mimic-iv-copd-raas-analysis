@@ -47,7 +47,7 @@ A non-significant PH test does not establish that the PH assumption is true. The
 
 Rare ICU labels with fewer than 50 admissions are pooled using admission counts alone, independently of outcome. The pooled labels are: Intensive Care Unit (ICU), Medicine, PACU, Surgery/Trauma, Surgery/Vascular/Intermediate.
 
-This observational admission-level analysis retains discharge censoring and does not account for within-patient correlation or implement competing risks. Year-based age remains approximate, especially for the anchor-age 91 group. Residual confounding remains possible.
+The original main models retain ordinary admission-level inference and live-discharge censoring. Separate post hoc supplements provide patient-cluster sandwich inference for repeated admissions, unadjusted Aalen–Johansen cumulative incidence with live discharge as a competing event, and cause-specific death/live-discharge Cox models. These supplements preserve the original main estimates and do not establish treatment effects. Year-based age remains approximate, especially for the anchor-age 91 group. Residual confounding and first-day-SOFA timing limitations remain. See [supplementary methods and limitations](SURVIVAL_SENSITIVITY_SUPPLEMENTS.md).
 
 ## Reproducibility checks
 

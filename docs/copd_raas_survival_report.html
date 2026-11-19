@@ -569,7 +569,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="reproduction-and-sources" class="level2" data-number="13">
 <h2 data-number="13" class="anchored" data-anchor-id="reproduction-and-sources"><span class="header-section-number">13</span> Reproduction and sources</h2>
-<p>Run the upstream SQL, then <code>.venv/bin/python scripts/current_analysis.py</code>, <code>.venv/bin/python scripts/render_current_report.py</code>, and <code>.venv/bin/python scripts/build_report.py</code> from the repository root. Notebooks 04a–04d use the same model/figure functions. Generated notebook outputs are stripped before commit. No patient records or identifiers are included in the aggregate outputs.</p>
+<p>Run the upstream SQL, then <code>.venv/bin/python scripts/current_analysis.py</code>, <code>.venv/bin/python scripts/render_current_report.py</code>, and <code>.venv/bin/python scripts/build_report.py</code> from the repository root. Notebooks 04a–04d use the same model/figure functions. Only reviewed aggregate notebook outputs are retained when their source/output hashes match the applicable versioned validation record. Unreviewed or mismatched outputs and machine-specific metadata are removed before commit. Patient-level records, identifier values and credentials are excluded from public outputs. See <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/REPRODUCIBILITY.md#notebook-output-policy">the notebook output policy</a>.</p>
 <ul>
 <li><a href="https://physionet.org/content/mimiciv/3.1/">MIMIC-IV v3.1</a></li>
 <li><a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/METHODS_OVERVIEW.md">Methods overview</a></li>

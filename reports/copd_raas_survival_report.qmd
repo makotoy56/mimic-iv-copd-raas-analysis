@@ -223,7 +223,7 @@ These findings cannot establish causality. Confounding by indication, unmeasured
 
 ## Reproduction and sources
 
-Run the upstream SQL, then `.venv/bin/python scripts/current_analysis.py`, `.venv/bin/python scripts/render_current_report.py`, and `.venv/bin/python scripts/build_report.py` from the repository root. Notebooks 04a–04d use the same model/figure functions. Generated notebook outputs are stripped before commit. No patient records or identifiers are included in the aggregate outputs.
+Run the upstream SQL, then `.venv/bin/python scripts/current_analysis.py`, `.venv/bin/python scripts/render_current_report.py`, and `.venv/bin/python scripts/build_report.py` from the repository root. Notebooks 04a–04d use the same model/figure functions. Only reviewed aggregate notebook outputs are retained when their source/output hashes match the applicable versioned validation record. Unreviewed or mismatched outputs and machine-specific metadata are removed before commit. Patient-level records, identifier values and credentials are excluded from public outputs. See [the notebook output policy](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/REPRODUCIBILITY.md#notebook-output-policy).
 
 - [MIMIC-IV v3.1](https://physionet.org/content/mimiciv/3.1/)
 - [Methods overview](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/METHODS_OVERVIEW.md)
