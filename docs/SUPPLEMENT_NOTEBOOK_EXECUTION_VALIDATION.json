@@ -1,0 +1,169 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "kind": "current_data_supplement_notebook_execution",
+  "executed_at_utc": "2026-11-19T11:43:04.850229+00:00",
+  "python": "3.12.13",
+  "nbclient": "0.11.0",
+  "mode": "current",
+  "mode_environment_override": false,
+  "maximum_bytes_per_query": 200000000,
+  "location": "US",
+  "patient_rows_or_identifiers_published": false,
+  "main_analysis_updated": false,
+  "clinical_data_retrieved": true,
+  "tables_rebuilt": false,
+  "original_records_rewritten": false,
+  "notebooks": [
+    {
+      "notebook": "05a_patient_cluster_sensitivity.ipynb",
+      "analysis": "cluster",
+      "status": "passed",
+      "mode": "current",
+      "data_origin": "authorized_local_current_cohort",
+      "execution_kind": "authorized_read_only_current_data",
+      "source_sha256": "015709aedcfe5d6ec4bc9e13ed00a60d8c76e3a487f7584bb990fb64b207a976",
+      "output_sha256": "b684116ca0857c3657f6094c88ead60a56ad8ddbf0cf89ad73216702bfd9319c",
+      "code_cells": 5,
+      "figures": 2,
+      "tables": 4,
+      "errors": 0,
+      "query": {
+        "job_id": "23c1344a-3770-427e-ba5f-cd32b9969bf9",
+        "dry_run_bytes": 2736972,
+        "processed_bytes": 2736972,
+        "billed_bytes": 20971520
+      },
+      "query_sha256": "7193e806f9441910ac9f0b1278ecb93395c0f584940b9f969af5cadffc8680d5",
+      "location": "US",
+      "maximum_bytes_billed": 200000000,
+      "ordinary_reference_checks_passed": true,
+      "supplement_reference_comparison": {
+        "passed": true,
+        "numeric_values_checked": 20,
+        "maximum_absolute_difference": 0.0,
+        "relative_tolerance": 1e-10,
+        "absolute_tolerance": 1e-10
+      },
+      "aggregate_output_safety": {
+        "passed": true,
+        "output_blocks": 8,
+        "png_outputs": 1,
+        "patient_rows_identifiers_credentials_local_paths_and_errors_detected": false
+      },
+      "elapsed_seconds": 23.75
+    },
+    {
+      "notebook": "05b_competing_risks.ipynb",
+      "analysis": "competing",
+      "status": "passed",
+      "mode": "current",
+      "data_origin": "authorized_local_current_cohort",
+      "execution_kind": "authorized_read_only_current_data",
+      "source_sha256": "7623e8691c5e981152b323ec0b312f69aee546615b10efe81de7a71e0a5c8511",
+      "output_sha256": "82b9306cf45a4ae4c4f7e9c6ab3bc0f6f2403eec930eefcbe60a9b5337ebf3a9",
+      "code_cells": 5,
+      "figures": 2,
+      "tables": 4,
+      "errors": 0,
+      "query": {
+        "job_id": "deaa8414-7403-471a-a5d3-eeb7465f8dac",
+        "dry_run_bytes": 2736972,
+        "processed_bytes": 2736972,
+        "billed_bytes": 20971520
+      },
+      "query_sha256": "7193e806f9441910ac9f0b1278ecb93395c0f584940b9f969af5cadffc8680d5",
+      "location": "US",
+      "maximum_bytes_billed": 200000000,
+      "ordinary_reference_checks_passed": true,
+      "supplement_reference_comparison": {
+        "passed": true,
+        "numeric_values_checked": 606,
+        "maximum_absolute_difference": 0.0,
+        "relative_tolerance": 1e-10,
+        "absolute_tolerance": 1e-10
+      },
+      "aggregate_output_safety": {
+        "passed": true,
+        "output_blocks": 7,
+        "png_outputs": 1,
+        "patient_rows_identifiers_credentials_local_paths_and_errors_detected": false
+      },
+      "elapsed_seconds": 14.07
+    },
+    {
+      "notebook": "05c_time_aligned_severity.ipynb",
+      "analysis": "landmark",
+      "status": "passed",
+      "mode": "current",
+      "data_origin": "authorized_local_current_cohort",
+      "execution_kind": "authorized_read_only_current_data",
+      "source_sha256": "a73e6b07a2119daba39c2b238050f0301d15d7445dc35a6f6689edfb986ac368",
+      "output_sha256": "8939a7bc435e4232430e3ffdce27634092beb104e266cfb52e6897a69cf2f77c",
+      "code_cells": 5,
+      "figures": 2,
+      "tables": 4,
+      "errors": 0,
+      "query": {
+        "job_id": "8e87f312-0e8c-4693-8da8-bcfe9fc0ff7f",
+        "dry_run_bytes": 2736972,
+        "processed_bytes": 2736972,
+        "billed_bytes": 20971520
+      },
+      "query_sha256": "7193e806f9441910ac9f0b1278ecb93395c0f584940b9f969af5cadffc8680d5",
+      "location": "US",
+      "maximum_bytes_billed": 200000000,
+      "ordinary_reference_checks_passed": true,
+      "supplement_reference_comparison": {
+        "passed": true,
+        "numeric_values_checked": 27,
+        "maximum_absolute_difference": 0.0,
+        "relative_tolerance": 1e-10,
+        "absolute_tolerance": 1e-10
+      },
+      "aggregate_output_safety": {
+        "passed": true,
+        "output_blocks": 7,
+        "png_outputs": 1,
+        "patient_rows_identifiers_credentials_local_paths_and_errors_detected": false
+      },
+      "elapsed_seconds": 11.49
+    }
+  ],
+  "limitations": [
+    "These are observational prescription-order associations, not causal treatment effects.",
+    "The original first-day-SOFA timing and landmark-population limitations remain.",
+    "Numerical reproduction is not a new independent statistical implementation check."
+  ],
+  "reviewed_aggregate_outputs": true,
+  "reviewed_at_utc": "2026-11-19T11:54:45.837048+00:00",
+  "based_on_commit": "4128c7fb382feefa8cc9ab77a4a4f884f232909d",
+  "original_notebooks_not_rerun": 8,
+  "offline_tests": {
+    "tests": 84,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "network_and_credentials_blocked": true
+  },
+  "visual_review": {
+    "runtime_pngs_reviewed": 3,
+    "public_snapshot_figures_unchanged": true,
+    "figure_and_table_layout_checks_passed": true
+  },
+  "source_file_sha256": {
+    "docs/CURRENT_ANALYSIS.json": "554bda76eb780ff1a39c509076c97691b5661140c65cdfee60b071cba9a4537b",
+    "docs/NOTEBOOK_EXECUTION_VALIDATION.json": "996be104c0833cbd514390da004d18d255be745fa113af80f8f1ddb370302c40",
+    "docs/NOTEBOOK_PRESENTATION_VALIDATION.json": "6e1a65163d4db768e101e82b901e264b31cf035727048172f401d1b9ac8bbd73",
+    "docs/SURVIVAL_SENSITIVITY_RESULTS.json": "9186f2fe6163b8c03b270822f264948266a7098e5483cddc303d4a1012188a7e",
+    "scripts/current_analysis.py": "ea80da79f59c6a44b2828b406b3864203c3425490d6550dc0c0753a88f3473b3",
+    "scripts/execute_current_supplement_notebooks.py": "f5022da12cef2b9e7cd6c97724c636cae40e959008ce2824c8918db38791f4d4",
+    "scripts/notebook_bq_runtime.py": "8f3ad4cf78170d61cbe61d86f915f3755828821eef1410c9b45ccdeb871eb27a",
+    "scripts/notebook_figure_layout.py": "fca13b429eafd078dd175df784825a3956705b33e31c1e8addfe27012bd3b2f8",
+    "scripts/notebook_presentation.py": "cfae8f471eb29fb3c464e9010abbe9f10ac3bf1f5856c6599085df831a7e7313",
+    "scripts/presentation_catalog.py": "d7e49bfeb9923ab1c360c47905b2f534497ea06d2208844530a79617bed6a955",
+    "scripts/render_supplement_notebook_policy.py": "2b4b31e346ce07d5bf0825842843007d5908d329b9b7e0689bb1d6ba91e0bdf0",
+    "scripts/supplement_notebook_runtime.py": "0f1f41d3864054186e933c7e92831bdb32471c030a803ef6b69e315622a3f9a0",
+    "scripts/survival_sensitivity.py": "e562cfa774813b0e6e33e4da78f426488df55e4588c06e8e580393f9a513ba4e"
+  }
+}

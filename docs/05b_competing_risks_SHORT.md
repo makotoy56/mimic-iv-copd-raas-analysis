@@ -10,13 +10,13 @@ Report unadjusted cumulative incidence of death and live discharge, alongside se
 
 ## Input
 
-- The source notebook defaults to `DATA_MODE = "synthetic"`; those outputs are artificial demonstrations. `current` explicitly uses the approved, US-dry-run/200-MB-capped loader; patient/admission/stay keys remain in memory. `local` reads a saved, hash-verified aggregate result without another query. Never display admission-level rows.
+- The source notebook defaults to `DATA_MODE = "current"`, using the existing read-only, US-dry-run/200-MB-capped loader. Missing configuration, credentials or access stops execution with guidance; no synthetic fallback is used. `synthetic` must be selected explicitly for artificial software checks; `local` explicitly reads a saved, hash-verified aggregate bundle without another query. The selected mode is announced before loading; patient/admission/stay keys remain in memory. Never display admission-level rows.
 - Same continuous ICU-entry follow-up; death is event 1 and live discharge event 2.
 
 ## Output and downstream use
 
 - Aggregate tables and figures in the notebook; no BigQuery table or main estimate is overwritten.
-- The explicit CLI `--output` option saves aggregate JSON and figures under ignored `reports/local_supplements/`. The original clinical execution is recorded in `NOTEBOOK_EXECUTION_VALIDATION.json`; current caption/summary refreshes from those saved aggregates are bound separately in `NOTEBOOK_PRESENTATION_VALIDATION.json`.
+- The explicit CLI `--output` option saves aggregate JSON and figures under ignored `reports/local_supplements/`. The original clinical execution is recorded in `NOTEBOOK_EXECUTION_VALIDATION.json`; the historical caption/summary refresh is bound in `NOTEBOOK_PRESENTATION_VALIDATION.json`. The later real-data current-default execution of 05a–05c is bound separately in [SUPPLEMENT_NOTEBOOK_EXECUTION_VALIDATION.json](SUPPLEMENT_NOTEBOOK_EXECUTION_VALIDATION.json).
 - Selected clinical aggregates are published separately in [the results record](SURVIVAL_SENSITIVITY_RESULTS.json) and [Quarto](https://makotoy56.github.io/mimic-iv-copd-raas-analysis/copd_raas_survival_report.html#supplementary-sensitivity-analyses).
 
 ## Key methods and scope

@@ -55,7 +55,7 @@ The workflow is organized as a stepwise clinical analysis pipeline:
 
 ## Notebook Output Policy
 
-The 11 public notebooks retain aggregate-only outputs derived from the verified 2026-11-19 clinical run. [The original execution record](docs/NOTEBOOK_EXECUTION_VALIDATION.json) retains its original source/output hashes. Current captions and numerical summaries were refreshed from those saved aggregates without new clinical queries or model fits; [the separate presentation record](docs/NOTEBOOK_PRESENTATION_VALIDATION.json) binds their current source/output hashes to the original evidence. See [the common presentation workflow](docs/NOTEBOOK_PRESENTATION.md). No patient rows, pseudonymous identifier values or credentials are published.
+The 11 public notebooks retain aggregate-only outputs derived from the verified 2026-11-19 clinical run. [The original execution record](docs/NOTEBOOK_EXECUTION_VALIDATION.json) retains its original source/output hashes. The [historical presentation record](docs/NOTEBOOK_PRESENTATION_VALIDATION.json) binds the subsequent caption/summary refresh from those saved aggregates. The later [current-default 05a–05c execution record](docs/SUPPLEMENT_NOTEBOOK_EXECUTION_VALIDATION.json) binds the three newly executed supplementary sources/outputs and helper hashes; the unchanged 00–04 notebooks retain their historical approvals. See [the common presentation workflow](docs/NOTEBOOK_PRESENTATION.md). No patient rows, pseudonymous identifier values or credentials are published.
 
 The Git clean filter retains outputs only when both hashes match the applicable record and all presentation-to-execution/source bindings remain valid. New or modified outputs are stripped until separately reviewed. Machine-specific kernel paths, VS Code state and volatile metadata are always removed from Git; the full local notebook remains on SSD. Install the repository-local filter after cloning:
 
@@ -65,9 +65,9 @@ uv run python scripts/notebook_publication.py --install
 uv run python scripts/notebook_publication.py --check
 ```
 
-The 05-series source still defaults to synthetic inputs. The committed runtime outputs were instead produced with `COPD_NOTEBOOK_DATA_MODE=current` in the authorized local environment. For an authorized clinical notebook session, set that environment variable **before starting Jupyter**, and optionally set `COPD_NOTEBOOK_RUN_DIR` to a fresh ignored folder for execution audit files. Rerunning without that setting produces clearly labeled synthetic outputs; these do not match the reviewed clinical output hashes and will be stripped by the filter.
+New 05a–05c notebook executions default to `current`, using the existing read-only SELECT, US dry run and 200 MB cap. The input cell announces the mode before loading; missing configuration, credentials, permissions or source tables stops execution with an actionable message, without selecting synthetic data. Select `COPD_NOTEBOOK_DATA_MODE=synthetic` explicitly for artificial software checks, or `local` explicitly with a verified `LOCAL_RESULT` bundle. Set an override before launching Jupyter, or edit `DATA_MODE` explicitly in the input cell. Use the repository Python 3.12 kernel after `uv sync --locked`. Optional `COPD_NOTEBOOK_RUN_DIR` still writes aggregate-only audit bundles to a fresh ignored directory. Stored outputs retain the mode of their earlier execution; a source edit does not refresh them.
 
-All 11 notebooks were executed in order. The original eight construction SQL scripts were executed, including `04_build_outcomes.sql` and `04_build_outcomes_extended.sql` after 03b and before 04a. Construction SELECTs were dry-run before execution with a 20 GB per-script billing guard; validation SELECTs use a 200 MB cap. These are per-job guards, not billing-setting changes. Existing analysis definitions were preserved.
+In the original full execution recorded above, all 11 notebooks were executed in order. The original eight construction SQL scripts were executed, including `04_build_outcomes.sql` and `04_build_outcomes_extended.sql` after 03b and before 04a. Construction SELECTs were dry-run before execution with a 20 GB per-script billing guard; validation SELECTs use a 200 MB cap. These are per-job guards, not billing-setting changes. Existing analysis definitions were preserved.
 
 The main `refresh()` now compares freshly calculated statistical content with `CURRENT_ANALYSIS.json` before regenerating figures. If it matches (relative tolerance 1e-10, absolute tolerance 1e-12; integer counts exact), the published reference bytes remain unchanged and the new execution evidence is saved separately under ignored `reports/local_supplements/`. A mismatch stops publication instead of silently invalidating the reference-bound validation records. Execution timestamps and query job metadata are excluded from this numerical comparison.
 
@@ -182,10 +182,24 @@ See [the reproducible scope and evidence](docs/REPRODUCIBLE_SCOPE.md) for what e
 
 ## Additional survival sensitivity notebooks
 
-The 05a–05c companions use `scripts/survival_sensitivity.py` and do not call `refresh()` or overwrite main-analysis results. Default notebook runs are wholly synthetic. Use the [supplement guide](docs/SURVIVAL_SENSITIVITY_SUPPLEMENTS.md) for patient-cluster inference, competing-risk cumulative incidence, and the separate 24-hour landmark design. It includes the explicit authorized local-data command and no-query review of a saved aggregate run.
+The 05a–05c companions use `scripts/survival_sensitivity.py` and do not call `refresh()` or overwrite main-analysis results. Default notebook runs select current clinical data and stop when access/configuration is unavailable. Synthetic demonstrations require explicit selection; no failure changes the selected mode. Use the [supplement guide](docs/SURVIVAL_SENSITIVITY_SUPPLEMENTS.md) for patient-cluster inference, competing-risk cumulative incidence, and the separate 24-hour landmark design. It includes the explicit authorized local-data command and no-query review of a saved aggregate run.
 
 Pseudonymous patient/admission/stay keys are requested only by the supplementary loader option, after the same US dry run and 200 MB cap, and stay in memory. Run output is aggregate-only under ignored `reports/local_supplements/`. Tracked notebooks retain only reviewed aggregate outputs whose source/output hashes and evidence bindings match the applicable execution or presentation validation record described in the [notebook output policy](#notebook-output-policy); full local run bundles and unreviewed outputs remain in that ignored directory. R `survival` is an optional independent synthetic checker; normal analysis remains Python. New clinical estimates are not automatically promoted into README or Quarto.
 
 The Quarto supplementary section and the short README summary are generated from `docs/SURVIVAL_SENSITIVITY_RESULTS.json`, validated against `docs/SURVIVAL_SUPPLEMENTS_VALIDATION.json`. The selected public record contains aggregate counts, RAAS estimates and a fixed daily CIF grid; full local results and covariance matrices remain ignored. `scripts/report_survival_supplement.py` prepares this record from an explicitly supplied, hash-verified local aggregate run. Normal report builds require only the public aggregate records and tracked figures. See the [publication/rebuild procedure](docs/SURVIVAL_SENSITIVITY_SUPPLEMENTS.md#prepare-and-rebuild-the-public-supplementary-section).
 
 Notebook SHORT guides are generated by `scripts/render_short_notes.py` from the same public main and selected supplement records. `scripts/build_report.py` refreshes all 11 guides as part of the report-only build. Regenerate the guides directly with `.venv/bin/python scripts/render_short_notes.py`; this performs no data retrieval or analysis execution.
+
+
+### Reviewed current-default supplement execution
+
+On 2026-11-19, 05a–05c ran top-to-bottom with the repository Python 3.12.13 kernel and no mode environment override. Each used the existing read-only SELECT after a 2,736,972-byte US dry run, with the unchanged 200 MB cap. No table was rebuilt. All 653 checked supplementary numerical values matched the existing public aggregates exactly. Original execution/presentation records and scientific aggregate files remain unchanged; [the new record](docs/SUPPLEMENT_NOTEBOOK_EXECUTION_VALIDATION.json) augments their output approval for these three notebooks only.
+
+To execute the same three sources for a new authorized review, use a fresh ignored directory:
+
+```bash
+.venv/bin/python scripts/execute_current_supplement_notebooks.py --current-data \
+  --output reports/local_supplements/current_default_new_run
+```
+
+This command executes the notebooks, checks aggregate numerical agreement and output safety, and writes private executed copies plus a `pending_review` candidate. It never overwrites tracked notebooks or approves/publishes the candidate automatically. Review the figures/tables and the aggregate-only scope before adding a separate matching execution record. Missing access/configuration stops execution; synthetic/local modes remain explicit notebook choices. Numerical reproduction does not resolve the documented observational or SOFA-timing limitations.

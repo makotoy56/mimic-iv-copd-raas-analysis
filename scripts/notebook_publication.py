@@ -4,6 +4,7 @@ The clean filter retains outputs only when both source and output hashes match
 the versioned execution record. All other notebook outputs are removed.
 """
 import argparse
+import ast
 import copy
 import hashlib
 import json
@@ -15,6 +16,19 @@ import sys
 
 RECORD = "docs/NOTEBOOK_EXECUTION_VALIDATION.json"
 PRESENTATION_RECORD = "docs/NOTEBOOK_PRESENTATION_VALIDATION.json"
+CURRENT_SUPPLEMENT_RECORD = "docs/SUPPLEMENT_NOTEBOOK_EXECUTION_VALIDATION.json"
+CURRENT_SUPPLEMENTS = {
+    "05a_patient_cluster_sensitivity.ipynb": "cluster",
+    "05b_competing_risks.ipynb": "competing",
+    "05c_time_aligned_severity.ipynb": "landmark",
+}
+CURRENT_BINDINGS = {
+    "scripts/supplement_notebook_runtime.py", "scripts/render_supplement_notebook_policy.py",
+    "scripts/execute_current_supplement_notebooks.py", "scripts/survival_sensitivity.py",
+    "scripts/current_analysis.py", "scripts/notebook_bq_runtime.py", "scripts/notebook_presentation.py",
+    "scripts/presentation_catalog.py", "scripts/notebook_figure_layout.py",
+    RECORD, PRESENTATION_RECORD, "docs/CURRENT_ANALYSIS.json", "docs/SURVIVAL_SENSITIVITY_RESULTS.json",
+}
 MIMES = {"text/plain", "text/html", "image/png", "image/svg+xml"}
 
 
@@ -61,7 +75,7 @@ def output_hash(book):
     return digest(normalized_outputs(book))
 
 
-def load_record(root):
+def _historical_record(root):
     """A presentation refresh must stay bound to its original execution evidence."""
     path=root/PRESENTATION_RECORD
     if not path.exists():
@@ -77,6 +91,81 @@ def load_record(root):
         return record
     except (OSError,KeyError,ValueError):
         return {'status':'invalid'}
+
+
+def _valid_current_record(root, record):
+    """A new current run augments, never rewrites, the historical evidence."""
+    try:
+        if not isinstance(record, dict): return False
+        required = {"schema_version": 1, "status": "passed", "kind": "current_data_supplement_notebook_execution",
+                    "mode": "current", "mode_environment_override": False, "reviewed_aggregate_outputs": True,
+                    "clinical_data_retrieved": True, "patient_rows_or_identifiers_published": False,
+                    "main_analysis_updated": False, "tables_rebuilt": False, "original_records_rewritten": False,
+                    "maximum_bytes_per_query": 200_000_000, "location": "US"}
+        if any((record.get(key) is not value if isinstance(value, bool) else record.get(key) != value)
+               for key, value in required.items()): return False
+        bindings = record["source_file_sha256"]
+        if not isinstance(bindings, dict) or not CURRENT_BINDINGS.issubset(bindings): return False
+        for name, expected in bindings.items():
+            path = (root / name).resolve()
+            if not path.is_relative_to(root.resolve()) or hashlib.sha256(path.read_bytes()).hexdigest() != expected:
+                return False
+        query_tree = ast.parse((root / "scripts/current_analysis.py").read_text())
+        source_query = next(ast.literal_eval(node.value) for node in query_tree.body
+                            if isinstance(node, ast.Assign)
+                            and any(isinstance(target, ast.Name) and target.id == "QUERY" for target in node.targets))
+        if not isinstance(source_query, str): return False
+        expected_query_sha = hashlib.sha256(source_query.replace("SELECT e.age", "SELECT e.subject_id,e.hadm_id,e.stay_id,e.age", 1).encode()).hexdigest()
+        rows = record["notebooks"]
+        if len(rows) != 3 or {row["notebook"] for row in rows} != set(CURRENT_SUPPLEMENTS): return False
+        for row in rows:
+            if (row["analysis"] != CURRENT_SUPPLEMENTS[row["notebook"]] or row["status"] != "passed"
+                    or row["mode"] != "current" or row["data_origin"] != "authorized_local_current_cohort"
+                    or row["execution_kind"] != "authorized_read_only_current_data" or row["errors"] != 0
+                    or row["figures"] != 2 or row["tables"] != 4 or row["code_cells"] != 5
+                    or row["location"] != "US" or row["maximum_bytes_billed"] != 200_000_000
+                    or row["ordinary_reference_checks_passed"] is not True): return False
+            comparison = row["supplement_reference_comparison"]
+            if (comparison["passed"] is not True or type(comparison["numeric_values_checked"]) is not int
+                    or comparison["numeric_values_checked"] <= 0
+                    or not 0 <= comparison["maximum_absolute_difference"] <= 1e-8
+                    or not 0 <= comparison["relative_tolerance"] <= 1e-8
+                    or not 0 <= comparison["absolute_tolerance"] <= 1e-8): return False
+            safety = row["aggregate_output_safety"]
+            if (safety["passed"] is not True
+                    or safety["patient_rows_identifiers_credentials_local_paths_and_errors_detected"] is not False): return False
+            if not isinstance(row["query"]["job_id"], str) or not row["query"]["job_id"]: return False
+            for key in ["dry_run_bytes", "processed_bytes", "billed_bytes"]:
+                value = row["query"][key]
+                if type(value) is not int or not 0 <= value <= 200_000_000: return False
+            for key in ["source_sha256", "output_sha256", "query_sha256"]:
+                value = row[key]
+                if not isinstance(value, str) or len(value) != 64 or any(c not in "0123456789abcdef" for c in value): return False
+            if row["query_sha256"] != expected_query_sha: return False
+        return True
+    except (OSError, KeyError, TypeError, ValueError, SyntaxError, StopIteration):
+        return False
+
+
+def load_record(root):
+    root = Path(root)
+    historical = _historical_record(root)
+    path = root / CURRENT_SUPPLEMENT_RECORD
+    if not path.exists() or historical.get("status") != "passed": return historical
+    combined = copy.deepcopy(historical)
+    # Once a new current record is present, an invalid record cannot silently
+    # fall back to the old 05-source/output approval. Unchanged 00–04 stay valid.
+    for row in combined.get("notebooks", []):
+        if row.get("notebook") in CURRENT_SUPPLEMENTS: row["status"] = "superseded_current_record"
+    try:
+        current = json.loads(path.read_text())
+    except (OSError, ValueError):
+        current = {}
+    valid = _valid_current_record(root, current)
+    combined["current_supplement_record_status"] = "passed" if valid else "invalid_or_stale"
+    combined["kind"] = "historical_presentation_and_reviewed_current_supplements"
+    if valid: combined["notebooks"].extend(current["notebooks"])
+    return combined
 
 
 def approved(book, record):

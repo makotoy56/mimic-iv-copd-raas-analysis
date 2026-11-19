@@ -52,8 +52,14 @@ git archive HEAD | tar -x -C reports/local_supplements/presentation_copy
 
 The source commit must be available in local Git history. The renderer validates its notebooks against the original execution record, reads only retained aggregate outputs/public aggregate JSON, and refuses to overwrite the source repository or reuse an output directory. It uses no clinical credentials. It does not write private covariance or patient data into public files.
 
-To regenerate the saved-public Markdown sections and SHORT guides, run the report-only build in the isolated copy with the existing environment. In normal authorized clinical notebook execution, the replay setup is absent: original bounded SQL/loaders and model functions remain in use. The 05-series default is still synthetic. A new clinical run and a presentation replay must continue to be recorded separately.
+To regenerate the saved-public Markdown sections and SHORT guides, run the report-only build in the isolated copy with the existing environment. In normal authorized clinical notebook execution, the replay setup is absent: original bounded SQL/loaders and model functions remain in use. The 05-series default for new notebook execution is current clinical data, with a mode banner and a stop on missing configuration/access. Synthetic and local modes are explicit choices. A new clinical run and a presentation replay must continue to be recorded separately.
 
 ## Concise source display
 
 Source references and stored-output evidence are collected in each notebook's **Inputs and execution mode** section. The saved-clinical section identifies its public aggregate record once; the selected-execution section displays its current/local/synthetic origin once after selection. Figure and table captions contain their number, title and result-derived summary, without repeating a `Data source` line. If a display call receives a different input origin or execution provenance, its context is shown again automatically. The catalog retains machine-readable source definitions.
+
+
+The [current-default execution record](SUPPLEMENT_NOTEBOOK_EXECUTION_VALIDATION.json) separately approves the later real-data execution of 05a–05c with the default mode unset: two figures and four tables per notebook, no errors and exact agreement on all 653 checked numerical values. The historical validation JSON files and the unchanged 00–04 approvals remain intact. See [mode selection and failures](SURVIVAL_SENSITIVITY_SUPPLEMENTS.md#notebook-modes-and-access-failures).
+
+
+The 05-only [policy guidance refresh](../scripts/render_supplement_notebook_policy.py) runs after the historical summary generators during a report build. Their original script bindings remain intact, preserving the unchanged 00–04 snapshot approvals. The historical replay command above is not by itself approval of this new runtime policy: the separate current-default execution record includes the new runtime/policy/runner helper hashes, actual default-mode metadata and matching notebook source/output hashes. No historical validation record was rewritten for this implementation.
