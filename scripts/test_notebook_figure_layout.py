@@ -6,7 +6,8 @@ import unittest
 
 import nbformat
 
-from notebook_figure_layout import validate_layout, GUIDE_HEADINGS
+from notebook_figure_layout import validate_layout, validate_tables, GUIDE_HEADINGS, INPUT_MARKER
+from presentation_catalog import CATALOG
 
 REPO=Path(__file__).resolve().parents[1]
 EXPECTED={'04a_outcomes_and_modeling':1,'04b_outcomes_and_modeling_raas_subgroups':1,
@@ -20,10 +21,18 @@ class NotebookFigureLayoutTests(unittest.TestCase):
             if path.stem=='00_setup':continue
             with self.subTest(notebook=path.stem):
                 book=nbformat.read(path,as_version=4)
+                self.assertEqual(sum(c.cell_type=='markdown' and c.source.startswith(INPUT_MARKER) for c in book.cells),1)
+                presentation='\n'.join(c.source for c in book.cells if c.cell_type=='markdown')
+                presentation+='\n'.join(o.get('data',{}).get('text/html','') for c in book.cells if c.cell_type=='code' for o in c.outputs)
+                self.assertNotIn('Data source:',presentation)
                 self.assertEqual(validate_layout(book),list(range(1,EXPECTED.get(path.stem,0)+1)))
+                self.assertEqual(validate_tables(book,path.stem),list(range(1,len(CATALOG[path.stem.split('_',1)[0]]['tables'])+1)))
                 if path.stem in EXPECTED:
                     self.assertEqual(sum(c.cell_type=='markdown' and re.search(r'^## Saved clinical results$',c.source,re.M) is not None for c in book.cells),1)
                     self.assertEqual(sum(c.cell_type=='markdown' and re.search(r'^## Runtime execution$',c.source,re.M) is not None for c in book.cells),1)
+                if path.stem.startswith('05'):
+                    context=[o.get('data',{}).get('text/html','') for c in book.cells if c.cell_type=='code' for o in c.outputs]
+                    self.assertEqual(sum('Input context:' in html for html in context),1)
 
     def test_duplicate_numbers_and_misplaced_explanations_are_rejected(self):
         book=nbformat.read(REPO/'notebooks/04c_extended_covariate_cox_model.ipynb',as_version=4)

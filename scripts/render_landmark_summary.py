@@ -3,7 +3,9 @@ from pathlib import Path
 
 from report_survival_supplement import load_public, interval
 from figure_interpretation import RUNTIME_LANDMARK_NOTE
-from notebook_figure_layout import saved_intro, figure_block, normalize_runtime, validate_layout
+from notebook_figure_layout import saved_intro, saved_figure_block, normalize_runtime, validate_layout, normalize_input_context
+from notebook_presentation import table_block, model_sentence, eligibility_summary
+from presentation_catalog import interval_position, relative_to_one
 
 NOTEBOOK = "05c_time_aligned_severity.ipynb"
 FIGURE = "supplementary_landmark_forest.png"
@@ -24,22 +26,18 @@ def summary_sections(data, source_href="SURVIVAL_SENSITIVITY_RESULTS.json"):
              ("Excluded: missing core covariates among eligible admissions", flow["eligible_missing_core_covariates"]),
              ("Analyzed in each matched landmark model", first["n"])]
     intro = saved_intro(source_href)
-    eligibility = ["### Cohort at the 24-hour landmark", "",
-                   "| Eligibility step | Admissions |", "| --- | ---: |"]
+    eligibility = ["| Eligibility step | Admissions |", "| --- | ---: |"]
     eligibility += [f"| {label} | {count:,} |" for label, count in steps]
-    eligibility += ["", "Exclusions are sequential. Follow-up starts 24 hours after ICU entry; "
-                    "one day is subtracted from eligible follow-up. Both models use the same "
-                    f"{first['n']:,} admissions ({first['patients']:,} patients)."]
-    models = ["### Matched landmark Cox results", "",
-              "The contrast is qualifying pre-ICU RAAS prescription orders versus no qualifying orders. "
-              "Both models stratify by era; all intervals and p-values below use patient-cluster inference.", "",
-              "| Model | Admissions | Deaths | Adjusted HR | Patient-cluster 95% CI | p |",
+    eligibility=[table_block('05c','saved_eligibility','\n'.join(eligibility),eligibility_summary(flow,first),source_href)]
+    models = ["| Model | Admissions | Deaths | Adjusted HR | Patient-cluster 95% CI | p |",
               "| --- | ---: | ---: | ---: | --- | ---: |"]
     for key, label in MODELS:
         model = landmark["models"][key]
         ci = model["patient_cluster"]
         p = f"{ci['p']:.5f}" if ci["p"] >= .00001 else "<0.00001"
         models.append(f"| {label} | {model['n']:,} | {model['events']:,} | {model['hr']:.3f} | {interval(ci)} | {p} |")
+    models=[table_block('05c','saved_models','\n'.join(models),
+                        ' '.join(model_sentence(label,landmark['models'][key],'patient_cluster') for key,label in MODELS),source_href)]
     age_sex = landmark["models"]["landmark_age_sex"]
     core = landmark["models"]["landmark_first_day_sofa_core"]
     guide = ("**How to read**\n\n"
@@ -52,17 +50,16 @@ def summary_sections(data, source_href="SURVIVAL_SENSITIVITY_RESULTS.json"):
               f"Both use the same {first['n']:,} admissions alive and hospitalized beyond 24 hours, with follow-up beginning at that landmark.\n\n"
               "**What the results show**\n\n"
               f"- Age/sex/era: HR {age_sex['hr']:.3f} (95% CI {interval(age_sex['patient_cluster'])}). "
-              "The interval lies below 1, indicating an association with lower death hazard under this specification.\n"
+              f"{interval_position(age_sex['patient_cluster']['lower_95'],age_sex['patient_cluster']['upper_95'])}\n"
               f"- Exploratory SOFA core: HR {core['hr']:.3f} (95% CI {interval(core['patient_cluster'])}). "
-              "The estimate is closer to 1, and its interval includes 1. This result remains compatible with lower, equal or somewhat higher hazard; "
-              "it does not establish absence of an association or equivalence.\n\n"
+              f"{relative_to_one(age_sex['hr'],core['hr'])} {interval_position(core['patient_cluster']['lower_95'],core['patient_cluster']['upper_95'])}\n\n"
               "**Interpretation limits**\n\n"
               "The two rows are different adjustment specifications, not separate treatment groups or a formal test between model estimates. "
-              "One interval excluding 1 and the other including 1 does not establish a statistically significant difference between the estimates. "
+              "Differences in whether intervals include 1 do not establish a statistically significant difference between the estimates. "
               "Their change cannot be attributed solely to controlling baseline severity: first-day SOFA is post-exposure, "
               "and individual component times remain independently unverified. The landmark also changes the population and time origin "
               "relative to the original ICU-entry analysis. Neither row establishes a causal treatment effect.")
-    figure=figure_block(1,"24-hour landmark Cox models",f'../assets/{FIGURE}',guide,source_href)
+    figure=saved_figure_block('05c','saved',f'../assets/{FIGURE}',guide,source_href)
     return [("intro", intro), ("eligibility", "\n".join(eligibility)),
             ("models", "\n".join(models)), ("figure", figure)]
 
@@ -121,6 +118,7 @@ def generate(repo):
             f"{MARKER}{name}; edit scripts/render_landmark_summary.py -->\n\n{text}",
             id=existing_ids.get(name, "public-landmark-" + name)))
     notebook.cells = cells[:insert_at] + preview + cells[insert_at:]
+    normalize_input_context(notebook,NOTEBOOK)
     normalize_runtime(notebook,'landmark',RUNTIME_LANDMARK_NOTE)
     validate_layout(notebook)
     nbformat.validate(notebook)

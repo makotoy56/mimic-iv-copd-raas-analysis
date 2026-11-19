@@ -16,7 +16,7 @@ Compare ordinary and patient-cluster inference on the same primary and explorato
 ## Output and downstream use
 
 - Aggregate tables and figures in the notebook; no BigQuery table or main estimate is overwritten.
-- The explicit CLI `--output` option saves aggregate JSON and figures under ignored `reports/local_supplements/`. Tracked notebooks retain only the reviewed aggregate outputs bound in `NOTEBOOK_EXECUTION_VALIDATION.json`.
+- The explicit CLI `--output` option saves aggregate JSON and figures under ignored `reports/local_supplements/`. The original clinical execution is recorded in `NOTEBOOK_EXECUTION_VALIDATION.json`; current caption/summary refreshes from those saved aggregates are bound separately in `NOTEBOOK_PRESENTATION_VALIDATION.json`.
 - Selected clinical aggregates are published separately in [the results record](SURVIVAL_SENSITIVITY_RESULTS.json) and [Quarto](https://makotoy56.github.io/mimic-iv-copd-raas-analysis/copd_raas_survival_report.html#supplementary-sensitivity-analyses).
 
 ## Key methods and scope
@@ -28,18 +28,27 @@ Compare ordinary and patient-cluster inference on the same primary and explorato
 
 ## Results summary
 
-Published clinical results, not the default synthetic notebook output. Source: [selected aggregate record](SURVIVAL_SENSITIVITY_RESULTS.json).
+### Table 1 — Saved admissions and patient dependence
 
-| Model | HR | Ordinary 95% CI | Patient-cluster 95% CI | Cluster p |
-| --- | ---: | --- | --- | ---: |
-| Primary age/sex/era | 0.732 | 0.592–0.904 | 0.593–0.902 | 0.00346 |
-| Exploratory SOFA core | 0.833 | 0.673–1.030 | 0.665–1.042 | 0.11019 |
+| Measure | Count |
+| --- | ---: |
+| Admissions | 11,964 |
+| In-hospital deaths | 1,692 |
+| Patients | 9,157 |
+| Patients with repeated admissions | 1,656 |
+| Admissions contributed by repeat patients | 4,463 |
 
-11,964 admissions represent 9,157 patients; 1,656 patients contributed 4,463 admissions across repeated hospitalizations.
+**Summary:** 11,964 admissions represent 9,157 patients; 1,656 patients contributed 4,463 admissions across repeated hospitalizations.
+### Table 2 — Saved ordinary and patient-cluster Cox inference
+
+| Model | HR | Ordinary 95% CI | Patient-cluster 95% CI | Ordinary p | Cluster p |
+| --- | ---: | --- | --- | ---: | ---: |
+| Primary age/sex/era | 0.732 | 0.592–0.904 | 0.593–0.902 | 0.00383 | 0.00346 |
+| Exploratory first-day SOFA core | 0.833 | 0.673–1.030 | 0.665–1.042 | 0.09122 | 0.11019 |
+
+**Summary:** Primary age/sex/era: HR 0.732 (95% CI 0.593–0.902); p=0.003455. 11,964 admissions, 1,692 deaths. The interval lies below 1. Exploratory SOFA core: HR 0.833 (95% CI 0.665–1.042); p=0.1102. 11,964 admissions, 1,692 deaths. The interval includes 1; this does not establish equivalence or absence of an association.
 
 ### Figure 1 — Ordinary and patient-cluster inference
-
-**Data source:** Saved clinical execution results; [aggregate record](SURVIVAL_SENSITIVITY_RESULTS.json).
 
 ![Figure 1 — Ordinary and patient-cluster inference](../assets/supplementary_cluster_forest.png)
 
@@ -50,7 +59,7 @@ Published clinical results, not the default synthetic notebook output. Source: [
 
 **What the results show**
 
-- The primary HR remains 0.732, with patient-cluster CI 0.593–0.902. The exploratory SOFA-core HR remains 0.833, with cluster CI 0.665–1.042, which includes 1. The core result does not establish equal hazards or equivalence.
+- The primary HR is 0.732, with patient-cluster CI 0.593–0.902. The interval lies below 1. The exploratory SOFA-core HR is 0.833, with cluster CI 0.665–1.042. The interval includes 1; this does not establish equivalence or absence of an association.
 
 **Interpretation limits**
 

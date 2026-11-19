@@ -43,8 +43,6 @@ All rows are exploratory ICU-entry specifications. Their differences do not isol
 
 ### Figure 1 — Exploratory SOFA-core Cox estimates
 
-**Data source:** Saved clinical execution results; [aggregate record](CURRENT_ANALYSIS.json).
-
 ![Figure 1 — Exploratory SOFA-core Cox estimates](../assets/cox_forest_plot.png)
 
 **How to read**
@@ -54,15 +52,13 @@ All rows are exploratory ICU-entry specifications. Their differences do not isol
 
 **What the results show**
 
-- The RAAS row is HR 0.833 (95% CI 0.673–1.030) in the era-stratified, unpenalized SOFA-core model. Its interval includes 1, so it does not establish a clear association in this specification; it does not prove equal hazards or no association.
+- The RAAS row is HR 0.833 (95% CI 0.673–1.030) in the era-stratified, unpenalized SOFA-core model. The interval includes 1; this does not establish equivalence or absence of an association.
 
 **Interpretation limits**
 
 - This is the exploratory 04c model, not the refined primary 04a model or the separate patient-cluster analysis. First-day SOFA may include post-start information. The estimates are conditional associations and cannot establish treatment effects.
 
 ### Figure 2 — Model sensitivity comparison
-
-**Data source:** Saved clinical execution results; [aggregate record](CURRENT_ANALYSIS.json).
 
 ![Figure 2 — Model sensitivity comparison](../assets/cox_model_sensitivity_comparison.svg)
 
@@ -72,7 +68,7 @@ All rows are exploratory ICU-entry specifications. Their differences do not isol
 
 **What the results show**
 
-- The primary estimate is 0.732 (95% CI 0.592–0.904); the exploratory SOFA-core estimate is 0.833 (95% CI 0.673–1.030). The results depend on the specification, and several intervals include HR=1. These plotted intervals use the original inference, not the later patient-cluster intervals or 24-hour landmark population.
+- The primary estimate is 0.732 (95% CI 0.592–0.904); the exploratory SOFA-core estimate is 0.833 (95% CI 0.673–1.030). These plotted intervals use the original inference, not the later patient-cluster intervals or 24-hour landmark population. Interpret every row using its own confidence interval.
 
 **Interpretation limits**
 

@@ -10,7 +10,8 @@ from render_current_report import SOFA_TIMING_NOTE, estimate, pvalue
 from report_survival_supplement import load_public, interval, probability
 from render_landmark_summary import summary_sections
 from figure_interpretation import main_notes, supplement_notes
-from notebook_figure_layout import figure_block
+from notebook_figure_layout import saved_figure_block
+from render_supplement_notebook_summaries import sections as saved_sections
 
 PREFIX = "mimic-iv-portfolio.copd_raas."
 REPORT = "https://makotoy56.github.io/mimic-iv-copd-raas-analysis/copd_raas_survival_report.html#supplementary-sensitivity-analyses"
@@ -18,7 +19,7 @@ MAIN_INPUT = [f"`{PREFIX}cohort_copd_outcomes_extended`", f"`{PREFIX}cohort_copd
 PREREQUISITES = "Run `sql/04_build_outcomes.sql` and then `sql/04_build_outcomes_extended.sql` after phase 03 and before any 04-series notebook. Those SQL scripts create the outcome tables; the 04-series notebooks do not. See [the dependency map](METHODS_OVERVIEW.md#outcome-table-dependencies)."
 REFRESH_OUTPUT = ["No new persistent BigQuery table.", "Shared `refresh()` recomputes all main model specifications, four figures, `docs/CURRENT_ANALYSIS.json`, and the optional secondary logistic exports under ignored `python/outputs/`.", "Report source and narrative are regenerated when their provenance checks pass. Revalidate/rebind supplementary results after changing the main reference; build final HTML with `scripts/build_report.py`."]
 MODES = 'The source notebook defaults to `DATA_MODE = "synthetic"`; those outputs are artificial demonstrations. `current` explicitly uses the approved, US-dry-run/200-MB-capped loader; patient/admission/stay keys remain in memory. `local` reads a saved, hash-verified aggregate result without another query. Never display admission-level rows.'
-SUPP_OUTPUT = ["Aggregate tables and figures in the notebook; no BigQuery table or main estimate is overwritten.", "The explicit CLI `--output` option saves aggregate JSON and figures under ignored `reports/local_supplements/`. Tracked notebooks retain only the reviewed aggregate outputs bound in `NOTEBOOK_EXECUTION_VALIDATION.json`.", "Selected clinical aggregates are published separately in [the results record](SURVIVAL_SENSITIVITY_RESULTS.json) and [Quarto](" + REPORT + ")."]
+SUPP_OUTPUT = ["Aggregate tables and figures in the notebook; no BigQuery table or main estimate is overwritten.", "The explicit CLI `--output` option saves aggregate JSON and figures under ignored `reports/local_supplements/`. The original clinical execution is recorded in `NOTEBOOK_EXECUTION_VALIDATION.json`; current caption/summary refreshes from those saved aggregates are bound separately in `NOTEBOOK_PRESENTATION_VALIDATION.json`.", "Selected clinical aggregates are published separately in [the results record](SURVIVAL_SENSITIVITY_RESULTS.json) and [Quarto](" + REPORT + ")."]
 
 
 def note(title, notebook, objective, inputs, outputs, methods, results, next_step, related=""):
@@ -101,7 +102,7 @@ def generate(repo):
                  "Uses continuous elapsed follow-up to recorded in-hospital death; discharge time is a flagged fallback only when death time is missing. Live discharge is censored in this cause-specific analysis.",
                  "The refined primary Cox model adjusts for age and sex, stratifies by `anchor_year_group`, and uses ordinary model-based intervals without SOFA or patient clustering.",
                  "Shared calculations also fit Kaplan-Meier/log-rank and rank Schoenfeld-based PH diagnostics. Four main figures are refreshed together."],
-        results=(f"The saved main cohort has {main['n']:,} admissions and {main['deaths']:,} deaths. The refined primary estimate is HR {primary['hr']:.3f} (95% CI {interval(primary)}); p={pvalue(primary['p'])}. These are observational associations. Numerical source: [CURRENT_ANALYSIS.json](CURRENT_ANALYSIS.json).") + "\n\n" + figure_block(1,"Kaplan–Meier estimates","../assets/kaplan_meier_curve.png",main_notes(main)["km"],"CURRENT_ANALYSIS.json"),
+        results=(f"The saved main cohort has {main['n']:,} admissions and {main['deaths']:,} deaths. The refined primary estimate is HR {primary['hr']:.3f} (95% CI {interval(primary)}); p={pvalue(primary['p'])}. These are observational associations. Numerical source: [CURRENT_ANALYSIS.json](CURRENT_ANALYSIS.json).") + "\n\n" + saved_figure_block("04a","km","../assets/kaplan_meier_curve.png",main_notes(main)["km"],"CURRENT_ANALYSIS.json"),
         related="[05a](05a_patient_cluster_sensitivity_SHORT.md) separately evaluates patient-cluster inference; [05b](05b_competing_risks_SHORT.md) reports death/discharge cumulative incidence. These preserve the original main estimates.",
         next_step=next_to("04b_outcomes_and_modeling_raas_subgroups", "04b — Subclasses versus neither"))
 
@@ -115,7 +116,7 @@ def generate(repo):
                  "Excludes records with both class flags positive. Fits ACEi and ARB indicators together with age and sex, stratified by era, using ordinary model-based inference.",
                  "Each class is compared with neither qualifying order. The main results contain no direct ACEi-versus-ARB test; differing p-values do not establish a class difference.",
                  "Uses the original ICU-entry endpoint/fallback definition and live-discharge censoring. Order flags do not establish actual or simultaneous administration."],
-        results=(f"The saved subclass model includes {sub['n']:,} admissions and {sub['deaths']:,} deaths. ACEi-only versus neither: HR {e1['hr']:.3f} (95% CI {interval(e1)}); p={pvalue(e1['p'])}. ARB-only versus neither: HR {e2['hr']:.3f} (95% CI {interval(e2)}); p={pvalue(e2['p'])}. Source: [CURRENT_ANALYSIS.json](CURRENT_ANALYSIS.json).") + "\n\n" + figure_block(1,"ACEi-only and ARB-only order estimates versus neither","../assets/raas_subgroup_forest_plot.svg",main_notes(main)["subgroups"],"CURRENT_ANALYSIS.json"),
+        results=(f"The saved subclass model includes {sub['n']:,} admissions and {sub['deaths']:,} deaths. ACEi-only versus neither: HR {e1['hr']:.3f} (95% CI {interval(e1)}); p={pvalue(e1['p'])}. ARB-only versus neither: HR {e2['hr']:.3f} (95% CI {interval(e2)}); p={pvalue(e2['p'])}. Source: [CURRENT_ANALYSIS.json](CURRENT_ANALYSIS.json).") + "\n\n" + saved_figure_block("04b","subgroups","../assets/raas_subgroup_forest_plot.svg",main_notes(main)["subgroups"],"CURRENT_ANALYSIS.json"),
         related="The published [05a–05c supplements](SURVIVAL_SENSITIVITY_SUPPLEMENTS.md) use the binary RAAS grouping, not new class-specific or direct ACEi/ARB analyses. The separate [local contrast workflow](ACEI_ARB_SUPPLEMENT_LOCAL.md) remains outside the public main results.",
         next_step=next_to("04c_extended_covariate_cox_model", "04c — Exploratory extended models"))
 
@@ -131,7 +132,7 @@ def generate(repo):
                  "Pools ICU labels with fewer than 50 admissions using frequency alone. Evaluates unpenalized and L2-penalized core/ICU fits.",
                  "Additional exploratory fits stratify by era, CHF and exact SOFA; the ICU version also stratifies by pooled ICU type. Rank PH tests and warnings require model-specific interpretation.",
                  "These ICU-entry main sensitivity fits retain ordinary admission-level intervals and live-discharge censoring."],
-        results=("\n".join(rows) + "\n\nAll rows are exploratory ICU-entry specifications. Their differences do not isolate pre-ICU confounding. Source: [CURRENT_ANALYSIS.json](CURRENT_ANALYSIS.json).") + "\n\n" + figure_block(1,"Exploratory SOFA-core Cox estimates","../assets/cox_forest_plot.png",main_notes(main)["core"],"CURRENT_ANALYSIS.json") + "\n\n" + figure_block(2,"Model sensitivity comparison","../assets/cox_model_sensitivity_comparison.svg",main_notes(main)["sensitivity"],"CURRENT_ANALYSIS.json"),
+        results=("\n".join(rows) + "\n\nAll rows are exploratory ICU-entry specifications. Their differences do not isolate pre-ICU confounding. Source: [CURRENT_ANALYSIS.json](CURRENT_ANALYSIS.json).") + "\n\n" + saved_figure_block("04c","core","../assets/cox_forest_plot.png",main_notes(main)["core"],"CURRENT_ANALYSIS.json") + "\n\n" + saved_figure_block("04c","sensitivity","../assets/cox_model_sensitivity_comparison.svg",main_notes(main)["sensitivity"],"CURRENT_ANALYSIS.json"),
         related="[05a](05a_patient_cluster_sensitivity_SHORT.md) separately reports cluster intervals for the core model. [05c](05c_time_aligned_severity_SHORT.md) implements the distinct 24-hour landmark; it does not reconstruct pre-ICU severity or independently verify component times.",
         next_step="Optional: [04d — Secondary logistic export](04d_python_logistic_model_SHORT.md). The 05-series supplements do not depend on running 04d.")
 
@@ -147,13 +148,7 @@ def generate(repo):
 
     if supplement is not None:
         cohort = supplement["cohort"]
-        rows = ["Published clinical results, not the default synthetic notebook output. Source: [selected aggregate record](SURVIVAL_SENSITIVITY_RESULTS.json).", "",
-                "| Model | HR | Ordinary 95% CI | Patient-cluster 95% CI | Cluster p |", "| --- | ---: | --- | --- | ---: |"]
-        for key, label in [("primary_refined", "Primary age/sex/era"), ("core", "Exploratory SOFA core")]:
-            e = supplement["cluster"]["models"][key]
-            rows.append(f"| {label} | {e['hr']:.3f} | {interval(e['ordinary'])} | {interval(e['patient_cluster'])} | {pvalue(e['patient_cluster']['p'])} |")
-        rows += ["", f"{cohort['n']:,} admissions represent {cohort['patients']:,} patients; {cohort['patients_with_multiple_admissions']:,} patients contributed {cohort['admissions_from_repeat_patients']:,} admissions across repeated hospitalizations."]
-        rows += ["", figure_block(1,"Ordinary and patient-cluster inference","../assets/supplementary_cluster_forest.png",supplement_notes(supplement)["cluster"],"SURVIVAL_SENSITIVITY_RESULTS.json")]
+        rows = [text for part,text in saved_sections(supplement, "cluster") if part != "intro"]
         add("05a_patient_cluster_sensitivity", "05a — Patient-cluster sensitivity",
             objective="Compare ordinary and patient-cluster inference on the same primary and exploratory core admissions.",
             inputs=[MODES, "Shares the original extended-outcome/detailed-order inputs; published values come from the selected aggregate record."],
@@ -165,15 +160,7 @@ def generate(repo):
             results="\n".join(rows), related=f"[Full published supplementary section]({REPORT}) and [methods/validation guide](SURVIVAL_SENSITIVITY_SUPPLEMENTS.md).",
             next_step=next_to("05b_competing_risks", "05b — Competing hospital endpoints"))
 
-        rows = ["Published clinical results, not the default synthetic output; CIFs are unadjusted and intervals are pointwise 95% intervals.", "",
-                "| Qualifying RAAS orders | Day | Death CIF %, 95% CI | Live-discharge CIF %, 95% CI |", "| --- | ---: | --- | --- |"]
-        for g in supplement["competing"]["groups"]:
-            for row in g["curve"]:
-                if row["day"] in [7, 14, 28]:
-                    rows.append(f"| {'Yes' if g['raas_order_group'] else 'No'} | {row['day']} | {probability(row, 'death')} | {probability(row, 'discharge')} |")
-        difference = supplement["competing"]["death_cif_difference_raas_minus_no_raas"][-1]
-        rows += ["", f"Day-28 death-CIF difference, RAAS minus no RAAS: {100*difference['difference']:.2f} percentage points (95% CI {100*difference['lower_95']:.2f} to {100*difference['upper_95']:.2f}). This is an unadjusted association, not a treatment effect."]
-        rows += ["", figure_block(1,"Death and live discharge cumulative incidence","../assets/supplementary_competing_risks.svg",supplement_notes(supplement)["competing"],"SURVIVAL_SENSITIVITY_RESULTS.json")]
+        rows = [text for part,text in saved_sections(supplement, "competing") if part != "intro"]
         add("05b_competing_risks", "05b — Death and discharge as competing events",
             objective="Report unadjusted cumulative incidence of death and live discharge, alongside separate adjusted cause-specific Cox associations.",
             inputs=[MODES, "Same continuous ICU-entry follow-up; death is event 1 and live discharge event 2."],

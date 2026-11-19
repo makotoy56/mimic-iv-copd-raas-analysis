@@ -117,7 +117,7 @@ Figures shown in the README are generated from the analysis notebooks and saved 
 
 **What the results show**
 
-- The RAAS row is HR 0.833 (95% CI 0.673–1.030) in the era-stratified, unpenalized SOFA-core model. Its interval includes 1, so it does not establish a clear association in this specification; it does not prove equal hazards or no association.
+- The RAAS row is HR 0.833 (95% CI 0.673–1.030) in the era-stratified, unpenalized SOFA-core model. The interval includes 1; this does not establish equivalence or absence of an association.
 
 **Interpretation limits**
 
@@ -238,4 +238,4 @@ Access was granted after required training and approval under the PhysioNet data
 
 ### Verified notebook execution
 
-All 11 public notebooks were rerun against the authorized clinical BigQuery environment on 2026-11-19, with zero execution errors and matching main/supplementary aggregate results. Reviewed tables and figures are saved in the notebooks; [the execution record](docs/NOTEBOOK_EXECUTION_VALIDATION.json) binds their sources and outputs. The 05-series source defaults to synthetic inputs for new runs; its committed runtime outputs used current data. See the [notebook output policy](REPRODUCIBILITY.md#notebook-output-policy).
+All 11 public notebooks were rerun against the authorized clinical BigQuery environment on 2026-11-19, with zero execution errors and matching main/supplementary aggregate results. The [original execution record](docs/NOTEBOOK_EXECUTION_VALIDATION.json) retains that clinical evidence. Current notebook captions and summaries were regenerated from those saved aggregates without clinical queries or model refits; [the separate presentation record](docs/NOTEBOOK_PRESENTATION_VALIDATION.json) binds the updated notebook sources and outputs. All 10 figures and 32 tables use the [shared presentation conventions](docs/NOTEBOOK_PRESENTATION.md). The 05-series source defaults to synthetic inputs for new runs; its committed runtime outputs used current data. See the [notebook output policy](REPRODUCIBILITY.md#notebook-output-policy).

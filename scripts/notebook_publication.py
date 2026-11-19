@@ -14,6 +14,7 @@ import sys
 
 
 RECORD = "docs/NOTEBOOK_EXECUTION_VALIDATION.json"
+PRESENTATION_RECORD = "docs/NOTEBOOK_PRESENTATION_VALIDATION.json"
 MIMES = {"text/plain", "text/html", "image/png", "image/svg+xml"}
 
 
@@ -58,6 +59,24 @@ def normalized_outputs(book):
 
 def output_hash(book):
     return digest(normalized_outputs(book))
+
+
+def load_record(root):
+    """A presentation refresh must stay bound to its original execution evidence."""
+    path=root/PRESENTATION_RECORD
+    if not path.exists():
+        return json.loads((root/RECORD).read_text()) if (root/RECORD).exists() else {}
+    try:
+        record=json.loads(path.read_text())
+        bindings={RECORD:'source_execution_record_sha256','docs/CURRENT_ANALYSIS.json':'main_reference_sha256',
+                  'docs/SURVIVAL_SENSITIVITY_RESULTS.json':'supplement_reference_sha256'}
+        for name,key in bindings.items():
+            if hashlib.sha256((root/name).read_bytes()).hexdigest()!=record[key]:return {'status':'stale'}
+        for name,expected in record['presentation_script_sha256'].items():
+            if hashlib.sha256((root/'scripts'/name).read_bytes()).hexdigest()!=expected:return {'status':'stale'}
+        return record
+    except (OSError,KeyError,ValueError):
+        return {'status':'invalid'}
 
 
 def approved(book, record):
@@ -110,8 +129,7 @@ def main():
             subprocess.run(["git", "config", "--local", "filter.portfolio-notebook."+key, value], cwd=root, check=True)
         print("Installed the local reviewed-output notebook filter")
         return
-    record_path = root / RECORD
-    record = json.loads(record_path.read_text()) if record_path.exists() else {}
+    record = load_record(root)
     if args.check:
         books = list((root / "notebooks").glob("*.ipynb"))
         names = {row["notebook"] for row in record.get("notebooks", [])}
@@ -121,7 +139,7 @@ def main():
         failed = [path.name for path in checked if not approved(json.loads(path.read_text()), record)]
         if len(checked) != len(names) or failed:
             raise SystemExit("Notebook execution record does not match saved outputs")
-        print(f"Verified reviewed sources and outputs for {len(checked)} notebooks")
+        print(f"Verified reviewed sources and outputs for {len(checked)} notebooks ({record.get('kind','clinical_execution')})")
         return
     book = json.load(sys.stdin)
     json.dump(sanitize(book, approved(book, record)), sys.stdout, indent=1, ensure_ascii=False)

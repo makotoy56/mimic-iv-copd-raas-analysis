@@ -1,0 +1,189 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "kind": "presentation_refresh_from_saved_validated_aggregates",
+  "checked_at_utc": "2026-11-19T04:57:56.196432+00:00",
+  "source_commit": "27e6743edd973ec4bf461f56cc3872b41a880546",
+  "source_execution_record_sha256": "996be104c0833cbd514390da004d18d255be745fa113af80f8f1ddb370302c40",
+  "main_reference_sha256": "554bda76eb780ff1a39c509076c97691b5661140c65cdfee60b071cba9a4537b",
+  "supplement_reference_sha256": "9186f2fe6163b8c03b270822f264948266a7098e5483cddc303d4a1012188a7e",
+  "notebook_input_sha256": {
+    "01_icu_cohort.ipynb": "f9a5a359ca707345d35b3bac261e5e5c28527670eab7f88c321218f3c8907033",
+    "02_cohort_and_exposures.ipynb": "1950b7ece4b38b94cf3a859d930ed0622805c0d3c2e5c7e5293f2e52b02fc5ff",
+    "03a_baseline.ipynb": "4597370cb26d1b8e2942f6e1ca01df2a97742f4360bab8eeadd762b2426d6be0",
+    "03b_merge_exposures.ipynb": "09d9920223a5717c65ff63cddcf7afbdf73f3852d7a256b8775df0f87bda88bc",
+    "04a_outcomes_and_modeling.ipynb": "1de7d1aaa8443e31c43909fd5b170ca58f254aac26dcbd9a21fa8ee5e514cdaa",
+    "04b_outcomes_and_modeling_raas_subgroups.ipynb": "1d6ae350caae0a388fedb243cebe3842e1e5df57bafe6d6b62c77e51ceab81c4",
+    "04c_extended_covariate_cox_model.ipynb": "567a51ba9f5722fc3dd41255f0e1948a3202913a1a7c9ec4e0a9ef758d51a0b4",
+    "04d_python_logistic_model.ipynb": "ff69b60b77a08d24421609f436494fe303f43eab0fd564b25a9c14f9ca0dd571",
+    "05a_patient_cluster_sensitivity.ipynb": "43d9e6361d6511e3a1fe0005ed658207579a6a17d43cd55c6aa9702d4d6a525a",
+    "05b_competing_risks.ipynb": "34924e9abbe3f644574c09d250ed70db5152cafddba7f269bd6f2254f7a5792d",
+    "05c_time_aligned_severity.ipynb": "9f2416978df6565734d783d7402b77bef56b05fdae5b5a355a7636832f403acd"
+  },
+  "new_clinical_data_retrieved": false,
+  "bigquery_jobs": 0,
+  "statistical_models_refit": false,
+  "tables_rebuilt": false,
+  "presentation_script_sha256": {
+    "presentation_catalog.py": "d7e49bfeb9923ab1c360c47905b2f534497ea06d2208844530a79617bed6a955",
+    "notebook_presentation.py": "cfae8f471eb29fb3c464e9010abbe9f10ac3bf1f5856c6599085df831a7e7313",
+    "notebook_figure_layout.py": "fca13b429eafd078dd175df784825a3956705b33e31c1e8addfe27012bd3b2f8",
+    "figure_interpretation.py": "d78493a0539665dbb6038013c63df311c086a935b81554f8215f1170b74866f6",
+    "render_main_figure_guides.py": "97ac1085ddad86688c6f84b1aeb9f5625d2d1806c9aa651b2c87727585b0aa2a",
+    "render_supplement_notebook_summaries.py": "798dba09619e9a11d90b3432989b4285e877f7751e8f6e37b1c1c599d57849fc",
+    "render_landmark_summary.py": "2ced55621ac5c6cada4da05ac3187668ae115641f588b53f7276514a51f9e9d4",
+    "render_notebook_presentations.py": "905615f22b24a0a2eb118f12252bd3c5c26f93adb8094790ff70f1d00722497a"
+  },
+  "notebooks": [
+    {
+      "notebook": "01_icu_cohort.ipynb",
+      "status": "passed",
+      "source_sha256": "a2982f1dafbfbe5d2b7ff3be3569da6b82c75dd046cf425bf3a7ef18d13208f7",
+      "output_sha256": "6f2cc392a6ca0a62b65f2d34c0bad529226197f1fb188e54fe2e80718985b5c9",
+      "code_cells": 3,
+      "figures": 0,
+      "tables": 1,
+      "errors": 0,
+      "execution_kind": "offline_presentation_replay_from_verified_aggregates"
+    },
+    {
+      "notebook": "02_cohort_and_exposures.ipynb",
+      "status": "passed",
+      "source_sha256": "aef64d4fab88a5770b80456fdf65982af9f042c98a4b35e63c0339e243e562ec",
+      "output_sha256": "c1d47750b94cbb9478eefe002c76caa0f788bc22fdafd578197fc4e90939a130",
+      "code_cells": 7,
+      "figures": 0,
+      "tables": 3,
+      "errors": 0,
+      "execution_kind": "offline_presentation_replay_from_verified_aggregates"
+    },
+    {
+      "notebook": "03a_baseline.ipynb",
+      "status": "passed",
+      "source_sha256": "52fe9793cc0caa159355f775ff137accfc0f5ba97a98bf1dde945b923b2f673f",
+      "output_sha256": "015cdf7f94c7f60b01c2b7ea5a02e591569e55d21ffdb9b8bb57a10d80846e87",
+      "code_cells": 4,
+      "figures": 0,
+      "tables": 3,
+      "errors": 0,
+      "execution_kind": "offline_presentation_replay_from_verified_aggregates"
+    },
+    {
+      "notebook": "03b_merge_exposures.ipynb",
+      "status": "passed",
+      "source_sha256": "986ebabfdc90da2864eedcebc2ea2d99945a26606c8ead340f95e0e135bcad6a",
+      "output_sha256": "f6e6b8138bc396fe64c0d29c6a08c174f8486959f87e90fb7807ee2766dec22d",
+      "code_cells": 6,
+      "figures": 0,
+      "tables": 4,
+      "errors": 0,
+      "execution_kind": "offline_presentation_replay_from_verified_aggregates"
+    },
+    {
+      "notebook": "04a_outcomes_and_modeling.ipynb",
+      "status": "passed",
+      "source_sha256": "29a70a100a61814f1e1e1440da5db2b76584fb6ccec46bc91415ea6cf586ce51",
+      "output_sha256": "82cfe2858c8cb7ac5d7d212b54de3df3c236524f110db9bdcf340b17b7352462",
+      "code_cells": 5,
+      "figures": 1,
+      "tables": 2,
+      "errors": 0,
+      "execution_kind": "offline_presentation_replay_from_verified_aggregates"
+    },
+    {
+      "notebook": "04b_outcomes_and_modeling_raas_subgroups.ipynb",
+      "status": "passed",
+      "source_sha256": "86063d37777392c5821a12968ef0d68609c6bd28783c4c07d0e0ae8fed45c20f",
+      "output_sha256": "9941f55226cbc6ac45ee493615a36dca27c8bc7b8080615a71686f2073363afd",
+      "code_cells": 5,
+      "figures": 1,
+      "tables": 2,
+      "errors": 0,
+      "execution_kind": "offline_presentation_replay_from_verified_aggregates"
+    },
+    {
+      "notebook": "04c_extended_covariate_cox_model.ipynb",
+      "status": "passed",
+      "source_sha256": "71d834294a937cb4fdcfa49e6b0539a28b6411c269b408e13dd7beb8f91eee80",
+      "output_sha256": "7651459cdea5291cebbbaa4b962cafdfbedc2399ad85a357bb9b7fda0e3f6118",
+      "code_cells": 5,
+      "figures": 2,
+      "tables": 4,
+      "errors": 0,
+      "execution_kind": "offline_presentation_replay_from_verified_aggregates"
+    },
+    {
+      "notebook": "04d_python_logistic_model.ipynb",
+      "status": "passed",
+      "source_sha256": "4137cb44a6ec59961000d1b82e81f44bb8e1235ff521b39f81ea8d7ef16e754f",
+      "output_sha256": "4f03724cf996ef3dc1ad81e41f00f8f83fb2bc0c636aa98acaa8d7e2f8d36250",
+      "code_cells": 2,
+      "figures": 0,
+      "tables": 1,
+      "errors": 0,
+      "execution_kind": "offline_presentation_replay_from_verified_aggregates"
+    },
+    {
+      "notebook": "05a_patient_cluster_sensitivity.ipynb",
+      "status": "passed",
+      "source_sha256": "21b64d8ea956cdce5a828e7f6cb84e13cd2a9d81cb5a7366e2f87c40f1dd4d75",
+      "output_sha256": "ea0ae0a04afa317edd634561eba0a0dd7255b45d09eb473a285b9fd8c9b6ff9c",
+      "code_cells": 5,
+      "figures": 2,
+      "tables": 4,
+      "errors": 0,
+      "execution_kind": "offline_presentation_replay_from_verified_aggregates"
+    },
+    {
+      "notebook": "05b_competing_risks.ipynb",
+      "status": "passed",
+      "source_sha256": "e1d74e623fe67a412913c5722dac514dd439f3ec4c8b6988ed44423d191ecb67",
+      "output_sha256": "263590b550ebee5c4c3b8c065bc5ebabd7840fe3e58d566327ee929455da3c7a",
+      "code_cells": 5,
+      "figures": 2,
+      "tables": 4,
+      "errors": 0,
+      "execution_kind": "offline_presentation_replay_from_verified_aggregates"
+    },
+    {
+      "notebook": "05c_time_aligned_severity.ipynb",
+      "status": "passed",
+      "source_sha256": "0016d203543d99a6db7b3e98b95156cfaaa8ca070efd021d253ecb3c0d8d3f53",
+      "output_sha256": "99564e29dba8f6c784fa25c718be6b5eab047b175b30fedfe1245d31a8433b47",
+      "code_cells": 5,
+      "figures": 2,
+      "tables": 4,
+      "errors": 0,
+      "execution_kind": "offline_presentation_replay_from_verified_aggregates"
+    }
+  ],
+  "scope": "All public notebooks; same validated aggregate values, generated captions/summaries and result-dependent CI interpretation.",
+  "limitations": [
+    "This is not a new clinical reanalysis or independent statistical revalidation.",
+    "The source defaults of 05a\u201305c remain synthetic; stored clinical aggregate replay outputs identify their origin."
+  ],
+  "regression_tests": {
+    "status": "passed",
+    "tests": 57
+  },
+  "browser_display_check": {
+    "status": "passed",
+    "notebooks": 11,
+    "tables": 32,
+    "loaded_figure_images": 10,
+    "broken_figure_images": 0,
+    "repeated_data_source_labels": 0,
+    "selected_input_context_notes_per_05_notebook": 1
+  },
+  "source_display_policy": "Once per notebook or input section; a change of input origin/provenance emits a new context note.",
+  "unchanged_from_previous_presentation": {
+    "all_table_values": true,
+    "runtime_plot_pixels": true,
+    "scientific_sources_and_clinical_aggregate_records": true
+  },
+  "local_link_target_checks": {
+    "notebook_targets": 66,
+    "changed_document_targets": 113,
+    "missing": 0
+  }
+}

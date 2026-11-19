@@ -97,7 +97,7 @@ The two-group log-rank statistic was 8.207, p=0.00417. These are unadjusted surv
 
 **What the results show**
 
-- The RAAS row is HR 0.833 (95% CI 0.673–1.030) in the era-stratified, unpenalized SOFA-core model. Its interval includes 1, so it does not establish a clear association in this specification; it does not prove equal hazards or no association.
+- The RAAS row is HR 0.833 (95% CI 0.673–1.030) in the era-stratified, unpenalized SOFA-core model. The interval includes 1; this does not establish equivalence or absence of an association.
 
 **Interpretation limits**
 
@@ -111,7 +111,7 @@ The two-group log-rank statistic was 8.207, p=0.00417. These are unadjusted surv
 
 **What the results show**
 
-- The primary estimate is 0.732 (95% CI 0.592–0.904); the exploratory SOFA-core estimate is 0.833 (95% CI 0.673–1.030). The results depend on the specification, and several intervals include HR=1. These plotted intervals use the original inference, not the later patient-cluster intervals or 24-hour landmark population.
+- The primary estimate is 0.732 (95% CI 0.592–0.904); the exploratory SOFA-core estimate is 0.833 (95% CI 0.673–1.030). These plotted intervals use the original inference, not the later patient-cluster intervals or 24-hour landmark population. Interpret every row using its own confidence interval.
 
 **Interpretation limits**
 
@@ -134,7 +134,7 @@ ACEi-only and ARB-only prescription-order groups are each compared with neither 
 
 **What the results show**
 
-- ACEi-only orders: 0.683 (95% CI 0.521–0.894); ARB-only orders: 0.805 (95% CI 0.573–1.131). The ACEi interval lies below 1, whereas the ARB interval includes 1.
+- ACEi-only orders: 0.683 (95% CI 0.521–0.894). The interval lies below 1. ARB-only orders: 0.805 (95% CI 0.573–1.131). The interval includes 1; this does not establish equivalence or absence of an association.
 
 **Interpretation limits**
 
@@ -223,7 +223,7 @@ These findings cannot establish causality. Confounding by indication, unmeasured
 
 ## Reproduction and sources
 
-Run the upstream SQL, then `.venv/bin/python scripts/current_analysis.py`, `.venv/bin/python scripts/render_current_report.py`, and `.venv/bin/python scripts/build_report.py` from the repository root. Notebooks 04a–04d use the same model/figure functions. Only reviewed aggregate notebook outputs are retained when their source/output hashes match the applicable versioned validation record. Unreviewed or mismatched outputs and machine-specific metadata are removed before commit. Patient-level records, identifier values and credentials are excluded from public outputs. See [the notebook output policy](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/REPRODUCIBILITY.md#notebook-output-policy).
+Run the upstream SQL, then `.venv/bin/python scripts/current_analysis.py`, `.venv/bin/python scripts/render_current_report.py`, and `.venv/bin/python scripts/build_report.py` from the repository root. Notebooks 04a–04d use the same model/figure functions. Only reviewed aggregate notebook outputs are retained when their source/output hashes and evidence bindings match the applicable execution or presentation validation record. Unreviewed or mismatched outputs and machine-specific metadata are removed before commit. Patient-level records, identifier values and credentials are excluded from public outputs. See [the notebook output policy](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/REPRODUCIBILITY.md#notebook-output-policy).
 
 - [MIMIC-IV v3.1](https://physionet.org/content/mimiciv/3.1/)
 - [Methods overview](https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/METHODS_OVERVIEW.md)

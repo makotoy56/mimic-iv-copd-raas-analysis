@@ -16,7 +16,7 @@ Report unadjusted cumulative incidence of death and live discharge, alongside se
 ## Output and downstream use
 
 - Aggregate tables and figures in the notebook; no BigQuery table or main estimate is overwritten.
-- The explicit CLI `--output` option saves aggregate JSON and figures under ignored `reports/local_supplements/`. Tracked notebooks retain only the reviewed aggregate outputs bound in `NOTEBOOK_EXECUTION_VALIDATION.json`.
+- The explicit CLI `--output` option saves aggregate JSON and figures under ignored `reports/local_supplements/`. The original clinical execution is recorded in `NOTEBOOK_EXECUTION_VALIDATION.json`; current caption/summary refreshes from those saved aggregates are bound separately in `NOTEBOOK_PRESENTATION_VALIDATION.json`.
 - Selected clinical aggregates are published separately in [the results record](SURVIVAL_SENSITIVITY_RESULTS.json) and [Quarto](https://makotoy56.github.io/mimic-iv-copd-raas-analysis/copd_raas_survival_report.html#supplementary-sensitivity-analyses).
 
 ## Key methods and scope
@@ -28,7 +28,7 @@ Report unadjusted cumulative incidence of death and live discharge, alongside se
 
 ## Results summary
 
-Published clinical results, not the default synthetic output; CIFs are unadjusted and intervals are pointwise 95% intervals.
+### Table 1 — Saved death and live-discharge cumulative incidence
 
 | Qualifying RAAS orders | Day | Death CIF %, 95% CI | Live-discharge CIF %, 95% CI |
 | --- | ---: | --- | --- |
@@ -39,13 +39,13 @@ Published clinical results, not the default synthetic output; CIFs are unadjuste
 | Yes | 14 | 8.03 (6.21–9.93) | 77.70 (74.73–80.39) |
 | Yes | 28 | 9.09 (7.09–11.08) | 87.95 (85.76–90.06) |
 
-Day-28 death-CIF difference, RAAS minus no RAAS: -4.81 percentage points (95% CI -6.82 to -2.66). This is an unadjusted association, not a treatment effect.
+**Summary:** At day 28, unadjusted death CIF is 9.09% with qualifying RAAS orders and 13.90% without; live-discharge CIF is 87.95% and 81.68%, respectively. Intervals use 1,000 patient-cluster bootstrap draws and are pointwise, not simultaneous. These unadjusted associations do not establish treatment effects.
 
-### Figure 1 — Death and live discharge cumulative incidence
+Day-28 death-CIF difference, RAAS minus no RAAS: -4.81 percentage points (95% CI -6.82 to -2.66).
 
-**Data source:** Saved clinical execution results; [aggregate record](SURVIVAL_SENSITIVITY_RESULTS.json).
+### Figure 1 — Death and live-discharge cumulative incidence
 
-![Figure 1 — Death and live discharge cumulative incidence](../assets/supplementary_competing_risks.svg)
+![Figure 1 — Death and live-discharge cumulative incidence](../assets/supplementary_competing_risks.svg)
 
 **How to read**
 
@@ -59,6 +59,16 @@ Day-28 death-CIF difference, RAAS minus no RAAS: -4.81 percentage points (95% CI
 **Interpretation limits**
 
 - These curves are unadjusted associations and do not establish a treatment effect. They answer a different question from the adjusted cause-specific HRs and from Kaplan–Meier curves that censor discharge. No Fine–Gray model is shown.
+### Table 2 — Saved adjusted cause-specific Cox associations
+
+| Endpoint | HR | Patient-cluster 95% CI | p |
+| --- | ---: | --- | ---: |
+| In-hospital death | 0.732 | 0.593–0.902 | 0.00346 |
+| Live discharge | 1.168 | 1.087–1.254 | 0.00002 |
+
+**Summary:** death: HR 0.732 (95% CI 0.593–0.902); p=0.003455. 11,964 admissions, 1,692 deaths. The interval lies below 1. discharge: HR 1.168 (95% CI 1.087–1.254); p=2.088e-05. 11,964 admissions, 10,272 live discharges. The interval lies above 1.
+
+The age/sex/era cause-specific models describe rates while alive and hospitalized. Their adjusted HRs and the unadjusted CIFs answer different questions. No Fine–Gray model or causal treatment effect is claimed.
 
 ## Related analyses
 

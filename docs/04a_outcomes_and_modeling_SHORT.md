@@ -33,8 +33,6 @@ The saved main cohort has 11,964 admissions and 1,692 deaths. The refined primar
 
 ### Figure 1 — Kaplan–Meier estimates
 
-**Data source:** Saved clinical execution results; [aggregate record](CURRENT_ANALYSIS.json).
-
 ![Figure 1 — Kaplan–Meier estimates](../assets/kaplan_meier_curve.png)
 
 **How to read**

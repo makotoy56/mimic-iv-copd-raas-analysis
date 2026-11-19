@@ -16,7 +16,7 @@ Explore first-day severity among admissions alive and still hospitalized beyond 
 ## Output and downstream use
 
 - Aggregate tables and figures in the notebook; no BigQuery table or main estimate is overwritten.
-- The explicit CLI `--output` option saves aggregate JSON and figures under ignored `reports/local_supplements/`. Tracked notebooks retain only the reviewed aggregate outputs bound in `NOTEBOOK_EXECUTION_VALIDATION.json`.
+- The explicit CLI `--output` option saves aggregate JSON and figures under ignored `reports/local_supplements/`. The original clinical execution is recorded in `NOTEBOOK_EXECUTION_VALIDATION.json`; current caption/summary refreshes from those saved aggregates are bound separately in `NOTEBOOK_PRESENTATION_VALIDATION.json`.
 - Selected clinical aggregates are published separately in [the results record](SURVIVAL_SENSITIVITY_RESULTS.json) and [Quarto](https://makotoy56.github.io/mimic-iv-copd-raas-analysis/copd_raas_survival_report.html#supplementary-sensitivity-analyses).
 - The published clinical tables and forest plot are visible in the notebook and this SHORT guide without execution; they are regenerated from the verified public aggregate record.
 
@@ -30,7 +30,7 @@ Explore first-day severity among admissions alive and still hospitalized beyond 
 ## Results summary
 
 The tables and figures in this section display saved clinical execution results from [the public aggregate record](SURVIVAL_SENSITIVITY_RESULTS.json). They do not represent a new clinical rerun. The separately labeled execution section describes how to reproduce outputs. Any synthetic execution is explicitly labeled and is not a clinical MIMIC result.
-### Cohort at the 24-hour landmark
+### Table 1 — Saved sequential 24-hour landmark eligibility
 
 | Eligibility step | Admissions |
 | --- | ---: |
@@ -42,18 +42,16 @@ The tables and figures in this section display saved clinical execution results 
 | Excluded: missing core covariates among eligible admissions | 0 |
 | Analyzed in each matched landmark model | 11,530 |
 
-Exclusions are sequential. Follow-up starts 24 hours after ICU entry; one day is subtracted from eligible follow-up. Both models use the same 11,530 admissions (8,854 patients).
-### Matched landmark Cox results
-
-The contrast is qualifying pre-ICU RAAS prescription orders versus no qualifying orders. Both models stratify by era; all intervals and p-values below use patient-cluster inference.
+**Summary:** Of 11,964 original admissions, 254 deaths and 178 live discharges occurred at or before 24 hours; 2 remaining deaths with unknown times were excluded. 11,530 admissions remained eligible, with 0 subsequently excluded for missing core covariates. Both matched models use 11,530 admissions (8,854 patients).
+### Table 2 — Saved matched landmark Cox results
 
 | Model | Admissions | Deaths | Adjusted HR | Patient-cluster 95% CI | p |
 | --- | ---: | ---: | ---: | --- | ---: |
 | Age/sex/era | 11,530 | 1,436 | 0.771 | 0.617–0.965 | 0.02313 |
 | Exploratory SOFA core | 11,530 | 1,436 | 0.854 | 0.673–1.082 | 0.19133 |
-### Figure 1 — 24-hour landmark Cox models
 
-**Data source:** Saved clinical execution results; [aggregate record](SURVIVAL_SENSITIVITY_RESULTS.json).
+**Summary:** Age/sex/era: HR 0.771 (95% CI 0.617–0.965); p=0.02313. 11,530 admissions, 1,436 deaths. The interval lies below 1. Exploratory SOFA core: HR 0.854 (95% CI 0.673–1.082); p=0.1913. 11,530 admissions, 1,436 deaths. The interval includes 1; this does not establish equivalence or absence of an association.
+### Figure 1 — 24-hour landmark Cox models
 
 ![Figure 1 — 24-hour landmark Cox models](../assets/supplementary_landmark_forest.png)
 
@@ -65,12 +63,12 @@ The contrast is qualifying pre-ICU RAAS prescription orders versus no qualifying
 
 **What the results show**
 
-- Age/sex/era: HR 0.771 (95% CI 0.617–0.965). The interval lies below 1, indicating an association with lower death hazard under this specification.
-- Exploratory SOFA core: HR 0.854 (95% CI 0.673–1.082). The estimate is closer to 1, and its interval includes 1. This result remains compatible with lower, equal or somewhat higher hazard; it does not establish absence of an association or equivalence.
+- Age/sex/era: HR 0.771 (95% CI 0.617–0.965). The interval lies below 1.
+- Exploratory SOFA core: HR 0.854 (95% CI 0.673–1.082). The second point estimate is closer to 1. The interval includes 1; this does not establish equivalence or absence of an association.
 
 **Interpretation limits**
 
-The two rows are different adjustment specifications, not separate treatment groups or a formal test between model estimates. One interval excluding 1 and the other including 1 does not establish a statistically significant difference between the estimates. Their change cannot be attributed solely to controlling baseline severity: first-day SOFA is post-exposure, and individual component times remain independently unverified. The landmark also changes the population and time origin relative to the original ICU-entry analysis. Neither row establishes a causal treatment effect.
+The two rows are different adjustment specifications, not separate treatment groups or a formal test between model estimates. Differences in whether intervals include 1 do not establish a statistically significant difference between the estimates. Their change cannot be attributed solely to controlling baseline severity: first-day SOFA is post-exposure, and individual component times remain independently unverified. The landmark also changes the population and time origin relative to the original ICU-entry analysis. Neither row establishes a causal treatment effect.
 
 ## Related analyses
 

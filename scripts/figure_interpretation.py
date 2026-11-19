@@ -1,5 +1,6 @@
 """Reader-facing explanations derived only from saved public aggregate results."""
 from notebook_figure_layout import bullet_guide, format_guide
+from presentation_catalog import interval_position
 
 
 def hr(e):
@@ -21,18 +22,18 @@ def main_notes(r):
             "**How to read the exploratory core forest plot**", "",
             "- Each dot is an adjusted hazard ratio; its horizontal bar is an ordinary admission-level 95% confidence interval. Colors distinguish covariate rows, not statistical significance. The dashed line at HR=1 represents equal hazards under the fitted model. The horizontal scale is linear.",
             "- Read the unit of each row: age is per year, SOFA is per point, male sex is relative to female sex, and the binary RAAS/CHF/CKD/diabetes rows compare flag 1 with flag 0. Different units mean that distance from 1 cannot be used to rank clinical importance across rows.",
-            f"- The RAAS row is HR {hr(core)} in the era-stratified, unpenalized SOFA-core model. Its interval includes 1, so it does not establish a clear association in this specification; it does not prove equal hazards or no association.",
+            f"- The RAAS row is HR {hr(core)} in the era-stratified, unpenalized SOFA-core model. {interval_position(core['lower_95'], core['upper_95'])}",
             "- This is the exploratory 04c model, not the refined primary 04a model or the separate patient-cluster analysis. First-day SOFA may include post-start information. The estimates are conditional associations and cannot establish treatment effects."]),
         "sensitivity": "\n".join([
             "**How to read the model sensitivity comparison**", "",
             "- Every row estimates the same qualifying-RAAS-orders versus no-qualifying-orders contrast under a different Cox specification. Dots are HRs and horizontal bars are that specification's original 95% intervals on a linear scale. Colors separate model rows for readability; these are not different medication groups.",
-            f"- The primary estimate is {hr(primary)}; the exploratory SOFA-core estimate is {hr(core)}. The results depend on the specification, and several intervals include HR=1. These plotted intervals use the original inference, not the later patient-cluster intervals or 24-hour landmark population.",
+            f"- The primary estimate is {hr(primary)}; the exploratory SOFA-core estimate is {hr(core)}. These plotted intervals use the original inference, not the later patient-cluster intervals or 24-hour landmark population. Interpret every row using its own confidence interval.",
             "- L2 rows use penalization; the ICU and PH-stratified rows change covariates or baseline-hazard strata. Their differences cannot isolate a single confounder, and one interval crossing 1 while another does not is not a test of the difference between estimates.",
             "- SOFA-containing rows are exploratory and can use post-start information. The set of models is a sensitivity analysis of an observational association, not independent replications of a causal treatment effect."]),
         "subgroups": "\n".join([
             "**How to read the ACEi/ARB forest plot**", "",
             "- Both rows use neither qualifying order as the reference. The blue dot is ACEi-only and the orange dot is ARB-only. Each is an age/sex-adjusted, era-stratified HR with an ordinary admission-level 95% interval on a linear scale. HR=1 is the reference line; records with both class flags positive are excluded.",
-            f"- ACEi-only orders: {hr(sub['acei_pre_icu'])}; ARB-only orders: {hr(sub['arb_pre_icu'])}. The ACEi interval lies below 1, whereas the ARB interval includes 1.",
+            f"- ACEi-only orders: {hr(sub['acei_pre_icu'])}. {interval_position(sub['acei_pre_icu']['lower_95'], sub['acei_pre_icu']['upper_95'])} ARB-only orders: {hr(sub['arb_pre_icu'])}. {interval_position(sub['arb_pre_icu']['lower_95'], sub['arb_pre_icu']['upper_95'])}",
             "- Different point estimates or p-value thresholds do not establish a difference between classes. This plot contains no direct ACEi-versus-ARB contrast and does not establish superiority or equivalence.",
             "- The flags describe prescription orders, not verified administration or adherence. These associations do not estimate causal drug effects."]),
     }
@@ -52,7 +53,7 @@ def supplement_notes(data):
             "**How to read the saved patient-cluster comparison**", "",
             "- Gray circles show ordinary admission-level 95% intervals; blue squares show patient-cluster 95% intervals. Colors distinguish inference methods, not exposure groups. Each pair shares one fitted RAAS HR and the same complete cases; its vertical offset is only for readability.",
             "- The dashed HR=1 line represents equal hazards. Patient clustering allows dependence among repeated admissions from one patient when estimating uncertainty; it does not fit a frailty model, remove confounding or change the exposure definition. A cluster interval can be wider or narrower.",
-            f"- The primary HR remains {primary['hr']:.3f}, with patient-cluster CI {primary['patient_cluster']['lower_95']:.3f}–{primary['patient_cluster']['upper_95']:.3f}. The exploratory SOFA-core HR remains {core['hr']:.3f}, with cluster CI {core['patient_cluster']['lower_95']:.3f}–{core['patient_cluster']['upper_95']:.3f}, which includes 1. The core result does not establish equal hazards or equivalence.",
+            f"- The primary HR is {primary['hr']:.3f}, with patient-cluster CI {primary['patient_cluster']['lower_95']:.3f}–{primary['patient_cluster']['upper_95']:.3f}. {interval_position(primary['patient_cluster']['lower_95'], primary['patient_cluster']['upper_95'])} The exploratory SOFA-core HR is {core['hr']:.3f}, with cluster CI {core['patient_cluster']['lower_95']:.3f}–{core['patient_cluster']['upper_95']:.3f}. {interval_position(core['patient_cluster']['lower_95'], core['patient_cluster']['upper_95'])}",
             "- Compare uncertainty methods within a model. The two covariate specifications are not a formal between-model test or evidence of causal treatment benefit; the SOFA timing limitation remains."]),
         "competing": "\n".join([
             "**How to read the saved competing-event figure**", "",
@@ -74,7 +75,7 @@ RUNTIME_CLUSTER_NOTE = "\n".join([
 
 RUNTIME_COMPETING_NOTE = "\n".join([
     "**How to read this runtime figure**", "",
-    "- Check the title and printed `data_origin`: SYNTHETIC values demonstrate software behavior only. The clinical results are the separately labeled saved aggregate figure above.",
+    "- Check the title and printed `data_origin`: SYNTHETIC values demonstrate software behavior only. The saved clinical snapshot and selected execution are labeled separately; a current clinical execution also uses clinical aggregates.",
     "- Blue represents qualifying RAAS orders and orange represents no qualifying orders. The left curve is death CIF and the right is live-discharge CIF; shading shows pointwise patient-bootstrap 95% intervals. Read each curve as an unadjusted cumulative probability by time, not as a hazard ratio.",
     "- This runtime plot uses a 0–100% vertical range for both panels, while the saved public death panel uses 0–20%. The scale difference changes appearance, not the definition of the probability. The default synthetic bootstrap uses fewer draws than the saved clinical run.",
     "- Treat death and discharge as competing endpoints. The separate adjusted cause-specific Cox table estimates rates among admissions still alive and hospitalized. Curve separation or HR differences do not establish a causal treatment effect."])

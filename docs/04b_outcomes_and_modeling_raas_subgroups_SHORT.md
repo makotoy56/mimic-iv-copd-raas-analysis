@@ -31,11 +31,9 @@ Estimate each prescription-order class association against the shared neither-or
 
 The saved subclass model includes 11,951 admissions and 1,690 deaths. ACEi-only versus neither: HR 0.683 (95% CI 0.521–0.894); p=0.00550. ARB-only versus neither: HR 0.805 (95% CI 0.573–1.131); p=0.21116. Source: [CURRENT_ANALYSIS.json](CURRENT_ANALYSIS.json).
 
-### Figure 1 — ACEi-only and ARB-only order estimates versus neither
+### Figure 1 — ACEi-only and ARB-only orders versus neither
 
-**Data source:** Saved clinical execution results; [aggregate record](CURRENT_ANALYSIS.json).
-
-![Figure 1 — ACEi-only and ARB-only order estimates versus neither](../assets/raas_subgroup_forest_plot.svg)
+![Figure 1 — ACEi-only and ARB-only orders versus neither](../assets/raas_subgroup_forest_plot.svg)
 
 **How to read**
 
@@ -43,7 +41,7 @@ The saved subclass model includes 11,951 admissions and 1,690 deaths. ACEi-only 
 
 **What the results show**
 
-- ACEi-only orders: 0.683 (95% CI 0.521–0.894); ARB-only orders: 0.805 (95% CI 0.573–1.131). The ACEi interval lies below 1, whereas the ARB interval includes 1.
+- ACEi-only orders: 0.683 (95% CI 0.521–0.894). The interval lies below 1. ARB-only orders: 0.805 (95% CI 0.573–1.131). The interval includes 1; this does not establish equivalence or absence of an association.
 
 **Interpretation limits**
 

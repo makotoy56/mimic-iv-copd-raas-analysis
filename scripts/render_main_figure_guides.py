@@ -4,7 +4,7 @@ import json
 import re
 
 from figure_interpretation import main_notes
-from notebook_figure_layout import saved_intro, figure_block, validate_layout
+from notebook_figure_layout import saved_intro, saved_figure_block, validate_layout, normalize_input_context
 
 MARKER = "<!-- Generated main figure guide: "
 FIGURES = {"km": ("kaplan_meier_curve.png", "Saved Kaplan–Meier estimates"),
@@ -33,7 +33,7 @@ def generate(repo):
             title=title.removeprefix('Saved ')
             title=title[:1].upper()+title[1:]
             text=(f'{MARKER}{key}; edit scripts/figure_interpretation.py -->\n\n'+
-                  figure_block(number,title,f'../assets/{filename}',notes[key],'../docs/CURRENT_ANALYSIS.json'))
+                  saved_figure_block(name.split('_',1)[0],key,f'../assets/{filename}',notes[key]))
             inserts.append(nbformat.v4.new_markdown_cell(text,id=ids.get(key,'main-figure-'+key)))
         runtime=(f'{MARKER}runtime; edit scripts/render_main_figure_guides.py -->\n\n'
                  '## Runtime execution\n\n'
@@ -41,6 +41,7 @@ def generate(repo):
                  'They recompute the current models and exported figures; they are separate from the saved figures above.')
         inserts.append(nbformat.v4.new_markdown_cell(runtime,id=ids.get('runtime','main-runtime-workflow')))
         book.cells = cells[:1]+inserts+cells[1:]
+        normalize_input_context(book,name)
         validate_layout(book)
         nbformat.validate(book)
         nbformat.write(book,path)

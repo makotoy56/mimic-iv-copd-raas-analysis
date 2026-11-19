@@ -332,7 +332,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <p><strong>What the results show</strong></p>
 <ul>
-<li>The RAAS row is HR 0.833 (95% CI 0.673–1.030) in the era-stratified, unpenalized SOFA-core model. Its interval includes 1, so it does not establish a clear association in this specification; it does not prove equal hazards or no association.</li>
+<li>The RAAS row is HR 0.833 (95% CI 0.673–1.030) in the era-stratified, unpenalized SOFA-core model. The interval includes 1; this does not establish equivalence or absence of an association.</li>
 </ul>
 <p><strong>Interpretation limits</strong></p>
 <ul>
@@ -350,7 +350,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <p><strong>What the results show</strong></p>
 <ul>
-<li>The primary estimate is 0.732 (95% CI 0.592–0.904); the exploratory SOFA-core estimate is 0.833 (95% CI 0.673–1.030). The results depend on the specification, and several intervals include HR=1. These plotted intervals use the original inference, not the later patient-cluster intervals or 24-hour landmark population.</li>
+<li>The primary estimate is 0.732 (95% CI 0.592–0.904); the exploratory SOFA-core estimate is 0.833 (95% CI 0.673–1.030). These plotted intervals use the original inference, not the later patient-cluster intervals or 24-hour landmark population. Interpret every row using its own confidence interval.</li>
 </ul>
 <p><strong>Interpretation limits</strong></p>
 <ul>
@@ -375,7 +375,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <p><strong>What the results show</strong></p>
 <ul>
-<li>ACEi-only orders: 0.683 (95% CI 0.521–0.894); ARB-only orders: 0.805 (95% CI 0.573–1.131). The ACEi interval lies below 1, whereas the ARB interval includes 1.</li>
+<li>ACEi-only orders: 0.683 (95% CI 0.521–0.894). The interval lies below 1. ARB-only orders: 0.805 (95% CI 0.573–1.131). The interval includes 1; this does not establish equivalence or absence of an association.</li>
 </ul>
 <p><strong>Interpretation limits</strong></p>
 <ul>
@@ -569,7 +569,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="reproduction-and-sources" class="level2" data-number="13">
 <h2 data-number="13" class="anchored" data-anchor-id="reproduction-and-sources"><span class="header-section-number">13</span> Reproduction and sources</h2>
-<p>Run the upstream SQL, then <code>.venv/bin/python scripts/current_analysis.py</code>, <code>.venv/bin/python scripts/render_current_report.py</code>, and <code>.venv/bin/python scripts/build_report.py</code> from the repository root. Notebooks 04a–04d use the same model/figure functions. Only reviewed aggregate notebook outputs are retained when their source/output hashes match the applicable versioned validation record. Unreviewed or mismatched outputs and machine-specific metadata are removed before commit. Patient-level records, identifier values and credentials are excluded from public outputs. See <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/REPRODUCIBILITY.md#notebook-output-policy">the notebook output policy</a>.</p>
+<p>Run the upstream SQL, then <code>.venv/bin/python scripts/current_analysis.py</code>, <code>.venv/bin/python scripts/render_current_report.py</code>, and <code>.venv/bin/python scripts/build_report.py</code> from the repository root. Notebooks 04a–04d use the same model/figure functions. Only reviewed aggregate notebook outputs are retained when their source/output hashes and evidence bindings match the applicable execution or presentation validation record. Unreviewed or mismatched outputs and machine-specific metadata are removed before commit. Patient-level records, identifier values and credentials are excluded from public outputs. See <a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/REPRODUCIBILITY.md#notebook-output-policy">the notebook output policy</a>.</p>
 <ul>
 <li><a href="https://physionet.org/content/mimiciv/3.1/">MIMIC-IV v3.1</a></li>
 <li><a href="https://github.com/makotoy56/mimic-iv-copd-raas-analysis/blob/main/docs/METHODS_OVERVIEW.md">Methods overview</a></li>
